@@ -1,0 +1,191 @@
+
+======================================================================
+DEMO SESSION — 15 questions against fastapi/fastapi
+Mode: LIVE (Cerebras llama3.1-8b)
+Budget: 8,192 tokens | Soft: 0.7 | Hard: 0.9
+======================================================================
+
+
+--- Turn 1/15 ---
+Q: What does this project do?
+A: [API Error: Cerebras API failed after 5 retries: Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 8256 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}]
+[Turn 2] Context: 5,326/8,192 tok | Chunks: 52 active, 0 evicted | Compactions: 0 | TTFT: -
+
+--- Turn 2/15 ---
+Q: How is routing implemented?
+A: [API Error: Cerebras API failed after 5 retries: Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 8346 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}]
+[Turn 4] Context: 5,402/8,192 tok | Chunks: 54 active, 0 evicted | Compactions: 0 | TTFT: -
+
+--- Turn 3/15 ---
+Q: Where is error handling defined?
+A: [API Error: Cerebras API failed after 5 retries: Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 8437 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}]
+[Turn 6] Context: 5,480/8,192 tok | Chunks: 56 active, 0 evicted | Compactions: 0 | TTFT: -
+
+--- Turn 4/15 ---
+Q: How does dependency injection work?
+A: [API Error: Cerebras API failed after 5 retries: Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 8528 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}]
+[Turn 8] Context: 5,558/8,192 tok | Chunks: 58 active, 0 evicted | Compactions: 0 | TTFT: -
+
+--- Turn 5/15 ---
+Q: Where are the security utilities?
+A: [API Error: Cerebras API failed after 5 retries: Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 8619 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}]
+[Turn 10] Context: 5,636/8,192 tok | Chunks: 60 active, 0 evicted | Compactions: 0 | TTFT: -
+
+--- Turn 6/15 ---
+Q: How does the middleware stack work?
+A: [API Error: Cerebras API failed after 5 retries: Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 8711 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}]
+[Turn 12] Context: 5,714/8,192 tok | Chunks: 62 active, 0 evicted | Compactions: 0 | TTFT: -
+
+--- Turn 7/15 ---
+Q: What testing framework is used?
+A: [API Error: Cerebras API failed after 5 retries: Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 8802 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}]
+  [EVICT] compact_soft: 6b1abd55a97c... (priority=1.22 turn=0) [5,791 -> 5,781]
+  [EVICT] compact_soft: aed13a9a0c0f... (priority=1.26 turn=0) [5,781 -> 5,775]
+  [EVICT] compact_soft: acd63d853b1c... (priority=1.26 turn=0) [5,775 -> 5,764]
+  [EVICT] compact_soft: 794a07d1970e... (priority=1.28 turn=0) [5,764 -> 5,750]
+  [EVICT] compact_soft: bdd15ad5d9a4... (priority=1.28 turn=0) [5,750 -> 5,734]
+  [EVICT] compact_soft: a9a8479548ed... (priority=1.28 turn=0) [5,734 -> 5,718]
+  [EVICT] compact_soft: a414ba1eae24... (priority=1.28 turn=0) [5,718 -> 5,702]
+  [EVICT] compact_soft: fb5fd5148fa8... (priority=1.28 turn=0) [5,702 -> 5,685]
+  [EVICT] compact_soft: d8b42348da6d... (priority=1.28 turn=0) [5,685 -> 5,670]
+  [EVICT] compact_soft: d06e9b82a3ae... (priority=1.28 turn=0) [5,670 -> 5,655]
+  [EVICT] compact_soft: ce3b8846f4a9... (priority=1.28 turn=0) [5,655 -> 5,641]
+  [EVICT] compact_soft: a217e50b3e45... (priority=1.28 turn=0) [5,641 -> 5,629]
+  [EVICT] compact_soft: e82ea948d27b... (priority=1.28 turn=0) [5,629 -> 5,612]
+  [EVICT] compact_soft: 8c17d7d5ad92... (priority=1.28 turn=0) [5,612 -> 5,596]
+  [EVICT] compact_soft: df58106bc609... (priority=1.28 turn=0) [5,596 -> 5,582]
+  [EVICT] compact_soft: 846916bd5cb7... (priority=1.28 turn=0) [5,582 -> 5,568]
+  [EVICT] compact_soft: 777614bc2deb... (priority=1.28 turn=0) [5,568 -> 5,554]
+  [EVICT] compact_soft: 796e0aaa6674... (priority=1.28 turn=0) [5,554 -> 5,539]
+  [EVICT] compact_soft: de4bc169e48b... (priority=1.28 turn=0) [5,539 -> 5,522]
+  [EVICT] compact_soft: 676ed995f0d0... (priority=1.28 turn=0) [5,522 -> 5,506]
+  [EVICT] compact_soft: ae4169eed0a6... (priority=1.28 turn=0) [5,506 -> 5,491]
+  [EVICT] compact_soft: 0669f91c2435... (priority=1.28 turn=0) [5,491 -> 5,478]
+  [EVICT] compact_soft: 59b248c728fc... (priority=1.28 turn=0) [5,478 -> 5,460]
+  [EVICT] compact_soft: 7ed67e21701f... (priority=1.28 turn=0) [5,460 -> 5,445]
+  [EVICT] compact_soft: 8d0494fbcbcb... (priority=1.28 turn=0) [5,445 -> 5,430]
+  [EVICT] compact_soft: 76ec2c1011e2... (priority=1.28 turn=0) [5,430 -> 5,412]
+  [EVICT] compact_soft: 9575a3f0fd8f... (priority=1.28 turn=0) [5,412 -> 5,398]
+  [EVICT] compact_soft: d6a4eb7665a0... (priority=1.28 turn=0) [5,398 -> 5,383]
+  [EVICT] compact_soft: 00fdf18bb265... (priority=1.28 turn=0) [5,383 -> 5,364]
+  [EVICT] compact_soft: 588a2582f251... (priority=1.28 turn=0) [5,364 -> 5,343]
+  [EVICT] compact_soft: 3491876eda85... (priority=1.28 turn=0) [5,343 -> 5,329]
+  [EVICT] compact_soft: a1d38ada35ef... (priority=1.28 turn=0) [5,329 -> 5,313]
+  [EVICT] compact_soft: 536f3959cb3a... (priority=1.28 turn=0) [5,313 -> 5,298]
+  [EVICT] compact_soft: aa8b9220f6e5... (priority=1.28 turn=0) [5,298 -> 5,281]
+  [EVICT] compact_soft: e9d78358d232... (priority=1.28 turn=0) [5,281 -> 5,268]
+  [EVICT] compact_soft: 0627c77c33f5... (priority=1.28 turn=0) [5,268 -> 5,253]
+  [EVICT] compact_soft: af796d26e746... (priority=1.28 turn=0) [5,253 -> 5,238]
+  [EVICT] compact_soft: 87155eede635... (priority=1.28 turn=0) [5,238 -> 5,224]
+  [EVICT] compact_soft: b431c6cb1da0... (priority=1.30 turn=0) [5,224 -> 5,210]
+  [EVICT] compact_soft: 3d5c80af76ee... (priority=1.30 turn=0) [5,210 -> 5,196]
+  [EVICT] compact_soft: 5c3a51abc589... (priority=1.30 turn=0) [5,196 -> 5,182]
+  [EVICT] compact_soft: f327e25b8447... (priority=1.30 turn=0) [5,182 -> 5,168]
+  [EVICT] compact_soft: d36fb19e8414... (priority=1.30 turn=0) [5,168 -> 5,154]
+  [EVICT] compact_soft: b264525934eb... (priority=1.30 turn=0) [5,154 -> 5,140]
+  [EVICT] compact_soft: ab3901906b63... (priority=1.30 turn=0) [5,140 -> 5,126]
+  [EVICT] compact_soft: 181951dea711... (priority=1.30 turn=0) [5,126 -> 5,113]
+  [EVICT] compact_soft: 1bd1a264f433... (priority=1.32 turn=0) [5,113 -> 5,099]
+  [EVICT] compact_soft: 712b60c79df4... (priority=1.32 turn=1) [5,099 -> 5,029]
+  [EVICT] compact_soft: ec2faa5f279c... (priority=1.32 turn=3) [5,029 -> 4,959]
+  [EVICT] compact_soft: 2a5368a31ad4... (priority=1.32 turn=5) [4,959 -> 4,889]
+  [EVICT] compact_soft: 93037ae5fc25... (priority=1.32 turn=7) [4,889 -> 4,819]
+  [EVICT] compact_soft: ecbd66ee930a... (priority=1.32 turn=9) [4,819 -> 4,749]
+  [EVICT] compact_soft: 826129919c98... (priority=1.32 turn=11) [4,749 -> 4,679]
+  [EVICT] compact_soft: 81940c481c48... (priority=1.32 turn=13) [4,679 -> 4,609]
+  [EVICT] compact_soft: f212a2c54d78... (priority=1.39 turn=4) [4,609 -> 4,601]
+  [EVICT] compact_soft: 2f3dff0ae2c7... (priority=1.39 turn=0) [4,601 -> 4,595]
+  [EVICT] compact_soft: 57efeb7732a0... (priority=1.39 turn=6) [4,595 -> 4,587]
+[Turn 14] Context: 4,587/8,192 tok | Chunks: 7 active, 57 evicted | Compactions: 1 | TTFT: -
+
+--- Turn 8/15 ---
+Q: How are WebSocket connections handled?
+A: Based on the provided information, I can answer the following questions:
+
+1. **How is routing implemented?**
+
+FastAPI uses the Starlette framework, which is a modern Python web framework that provides a flexible and modular way to build web applications. FastAPI's routing is implemented using the Starlette's routing system, which allows for flexible and modular routing.
+
+In the `docs/tutorial/tutorial001.md` file, there is an example of how to define a route using FastAPI:
+```python
+from fastapi...
+[Turn 16] Context: 5,611/8,192 tok | Chunks: 9 active, 57 evicted | Compactions: 1 | TTFT: 1.21s
+
+--- Turn 9/15 ---
+Q: Go back to routing — how does it handle path parameters?
+A: [API Error: Cerebras API failed after 5 retries: Error code: 429 - {'message': "We're experiencing high traffic right now! Please try again soon.", 'type': 'too_many_requests_error', 'param': 'queue', 'code': 'queue_exceeded'}]
+[Turn 18] Context: 5,681/8,192 tok | Chunks: 11 active, 57 evicted | Compactions: 1 | TTFT: 1.21s
+
+--- Turn 10/15 ---
+Q: What about query parameter validation?
+A: [API Error: Cerebras API failed after 5 retries: Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 8291 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}]
+  [EVICT] compact_soft: c1f887bb912c... (priority=1.35 turn=15) [5,760 -> 4,745]
+  [EVICT] compact_soft: 084e23436e75... (priority=1.35 turn=0) [4,745 -> 4,214]
+[Turn 20] Context: 4,214/8,192 tok | Chunks: 11 active, 59 evicted | Compactions: 2 | TTFT: 1.21s
+
+--- Turn 11/15 ---
+Q: How does the OpenAPI schema generation work?
+A: The OpenAPI schema generation in FastAPI is handled by the `openapi` module, which is part of the `fastapi` package. When you create a FastAPI application, it automatically generates an OpenAPI schema based on the routes and endpoints defined in your application.
+
+Here's a high-level overview of how it works:
+
+1. **Route inspection**: FastAPI inspects the routes and endpoints defined in your application, including the path parameters, query parameters, request body, and response models.
+2. **Sch...
+[Turn 22] Context: 4,751/8,192 tok | Chunks: 13 active, 59 evicted | Compactions: 2 | TTFT: 4.47s
+
+--- Turn 12/15 ---
+Q: Remember the security utils from earlier — how do they integrate with dependencies?
+A: The security utilities in FastAPI integrate with dependencies through the use of annotations and other mechanisms provided by the framework.
+
+Here are some ways that security utilities integrate with dependencies:
+
+1. **Authentication**: FastAPI provides a set of authentication utilities, such as `HTTPBasicAuth` and `OAuth2PasswordBearer`, which can be used to authenticate users and integrate with dependencies such as databases and APIs.
+2. **Authorization**: FastAPI provides a set of authorizat...
+[Turn 24] Context: 5,492/8,192 tok | Chunks: 15 active, 59 evicted | Compactions: 2 | TTFT: 4.55s
+
+--- Turn 13/15 ---
+Q: Where would I add a new middleware?
+A: In FastAPI, you can add a new middleware by creating a class that inherits from `BaseAPI` and overriding the `__call__` method. This method is called for each incoming request, and it allows you to perform any necessary actions before or after the request is processed by the application.
+
+Here's an example of how you might add a new middleware:
+```python
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+
+class MyMiddleware:
+    def __init__(self, app: FastAPI):
+    ...
+  [EVICT] compact_soft: 7c18390edee8... (priority=1.36 turn=23) [5,744 -> 5,023]
+  [EVICT] compact_soft: 9b1f6b7e5c35... (priority=1.36 turn=21) [5,023 -> 4,497]
+[Turn 26] Context: 4,497/8,192 tok | Chunks: 15 active, 61 evicted | Compactions: 3 | TTFT: 4.52s
+
+--- Turn 14/15 ---
+Q: What was the error handling approach again?
+A: FastAPI uses a robust error handling approach that allows you to define custom error handlers for specific exceptions. This is done using the `@app.exception_handler` decorator.
+
+Here's an example of how you might define a custom error handler for a specific exception:
+```python
+from fastapi import FastAPI, HTTPException
+
+app = FastAPI()
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(status_code=exc.status_co...
+[Turn 28] Context: 4,899/8,192 tok | Chunks: 17 active, 61 evicted | Compactions: 3 | TTFT: 4.06s
+
+--- Turn 15/15 ---
+Q: Summarize everything we discussed about routing, security, and error handling
+A: Here's a summary of our discussion about routing, security, and error handling in FastAPI:
+
+**Routing:**
+
+* FastAPI uses a robust routing system that allows you to define routes using Python type hints.
+* Path parameters are handled using the `Path` type hint, which allows you to specify the parameter name and data type.
+* Query parameter validation is handled using Pydantic's `BaseModel` class, which allows you to define a data model with validated fields.
+* OpenAPI schema generation is handled...
+[Turn 30] Context: 5,330/8,192 tok | Chunks: 19 active, 61 evicted | Compactions: 3 | TTFT: 3.87s
+
+======================================================================
+SESSION COMPLETE
+======================================================================

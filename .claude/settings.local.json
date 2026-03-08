@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(python:*)",
+      "Bash(git push:*)",
+      "Bash(GOLD_PATH=\".ctxpack/gold/contextbench_verified.parquet\" TASKS_PATH=benchmarks/packbench-smoke.yaml OUTPUT_DIR=reports/latest RERUNS=2 ENFORCE_QUALITY_GATES=1 bash:*)"
+    ]
+  }
+}

@@ -1,0 +1,250 @@
+
+======================================================================
+DEMO SESSION — 15 questions against fastapi/fastapi
+Mode: LIVE (Cerebras llama3.1-8b)
+Budget: 8,192 tokens | Soft: 0.7 | Hard: 0.9
+======================================================================
+
+
+--- Turn 1/15 ---
+Q: What does this project do?
+A: Based on the file structure and the presence of various test files, it appears that this project is a test suite for the FastAPI framework.
+
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints. It's designed to be fast, scalable, and easy to use.
+
+The test files in this project are likely testing various features and functionalities of the FastAPI framework, such as request parameters, response models, middleware, web...
+[Turn 2] Context: 3,666/8,192 tok | Chunks: 50 active, 2 evicted | Compactions: 1 | TTFT: 1.11s
+
+--- Turn 2/15 ---
+Q: How is routing implemented?
+A: Based on the file structure and the presence of various test files, it appears that the routing implementation in FastAPI is based on the following principles:
+
+1. **Path Operations**: FastAPI uses path operations to define routes. Path operations are functions that are decorated with the `@app.route()` or `@app.get()`, `@app.post()`, `@app.put()`, `@app.delete()` decorators, which specify the HTTP method and path for the route.
+2. **Path Parameters**: FastAPI supports path parameters, which are...
+[Turn 4] Context: 4,403/8,192 tok | Chunks: 52 active, 2 evicted | Compactions: 1 | TTFT: 0.88s
+
+--- Turn 3/15 ---
+Q: Where is error handling defined?
+A: Error handling in FastAPI is defined in various places throughout the codebase. Here are some examples:
+
+1. **Global Error Handler**: The global error handler is defined in the `fastapi.applications` module, specifically in the `Application` class. The global error handler is a function that is called when an error occurs in the application. You can customize the global error handler by passing a custom error handler function to the `Application` constructor.
+2. **Route-Level Error Handling**: E...
+[Turn 6] Context: 5,172/8,192 tok | Chunks: 54 active, 2 evicted | Compactions: 1 | TTFT: 1.36s
+
+--- Turn 4/15 ---
+Q: How does dependency injection work?
+A: Dependency injection in FastAPI is implemented using the `@inject` decorator from the `fastapi.depends` module. The `@inject` decorator is used to inject dependencies into route functions.
+
+Here's an example of how dependency injection works in FastAPI:
+```python
+from fastapi import FastAPI
+from fastapi.depends import depends
+
+app = FastAPI()
+
+class MyService:
+    def __init__(self, db: Database):
+        self.db = db
+
+    def get_data(self):
+        return self.db.query("SELECT * FROM my_table"...
+[Turn 8] Context: 5,566/8,192 tok | Chunks: 56 active, 2 evicted | Compactions: 1 | TTFT: 1.86s
+
+--- Turn 5/15 ---
+Q: Where are the security utilities?
+A: The security utilities in FastAPI are located in the `fastapi.security` module. This module provides a set of classes and functions that can be used to implement various security features, such as authentication, authorization, and rate limiting.
+
+Some of the security utilities provided by the `fastapi.security` module include:
+
+* `OAuth2PasswordBearer`: This class provides a way to implement password-based authentication using the OAuth 2.0 protocol.
+* `OAuth2PasswordRequestForm`: This class pr...
+  [EVICT] compact_soft: 6b1abd55a97c... (priority=1.23 turn=0) [5,985 -> 5,973]
+  [EVICT] compact_soft: acd63d853b1c... (priority=1.26 turn=0) [5,973 -> 5,959]
+  [EVICT] compact_soft: aed13a9a0c0f... (priority=1.26 turn=0) [5,959 -> 5,951]
+  [EVICT] compact_soft: a414ba1eae24... (priority=1.28 turn=0) [5,951 -> 5,931]
+  [EVICT] compact_soft: df58106bc609... (priority=1.28 turn=0) [5,931 -> 5,913]
+  [EVICT] compact_soft: 846916bd5cb7... (priority=1.28 turn=0) [5,913 -> 5,896]
+  [EVICT] compact_soft: 59b248c728fc... (priority=1.28 turn=0) [5,896 -> 5,873]
+  [EVICT] compact_soft: 536f3959cb3a... (priority=1.28 turn=0) [5,873 -> 5,854]
+  [EVICT] compact_soft: 794a07d1970e... (priority=1.28 turn=0) [5,854 -> 5,837]
+  [EVICT] compact_soft: bdd15ad5d9a4... (priority=1.28 turn=0) [5,837 -> 5,817]
+  [EVICT] compact_soft: a9a8479548ed... (priority=1.28 turn=0) [5,817 -> 5,797]
+  [EVICT] compact_soft: fb5fd5148fa8... (priority=1.28 turn=0) [5,797 -> 5,776]
+  [EVICT] compact_soft: d8b42348da6d... (priority=1.28 turn=0) [5,776 -> 5,758]
+  [EVICT] compact_soft: d06e9b82a3ae... (priority=1.28 turn=0) [5,758 -> 5,739]
+  [EVICT] compact_soft: ce3b8846f4a9... (priority=1.28 turn=0) [5,739 -> 5,721]
+  [EVICT] compact_soft: a217e50b3e45... (priority=1.28 turn=0) [5,721 -> 5,706]
+  [EVICT] compact_soft: e82ea948d27b... (priority=1.28 turn=0) [5,706 -> 5,685]
+  [EVICT] compact_soft: 8c17d7d5ad92... (priority=1.28 turn=0) [5,685 -> 5,665]
+  [EVICT] compact_soft: 777614bc2deb... (priority=1.28 turn=0) [5,665 -> 5,648]
+  [EVICT] compact_soft: 796e0aaa6674... (priority=1.28 turn=0) [5,648 -> 5,629]
+  [EVICT] compact_soft: de4bc169e48b... (priority=1.28 turn=0) [5,629 -> 5,608]
+  [EVICT] compact_soft: 676ed995f0d0... (priority=1.28 turn=0) [5,608 -> 5,588]
+  [EVICT] compact_soft: ae4169eed0a6... (priority=1.28 turn=0) [5,588 -> 5,569]
+  [EVICT] compact_soft: 0669f91c2435... (priority=1.28 turn=0) [5,569 -> 5,552]
+  [EVICT] compact_soft: 7ed67e21701f... (priority=1.28 turn=0) [5,552 -> 5,533]
+  [EVICT] compact_soft: 8d0494fbcbcb... (priority=1.28 turn=0) [5,533 -> 5,514]
+  [EVICT] compact_soft: 76ec2c1011e2... (priority=1.28 turn=0) [5,514 -> 5,492]
+  [EVICT] compact_soft: 9575a3f0fd8f... (priority=1.28 turn=0) [5,492 -> 5,475]
+  [EVICT] compact_soft: d6a4eb7665a0... (priority=1.28 turn=0) [5,475 -> 5,456]
+  [EVICT] compact_soft: 00fdf18bb265... (priority=1.28 turn=0) [5,456 -> 5,432]
+  [EVICT] compact_soft: 588a2582f251... (priority=1.28 turn=0) [5,432 -> 5,406]
+  [EVICT] compact_soft: 3491876eda85... (priority=1.28 turn=0) [5,406 -> 5,388]
+  [EVICT] compact_soft: a1d38ada35ef... (priority=1.28 turn=0) [5,388 -> 5,368]
+  [EVICT] compact_soft: aa8b9220f6e5... (priority=1.28 turn=0) [5,368 -> 5,347]
+  [EVICT] compact_soft: e9d78358d232... (priority=1.28 turn=0) [5,347 -> 5,331]
+  [EVICT] compact_soft: 0627c77c33f5... (priority=1.28 turn=0) [5,331 -> 5,313]
+  [EVICT] compact_soft: af796d26e746... (priority=1.28 turn=0) [5,313 -> 5,294]
+  [EVICT] compact_soft: 87155eede635... (priority=1.28 turn=0) [5,294 -> 5,276]
+  [EVICT] compact_soft: b431c6cb1da0... (priority=1.30 turn=0) [5,276 -> 5,258]
+  [EVICT] compact_soft: 3d5c80af76ee... (priority=1.30 turn=0) [5,258 -> 5,241]
+  [EVICT] compact_soft: 5c3a51abc589... (priority=1.30 turn=0) [5,241 -> 5,223]
+  [EVICT] compact_soft: f327e25b8447... (priority=1.30 turn=0) [5,223 -> 5,206]
+  [EVICT] compact_soft: d36fb19e8414... (priority=1.30 turn=0) [5,206 -> 5,189]
+  [EVICT] compact_soft: b264525934eb... (priority=1.30 turn=0) [5,189 -> 5,172]
+  [EVICT] compact_soft: ab3901906b63... (priority=1.30 turn=0) [5,172 -> 5,155]
+  [EVICT] compact_soft: 181951dea711... (priority=1.30 turn=0) [5,155 -> 5,139]
+  [EVICT] compact_soft: 1bd1a264f433... (priority=1.32 turn=0) [5,139 -> 5,121]
+  [EVICT] compact_soft: 8ae8b5687f06... (priority=1.37 turn=3) [5,121 -> 4,392]
+[Turn 10] Context: 4,392/8,192 tok | Chunks: 10 active, 50 evicted | Compactions: 2 | TTFT: 2.05s
+
+--- Turn 6/15 ---
+Q: How does the middleware stack work?
+A: The middleware stack in FastAPI is a list of functions that are executed in a specific order when a request is received. The middleware stack is used to perform various tasks such as authentication, rate limiting, and logging.
+
+Here's an overview of how the middleware stack works in FastAPI:
+
+1. **Request**: When a request is received, it is passed through the middleware stack.
+2. **Middleware**: Each middleware function in the stack is executed in order, with the request being passed from one m...
+[Turn 12] Context: 5,325/8,192 tok | Chunks: 12 active, 50 evicted | Compactions: 2 | TTFT: 1.95s
+
+--- Turn 7/15 ---
+Q: What testing framework is used?
+A: The testing framework used in FastAPI is Pytest. Pytest is a popular testing framework for Python that provides a lot of features and flexibility for writing and running tests.
+
+FastAPI uses Pytest to write and run unit tests, integration tests, and other types of tests. The tests are written using the Pytest framework and are stored in the `tests` directory of the FastAPI repository.
+
+Some of the features of Pytest that are used in FastAPI include:
+
+* **Test discovery**: Pytest can automaticall...
+[Turn 14] Context: 5,719/8,192 tok | Chunks: 14 active, 50 evicted | Compactions: 2 | TTFT: 1.94s
+
+--- Turn 8/15 ---
+Q: How are WebSocket connections handled?
+A: WebSocket connections in FastAPI are handled using the `websockets` library. The `websockets` library provides a simple and efficient way to handle WebSocket connections in Python.
+
+Here's an overview of how WebSocket connections are handled in FastAPI:
+
+1. **WebSocket Route**: To handle WebSocket connections, you need to define a WebSocket route using the `@app.websocket` decorator. This decorator takes a path as an argument, which specifies the URL path for the WebSocket connection.
+2. **WebSo...
+  [EVICT] compact_soft: 17906f521bdc... (priority=1.35 turn=11) [6,128 -> 5,205]
+  [EVICT] compact_soft: 85efdc943250... (priority=1.36 turn=13) [5,205 -> 4,820]
+  [EVICT] compact_soft: 35d4333d169d... (priority=1.36 turn=9) [4,820 -> 4,411]
+[Turn 16] Context: 4,411/8,192 tok | Chunks: 13 active, 53 evicted | Compactions: 3 | TTFT: 1.85s
+
+--- Turn 9/15 ---
+Q: Go back to routing — how does it handle path parameters?
+A: FastAPI handles path parameters using the `Path` type from the `pydantic` library. The `Path` type is a type hint that indicates that a parameter is a path parameter.
+
+Here's an example of how to define a path parameter in FastAPI:
+```python
+from fastapi import FastAPI
+from pydantic import Path
+
+app = FastAPI()
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int = Path(..., title="The ID of the item to retrieve")):
+    return {"item_id": item_id}
+```
+In this example, the `item_id` par...
+[Turn 18] Context: 5,105/8,192 tok | Chunks: 15 active, 53 evicted | Compactions: 3 | TTFT: 1.73s
+
+--- Turn 10/15 ---
+Q: What about query parameter validation?
+A: FastAPI provides several features for validating query parameters, including:
+
+* **Query parameter type hints**: FastAPI can use type hints to indicate the type of a query parameter, making it easier to write type-safe code.
+* **Query parameter validation**: FastAPI can validate query parameters against a set of rules, such as checking that the parameter is an integer or a string.
+* **Query parameter documentation**: FastAPI can automatically generate documentation for query parameters, includin...
+[Turn 20] Context: 5,602/8,192 tok | Chunks: 17 active, 53 evicted | Compactions: 3 | TTFT: 1.67s
+
+--- Turn 11/15 ---
+Q: How does the OpenAPI schema generation work?
+A: FastAPI generates an OpenAPI schema automatically based on the routes and models defined in the application. This schema is used to document the API and can be used by clients to understand how to interact with the API.
+
+Here's an overview of how the OpenAPI schema generation works in FastAPI:
+
+1. **Route Inspection**: FastAPI inspects each route in the application to determine the parameters, return types, and other metadata associated with the route.
+2. **Model Generation**: FastAPI generates ...
+  [EVICT] compact_soft: 9cd45d95e3c0... (priority=1.34 turn=19) [6,008 -> 5,522]
+  [EVICT] compact_soft: 47ee351fe9ad... (priority=1.34 turn=17) [5,522 -> 4,845]
+  [EVICT] compact_soft: 552838b6c7db... (priority=1.36 turn=15) [4,845 -> 4,447]
+[Turn 22] Context: 4,447/8,192 tok | Chunks: 16 active, 56 evicted | Compactions: 4 | TTFT: 1.57s
+
+--- Turn 12/15 ---
+Q: Remember the security utils from earlier — how do they integrate with dependencies?
+A: The security utilities in FastAPI integrate with dependencies using the `@depends` decorator, which is used to inject dependencies into route functions.
+
+When a dependency is injected into a route function, the security utilities can be used to authenticate and authorize the request. Here's an example of how to use the security utilities with dependencies:
+```python
+from fastapi import FastAPI, Depends
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from pydantic imp...
+[Turn 24] Context: 5,396/8,192 tok | Chunks: 18 active, 56 evicted | Compactions: 4 | TTFT: 1.71s
+
+--- Turn 13/15 ---
+Q: Where would I add a new middleware?
+A: To add a new middleware in FastAPI, you would typically create a new class that inherits from the `BaseAPI` class, and then override the `__call__` method to add your custom middleware logic.
+
+Here's an example of how to add a new middleware:
+```python
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+
+class MyMiddleware:
+    def __init__(self, app: FastAPI):
+        self.app = app
+
+    async def __call__(self, request: Request):
+        # Add your custom middleware...
+  [EVICT] compact_soft: b8ece0ad58af... (priority=1.36 turn=7) [5,761 -> 5,377]
+  [EVICT] compact_soft: 58d48b75c078... (priority=1.36 turn=20) [5,377 -> 5,364]
+  [EVICT] compact_soft: 57efeb7732a0... (priority=1.36 turn=6) [5,364 -> 5,354]
+  [EVICT] compact_soft: 58c293ad0b6a... (priority=1.36 turn=5) [5,354 -> 4,595]
+  [EVICT] compact_soft: f1fd3353e9df... (priority=1.36 turn=23) [4,595 -> 3,671]
+[Turn 26] Context: 3,671/8,192 tok | Chunks: 15 active, 61 evicted | Compactions: 5 | TTFT: 2.04s
+
+--- Turn 14/15 ---
+Q: What was the error handling approach again?
+A: The error handling approach in FastAPI is based on the concept of "exception handlers" and "error handlers".
+
+**Exception Handlers**
+
+Exception handlers are functions that handle specific exceptions raised by the application. You can define exception handlers for specific exceptions, such as `HTTPException`, `ValidationError`, or custom exceptions.
+
+Here's an example of how to define an exception handler for `HTTPException`:
+```python
+from fastapi import FastAPI, HTTPException
+
+app = FastAPI()
+
+...
+[Turn 28] Context: 4,422/8,192 tok | Chunks: 17 active, 61 evicted | Compactions: 5 | TTFT: 2.06s
+
+--- Turn 15/15 ---
+Q: Summarize everything we discussed about routing, security, and error handling
+A: Here's a summary of our discussion on routing, security, and error handling in FastAPI:
+
+**Routing**
+
+* FastAPI generates an OpenAPI schema automatically based on the routes and models defined in the application.
+* The schema is used to document the API and can be used by clients to understand how to interact with the API.
+* FastAPI uses the `pydantic` library to generate the OpenAPI schema.
+* Path parameters are handled using the `Path` parameter type in the route definition.
+* Query parameter ...
+[Turn 30] Context: 4,936/8,192 tok | Chunks: 19 active, 61 evicted | Compactions: 5 | TTFT: 2.01s
+
+======================================================================
+SESSION COMPLETE
+======================================================================

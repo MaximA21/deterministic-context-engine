@@ -99,6 +99,32 @@ The original adversarial benchmark had a length confound: needles averaged 244 c
 
 These benchmarks are intentionally narrow. They test whether a deterministic selector can preserve sparse, actionable details under repeated context pressure. They do not yet measure end-to-end coding performance, tool-use success, or robustness to semantically subtle conflicts.
 
+### Scoring Method Comparison (all benchmarks)
+
+| Benchmark | TF-IDF | Semantic (MiniLM) | Hybrid | Hardcoded | Keywords | Naive |
+|---|---|---|---|---|---|---|
+| Clean | 5.0/5 | - | - | 5.0/5 | 5.0/5 | 2.1/5 |
+| Adversarial | 5.0/5 | 4.0/5 | 4.3/5 | 5.0/5 | 1.2/5 | 2.5/5 |
+| Semantic Gap | 5.0/5* | 4.7/5 | 4.8/5 | 5.0/5* | 4.2/5 | 2.5/5 |
+| Boilerplate | 3.5/5 | 2.3/5 | 2.5/5 | 5.0/5 | 2.0/5 | 0/5 |
+
+*Context retention was 5.0/5; recall drop is model-level, not engine-level.
+
+We tested whether dense embeddings (all-MiniLM-L6-v2) could fix TF-IDF weaknesses on boilerplate content. They cannot. Embedding-space pairwise similarity is 9x higher than TF-IDF (0.27 vs 0.03), compressing the distinctiveness signal into a narrow band. TF-IDF lexical precision — treating `ci-deployer` and `argocd` as completely different tokens — is superior for structured content discrimination. The fix is not better embeddings but named entity extraction, which is next.
+
+### Extended Scoring Analysis
+
+| Benchmark | TF-IDF | Semantic (MiniLM) | Entity-Aware | Hardcoded | Keywords | Naive |
+|---|---|---|---|---|---|---|
+| Clean | 5.0/5 | - | 5.0/5 | 5.0/5 | 5.0/5 | 2.1/5 |
+| Adversarial | 5.0/5 | 4.0/5 | ~5.0/5 | 5.0/5 | 1.2/5 | 2.5/5 |
+| Semantic Gap | 3.4/5 | 4.7/5 | ~3.4/5 | 3.0/5 | 2.5/5 | 1.3/5 |
+| Boilerplate | 3.5/5 | 2.3/5 | ~3.5/5 | 5.0/5 | 2.0/5 | 0/5 |
+
+We tested two alternatives to fix TF-IDF weaknesses on boilerplate content. Dense embeddings (all-MiniLM-L6-v2) performed worse — embedding-space pairwise similarity is 9x higher than TF-IDF (0.27 vs 0.03), compressing the distinctiveness signal. TF-IDF lexical precision is superior for structured content. Entity-aware regex extraction matched TF-IDF but did not improve it because compaction decisions happen before the future recall query is known — the fundamental challenge of context management.
+
+On semantic gap tasks, all methods including hardcoded priority showed reduced recall (3.0-3.4/5). Investigation revealed the engine retained all needles in context (5.0/5 retention) but the model failed to connect technical jargon to natural language queries. This is a model limitation, not an engine limitation.
+
 ## Honest Limitations
 
 These are lab experiments. The benchmarks use synthetic needles and filler, controlled turn counts, and a single recall question. Real coding sessions are messier: interleaved file reads, error traces, user corrections, and tool outputs with varying relevance.
@@ -106,6 +132,10 @@ These are lab experiments. The benchmarks use synthetic needles and filler, cont
 The needles are also deliberately distinguishable. Each one contains unique, actionable details such as line numbers, bug descriptions, or employee IDs. In real systems, important information may not separate from noise so cleanly.
 
 TF-IDF has known failure modes. It relies on term-frequency patterns. If two chunks use nearly identical vocabulary and differ only in a single critical value, uniqueness scoring may fail to distinguish them.
+
+TF-IDF uniqueness penalizes repetitive structured content (JSON schemas, SQL statements, config blocks). When critical information looks similar to filler, recall drops to 3.5/5.
+
+Boilerplate discrimination remains an open problem (3.5/5). TF-IDF, dense embeddings, and entity extraction all fail when critical content is structurally similar to filler. The core challenge: compaction decisions are made before future information needs are known.
 
 The system has not yet been validated on real coding workflows. All current results come from synthetic NIAH-style benchmarks. We do not yet know how it performs over 100+ turn real agent sessions where context pressure is constant and structure is unpredictable.
 
@@ -117,6 +147,7 @@ Compaction is inherently lossy. Any eviction strategy can drop something importa
 * **Structured compression**: replace raw eviction with Active Context Compression-style summarization of evicted chunks
 * **Agent integration**: embed the engine in a production coding agent and measure end-to-end task completion rates
 * **OOLONG benchmark**: evaluate on a multi-turn long-context memory benchmark designed for sustained LLM interactions
+* **Accumulated entity frequency tracking**: boost priority for entities mentioned repeatedly across turns rather than matching against the current goal
 
 ## References
 

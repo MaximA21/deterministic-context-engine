@@ -1,0 +1,131 @@
+======================================================================
+DEMO SESSION REPORT — 2026-03-08 16:54:42
+======================================================================
+
+## Overview
+  Repository:      fastapi/fastapi
+  Mode:            LIVE (Cerebras llama3.1-8b)
+  Token budget:    8,192
+  Total turns:     6
+  Total tokens:    47,139 (44,475 in, 2,664 out)
+  Avg TTFT:        3.865s
+  Compactions:     3
+  Final context:   5,330/8,192 tokens
+
+## Per-Turn Summary
+  Turn  Context  Compact  Evicted    Time  Question
+  ----  -------  -------  -------    ----  --------
+     1    5,326        0        0   16.9s  What does this project do?
+     2    5,402        0        0   17.0s  How is routing implemented?
+     3    5,480        0        0   77.1s  Where is error handling defined?
+     4    5,558        0        0   16.8s  How does dependency injection work?
+     5    5,636        0        0   16.8s  Where are the security utilities?
+     6    5,714        0        0   76.1s  How does the middleware stack work?
+     7    4,587        1       57   17.0s  What testing framework is used?
+     8    5,611        0        0    1.2s  How are WebSocket connections handled?
+     9    5,681        0        0   77.1s  Go back to routing — how does it handle path param [RECALL]
+    10    4,214        1        2   17.1s  What about query parameter validation?
+    11    4,751        0        0    7.7s  How does the OpenAPI schema generation work?
+    12    5,492        0        0    4.7s  Remember the security utils from earlier — how do  [RECALL]
+    13    4,497        1        2    4.4s  Where would I add a new middleware?
+    14    4,899        0        0    2.2s  What was the error handling approach again? [RECALL]
+    15    5,330        0        0    2.9s  Summarize everything we discussed about routing, s [RECALL]
+
+## Eviction Log
+  Turn             Phase          Action              Hash   Before ->   After  Reason
+     7  assistant_append    compact_soft  6b1abd55a97c181e    5,791 ->   5,781  priority=1.22 turn=0
+     7  assistant_append    compact_soft  aed13a9a0c0f4990    5,781 ->   5,775  priority=1.26 turn=0
+     7  assistant_append    compact_soft  acd63d853b1c432c    5,775 ->   5,764  priority=1.26 turn=0
+     7  assistant_append    compact_soft  794a07d1970ef4c4    5,764 ->   5,750  priority=1.28 turn=0
+     7  assistant_append    compact_soft  bdd15ad5d9a41c91    5,750 ->   5,734  priority=1.28 turn=0
+     7  assistant_append    compact_soft  a9a8479548ede483    5,734 ->   5,718  priority=1.28 turn=0
+     7  assistant_append    compact_soft  a414ba1eae2465bd    5,718 ->   5,702  priority=1.28 turn=0
+     7  assistant_append    compact_soft  fb5fd5148fa8246e    5,702 ->   5,685  priority=1.28 turn=0
+     7  assistant_append    compact_soft  d8b42348da6db7ce    5,685 ->   5,670  priority=1.28 turn=0
+     7  assistant_append    compact_soft  d06e9b82a3aec588    5,670 ->   5,655  priority=1.28 turn=0
+     7  assistant_append    compact_soft  ce3b8846f4a9b107    5,655 ->   5,641  priority=1.28 turn=0
+     7  assistant_append    compact_soft  a217e50b3e45a751    5,641 ->   5,629  priority=1.28 turn=0
+     7  assistant_append    compact_soft  e82ea948d27bdb2a    5,629 ->   5,612  priority=1.28 turn=0
+     7  assistant_append    compact_soft  8c17d7d5ad92571d    5,612 ->   5,596  priority=1.28 turn=0
+     7  assistant_append    compact_soft  df58106bc6094042    5,596 ->   5,582  priority=1.28 turn=0
+     7  assistant_append    compact_soft  846916bd5cb7eb18    5,582 ->   5,568  priority=1.28 turn=0
+     7  assistant_append    compact_soft  777614bc2deb0cb3    5,568 ->   5,554  priority=1.28 turn=0
+     7  assistant_append    compact_soft  796e0aaa6674fe40    5,554 ->   5,539  priority=1.28 turn=0
+     7  assistant_append    compact_soft  de4bc169e48be266    5,539 ->   5,522  priority=1.28 turn=0
+     7  assistant_append    compact_soft  676ed995f0d09341    5,522 ->   5,506  priority=1.28 turn=0
+     7  assistant_append    compact_soft  ae4169eed0a6cf27    5,506 ->   5,491  priority=1.28 turn=0
+     7  assistant_append    compact_soft  0669f91c24357ccd    5,491 ->   5,478  priority=1.28 turn=0
+     7  assistant_append    compact_soft  59b248c728fc5640    5,478 ->   5,460  priority=1.28 turn=0
+     7  assistant_append    compact_soft  7ed67e21701f15a3    5,460 ->   5,445  priority=1.28 turn=0
+     7  assistant_append    compact_soft  8d0494fbcbcb6fb2    5,445 ->   5,430  priority=1.28 turn=0
+     7  assistant_append    compact_soft  76ec2c1011e24716    5,430 ->   5,412  priority=1.28 turn=0
+     7  assistant_append    compact_soft  9575a3f0fd8fc9e3    5,412 ->   5,398  priority=1.28 turn=0
+     7  assistant_append    compact_soft  d6a4eb7665a0a111    5,398 ->   5,383  priority=1.28 turn=0
+     7  assistant_append    compact_soft  00fdf18bb265cba2    5,383 ->   5,364  priority=1.28 turn=0
+     7  assistant_append    compact_soft  588a2582f25119f1    5,364 ->   5,343  priority=1.28 turn=0
+     7  assistant_append    compact_soft  3491876eda851b8b    5,343 ->   5,329  priority=1.28 turn=0
+     7  assistant_append    compact_soft  a1d38ada35ef3a44    5,329 ->   5,313  priority=1.28 turn=0
+     7  assistant_append    compact_soft  536f3959cb3a8704    5,313 ->   5,298  priority=1.28 turn=0
+     7  assistant_append    compact_soft  aa8b9220f6e54db5    5,298 ->   5,281  priority=1.28 turn=0
+     7  assistant_append    compact_soft  e9d78358d232c5cb    5,281 ->   5,268  priority=1.28 turn=0
+     7  assistant_append    compact_soft  0627c77c33f5b43f    5,268 ->   5,253  priority=1.28 turn=0
+     7  assistant_append    compact_soft  af796d26e7463244    5,253 ->   5,238  priority=1.28 turn=0
+     7  assistant_append    compact_soft  87155eede6355687    5,238 ->   5,224  priority=1.28 turn=0
+     7  assistant_append    compact_soft  b431c6cb1da0ea0e    5,224 ->   5,210  priority=1.30 turn=0
+     7  assistant_append    compact_soft  3d5c80af76eecb67    5,210 ->   5,196  priority=1.30 turn=0
+     7  assistant_append    compact_soft  5c3a51abc58901e3    5,196 ->   5,182  priority=1.30 turn=0
+     7  assistant_append    compact_soft  f327e25b844725f5    5,182 ->   5,168  priority=1.30 turn=0
+     7  assistant_append    compact_soft  d36fb19e8414522b    5,168 ->   5,154  priority=1.30 turn=0
+     7  assistant_append    compact_soft  b264525934eb8fdb    5,154 ->   5,140  priority=1.30 turn=0
+     7  assistant_append    compact_soft  ab3901906b63bff5    5,140 ->   5,126  priority=1.30 turn=0
+     7  assistant_append    compact_soft  181951dea71108f5    5,126 ->   5,113  priority=1.30 turn=0
+     7  assistant_append    compact_soft  1bd1a264f43332c7    5,113 ->   5,099  priority=1.32 turn=0
+     7  assistant_append    compact_soft  712b60c79df43eee    5,099 ->   5,029  priority=1.32 turn=1
+     7  assistant_append    compact_soft  ec2faa5f279ccae7    5,029 ->   4,959  priority=1.32 turn=3
+     7  assistant_append    compact_soft  2a5368a31ad42002    4,959 ->   4,889  priority=1.32 turn=5
+     7  assistant_append    compact_soft  93037ae5fc259763    4,889 ->   4,819  priority=1.32 turn=7
+     7  assistant_append    compact_soft  ecbd66ee930af28b    4,819 ->   4,749  priority=1.32 turn=9
+     7  assistant_append    compact_soft  826129919c98c196    4,749 ->   4,679  priority=1.32 turn=11
+     7  assistant_append    compact_soft  81940c481c48fe77    4,679 ->   4,609  priority=1.32 turn=13
+     7  assistant_append    compact_soft  f212a2c54d785c0f    4,609 ->   4,601  priority=1.39 turn=4
+     7  assistant_append    compact_soft  2f3dff0ae2c767e8    4,601 ->   4,595  priority=1.39 turn=0
+     7  assistant_append    compact_soft  57efeb7732a0eb46    4,595 ->   4,587  priority=1.39 turn=6
+    10  assistant_append    compact_soft  c1f887bb912c507d    5,760 ->   4,745  priority=1.35 turn=15
+    10  assistant_append    compact_soft  084e23436e754a6f    4,745 ->   4,214  priority=1.35 turn=0
+    13  assistant_append    compact_soft  7c18390edee8c78a    5,744 ->   5,023  priority=1.36 turn=23
+    13  assistant_append    compact_soft  9b1f6b7e5c35bd19    5,023 ->   4,497  priority=1.36 turn=21
+
+## Recall Analysis (turns 9, 12, 14, 15)
+  Turn  9 (routing + path parameters): FAIL — 1/4 keywords found
+  Turn 12 (security + dependency integration): PASS — 4/5 keywords found
+  Turn 14 (error handling recall): PASS — 4/4 keywords found
+  Turn 15 (summary of routing, security, error handling): PASS — 4/4 keywords found
+
+  Overall recall: SOME FAILED
+
+## Context Size Over Time
+Context Size Over Turns (max budget = 8,192)
+
+  8192 |---------------- <-- budget
+  7645 |                
+  7099 |                
+  6553 |                
+  6007 |                
+  5461 |   #### ##  #   
+  4915 |####### ##  #  #
+  4369 |########## #####
+  3822 |################
+  3276 |################
+  2730 |################
+  2184 |################
+  1638 |################
+  1092 |################
+   546 |################
+     0 |################
+       +----------------
+        0123456789012345
+        ^idx   (0=after indexing, 1-15=after each turn)
+
+======================================================================
+END OF REPORT
+======================================================================
