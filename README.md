@@ -110,7 +110,7 @@ These benchmarks are intentionally narrow. They test whether a deterministic sel
 
 *Context retention was 5.0/5; recall drop is model-level, not engine-level.
 
-We tested whether dense embeddings (all-MiniLM-L6-v2) could fix TF-IDF weaknesses on boilerplate content. They cannot. Embedding-space pairwise similarity is 9x higher than TF-IDF (0.27 vs 0.03), compressing the distinctiveness signal into a narrow band. TF-IDF lexical precision — treating `ci-deployer` and `argocd` as completely different tokens — is superior for structured content discrimination. The fix is not better embeddings but named entity extraction, which is next.
+We tested whether dense embeddings (all-MiniLM-L6-v2) could fix TF-IDF weaknesses on boilerplate content. They cannot. Embedding-space pairwise similarity is 9x higher than TF-IDF (0.27 vs 0.03), compressing the distinctiveness signal into a narrow band. TF-IDF lexical precision — treating `ci-deployer` and `argocd` as completely different tokens — is superior for structured content discrimination. These results suggest that boilerplate-heavy retention is not solved by switching to dense embeddings alone. More structure-aware methods are likely needed.
 
 ### Extended Scoring Analysis
 
@@ -156,7 +156,7 @@ TF-IDF uniqueness penalizes repetitive structured content (JSON schemas, SQL sta
 
 Boilerplate discrimination remains an open problem (3.5/5). TF-IDF, dense embeddings, and entity extraction all fail when critical content is structurally similar to filler. The core challenge: compaction decisions are made before future information needs are known.
 
-The system has not yet been validated on real coding workflows. All current results come from synthetic NIAH-style benchmarks. We do not yet know how it performs over 100+ turn real agent sessions where context pressure is constant and structure is unpredictable.
+The system has been exercised in a live coding session against a real repository, but has not been rigorously validated across many real-world workflows. Most current evidence still comes from synthetic NIAH-style benchmarks, plus a single uncontrolled FastAPI session. We do not yet know how it performs over 100+ turn real agent sessions where context pressure is constant and structure is unpredictable.
 
 Compaction is inherently lossy. Any eviction strategy can drop something important. This engine makes that tradeoff explicit and auditable through `DecisionRecords`, but it does not eliminate the tradeoff itself.
 
