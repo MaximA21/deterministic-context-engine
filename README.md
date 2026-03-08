@@ -125,6 +125,25 @@ We tested two alternatives to fix TF-IDF weaknesses on boilerplate content. Dens
 
 On semantic gap tasks, all methods including hardcoded priority showed reduced recall (3.0-3.4/5). Investigation revealed the engine retained all needles in context (5.0/5 retention) but the model failed to connect technical jargon to natural language queries. This is a model limitation, not an engine limitation.
 
+### Live Agent Demo (FastAPI repository)
+
+We tested the engine on a real coding session against the FastAPI repository (~70k lines of code). An interactive agent indexed 50 files, then answered 15 sequential questions about routing, security, error handling, and dependency injection.
+
+Results (Cerebras llama3.1-8b, live API):
+- 15/15 turns completed, 0 context errors
+- 5 compaction events, 61 chunks evicted
+- 4/4 recall checks passed (questions referencing topics from earlier turns)
+- Avg TTFT: 2.01s
+- ~99k total tokens (93k in, 5.6k out)
+
+The first compaction at turn 5 evicted 48 indexed file chunks when context exceeded the soft threshold. Later compactions at turns 8, 11, and 13 evicted older conversation chunks. The engine maintained coherence across topic switches — when asked to recall routing details from turn 2 at turn 9, the relevant context had survived compaction.
+
+This is a single uncontrolled session, not a rigorous evaluation. But it demonstrates the engine functioning on real, unstructured coding conversations rather than synthetic benchmarks.
+
+```
+python agent.py /path/to/repo
+```
+
 ## Honest Limitations
 
 These are lab experiments. The benchmarks use synthetic needles and filler, controlled turn counts, and a single recall question. Real coding sessions are messier: interleaved file reads, error traces, user corrections, and tool outputs with varying relevance.
@@ -148,6 +167,7 @@ Compaction is inherently lossy. Any eviction strategy can drop something importa
 * **Agent integration**: embed the engine in a production coding agent and measure end-to-end task completion rates
 * **OOLONG benchmark**: evaluate on a multi-turn long-context memory benchmark designed for sustained LLM interactions
 * **Accumulated entity frequency tracking**: boost priority for entities mentioned repeatedly across turns rather than matching against the current goal
+* **Terminal recording (asciinema)** of a live coding session for the README
 
 ## References
 
