@@ -1,0 +1,106 @@
+{
+  "timestamp": "20260306_230206",
+  "mode": "agent",
+  "num_tasks": 3,
+  "instance_ids": [
+    "astropy__astropy-12907",
+    "astropy__astropy-14182",
+    "astropy__astropy-14365"
+  ],
+  "engine_on": {
+    "astropy__astropy-12907": {
+      "instance_id": "astropy__astropy-12907",
+      "engine_mode": "on",
+      "patch": "--- a/astropy/modeling/separable.py\n+++ b/astropy/modeling/separable.py\n@@ -123,6 +123,10 @@\n def separability_matrix(transform):\n     if isinstance(transform, CompoundModel):\n         # If the input model is a compound model, recursively call separability_matrix on each sub-model\n         matrix = np.zeros((transform.n_outputs, transform.n_inputs))\n         for i, sub_model in enumerate(transform.models):\n             sub_matrix = separability_matrix(sub_model)\n             matrix[i, :] = sub_matrix[0, :]\n         return matrix\n     elif transform.n_inputs == 1 and transform.n_outputs > 1:\n         return np.ones((transform.n_outputs, transform.n_inputs), dtype=np.bool_)\n     else:\n         separable_matrix = _separable(transform)\n         separable_matrix = np.where(separable_matrix != 0, True, False)\n         return separable_matrix",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 0.8828,
+        "total_input_tokens": 8227,
+        "total_output_tokens": 1924,
+        "total_tokens": 10151,
+        "total_turns": 3,
+        "context_size_tokens": 4759,
+        "compaction_events": 0,
+        "elapsed_seconds": 2.82
+      },
+      "resolved": false
+    },
+    "astropy__astropy-14182": {
+      "instance_id": "astropy__astropy-14182",
+      "engine_mode": "on",
+      "patch": "--- a/astropy/io/ascii/core.py\n+++ b/astropy/io/ascii/core.py\n@@ -1715,7 +1715,8 @@\n class RST(Writer):\n     def __init__(self, table, filename, fast_writer=False, **kwargs):\n         super(RST, self).__init__(table, filename, fast_writer, **kwargs)\n         self._header = None\n+        self.header_rows = kwargs.pop('header_rows', None)",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 0.5174,
+        "total_input_tokens": 774,
+        "total_output_tokens": 570,
+        "total_tokens": 1344,
+        "total_turns": 1,
+        "context_size_tokens": 1028,
+        "compaction_events": 0,
+        "elapsed_seconds": 0.52
+      },
+      "resolved": false
+    },
+    "astropy__astropy-14365": {
+      "instance_id": "astropy__astropy-14365",
+      "engine_mode": "on",
+      "patch": "--- a/astropy/astropy/io/ascii/qdp.py\n+++ b/astropy/astropy/io/ascii/qdp.py\n@@ -123,7 +123,7 @@\n         for line in self._read_lines(f):\n             line = line.strip()\n             if line.startswith('READ'):\n-            elif line.startswith('TABLE'):\n+            elif line.lower().startswith('table'):\n                 # ... (rest of the function)\n             else:\n                 raise ValueError(f'Unrecognized QDP line: {line}')",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 0.5157,
+        "total_input_tokens": 711,
+        "total_output_tokens": 588,
+        "total_tokens": 1299,
+        "total_turns": 1,
+        "context_size_tokens": 947,
+        "compaction_events": 0,
+        "elapsed_seconds": 0.52
+      },
+      "resolved": false
+    }
+  },
+  "engine_off": {
+    "astropy__astropy-12907": {
+      "instance_id": "astropy__astropy-12907",
+      "engine_mode": "off",
+      "patch": "--- a/astropy/modeling/separable.py\n+++ b/astropy/modeling/separable.py\n@@ -123,6 +123,10 @@\n def separability_matrix(transform):\n     if isinstance(transform, CompoundModel):\n         # If the input model is a compound model, recursively call separability_matrix on each sub-model\n         matrix = np.zeros((transform.n_outputs, transform.n_inputs))\n         for i, sub_model in enumerate(transform.models):\n             sub_matrix = separability_matrix(sub_model)\n             matrix[i, :] = sub_matrix[0, :]\n         return matrix\n     elif transform.n_inputs == 1 and transform.n_outputs > 1:\n         return np.ones((transform.n_outputs, transform.n_inputs), dtype=np.bool_)\n     else:\n         separable_matrix = _separable(transform)\n         separable_matrix = np.where(separable_matrix != 0, True, False)\n         return separable_matrix",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 1.0244,
+        "total_input_tokens": 8227,
+        "total_output_tokens": 1924,
+        "total_tokens": 10151,
+        "total_turns": 3,
+        "context_size_tokens": 4759,
+        "compaction_events": 0,
+        "elapsed_seconds": 3.24
+      },
+      "resolved": false
+    },
+    "astropy__astropy-14182": {
+      "instance_id": "astropy__astropy-14182",
+      "engine_mode": "off",
+      "patch": null,
+      "error": "[X509: NO_CERTIFICATE_OR_CRL_FOUND] no certificate or crl found (_ssl.c:4149)",
+      "metrics": {}
+    },
+    "astropy__astropy-14365": {
+      "instance_id": "astropy__astropy-14365",
+      "engine_mode": "off",
+      "patch": "--- a/astropy/astropy/io/ascii/qdp.py\n+++ b/astropy/astropy/io/ascii/qdp.py\n@@ -123,7 +123,7 @@\n         for line in self._read_lines(f):\n             line = line.strip()\n             if line.startswith('READ'):\n-            elif line.startswith('TABLE'):\n+            elif line.lower().startswith('table'):\n                 # ... (rest of the function)\n             else:\n                 raise ValueError(f'Unrecognized QDP line: {line}')",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 0.5707,
+        "total_input_tokens": 711,
+        "total_output_tokens": 588,
+        "total_tokens": 1299,
+        "total_turns": 1,
+        "context_size_tokens": 947,
+        "compaction_events": 0,
+        "elapsed_seconds": 0.57
+      },
+      "resolved": false
+    }
+  }
+}

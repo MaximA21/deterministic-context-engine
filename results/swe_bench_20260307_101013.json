@@ -1,0 +1,110 @@
+{
+  "timestamp": "20260307_101013",
+  "mode": "agent",
+  "num_tasks": 3,
+  "instance_ids": [
+    "astropy__astropy-12907",
+    "astropy__astropy-14182",
+    "astropy__astropy-14365"
+  ],
+  "engine_on": {
+    "astropy__astropy-12907": {
+      "instance_id": "astropy__astropy-12907",
+      "engine_mode": "on",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 0.9326,
+        "total_input_tokens": 51660,
+        "total_output_tokens": 5966,
+        "total_tokens": 57626,
+        "total_turns": 15,
+        "context_size_tokens": 4089,
+        "compaction_events": 0,
+        "elapsed_seconds": 14.0
+      }
+    },
+    "astropy__astropy-14182": {
+      "instance_id": "astropy__astropy-14182",
+      "engine_mode": "on",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 5.1638,
+        "total_input_tokens": 29516,
+        "total_output_tokens": 7071,
+        "total_tokens": 36587,
+        "total_turns": 15,
+        "context_size_tokens": 2970,
+        "compaction_events": 0,
+        "elapsed_seconds": 77.46
+      }
+    },
+    "astropy__astropy-14365": {
+      "instance_id": "astropy__astropy-14365",
+      "engine_mode": "on",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 4.4172,
+        "total_input_tokens": 48537,
+        "total_output_tokens": 8182,
+        "total_tokens": 56719,
+        "total_turns": 15,
+        "context_size_tokens": 3931,
+        "compaction_events": 0,
+        "elapsed_seconds": 66.26
+      }
+    }
+  },
+  "engine_off": {
+    "astropy__astropy-12907": {
+      "instance_id": "astropy__astropy-12907",
+      "engine_mode": "off",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 4.5679,
+        "total_input_tokens": 51660,
+        "total_output_tokens": 5966,
+        "total_tokens": 57626,
+        "total_turns": 15,
+        "context_size_tokens": 4089,
+        "compaction_events": 0,
+        "elapsed_seconds": 68.54
+      }
+    },
+    "astropy__astropy-14182": {
+      "instance_id": "astropy__astropy-14182",
+      "engine_mode": "off",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 0.9213,
+        "total_input_tokens": 20946,
+        "total_output_tokens": 8713,
+        "total_tokens": 29659,
+        "total_turns": 15,
+        "context_size_tokens": 1144,
+        "compaction_events": 0,
+        "elapsed_seconds": 13.83
+      }
+    },
+    "astropy__astropy-14365": {
+      "instance_id": "astropy__astropy-14365",
+      "engine_mode": "off",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 4.73,
+        "total_input_tokens": 48537,
+        "total_output_tokens": 8182,
+        "total_tokens": 56719,
+        "total_turns": 15,
+        "context_size_tokens": 3931,
+        "compaction_events": 0,
+        "elapsed_seconds": 70.96
+      }
+    }
+  }
+}

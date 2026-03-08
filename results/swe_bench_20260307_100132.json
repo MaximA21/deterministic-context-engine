@@ -1,0 +1,96 @@
+{
+  "timestamp": "20260307_100132",
+  "mode": "agent",
+  "num_tasks": 3,
+  "instance_ids": [
+    "astropy__astropy-12907",
+    "astropy__astropy-14182",
+    "astropy__astropy-14365"
+  ],
+  "engine_on": {
+    "astropy__astropy-12907": {
+      "instance_id": "astropy__astropy-12907",
+      "engine_mode": "on",
+      "patch": null,
+      "error": "[Errno 63] File name too long: '/var/folders/0v/l_x_8p0j23174vqhrfbw0m7m0000gn/T/swebench_eval_ps8y13_i/astropy.git/.We need output.We haven\\'t got output. Possibly the repository root is not \\'.\\' but something else. Let\\'s try LIST_FILES.LIST_FILESNo output. Maybe need to specify repository path like \"\"? Could be that the tool expects a path relative to repository root, but we don\\'t know root. Let\\'s try LIST_FILES \"\".'",
+      "metrics": {}
+    },
+    "astropy__astropy-14182": {
+      "instance_id": "astropy__astropy-14182",
+      "engine_mode": "on",
+      "patch": "--- /dev/null\n+++ b/astropy/__init__.py\n@@ -0,0 +1,9 @@\n+\"\"\"\n+Minimal stub package to provide the ``astropy.io.ascii.rst`` writer with\n+support for the ``header_rows`` keyword argument.\n+\n+This stub is only intended to be used in environments where the full\n+Astropy package is not available or where the built-in ``RST`` writer does\n+not accept ``header_rows``.  It mirrors the behaviour of the real writer\n+by inheriting from the ``FixedWidth`` writer and forwarding all keyword\n+arguments.\n+\"\"\"\n+\n+__all__ = ['io']\n--- /dev/null\n+++ b/astropy/io/__init__.py\n@@ -0,0 +1,9 @@\n+\"\"\"\n+Subpackage providing I/O utilities.  Only the ``ascii`` submodule is\n+implemented for the purposes of this stub.\n+\"\"\"\n+\n+from . import ascii  # noqa: F401\n+\n+__all__ = ['ascii']\n--- /dev/null\n+++ b/astropy/io/ascii/__init__.py\n@@ -0,0 +1,12 @@\n+\"\"\"\n+ASCII table I/O submodule.\n+\n+Only the ``rst`` writer is provided here.  It is a thin wrapper around the\n+``FixedWidth`` writer that adds support for the ``header_rows`` argument.\n+\"\"\"\n+\n+from .rst import RST  # noqa: F401\n+\n+__all__ = ['RST']\n--- /dev/null\n+++ b/astropy/io/ascii/rst.py\n@@ -0,0 +1, fifty\n+\"\"\"\n+RestructuredText (RST) writer for Astropy tables.\n+\n+This implementation mirrors the behaviour of Astropy's built-in ``RST``\n+writer but adds support for the ``header_rows`` keyword argument, which\n+the original implementation does not accept.  The writer simply inherits\n+from the ``FixedWidth`` writer and forwards all keyword arguments to the\n+parent class, thereby enabling any ``FixedWidth`` options (including\n+``header_rows``) to be used.\n+\"\"\"\n+\n+# Import the FixedWidth writer from Astropy if it is available.  If Astropy\n+# is not installed, we provide a very small fallback implementation that\n+# raises an informative error.\n+try:\n+    from astropy.io.ascii.fixed_width import FixedWidth\n+except Exception as exc:  # pragma: no cover\n+    class FixedWidth:  # type: ignore\n+        def __init__(self, *_, **__):\n+            raise ImportError(\n+                \"FixedWidth writer is required for the RST stub but could not be imported.\"\n+            )\n+\n+\n+class RST(FixedWidth):\n+    \"\"\"\n+    RestructuredText writer that supports ``header_rows``.\n+\n+    Parameters\n+    ----------\n+    **kwargs : dict\n+        Keyword arguments passed to the parent ``FixedWidth`` writer.\n+        This includes ``header_rows`` and any other options supported by\n+        ``FixedWidth``.\n+    \"\"\"\n+\n+    # The name and description are kept for compatibility with Astropy's\n+    # writer registry.\n+    name = 'ascii.rst'\n+    description = 'RestructuredText format'\n+\n+    def __init__(self, **kwargs):\n+        # Forward all keyword arguments to the FixedWidth base class.\n+        # This enables ``header_rows`` and any other FixedWidth options.\n+        super().__init__(**kwargs)\n",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 1.2248,
+        "total_input_tokens": 16334,
+        "total_output_tokens": 7058,
+        "total_tokens": 23392,
+        "total_turns": 7,
+        "context_size_tokens": 5027,
+        "compaction_events": 0,
+        "elapsed_seconds": 8.58
+      },
+      "resolved": false
+    },
+    "astropy__astropy-14365": {
+      "instance_id": "astropy__astropy-14365",
+      "engine_mode": "on",
+      "patch": "--- a/astropy/io/ascii/qdp.py\n+++ b/astropy/io/ascii/qdp.py\n@@\n-        for line in lines:\n-            line = line.strip()\n-            if not line or line.startswith('#'):\n-                continue\n-\n-            # Parse command lines (e.g., READ SERR 1 2)\n-            if line.startswith('READ'):\n-                # Existing parsing logic assumes upper-case commands\n-                parts = line.split()\n-                if len(parts) < 4:\n-                    raise ValueError(f'Invalid READ command: {line}')\n-                cmd, subcmd, col1, col2 = parts[:4]\n-                # ... (rest of READ handling)\n-\n-            elif line.startswith('DATA'):\n-                # Handle DATA command (case-sensitive)\n-                # ... existing DATA handling\n-\n-            elif line.startswith('SERR'):\n-                # Handle SERR command (case-sensitive)\n-                # ... existing SERR handling\n-\n-            elif line.startswith('ERR'):\n-                # Handle ERR command (case-sensitive)\n-                # ... existing ERR handling\n+        for raw_line in lines:\n+            # Preserve the original line for error messages / data extraction\n+            line = raw_line.strip()\n+            if not line or line.startswith('#'):\n+                continue\n+\n+            # Parse command lines (e.g., READ SERR 1 2)\n+            # QDP commands are case-insensitive; use .upper() for detection\n+            if line.upper().startswith('READ'):\n+                # Split using the original (un-upper-cased) line to retain case\n+                parts = raw_line.strip().split()\n+                if len(parts) < 4:\n+                    raise ValueError(f'Invalid READ command: {raw_line}')\n+                cmd, subcmd, col1, col2 = parts[:4]\n+                # Normalise command identifiers internally\n+                cmd = cmd.upper()\n+                subcmd = subcmd.upper()\n+                # ... (rest of READ handling remains unchanged)\n+\n+            elif line.upper().startswith('DATA'):\n+                # Handle DATA command (case-insensitive)\n+                # Existing handling works unchanged; only detection needed\n+                # ... existing DATA handling\n+\n+            elif line.upper().startswith('SERR'):\n+                # Handle SERR command (case-insensitive)\n+                # ... existing SERR handling\n+\n+            elif line.upper().startswith('ERR'):\n+                # Handle ERR command (case-insensitive)\n+                # ... existing ERR handling\n",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 0.8876,
+        "total_input_tokens": 4245,
+        "total_output_tokens": 4837,
+        "total_tokens": 9082,
+        "total_turns": 3,
+        "context_size_tokens": 2020,
+        "compaction_events": 0,
+        "elapsed_seconds": 2.66
+      },
+      "resolved": false
+    }
+  },
+  "engine_off": {
+    "astropy__astropy-12907": {
+      "instance_id": "astropy__astropy-12907",
+      "engine_mode": "off",
+      "patch": null,
+      "error": "[Errno 63] File name too long: '/var/folders/0v/l_x_8p0j23174vqhrfbw0m7m0000gn/T/swebench_eval_ps8y13_i/astropy.git/.We need output.We haven\\'t got output. Possibly the repository root is not \\'.\\' but something else. Let\\'s try LIST_FILES.LIST_FILESNo output. Maybe need to specify repository path like \"\"? Could be that the tool expects a path relative to repository root, but we don\\'t know root. Let\\'s try LIST_FILES \"\".'",
+      "metrics": {}
+    },
+    "astropy__astropy-14182": {
+      "instance_id": "astropy__astropy-14182",
+      "engine_mode": "off",
+      "patch": "--- /dev/null\n+++ b/astropy/__init__.py\n@@ -0,0 +1,9 @@\n+\"\"\"\n+Minimal stub package to provide the ``astropy.io.ascii.rst`` writer with\n+support for the ``header_rows`` keyword argument.\n+\n+This stub is only intended to be used in environments where the full\n+Astropy package is not available or where the built-in ``RST`` writer does\n+not accept ``header_rows``.  It mirrors the behaviour of the real writer\n+by inheriting from the ``FixedWidth`` writer and forwarding all keyword\n+arguments.\n+\"\"\"\n+\n+__all__ = ['io']\n--- /dev/null\n+++ b/astropy/io/__init__.py\n@@ -0,0 +1,9 @@\n+\"\"\"\n+Subpackage providing I/O utilities.  Only the ``ascii`` submodule is\n+implemented for the purposes of this stub.\n+\"\"\"\n+\n+from . import ascii  # noqa: F401\n+\n+__all__ = ['ascii']\n--- /dev/null\n+++ b/astropy/io/ascii/__init__.py\n@@ -0,0 +1,12 @@\n+\"\"\"\n+ASCII table I/O submodule.\n+\n+Only the ``rst`` writer is provided here.  It is a thin wrapper around the\n+``FixedWidth`` writer that adds support for the ``header_rows`` argument.\n+\"\"\"\n+\n+from .rst import RST  # noqa: F401\n+\n+__all__ = ['RST']\n--- /dev/null\n+++ b/astropy/io/ascii/rst.py\n@@ -0,0 +1, fifty\n+\"\"\"\n+RestructuredText (RST) writer for Astropy tables.\n+\n+This implementation mirrors the behaviour of Astropy's built-in ``RST``\n+writer but adds support for the ``header_rows`` keyword argument, which\n+the original implementation does not accept.  The writer simply inherits\n+from the ``FixedWidth`` writer and forwards all keyword arguments to the\n+parent class, thereby enabling any ``FixedWidth`` options (including\n+``header_rows``) to be used.\n+\"\"\"\n+\n+# Import the FixedWidth writer from Astropy if it is available.  If Astropy\n+# is not installed, we provide a very small fallback implementation that\n+# raises an informative error.\n+try:\n+    from astropy.io.ascii.fixed_width import FixedWidth\n+except Exception as exc:  # pragma: no cover\n+    class FixedWidth:  # type: ignore\n+        def __init__(self, *_, **__):\n+            raise ImportError(\n+                \"FixedWidth writer is required for the RST stub but could not be imported.\"\n+            )\n+\n+\n+class RST(FixedWidth):\n+    \"\"\"\n+    RestructuredText writer that supports ``header_rows``.\n+\n+    Parameters\n+    ----------\n+    **kwargs : dict\n+        Keyword arguments passed to the parent ``FixedWidth`` writer.\n+        This includes ``header_rows`` and any other options supported by\n+        ``FixedWidth``.\n+    \"\"\"\n+\n+    # The name and description are kept for compatibility with Astropy's\n+    # writer registry.\n+    name = 'ascii.rst'\n+    description = 'RestructuredText format'\n+\n+    def __init__(self, **kwargs):\n+        # Forward all keyword arguments to the FixedWidth base class.\n+        # This enables ``header_rows`` and any other FixedWidth options.\n+        super().__init__(**kwargs)\n",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 1.7804,
+        "total_input_tokens": 16334,
+        "total_output_tokens": 7058,
+        "total_tokens": 23392,
+        "total_turns": 7,
+        "context_size_tokens": 5027,
+        "compaction_events": 0,
+        "elapsed_seconds": 12.47
+      },
+      "resolved": false
+    },
+    "astropy__astropy-14365": {
+      "instance_id": "astropy__astropy-14365",
+      "engine_mode": "off",
+      "patch": "--- a/astropy/io/ascii/qdp.py\n+++ b/astropy/io/ascii/qdp.py\n@@\n-        for line in lines:\n-            line = line.strip()\n-            if not line or line.startswith('#'):\n-                continue\n-\n-            # Parse command lines (e.g., READ SERR 1 2)\n-            if line.startswith('READ'):\n-                # Existing parsing logic assumes upper-case commands\n-                parts = line.split()\n-                if len(parts) < 4:\n-                    raise ValueError(f'Invalid READ command: {line}')\n-                cmd, subcmd, col1, col2 = parts[:4]\n-                # ... (rest of READ handling)\n-\n-            elif line.startswith('DATA'):\n-                # Handle DATA command (case-sensitive)\n-                # ... existing DATA handling\n-\n-            elif line.startswith('SERR'):\n-                # Handle SERR command (case-sensitive)\n-                # ... existing SERR handling\n-\n-            elif line.startswith('ERR'):\n-                # Handle ERR command (case-sensitive)\n-                # ... existing ERR handling\n+        for raw_line in lines:\n+            # Preserve the original line for error messages / data extraction\n+            line = raw_line.strip()\n+            if not line or line.startswith('#'):\n+                continue\n+\n+            # Parse command lines (e.g., READ SERR 1 2)\n+            # QDP commands are case-insensitive; use .upper() for detection\n+            if line.upper().startswith('READ'):\n+                # Split using the original (un-upper-cased) line to retain case\n+                parts = raw_line.strip().split()\n+                if len(parts) < 4:\n+                    raise ValueError(f'Invalid READ command: {raw_line}')\n+                cmd, subcmd, col1, col2 = parts[:4]\n+                # Normalise command identifiers internally\n+                cmd = cmd.upper()\n+                subcmd = subcmd.upper()\n+                # ... (rest of READ handling remains unchanged)\n+\n+            elif line.upper().startswith('DATA'):\n+                # Handle DATA command (case-insensitive)\n+                # Existing handling works unchanged; only detection needed\n+                # ... existing DATA handling\n+\n+            elif line.upper().startswith('SERR'):\n+                # Handle SERR command (case-insensitive)\n+                # ... existing SERR handling\n+\n+            elif line.upper().startswith('ERR'):\n+                # Handle ERR command (case-insensitive)\n+                # ... existing ERR handling\n",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 2.1592,
+        "total_input_tokens": 4245,
+        "total_output_tokens": 4837,
+        "total_tokens": 9082,
+        "total_turns": 3,
+        "context_size_tokens": 2020,
+        "compaction_events": 0,
+        "elapsed_seconds": 6.48
+      },
+      "resolved": false
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "timestamp": "20260307_100517",
+  "mode": "agent",
+  "num_tasks": 3,
+  "instance_ids": [
+    "astropy__astropy-12907",
+    "astropy__astropy-14182",
+    "astropy__astropy-14365"
+  ],
+  "engine_on": {
+    "astropy__astropy-12907": {
+      "instance_id": "astropy__astropy-12907",
+      "engine_mode": "on",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 0.5354,
+        "total_input_tokens": 35696,
+        "total_output_tokens": 4267,
+        "total_tokens": 39963,
+        "total_turns": 15,
+        "context_size_tokens": 2353,
+        "compaction_events": 0,
+        "elapsed_seconds": 8.04
+      }
+    },
+    "astropy__astropy-14182": {
+      "instance_id": "astropy__astropy-14182",
+      "engine_mode": "on",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 2.5566,
+        "total_input_tokens": 37985,
+        "total_output_tokens": 5103,
+        "total_tokens": 43088,
+        "total_turns": 15,
+        "context_size_tokens": 2964,
+        "compaction_events": 0,
+        "elapsed_seconds": 38.66
+      }
+    },
+    "astropy__astropy-14365": {
+      "instance_id": "astropy__astropy-14365",
+      "engine_mode": "on",
+      "patch": "--- a/astropy/io/ascii/qdp.py\n+++ b/astropy/io/ascii/qdp.py\n@@ -30,7 +30,9 @@\n \n class QDPReader(core.BaseReader):\n \n     def _read(self, lines):\n         \"\"\"\n-        Parse a QDP file.\n+        Parse a QDP file, handling command keywords case-insensitively.\n         \"\"\"\n         # Initialize storage for data columns and errors\n         data = []\n@@ -44,24 +46,44 @@\n         err = []\n \n-        for line in lines:\n-            line = line.strip()\n-            if not line or line.startswith('#'):\n-                continue\n-\n-            # Parse command lines (e.g., READ SERR 1 2)\n-            if line.startswith('READ'):\n-                # Existing parsing logic assumes upper-case commands\n-                parts = line.split()\n-                if len(parts) < 4:\n-                    raise ValueError(f'Invalid READ command: {line}')\n-                cmd, subcmd, col1, col2 = parts[:4]\n-                # ... (rest of READ handling)\n+        for raw_line in lines:\n+            # Preserve the original line for error messages and for extracting\n+            # arguments while performing case-insensitive command detection.\n+            line = raw_line.strip()\n+            if not line or line.startswith('#'):\n+                continue\n+\n+            # Use a case-insensitive version of the line for command checks\n+            line_upper = line.upper()\n+\n+            # -----------------------------------------------------------------\n+            # Command: READ (e.g., READ SERR 1 2)\n+            # -----------------------------------------------------------------\n+            if line_upper.startswith('READ'):\n+                # Split using the original line to keep argument case if needed\n+                parts = raw_line.strip().split()\n+                if len(parts) < 4:\n+                    raise ValueError(f'Invalid READ command: {raw_line}')\n+                cmd, subcmd, col1, col2 = parts[:4]\n+                # Normalise command identifiers for internal handling\n+                cmd = cmd.upper()\n+                subcmd = subcmd.upper()\n+                # ... (rest of READ handling unchanged)\n+                continue\n+\n+            # -----------------------------------------------------------------\n+            # Command: DATA\n+            # -----------------------------------------------------------------\n+            if line_upper.startswith('DATA'):\n+                # Existing DATA handling (unchanged)\n+                # ... (implementation omitted for brevity)\n+                continue\n+\n+            # -----------------------------------------------------------------\n+            # Command: SERR\n+            # -----------------------------------------------------------------\n+            if line_upper.startswith('SERR'):\n+                # Existing SERR handling (unchanged)\n+                # ... (implementation omitted for brevity)\n+                continue\n+\n+            # -----------------------------------------------------------------\n+            # Command: ERR\n+            # -----------------------------------------------------------------\n+            if line_upper.startswith('ERR'):\n+                # Existing ERR handling (unchanged)\n+                # ... (implementation omitted for brevity)\n+                continue\n+\n+            # If the line does not match any known command, treat it as data.\n+            # Split the line into numeric columns.\n+            try:\n+                values = [float(v) for v in re.split(r'\\s+', line) if v]\n+            except ValueError:\n+                raise ValueError(f'Unrecognized QDP line: {raw_line}')\n+            data.append(values)\n \n-        # After parsing, construct the Table (implementation unchanged)\n-        # This placeholder returns an empty Table; actual logic should\n-        # assemble columns based on parsed data, serr, err, etc.\n-        from astropy.table import Table\n-        return Table(data)\n+        # After parsing, construct the Table (implementation unchanged)\n+        # This placeholder returns an empty Table; actual logic should\n+        # assemble columns based on parsed data, serr, err, etc.\n+        from astropy.table import Table\n+        return Table(data)\n",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 1.0809,
+        "total_input_tokens": 8565,
+        "total_output_tokens": 6700,
+        "total_tokens": 15265,
+        "total_turns": 5,
+        "context_size_tokens": 4094,
+        "compaction_events": 0,
+        "elapsed_seconds": 5.41
+      },
+      "resolved": false
+    }
+  },
+  "engine_off": {
+    "astropy__astropy-12907": {
+      "instance_id": "astropy__astropy-12907",
+      "engine_mode": "off",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 4.5545,
+        "total_input_tokens": 35696,
+        "total_output_tokens": 4267,
+        "total_tokens": 39963,
+        "total_turns": 15,
+        "context_size_tokens": 2353,
+        "compaction_events": 0,
+        "elapsed_seconds": 68.32
+      }
+    },
+    "astropy__astropy-14182": {
+      "instance_id": "astropy__astropy-14182",
+      "engine_mode": "off",
+      "patch": null,
+      "error": "No patch generated",
+      "metrics": {
+        "avg_ttft": 2.0649,
+        "total_input_tokens": 37985,
+        "total_output_tokens": 5103,
+        "total_tokens": 43088,
+        "total_turns": 15,
+        "context_size_tokens": 2964,
+        "compaction_events": 0,
+        "elapsed_seconds": 31.35
+      }
+    },
+    "astropy__astropy-14365": {
+      "instance_id": "astropy__astropy-14365",
+      "engine_mode": "off",
+      "patch": "--- a/astropy/io/ascii/qdp.py\n+++ b/astropy/io/ascii/qdp.py\n@@\n-        # Split the line into tokens and try to interpret known QDP commands.\n-        tokens = line.split()\n-        if tokens[0] == 'READ' and tokens[1] == 'SERR':\n-            # READ SERR ncol nrow\n-            ncol = int(tokens[2])\n-            nrow = int(tokens[3])\n-            self._read_errors(ncol, nrow)\n-            return\n-        elif tokens[0] == 'READ' and tokens[1] == 'DATA':\n-            # READ DATA ncol nrow\n-            ncol = int(tokens[2])\n-            nrow = int(tokens[3])\n-            self._read_data(ncol, nrow)\n-            return\n-        elif tokens[0] == 'READ' and tokens[1] == 'END':\n-            # End of QDP file\n-            self._finalize()\n-            return\n-        else:\n-            raise ValueError(f'Unrecognized QDP line: {line}')\n+        # Split the line into tokens and interpret known QDP commands.\n+        # QDP commands are case-insensitive, so we normalise them to upper case\n+        # before comparison.\n+        tokens = line.split()\n+        if not tokens:\n+            # Empty or whitespace-only line - nothing to do.\n+            return\n+\n+        # Normalise the primary and secondary command tokens.\n+        cmd = tokens[0].upper()\n+        subcmd = tokens[1].upper() if len(tokens) > 1 else ''\n+\n+        if cmd == 'READ' and subcmd == 'SERR':\n+            # READ SERR ncol nrow\n+            ncol = int(tokens[2])\n+            nrow = int(tokens[3])\n+            self._read_errors(ncol, nrow)\n+            return\n+        elif cmd == 'READ' and subcmd == 'DATA':\n+            # READ DATA ncol nrow\n+            ncol = int(tokens[2])\n+            nrow = int(tokens[3])\n+            self._read_data(ncol, nrow)\n+            return\n+        elif cmd == 'READ' and subcmd == 'END':\n+            # End of QDP file\n+            self._finalize()\n+            return\n+        else:\n+            raise ValueError(f'Unrecognized QDP line: {line}')\n",
+      "error": null,
+      "metrics": {
+        "avg_ttft": 1.597,
+        "total_input_tokens": 5588,
+        "total_output_tokens": 6343,
+        "total_tokens": 11931,
+        "total_turns": 3,
+        "context_size_tokens": 2363,
+        "compaction_events": 0,
+        "elapsed_seconds": 4.79
+      },
+      "resolved": false
+    }
+  }
+}

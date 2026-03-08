@@ -1,0 +1,1124 @@
+{
+  "timestamp": "20260307",
+  "model": "llama3.1-8b",
+  "num_sessions": 10,
+  "num_turns": 30,
+  "num_needles": 5,
+  "needles": [
+    {
+      "id": "needle_1",
+      "fact": "The secret project codename is Operation Maple Leaf.",
+      "keyword": "maple leaf"
+    },
+    {
+      "id": "needle_2",
+      "fact": "The database migration is scheduled for March 15th at 3am UTC.",
+      "keyword": "march 15"
+    },
+    {
+      "id": "needle_3",
+      "fact": "The API rate limit was changed from 100 to 250 requests per minute.",
+      "keyword": "250"
+    },
+    {
+      "id": "needle_4",
+      "fact": "The new hire's name is Elena Vasquez and she starts on Monday.",
+      "keyword": "elena"
+    },
+    {
+      "id": "needle_5",
+      "fact": "The production server IP address is 10.42.88.7.",
+      "keyword": "10.42.88.7"
+    }
+  ],
+  "placements": [
+    [
+      0,
+      3,
+      8,
+      20,
+      23
+    ],
+    [
+      3,
+      4,
+      7,
+      21,
+      23
+    ],
+    [
+      2,
+      17,
+      18,
+      23,
+      28
+    ],
+    [
+      0,
+      1,
+      2,
+      6,
+      13
+    ],
+    [
+      0,
+      7,
+      16,
+      17,
+      19
+    ],
+    [
+      6,
+      13,
+      17,
+      20,
+      22
+    ],
+    [
+      7,
+      8,
+      14,
+      18,
+      25
+    ],
+    [
+      0,
+      5,
+      24,
+      25,
+      27
+    ],
+    [
+      4,
+      8,
+      10,
+      13,
+      22
+    ],
+    [
+      2,
+      3,
+      6,
+      10,
+      24
+    ]
+  ],
+  "results": [
+    {
+      "session_id": 0,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 0.7628,
+      "input_tokens": 3948,
+      "output_tokens": 104,
+      "context_tokens": 4121,
+      "total_tokens_added": 16993,
+      "compaction_events": 7,
+      "compaction_log": [
+        {
+          "turn": 11,
+          "type": "compaction",
+          "tokens_before": 6073,
+          "tokens_after": 3934,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "type": "compaction",
+          "tokens_before": 5989,
+          "tokens_after": 4118,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "type": "compaction",
+          "tokens_before": 6270,
+          "tokens_after": 4265,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "type": "compaction",
+          "tokens_before": 5614,
+          "tokens_after": 4259,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "type": "compaction",
+          "tokens_before": 5685,
+          "tokens_after": 4251,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "type": "compaction",
+          "tokens_before": 6151,
+          "tokens_after": 4104,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "type": "compaction",
+          "tokens_before": 6142,
+          "tokens_after": 4016,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 0,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15282 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 16700,
+      "total_tokens_added": 16595,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 1,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 1.0198,
+      "input_tokens": 3878,
+      "output_tokens": 104,
+      "context_tokens": 4343,
+      "total_tokens_added": 16577,
+      "compaction_events": 7,
+      "compaction_log": [
+        {
+          "turn": 11,
+          "type": "compaction",
+          "tokens_before": 5786,
+          "tokens_after": 3803,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "type": "compaction",
+          "tokens_before": 5707,
+          "tokens_after": 4386,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "type": "compaction",
+          "tokens_before": 5804,
+          "tokens_after": 4064,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "type": "compaction",
+          "tokens_before": 6048,
+          "tokens_after": 4059,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "type": "compaction",
+          "tokens_before": 6084,
+          "tokens_after": 4067,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "type": "compaction",
+          "tokens_before": 6009,
+          "tokens_after": 4025,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 1,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15223 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 16377,
+      "total_tokens_added": 16272,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 2,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 0.5666,
+      "input_tokens": 4505,
+      "output_tokens": 104,
+      "context_tokens": 5029,
+      "total_tokens_added": 16532,
+      "compaction_events": 7,
+      "compaction_log": [
+        {
+          "turn": 9,
+          "type": "compaction",
+          "tokens_before": 5694,
+          "tokens_after": 4474,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "type": "compaction",
+          "tokens_before": 5607,
+          "tokens_after": 4286,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "type": "compaction",
+          "tokens_before": 5627,
+          "tokens_after": 4337,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "type": "compaction",
+          "tokens_before": 5784,
+          "tokens_after": 3938,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "type": "compaction",
+          "tokens_before": 5989,
+          "tokens_after": 4156,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "type": "compaction",
+          "tokens_before": 6167,
+          "tokens_after": 4079,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "type": "compaction",
+          "tokens_before": 6297,
+          "tokens_after": 4287,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 2,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15316 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 16457,
+      "total_tokens_added": 16352,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 3,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 0.7785,
+      "input_tokens": 3753,
+      "output_tokens": 104,
+      "context_tokens": 4045,
+      "total_tokens_added": 16223,
+      "compaction_events": 7,
+      "compaction_log": [
+        {
+          "turn": 12,
+          "type": "compaction",
+          "tokens_before": 5931,
+          "tokens_after": 3765,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "type": "compaction",
+          "tokens_before": 5748,
+          "tokens_after": 3869,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "type": "compaction",
+          "tokens_before": 5694,
+          "tokens_after": 4436,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "type": "compaction",
+          "tokens_before": 5749,
+          "tokens_after": 3965,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "type": "compaction",
+          "tokens_before": 5881,
+          "tokens_after": 4456,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "type": "compaction",
+          "tokens_before": 5903,
+          "tokens_after": 4086,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "type": "compaction",
+          "tokens_before": 5894,
+          "tokens_after": 3940,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 3,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15185 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 15730,
+      "total_tokens_added": 15625,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 4,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 0.7806,
+      "input_tokens": 5049,
+      "output_tokens": 104,
+      "context_tokens": 5463,
+      "total_tokens_added": 16711,
+      "compaction_events": 6,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "type": "compaction",
+          "tokens_before": 6010,
+          "tokens_after": 3901,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "type": "compaction",
+          "tokens_before": 5922,
+          "tokens_after": 4183,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "type": "compaction",
+          "tokens_before": 5638,
+          "tokens_after": 4276,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "type": "compaction",
+          "tokens_before": 6237,
+          "tokens_after": 4216,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "type": "compaction",
+          "tokens_before": 5970,
+          "tokens_after": 3752,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "type": "compaction",
+          "tokens_before": 5870,
+          "tokens_after": 3966,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 4,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15005 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 15920,
+      "total_tokens_added": 15815,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 5,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 0.6133,
+      "input_tokens": 3909,
+      "output_tokens": 104,
+      "context_tokens": 3926,
+      "total_tokens_added": 16583,
+      "compaction_events": 7,
+      "compaction_log": [
+        {
+          "turn": 9,
+          "type": "compaction",
+          "tokens_before": 5884,
+          "tokens_after": 3822,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "type": "compaction",
+          "tokens_before": 5861,
+          "tokens_after": 4469,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "type": "compaction",
+          "tokens_before": 5852,
+          "tokens_after": 3989,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "type": "compaction",
+          "tokens_before": 6056,
+          "tokens_after": 4201,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "type": "compaction",
+          "tokens_before": 5684,
+          "tokens_after": 4187,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "type": "compaction",
+          "tokens_before": 5919,
+          "tokens_after": 4036,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "type": "compaction",
+          "tokens_before": 6031,
+          "tokens_after": 3821,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 5,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15405 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 16549,
+      "total_tokens_added": 16444,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 6,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 0.6581,
+      "input_tokens": 3900,
+      "output_tokens": 104,
+      "context_tokens": 4007,
+      "total_tokens_added": 16265,
+      "compaction_events": 7,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "type": "compaction",
+          "tokens_before": 6050,
+          "tokens_after": 4045,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "type": "compaction",
+          "tokens_before": 5845,
+          "tokens_after": 3892,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "type": "compaction",
+          "tokens_before": 5653,
+          "tokens_after": 4332,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "type": "compaction",
+          "tokens_before": 5602,
+          "tokens_after": 4310,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "type": "compaction",
+          "tokens_before": 5870,
+          "tokens_after": 4037,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "type": "compaction",
+          "tokens_before": 5936,
+          "tokens_after": 4095,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "type": "compaction",
+          "tokens_before": 6020,
+          "tokens_after": 3902,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 6,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15603 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 16881,
+      "total_tokens_added": 16776,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 7,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 1.131,
+      "input_tokens": 3941,
+      "output_tokens": 104,
+      "context_tokens": 4309,
+      "total_tokens_added": 16610,
+      "compaction_events": 7,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "type": "compaction",
+          "tokens_before": 5790,
+          "tokens_after": 4373,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "type": "compaction",
+          "tokens_before": 5741,
+          "tokens_after": 3889,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "type": "compaction",
+          "tokens_before": 5723,
+          "tokens_after": 4410,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "type": "compaction",
+          "tokens_before": 5907,
+          "tokens_after": 4052,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "type": "compaction",
+          "tokens_before": 6006,
+          "tokens_after": 4038,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "type": "compaction",
+          "tokens_before": 6135,
+          "tokens_after": 4088,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "type": "compaction",
+          "tokens_before": 6158,
+          "tokens_after": 4204,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 7,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15004 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 16034,
+      "total_tokens_added": 15929,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 8,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 0.7787,
+      "input_tokens": 4117,
+      "output_tokens": 104,
+      "context_tokens": 4412,
+      "total_tokens_added": 15939,
+      "compaction_events": 7,
+      "compaction_log": [
+        {
+          "turn": 11,
+          "type": "compaction",
+          "tokens_before": 5798,
+          "tokens_after": 4029,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "type": "compaction",
+          "tokens_before": 6095,
+          "tokens_after": 3987,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "type": "compaction",
+          "tokens_before": 5779,
+          "tokens_after": 4466,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "type": "compaction",
+          "tokens_before": 5757,
+          "tokens_after": 3987,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "type": "compaction",
+          "tokens_before": 5866,
+          "tokens_after": 4419,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "type": "compaction",
+          "tokens_before": 5732,
+          "tokens_after": 3970,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "type": "compaction",
+          "tokens_before": 5770,
+          "tokens_after": 4307,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 8,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15256 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 16562,
+      "total_tokens_added": 16457,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 9,
+      "engine_mode": "on",
+      "error": null,
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The secret project codename is **Operation Maple Leaf**.\n2. The database migration is scheduled for **March 15th at 3am UTC**.\n3. The API rate limit was changed to **250 requests per minute**.\n4. The new hire's name is **Elena Vasquez** and she starts on **Monday**.\n5. The production server IP address is **10.42.88.7**.",
+      "ttft": 0.7319,
+      "input_tokens": 3838,
+      "output_tokens": 104,
+      "context_tokens": 4087,
+      "total_tokens_added": 17102,
+      "compaction_events": 7,
+      "compaction_log": [
+        {
+          "turn": 11,
+          "type": "compaction",
+          "tokens_before": 5829,
+          "tokens_after": 4333,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "type": "compaction",
+          "tokens_before": 6162,
+          "tokens_after": 4188,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "type": "compaction",
+          "tokens_before": 6264,
+          "tokens_after": 3983,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "type": "compaction",
+          "tokens_before": 5937,
+          "tokens_after": 4108,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "type": "compaction",
+          "tokens_before": 5618,
+          "tokens_after": 4226,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "type": "compaction",
+          "tokens_before": 6147,
+          "tokens_after": 4059,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "type": "compaction",
+          "tokens_before": 6042,
+          "tokens_after": 3982,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 9,
+      "engine_mode": "off",
+      "error": "Error code: 400 - {'message': 'Please reduce the length of the messages or completion. Current length is 15141 while limit is 8192', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded', 'id': ''}",
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_recalled": [],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 16405,
+      "total_tokens_added": 16300,
+      "compaction_events": 0,
+      "compaction_log": []
+    }
+  ]
+}

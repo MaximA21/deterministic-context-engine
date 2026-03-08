@@ -1,0 +1,1607 @@
+{
+  "timestamp": "20260307",
+  "model": "llama3.1-8b",
+  "benchmark": "niah_autopriority",
+  "description": "AutoPriority (keyword detection) vs Hardcoded (priority=2.0) vs Naive (sliding window)",
+  "num_sessions": 10,
+  "num_turns": 30,
+  "num_needles": 5,
+  "max_context_tokens": 8000,
+  "needles": [
+    {
+      "id": "needle_1",
+      "fact": "IMPORTANT UPDATE: The critical bug fix is in `auth_handler.py` \u2014 function `validate_token()` was returning None on expired sessions. Deploy fix ASAP.",
+      "keyword": "validate_token"
+    },
+    {
+      "id": "needle_2",
+      "fact": "IMPORTANT UPDATE: The database migration script `migrate_schema.sql` must run on March 15th at 3am UTC. Error in `alter_tenants()` was fixed.",
+      "keyword": "march 15"
+    },
+    {
+      "id": "needle_3",
+      "fact": "IMPORTANT UPDATE: Rate limit Exception in `rate_limiter.rs` \u2014 changed from 100 to 250 requests per minute. See `config.toml` for details.",
+      "keyword": "250"
+    },
+    {
+      "id": "needle_4",
+      "fact": "IMPORTANT UPDATE: New hire Elena Vasquez starts Monday. Her onboarding issue is tracked in `onboarding.py` class `EmployeeSetup`. Fix the bug in `provision_access()`.",
+      "keyword": "elena"
+    },
+    {
+      "id": "needle_5",
+      "fact": "IMPORTANT UPDATE: Production server IP 10.42.88.7 \u2014 update `deploy_config.yaml` and function `get_server_endpoint()`. Critical fail if wrong IP used.",
+      "keyword": "10.42.88.7"
+    }
+  ],
+  "placements": [
+    [
+      0,
+      3,
+      8,
+      20,
+      23
+    ],
+    [
+      3,
+      4,
+      7,
+      21,
+      23
+    ],
+    [
+      2,
+      17,
+      18,
+      23,
+      28
+    ],
+    [
+      0,
+      1,
+      2,
+      6,
+      13
+    ],
+    [
+      0,
+      7,
+      16,
+      17,
+      19
+    ],
+    [
+      6,
+      13,
+      17,
+      20,
+      22
+    ],
+    [
+      7,
+      8,
+      14,
+      18,
+      25
+    ],
+    [
+      0,
+      5,
+      24,
+      25,
+      27
+    ],
+    [
+      4,
+      8,
+      10,
+      13,
+      22
+    ],
+    [
+      2,
+      3,
+      6,
+      10,
+      24
+    ]
+  ],
+  "results": [
+    {
+      "session_id": 0,
+      "mode": "auto_priority",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed to 250 requests per minute.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.714,
+      "input_tokens": 4640,
+      "output_tokens": 114,
+      "context_tokens": 5560,
+      "total_tokens_added": 10485,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 16,
+          "tokens_before": 5965,
+          "tokens_after": 4326,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 6012,
+          "tokens_after": 4328,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5982,
+          "tokens_after": 4264,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 0,
+      "mode": "engine",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script to be used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.5955,
+      "input_tokens": 4610,
+      "output_tokens": 134,
+      "context_tokens": 5538,
+      "total_tokens_added": 10379,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 16,
+          "tokens_before": 5867,
+          "tokens_after": 4256,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 5910,
+          "tokens_after": 4240,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5882,
+          "tokens_after": 4206,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 0,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3"
+      ],
+      "recall_score": 2,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about the onboarding issue of the new hire Elena Vasquez, and it was in the `onboarding.py` class `EmployeeSetup`, specifically in the `provision_access()` function.\n2. There is no mention of a database migration schedule or script in our conversation.\n3. There is no mention of a rate limit change in our conversation.\n4. The new hire's name is Elena Vasquez, and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 1.1087,
+      "input_tokens": 6117,
+      "output_tokens": 126,
+      "context_tokens": 7582,
+      "total_tokens_added": 10398,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 1,
+      "mode": "auto_priority",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about the `validate_token()` function in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.5626,
+      "input_tokens": 3680,
+      "output_tokens": 134,
+      "context_tokens": 4428,
+      "total_tokens_added": 10528,
+      "compaction_events": 4,
+      "compaction_log": [
+        {
+          "turn": 16,
+          "tokens_before": 5872,
+          "tokens_after": 4227,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 5895,
+          "tokens_after": 4274,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5983,
+          "tokens_after": 4291,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 1,
+      "mode": "engine",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7, which should be updated in `deploy_config.yaml` and `get_server_endpoint()`.",
+      "ttft": 0.9136,
+      "input_tokens": 3615,
+      "output_tokens": 149,
+      "context_tokens": 4388,
+      "total_tokens_added": 10362,
+      "compaction_events": 4,
+      "compaction_log": [
+        {
+          "turn": 16,
+          "tokens_before": 5781,
+          "tokens_after": 4116,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 5788,
+          "tokens_after": 4190,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5853,
+          "tokens_after": 4279,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 1,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3"
+      ],
+      "recall_score": 2,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about the onboarding issue of the new hire Elena Vasquez, and it was in the `onboarding.py` class `EmployeeSetup`, specifically in the `provision_access()` function.\n2. There is no mention of a scheduled database migration or a script used for it.\n3. There is no mention of a rate limit change.\n4. The new hire's name is Elena Vasquez, and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.6701,
+      "input_tokens": 6156,
+      "output_tokens": 124,
+      "context_tokens": 7617,
+      "total_tokens_added": 10463,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 2,
+      "mode": "auto_priority",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.838,
+      "input_tokens": 4626,
+      "output_tokens": 117,
+      "context_tokens": 5448,
+      "total_tokens_added": 10295,
+      "compaction_events": 4,
+      "compaction_log": [
+        {
+          "turn": 14,
+          "tokens_before": 5676,
+          "tokens_after": 4430,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 5706,
+          "tokens_after": 4418,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 5629,
+          "tokens_after": 4464,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5728,
+          "tokens_after": 4464,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 2,
+      "mode": "engine",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.5507,
+      "input_tokens": 3331,
+      "output_tokens": 132,
+      "context_tokens": 4065,
+      "total_tokens_added": 10426,
+      "compaction_events": 4,
+      "compaction_log": [
+        {
+          "turn": 14,
+          "tokens_before": 5677,
+          "tokens_after": 4090,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 5827,
+          "tokens_after": 4190,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 5904,
+          "tokens_after": 4285,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 2,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1"
+      ],
+      "recall_score": 4,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about the `provision_access()` function in the `onboarding.py` class `EmployeeSetup`. This was related to the onboarding issue of the new hire Elena Vasquez.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed to 250 requests per minute from 100 requests per minute, as mentioned in the `rate_limiter.rs` file.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.8252,
+      "input_tokens": 6541,
+      "output_tokens": 151,
+      "context_tokens": 7919,
+      "total_tokens_added": 10302,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 3,
+      "mode": "auto_priority",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7, which needs to be updated in `deploy_config.yaml` and `get_server_endpoint()`.",
+      "ttft": 0.6971,
+      "input_tokens": 4640,
+      "output_tokens": 150,
+      "context_tokens": 5455,
+      "total_tokens_added": 10388,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 18,
+          "tokens_before": 5918,
+          "tokens_after": 4256,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 5902,
+          "tokens_after": 4222,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5851,
+          "tokens_after": 4144,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 3,
+      "mode": "engine",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7, which should be updated in `deploy_config.yaml` and `get_server_endpoint()`.",
+      "ttft": 0.7333,
+      "input_tokens": 4594,
+      "output_tokens": 149,
+      "context_tokens": 5540,
+      "total_tokens_added": 10234,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 18,
+          "tokens_before": 5793,
+          "tokens_after": 4230,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 5839,
+          "tokens_after": 4204,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5813,
+          "tokens_after": 4201,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 3,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "recall_score": 1,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about updating the production server IP address, which is stored in the `deploy_config.yaml` file and also in the `get_server_endpoint()` function.\n2. There is no mention of a database migration schedule or script in our conversation.\n3. There is no mention of a rate limit change in our conversation.\n4. There is no mention of a new hire's name or start date in our conversation.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.8861,
+      "input_tokens": 6413,
+      "output_tokens": 119,
+      "context_tokens": 7921,
+      "total_tokens_added": 10414,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 4,
+      "mode": "auto_priority",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 1.9118,
+      "input_tokens": 4660,
+      "output_tokens": 117,
+      "context_tokens": 5568,
+      "total_tokens_added": 10472,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 15,
+          "tokens_before": 5770,
+          "tokens_after": 4097,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 5843,
+          "tokens_after": 4181,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5881,
+          "tokens_after": 4196,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 4,
+      "mode": "engine",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about the `validate_token()` function in `auth_handler.py`, which was returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7, which should be updated in `deploy_config.yaml` and the function `get_server_endpoint()`.",
+      "ttft": 1.1667,
+      "input_tokens": 3300,
+      "output_tokens": 155,
+      "context_tokens": 4110,
+      "total_tokens_added": 10512,
+      "compaction_events": 4,
+      "compaction_log": [
+        {
+          "turn": 15,
+          "tokens_before": 5778,
+          "tokens_after": 4123,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 5867,
+          "tokens_after": 4206,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5920,
+          "tokens_after": 4300,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 4,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about a rate limit exception in `rate_limiter.rs` \u2014 it was changed from 100 to 250 requests per minute.\n2. There is no mention of a database migration schedule or script in our conversation.\n3. The rate limit was changed to 250 requests per minute from 100.\n4. The new hire's name is Elena Vasquez, and she starts on Monday. The bug fix related to her onboarding is in `onboarding.py` class `EmployeeSetup` in the `provision_access()` method.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 1.5138,
+      "input_tokens": 6208,
+      "output_tokens": 145,
+      "context_tokens": 7641,
+      "total_tokens_added": 10452,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 5,
+      "mode": "auto_priority",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about the `validate_token()` function in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 1.7812,
+      "input_tokens": 4603,
+      "output_tokens": 119,
+      "context_tokens": 5515,
+      "total_tokens_added": 10437,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 15,
+          "tokens_before": 5897,
+          "tokens_after": 4221,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 5935,
+          "tokens_after": 4254,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5922,
+          "tokens_after": 4241,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 5,
+      "mode": "engine",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about the `validate_token()` function in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.6823,
+      "input_tokens": 3661,
+      "output_tokens": 134,
+      "context_tokens": 4408,
+      "total_tokens_added": 10330,
+      "compaction_events": 4,
+      "compaction_log": [
+        {
+          "turn": 15,
+          "tokens_before": 5722,
+          "tokens_after": 4465,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 5707,
+          "tokens_after": 4118,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 5831,
+          "tokens_after": 4220,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 5873,
+          "tokens_after": 4292,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 5,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1"
+      ],
+      "recall_score": 4,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about the `provision_access()` function in the `onboarding.py` file, which was related to the new hire Elena Vasquez's onboarding issue.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in the `rate_limiter.rs` file.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.676,
+      "input_tokens": 6221,
+      "output_tokens": 144,
+      "context_tokens": 7785,
+      "total_tokens_added": 10557,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 6,
+      "mode": "auto_priority",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about the `validate_token()` function in `auth_handler.py`, which was returning None on expired sessions.\n\n2. The database migration is scheduled for March 15th at 3am UTC and the script to be used is `migrate_schema.sql`.\n\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.5534,
+      "input_tokens": 3669,
+      "output_tokens": 138,
+      "context_tokens": 4369,
+      "total_tokens_added": 10417,
+      "compaction_events": 4,
+      "compaction_log": [
+        {
+          "turn": 16,
+          "tokens_before": 5831,
+          "tokens_after": 4166,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 5835,
+          "tokens_after": 4219,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5946,
+          "tokens_after": 4295,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 6,
+      "mode": "engine",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.561,
+      "input_tokens": 4582,
+      "output_tokens": 132,
+      "context_tokens": 5588,
+      "total_tokens_added": 10369,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 16,
+          "tokens_before": 5800,
+          "tokens_after": 4195,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 5864,
+          "tokens_after": 4241,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5872,
+          "tokens_after": 4203,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 6,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 61.3868,
+      "input_tokens": 6220,
+      "output_tokens": 117,
+      "context_tokens": 7714,
+      "total_tokens_added": 10370,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 7,
+      "mode": "auto_priority",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as specified in `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.6305,
+      "input_tokens": 3671,
+      "output_tokens": 125,
+      "context_tokens": 4275,
+      "total_tokens_added": 10382,
+      "compaction_events": 4,
+      "compaction_log": [
+        {
+          "turn": 15,
+          "tokens_before": 5769,
+          "tokens_after": 4123,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 5776,
+          "tokens_after": 4129,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 5760,
+          "tokens_after": 4472,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 5801,
+          "tokens_after": 4159,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 7,
+      "mode": "engine",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 1.568,
+      "input_tokens": 4623,
+      "output_tokens": 117,
+      "context_tokens": 5578,
+      "total_tokens_added": 10414,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 15,
+          "tokens_before": 5829,
+          "tokens_after": 4176,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 5798,
+          "tokens_after": 4157,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 5797,
+          "tokens_after": 4139,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 7,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about a rate limit exception in `rate_limiter.rs` \u2014 it was changed from 100 to 250 requests per minute.\n2. There is no mention of a database migration schedule or script in our conversation.\n3. The rate limit was changed to 250 requests per minute.\n4. The new hire's name is Elena Vasquez, and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.7452,
+      "input_tokens": 6169,
+      "output_tokens": 113,
+      "context_tokens": 7635,
+      "total_tokens_added": 10325,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 8,
+      "mode": "auto_priority",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.5905,
+      "input_tokens": 4607,
+      "output_tokens": 117,
+      "context_tokens": 5502,
+      "total_tokens_added": 10338,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 17,
+          "tokens_before": 5854,
+          "tokens_after": 4147,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 5754,
+          "tokens_after": 4128,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5774,
+          "tokens_after": 4155,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 8,
+      "mode": "engine",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about `validate_token()` in `auth_handler.py` returning None on expired sessions.\n2. The database migration is scheduled for March 15th at 3am UTC and the script used is `migrate_schema.sql`.\n3. The rate limit was changed from 100 to 250 requests per minute, as mentioned in `rate_limiter.rs` and `config.toml`.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.5334,
+      "input_tokens": 3649,
+      "output_tokens": 132,
+      "context_tokens": 4382,
+      "total_tokens_added": 10203,
+      "compaction_events": 4,
+      "compaction_log": [
+        {
+          "turn": 17,
+          "tokens_before": 5680,
+          "tokens_after": 4117,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 5748,
+          "tokens_after": 4174,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5879,
+          "tokens_after": 4299,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 8,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1"
+      ],
+      "recall_score": 4,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the answers to your questions:\n\n1. The critical bug fix was about a rate limit exception in `rate_limiter.rs` and it was changed from 100 to 250 requests per minute.\n2. The database migration is scheduled for March 15th at 3am UTC and the script to be used is `migrate_schema.sql`.\n3. The rate limit was changed to 250 requests per minute.\n4. The new hire's name is Elena Vasquez and she starts on Monday.\n5. The production server IP address is 10.42.88.7.",
+      "ttft": 0.8435,
+      "input_tokens": 6230,
+      "output_tokens": 125,
+      "context_tokens": 7730,
+      "total_tokens_added": 10486,
+      "compaction_events": 0,
+      "compaction_log": []
+    },
+    {
+      "session_id": 9,
+      "mode": "auto_priority",
+      "error": "Error code: 429 - {'message': 'Tokens per day limit exceeded - too many tokens processed.', 'type': 'too_many_tokens_error', 'param': 'quota', 'code': 'token_quota_exceeded'}",
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 5462,
+      "total_tokens_added": 10410,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 17,
+          "tokens_before": 5862,
+          "tokens_after": 4208,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 5904,
+          "tokens_after": 4186,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5844,
+          "tokens_after": 4152,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 9,
+      "mode": "engine",
+      "error": "Error code: 429 - {'message': 'Tokens per day limit exceeded - too many tokens processed.', 'type': 'too_many_tokens_error', 'param': 'quota', 'code': 'token_quota_exceeded'}",
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 5594,
+      "total_tokens_added": 10442,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 17,
+          "tokens_before": 5923,
+          "tokens_after": 4270,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 5892,
+          "tokens_after": 4249,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 5945,
+          "tokens_after": 4277,
+          "events": 1
+        }
+      ]
+    },
+    {
+      "session_id": 9,
+      "mode": "naive",
+      "error": "Error code: 429 - {'message': 'Tokens per day limit exceeded - too many tokens processed.', 'type': 'too_many_tokens_error', 'param': 'quota', 'code': 'token_quota_exceeded'}",
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "",
+      "ttft": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "context_tokens": 7564,
+      "total_tokens_added": 10465,
+      "compaction_events": 0,
+      "compaction_log": []
+    }
+  ]
+}
