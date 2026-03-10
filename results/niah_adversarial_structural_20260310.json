@@ -1,0 +1,1455 @@
+{
+  "timestamp": "20260310",
+  "benchmark": "niah_adversarial_structural",
+  "description": "Adversarial NIAH with structural fingerprinting",
+  "max_context_tokens": 8000,
+  "num_sessions": 10,
+  "num_turns": 30,
+  "num_needles": 5,
+  "results": {
+    "structural": {
+      "avg_survival": 5.0,
+      "per_session": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "sessions": [
+        {
+          "session_id": 0,
+          "mode": "structural",
+          "needle_turns": [
+            0,
+            3,
+            8,
+            20,
+            23
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 5292
+        },
+        {
+          "session_id": 1,
+          "mode": "structural",
+          "needle_turns": [
+            3,
+            4,
+            7,
+            21,
+            23
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4666
+        },
+        {
+          "session_id": 2,
+          "mode": "structural",
+          "needle_turns": [
+            2,
+            17,
+            18,
+            23,
+            28
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4180
+        },
+        {
+          "session_id": 3,
+          "mode": "structural",
+          "needle_turns": [
+            0,
+            1,
+            2,
+            6,
+            13
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4775
+        },
+        {
+          "session_id": 4,
+          "mode": "structural",
+          "needle_turns": [
+            0,
+            7,
+            16,
+            17,
+            19
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 7,
+          "context_tokens": 4260
+        },
+        {
+          "session_id": 5,
+          "mode": "structural",
+          "needle_turns": [
+            6,
+            13,
+            17,
+            20,
+            22
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4694
+        },
+        {
+          "session_id": 6,
+          "mode": "structural",
+          "needle_turns": [
+            7,
+            8,
+            14,
+            18,
+            25
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4576
+        },
+        {
+          "session_id": 7,
+          "mode": "structural",
+          "needle_turns": [
+            0,
+            5,
+            24,
+            25,
+            27
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 7,
+          "context_tokens": 4617
+        },
+        {
+          "session_id": 8,
+          "mode": "structural",
+          "needle_turns": [
+            4,
+            8,
+            10,
+            13,
+            22
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4513
+        },
+        {
+          "session_id": 9,
+          "mode": "structural",
+          "needle_turns": [
+            2,
+            3,
+            6,
+            10,
+            24
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 5115
+        }
+      ]
+    },
+    "goal_guided": {
+      "avg_survival": 4.3,
+      "per_session": [
+        0,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        3,
+        5,
+        5
+      ],
+      "sessions": [
+        {
+          "session_id": 0,
+          "mode": "goal_guided",
+          "needle_turns": [
+            0,
+            3,
+            8,
+            20,
+            23
+          ],
+          "survived": [],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "survival_count": 0,
+          "compaction": 6,
+          "context_tokens": 4212
+        },
+        {
+          "session_id": 1,
+          "mode": "goal_guided",
+          "needle_turns": [
+            3,
+            4,
+            7,
+            21,
+            23
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4515
+        },
+        {
+          "session_id": 2,
+          "mode": "goal_guided",
+          "needle_turns": [
+            2,
+            17,
+            18,
+            23,
+            28
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4536
+        },
+        {
+          "session_id": 3,
+          "mode": "goal_guided",
+          "needle_turns": [
+            0,
+            1,
+            2,
+            6,
+            13
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 7,
+          "context_tokens": 4064
+        },
+        {
+          "session_id": 4,
+          "mode": "goal_guided",
+          "needle_turns": [
+            0,
+            7,
+            16,
+            17,
+            19
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 7,
+          "context_tokens": 4169
+        },
+        {
+          "session_id": 5,
+          "mode": "goal_guided",
+          "needle_turns": [
+            6,
+            13,
+            17,
+            20,
+            22
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4796
+        },
+        {
+          "session_id": 6,
+          "mode": "goal_guided",
+          "needle_turns": [
+            7,
+            8,
+            14,
+            18,
+            25
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4603
+        },
+        {
+          "session_id": 7,
+          "mode": "goal_guided",
+          "needle_turns": [
+            0,
+            5,
+            24,
+            25,
+            27
+          ],
+          "survived": [
+            "needle_2",
+            "needle_3",
+            "needle_4"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_5"
+          ],
+          "survival_count": 3,
+          "compaction": 6,
+          "context_tokens": 5207
+        },
+        {
+          "session_id": 8,
+          "mode": "goal_guided",
+          "needle_turns": [
+            4,
+            8,
+            10,
+            13,
+            22
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4727
+        },
+        {
+          "session_id": 9,
+          "mode": "goal_guided",
+          "needle_turns": [
+            2,
+            3,
+            6,
+            10,
+            24
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 5335
+        }
+      ]
+    },
+    "entity_aware": {
+      "avg_survival": 4.1,
+      "per_session": [
+        5,
+        5,
+        1,
+        1,
+        5,
+        5,
+        5,
+        5,
+        4,
+        5
+      ],
+      "sessions": [
+        {
+          "session_id": 0,
+          "mode": "entity_aware",
+          "needle_turns": [
+            0,
+            3,
+            8,
+            20,
+            23
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4616
+        },
+        {
+          "session_id": 1,
+          "mode": "entity_aware",
+          "needle_turns": [
+            3,
+            4,
+            7,
+            21,
+            23
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4669
+        },
+        {
+          "session_id": 2,
+          "mode": "entity_aware",
+          "needle_turns": [
+            2,
+            17,
+            18,
+            23,
+            28
+          ],
+          "survived": [
+            "needle_4"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_5"
+          ],
+          "survival_count": 1,
+          "compaction": 6,
+          "context_tokens": 4369
+        },
+        {
+          "session_id": 3,
+          "mode": "entity_aware",
+          "needle_turns": [
+            0,
+            1,
+            2,
+            6,
+            13
+          ],
+          "survived": [
+            "needle_4"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_5"
+          ],
+          "survival_count": 1,
+          "compaction": 6,
+          "context_tokens": 4923
+        },
+        {
+          "session_id": 4,
+          "mode": "entity_aware",
+          "needle_turns": [
+            0,
+            7,
+            16,
+            17,
+            19
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4581
+        },
+        {
+          "session_id": 5,
+          "mode": "entity_aware",
+          "needle_turns": [
+            6,
+            13,
+            17,
+            20,
+            22
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 5285
+        },
+        {
+          "session_id": 6,
+          "mode": "entity_aware",
+          "needle_turns": [
+            7,
+            8,
+            14,
+            18,
+            25
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4605
+        },
+        {
+          "session_id": 7,
+          "mode": "entity_aware",
+          "needle_turns": [
+            0,
+            5,
+            24,
+            25,
+            27
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4201
+        },
+        {
+          "session_id": 8,
+          "mode": "entity_aware",
+          "needle_turns": [
+            4,
+            8,
+            10,
+            13,
+            22
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_3"
+          ],
+          "survival_count": 4,
+          "compaction": 6,
+          "context_tokens": 4667
+        },
+        {
+          "session_id": 9,
+          "mode": "entity_aware",
+          "needle_turns": [
+            2,
+            3,
+            6,
+            10,
+            24
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4631
+        }
+      ]
+    },
+    "auto_priority": {
+      "avg_survival": 2.0,
+      "per_session": [
+        2,
+        2,
+        4,
+        0,
+        3,
+        3,
+        1,
+        3,
+        1,
+        1
+      ],
+      "sessions": [
+        {
+          "session_id": 0,
+          "mode": "auto_priority",
+          "needle_turns": [
+            0,
+            3,
+            8,
+            20,
+            23
+          ],
+          "survived": [
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3"
+          ],
+          "survival_count": 2,
+          "compaction": 11,
+          "context_tokens": 6687
+        },
+        {
+          "session_id": 1,
+          "mode": "auto_priority",
+          "needle_turns": [
+            3,
+            4,
+            7,
+            21,
+            23
+          ],
+          "survived": [
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3"
+          ],
+          "survival_count": 2,
+          "compaction": 11,
+          "context_tokens": 6188
+        },
+        {
+          "session_id": 2,
+          "mode": "auto_priority",
+          "needle_turns": [
+            2,
+            17,
+            18,
+            23,
+            28
+          ],
+          "survived": [
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1"
+          ],
+          "survival_count": 4,
+          "compaction": 10,
+          "context_tokens": 5680
+        },
+        {
+          "session_id": 3,
+          "mode": "auto_priority",
+          "needle_turns": [
+            0,
+            1,
+            2,
+            6,
+            13
+          ],
+          "survived": [],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "survival_count": 0,
+          "compaction": 9,
+          "context_tokens": 5908
+        },
+        {
+          "session_id": 4,
+          "mode": "auto_priority",
+          "needle_turns": [
+            0,
+            7,
+            16,
+            17,
+            19
+          ],
+          "survived": [
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2"
+          ],
+          "survival_count": 3,
+          "compaction": 10,
+          "context_tokens": 6840
+        },
+        {
+          "session_id": 5,
+          "mode": "auto_priority",
+          "needle_turns": [
+            6,
+            13,
+            17,
+            20,
+            22
+          ],
+          "survived": [
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2"
+          ],
+          "survival_count": 3,
+          "compaction": 12,
+          "context_tokens": 6728
+        },
+        {
+          "session_id": 6,
+          "mode": "auto_priority",
+          "needle_turns": [
+            7,
+            8,
+            14,
+            18,
+            25
+          ],
+          "survived": [
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4"
+          ],
+          "survival_count": 1,
+          "compaction": 9,
+          "context_tokens": 5415
+        },
+        {
+          "session_id": 7,
+          "mode": "auto_priority",
+          "needle_turns": [
+            0,
+            5,
+            24,
+            25,
+            27
+          ],
+          "survived": [
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2"
+          ],
+          "survival_count": 3,
+          "compaction": 9,
+          "context_tokens": 5697
+        },
+        {
+          "session_id": 8,
+          "mode": "auto_priority",
+          "needle_turns": [
+            4,
+            8,
+            10,
+            13,
+            22
+          ],
+          "survived": [
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4"
+          ],
+          "survival_count": 1,
+          "compaction": 10,
+          "context_tokens": 5369
+        },
+        {
+          "session_id": 9,
+          "mode": "auto_priority",
+          "needle_turns": [
+            2,
+            3,
+            6,
+            10,
+            24
+          ],
+          "survived": [
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4"
+          ],
+          "survival_count": 1,
+          "compaction": 9,
+          "context_tokens": 6175
+        }
+      ]
+    },
+    "engine": {
+      "avg_survival": 5.0,
+      "per_session": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "sessions": [
+        {
+          "session_id": 0,
+          "mode": "engine",
+          "needle_turns": [
+            0,
+            3,
+            8,
+            20,
+            23
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 7,
+          "context_tokens": 4635
+        },
+        {
+          "session_id": 1,
+          "mode": "engine",
+          "needle_turns": [
+            3,
+            4,
+            7,
+            21,
+            23
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 5181
+        },
+        {
+          "session_id": 2,
+          "mode": "engine",
+          "needle_turns": [
+            2,
+            17,
+            18,
+            23,
+            28
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 5283
+        },
+        {
+          "session_id": 3,
+          "mode": "engine",
+          "needle_turns": [
+            0,
+            1,
+            2,
+            6,
+            13
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4682
+        },
+        {
+          "session_id": 4,
+          "mode": "engine",
+          "needle_turns": [
+            0,
+            7,
+            16,
+            17,
+            19
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 5113
+        },
+        {
+          "session_id": 5,
+          "mode": "engine",
+          "needle_turns": [
+            6,
+            13,
+            17,
+            20,
+            22
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4589
+        },
+        {
+          "session_id": 6,
+          "mode": "engine",
+          "needle_turns": [
+            7,
+            8,
+            14,
+            18,
+            25
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 7,
+          "context_tokens": 4126
+        },
+        {
+          "session_id": 7,
+          "mode": "engine",
+          "needle_turns": [
+            0,
+            5,
+            24,
+            25,
+            27
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 4639
+        },
+        {
+          "session_id": 8,
+          "mode": "engine",
+          "needle_turns": [
+            4,
+            8,
+            10,
+            13,
+            22
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 6,
+          "context_tokens": 5107
+        },
+        {
+          "session_id": 9,
+          "mode": "engine",
+          "needle_turns": [
+            2,
+            3,
+            6,
+            10,
+            24
+          ],
+          "survived": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [],
+          "survival_count": 5,
+          "compaction": 7,
+          "context_tokens": 4042
+        }
+      ]
+    },
+    "naive": {
+      "avg_survival": 2.3,
+      "per_session": [
+        2,
+        2,
+        4,
+        0,
+        3,
+        4,
+        3,
+        3,
+        1,
+        1
+      ],
+      "sessions": [
+        {
+          "session_id": 0,
+          "mode": "naive",
+          "needle_turns": [
+            0,
+            3,
+            8,
+            20,
+            23
+          ],
+          "survived": [
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3"
+          ],
+          "survival_count": 2,
+          "compaction": 0,
+          "context_tokens": 7410
+        },
+        {
+          "session_id": 1,
+          "mode": "naive",
+          "needle_turns": [
+            3,
+            4,
+            7,
+            21,
+            23
+          ],
+          "survived": [
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3"
+          ],
+          "survival_count": 2,
+          "compaction": 0,
+          "context_tokens": 7884
+        },
+        {
+          "session_id": 2,
+          "mode": "naive",
+          "needle_turns": [
+            2,
+            17,
+            18,
+            23,
+            28
+          ],
+          "survived": [
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1"
+          ],
+          "survival_count": 4,
+          "compaction": 0,
+          "context_tokens": 7526
+        },
+        {
+          "session_id": 3,
+          "mode": "naive",
+          "needle_turns": [
+            0,
+            1,
+            2,
+            6,
+            13
+          ],
+          "survived": [],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "survival_count": 0,
+          "compaction": 0,
+          "context_tokens": 7816
+        },
+        {
+          "session_id": 4,
+          "mode": "naive",
+          "needle_turns": [
+            0,
+            7,
+            16,
+            17,
+            19
+          ],
+          "survived": [
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2"
+          ],
+          "survival_count": 3,
+          "compaction": 0,
+          "context_tokens": 7447
+        },
+        {
+          "session_id": 5,
+          "mode": "naive",
+          "needle_turns": [
+            6,
+            13,
+            17,
+            20,
+            22
+          ],
+          "survived": [
+            "needle_2",
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1"
+          ],
+          "survival_count": 4,
+          "compaction": 0,
+          "context_tokens": 7890
+        },
+        {
+          "session_id": 6,
+          "mode": "naive",
+          "needle_turns": [
+            7,
+            8,
+            14,
+            18,
+            25
+          ],
+          "survived": [
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2"
+          ],
+          "survival_count": 3,
+          "compaction": 0,
+          "context_tokens": 7964
+        },
+        {
+          "session_id": 7,
+          "mode": "naive",
+          "needle_turns": [
+            0,
+            5,
+            24,
+            25,
+            27
+          ],
+          "survived": [
+            "needle_3",
+            "needle_4",
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2"
+          ],
+          "survival_count": 3,
+          "compaction": 0,
+          "context_tokens": 7922
+        },
+        {
+          "session_id": 8,
+          "mode": "naive",
+          "needle_turns": [
+            4,
+            8,
+            10,
+            13,
+            22
+          ],
+          "survived": [
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4"
+          ],
+          "survival_count": 1,
+          "compaction": 0,
+          "context_tokens": 7841
+        },
+        {
+          "session_id": 9,
+          "mode": "naive",
+          "needle_turns": [
+            2,
+            3,
+            6,
+            10,
+            24
+          ],
+          "survived": [
+            "needle_5"
+          ],
+          "lost": [
+            "needle_1",
+            "needle_2",
+            "needle_3",
+            "needle_4"
+          ],
+          "survival_count": 1,
+          "compaction": 0,
+          "context_tokens": 7805
+        }
+      ]
+    }
+  }
+}
