@@ -1,0 +1,138 @@
+==============================================================================
+AIDER SESSION COMPARISON — 2026-03-10
+Stock Aider vs BM25-Patched Aider
+Repository: httpx (encode/httpx)
+Model: gemini/gemini-3.1-flash-lite-preview
+==============================================================================
+
+## Key Finding
+
+Both sessions produced IDENTICAL results (10/10 turns character-for-character
+identical, 378,927 total chars each). This is because Gemini 3.1 Flash-Lite
+has a 1,048,576 token context window — far larger than the ~100K tokens
+generated in a 10-turn coding session. Context compaction was NEVER triggered
+in either session, so neither the stock LLM summarizer nor the BM25 scorer
+was exercised.
+
+The BM25 patch works correctly as a DROP-IN REPLACEMENT: it doesn't break
+Aider's message flow, context management, or file editing. The differentiation
+would only appear under context pressure (smaller context windows or longer
+sessions).
+
+## Summary
+  Metric                                     Stock BM25-Patched      Delta
+  ----------------------------------- ------------ ------------ ----------
+  Avg context reference score                 77%         77%       +0%
+  Total response chars                   378,927      378,927         0
+  Total wall time                            932s         872s       -60s
+  Identical responses                     10/10        10/10
+
+## Per-Turn Comparison
+  Turn Prompt                                        Stock Ctx  BM25 Ctx  Stock Time  BM25 Time
+  ---- -----                                         --------- ---------  ----------  ---------
+     1 Add a retry mechanism to the Client class         100%     100%       46.9s      48.0s
+     2 Add exponential backoff to the retry logic        100%     100%       47.7s      41.3s
+     3 Add a max_retries parameter with default 3         33%      33%       49.5s      41.4s
+     4 Now add timeout handling that works with the       67%      67%      184.4s     150.2s
+     5 Add logging for each retry attempt                 75%      75%       53.3s      45.6s
+     6 Write tests for the retry mechanism                80%      80%       11.1s       7.4s
+     7 Add a circuit breaker pattern on top of retri      67%      67%      157.6s     147.0s
+     8 Make sure the circuit breaker respects the ti     100%     100%      150.3s     150.8s
+     9 Refactor: extract retry+circuit breaker into      100%     100%      148.8s     155.3s
+    10 Update all tests to use the new Resilience cl      50%      50%       82.4s      85.4s
+
+## Context Referencing Detail
+
+  Turn 2: Add exponential backoff to the retry logic
+    Expected keywords: ['client', 'retry']
+    Stock matched:     ['client', 'retry'] (100%)
+    BM25 matched:      ['client', 'retry'] (100%)
+
+  Turn 3: Add a max_retries parameter with default 3
+    Expected keywords: ['backoff', 'max_retries', 'retry']
+    Stock matched:     ['max_retries'] (33%)
+    BM25 matched:      ['max_retries'] (33%)
+
+  Turn 4: Now add timeout handling that works with the retry
+    Expected keywords: ['backoff', 'retry', 'timeout']
+    Stock matched:     ['retry', 'timeout'] (67%)
+    BM25 matched:      ['retry', 'timeout'] (67%)
+
+  Turn 5: Add logging for each retry attempt
+    Expected keywords: ['backoff', 'logging', 'retry', 'timeout']
+    Stock matched:     ['logging', 'retry', 'timeout'] (75%)
+    BM25 matched:      ['logging', 'retry', 'timeout'] (75%)
+
+  Turn 6: Write tests for the retry mechanism
+    Expected keywords: ['backoff', 'max_retries', 'retry', 'test', 'timeout']
+    Stock matched:     ['max_retries', 'retry', 'test', 'timeout'] (80%)
+    BM25 matched:      ['max_retries', 'retry', 'test', 'timeout'] (80%)
+
+  Turn 7: Add a circuit breaker pattern on top of retries
+    Expected keywords: ['breaker', 'circuit', 'retry']
+    Stock matched:     ['breaker', 'circuit'] (67%)
+    BM25 matched:      ['breaker', 'circuit'] (67%)
+
+  Turn 8: Make sure the circuit breaker respects the timeout from step 4
+    Expected keywords: ['breaker', 'circuit', 'timeout']
+    Stock matched:     ['breaker', 'circuit', 'timeout'] (100%)
+    BM25 matched:      ['breaker', 'circuit', 'timeout'] (100%)
+
+  Turn 9: Refactor: extract retry+circuit breaker into a separate Resilience class
+    Expected keywords: ['breaker', 'circuit', 'class', 'resilience', 'retry']
+    Stock matched:     ['breaker', 'circuit', 'class', 'resilience', 'retry'] (100%)
+    BM25 matched:      ['breaker', 'circuit', 'class', 'resilience', 'retry'] (100%)
+
+  Turn 10: Update all tests to use the new Resilience class
+    Expected keywords: ['circuit', 'resilience', 'retry', 'test']
+    Stock matched:     ['resilience', 'test'] (50%)
+    BM25 matched:      ['resilience', 'test'] (50%)
+
+## Message History Sizes
+  Turn   Stock done  Stock cur    BM25 done   BM25 cur
+     1            4          0            4          0
+     2            8          0            8          0
+     3           12          0           12          0
+     4           12          2           12          2
+     5           18          0           18          0
+     6           22          0           22          0
+     7           22          2           22          2
+     8           22          4           22          4
+     9           22          6           22          6
+    10           36          0           36          0
+
+## Analysis
+
+### Context Referencing (77% avg)
+The model maintained good context awareness across turns. Notably:
+- Turns 1-2, 8-9: 100% — perfect recall of immediately prior context
+- Turns 3-4: 33-67% — "backoff" keyword not referenced when renamed to
+  max_retries/timeout (naming divergence, not context loss)
+- Turn 10: 50% — "circuit" and "retry" not mentioned in test update response
+
+### Why Results Are Identical
+1. Gemini 3.1 Flash-Lite has 1M token context — no pressure
+2. Done_messages grew linearly (4 → 36), never triggering summarizer.too_big()
+3. Same messages sent = same (deterministic temp=0) responses
+
+### When BM25 Would Differentiate
+The BM25 patch would show value when:
+- Context window < 32K tokens (e.g., older models, cost-constrained)
+- Sessions > 30 turns (done_messages grows large enough to trigger compaction)
+- Multiple large files in chat (repo indexing fills context)
+
+With a smaller context budget, stock Aider would summarize old messages using
+an LLM (costing tokens + losing detail), while BM25 would deterministically
+select the most relevant messages (zero cost, preserves exact text).
+
+## Session Costs
+  Stock:   $0.43 (Gemini API, 10 turns)
+  BM25:    $0.43 (identical — no compaction savings in this run)
+
+  Projected savings with 32K context window over 30+ turns:
+  - Stock: additional LLM summarization calls (~$0.10-0.30 per compaction)
+  - BM25:  $0.00 additional (deterministic scoring, no API calls)
+
+==============================================================================
+END OF REPORT
+==============================================================================

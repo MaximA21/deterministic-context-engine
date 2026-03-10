@@ -1,0 +1,75 @@
+==============================================================================
+FORCED BUDGET BENCHMARK — 2026-03-10 10:48:02
+Stock Aider (LLM summarization) vs BM25-Patched Aider
+Model: gemini/gemini-3.1-flash-lite-preview  |  force_budget: 16,384 tokens
+Repository: httpx (encode/httpx)  |  Prompts: 10
+==============================================================================
+
+## Summary
+  Metric                                        Stock       BM25      Delta
+  ---------------------------------------- ---------- ---------- ----------
+  Avg context reference score                    98%       98%       +0%
+  Total response chars                        211,523    211,523
+  Total wall time (s)                            1330       1328
+  BM25 compaction events                          N/A          4
+  BM25 evicted pairs                              N/A         14
+  Identical responses                              10/10
+
+## Per-Turn Detail
+   T Prompt                                     S-Ctx B-Ctx  S-Done  B-Done S-DoneTok B-DoneTok Same?
+  -- -----                                      ----- -----  ------  ------ --------- --------- -----
+   1 Add a retry mechanism to the Client class  100% 100%       0       0         0         0     Y
+   2 Add exponential backoff to the retry logic 100% 100%       0       0         0         0     Y
+   3 Add a max_retries parameter with default 3 100% 100%       0       0         0         0     Y
+   4 Now add timeout handling that works with t 100% 100%       0       0         0         0     Y
+   5 Add logging for each retry attempt         100% 100%      12      12    26,319    26,319     Y
+   6 Write tests for the retry mechanism         80%  80%      16      16    27,046    27,046     Y
+   7 Add a circuit breaker pattern on top of re 100% 100%      16      16    27,046    27,046     Y
+   8 Make sure the circuit breaker respects the 100% 100%      22      22    49,655    49,655     Y
+   9 Refactor: extract retry+circuit breaker in 100% 100%      22      22    49,655    49,655     Y
+  10 Update all tests to use the new Resilience 100% 100%      28      28    53,014    53,014     Y
+
+## Context Referencing Detail
+  Turn 2: Add exponential backoff to the retry logic
+    Expected:  ['client', 'retry']
+    Stock:     ['client', 'retry'] (100%)
+    BM25:      ['client', 'retry'] (100%)
+  Turn 3: Add a max_retries parameter with default 3
+    Expected:  ['backoff', 'max_retries', 'retry']
+    Stock:     ['backoff', 'max_retries', 'retry'] (100%)
+    BM25:      ['backoff', 'max_retries', 'retry'] (100%)
+  Turn 4: Now add timeout handling that works with the retry
+    Expected:  ['backoff', 'retry', 'timeout']
+    Stock:     ['backoff', 'retry', 'timeout'] (100%)
+    BM25:      ['backoff', 'retry', 'timeout'] (100%)
+  Turn 5: Add logging for each retry attempt
+    Expected:  ['backoff', 'logging', 'retry', 'timeout']
+    Stock:     ['backoff', 'logging', 'retry', 'timeout'] (100%)
+    BM25:      ['backoff', 'logging', 'retry', 'timeout'] (100%)
+  Turn 6: Write tests for the retry mechanism
+    Expected:  ['backoff', 'max_retries', 'retry', 'test', 'timeout']
+    Stock:     ['max_retries', 'retry', 'test', 'timeout'] (80%)
+    BM25:      ['max_retries', 'retry', 'test', 'timeout'] (80%)
+  Turn 7: Add a circuit breaker pattern on top of retries
+    Expected:  ['breaker', 'circuit', 'retry']
+    Stock:     ['breaker', 'circuit', 'retry'] (100%)
+    BM25:      ['breaker', 'circuit', 'retry'] (100%)
+  Turn 8: Make sure the circuit breaker respects the timeout from step 4
+    Expected:  ['breaker', 'circuit', 'timeout']
+    Stock:     ['breaker', 'circuit', 'timeout'] (100%)
+    BM25:      ['breaker', 'circuit', 'timeout'] (100%)
+  Turn 9: Refactor: extract retry+circuit breaker into a separate Resilience class
+    Expected:  ['breaker', 'circuit', 'class', 'resilience', 'retry']
+    Stock:     ['breaker', 'circuit', 'class', 'resilience', 'retry'] (100%)
+    BM25:      ['breaker', 'circuit', 'class', 'resilience', 'retry'] (100%)
+  Turn 10: Update all tests to use the new Resilience class
+    Expected:  ['circuit', 'resilience', 'retry', 'test']
+    Stock:     ['circuit', 'resilience', 'retry', 'test'] (100%)
+    BM25:      ['circuit', 'resilience', 'retry', 'test'] (100%)
+
+## Divergence Analysis
+  No divergence — all responses identical.
+
+==============================================================================
+END OF REPORT
+==============================================================================
