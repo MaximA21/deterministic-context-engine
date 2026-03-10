@@ -489,6 +489,73 @@ class EntityAwareScorer:
         return result
 
 
+# --- Unique Entity Scorer (pure set-difference, no ML) ---
+
+class UniqueEntityScorer:
+    """Scores chunks by how many of their entities appear NOWHERE else in context.
+
+    Pure set-difference approach:
+    1. Extract entities from every chunk
+    2. Build global entity frequency map across all chunks
+    3. For each chunk, count entities with frequency == 1 (corpus-unique)
+    4. More unique entities = higher priority
+
+    No TF-IDF, no cosine similarity, no ML. Just entity extraction + counting.
+    Needles contain specific entities (line numbers, IPs, employee IDs, error codes)
+    that filler never mentions. Filler shares generic entities (filenames, function names).
+    """
+
+    def __init__(self):
+        self._extractor = EntityExtractor()
+
+    def score_chunks(
+        self, goal: str, chunks: list[tuple[str, str]], keyword_scores: dict[str, float] | None = None
+    ) -> dict[str, float]:
+        """Score chunks by unique entity count.
+
+        Args:
+            goal: Unused (interface compat). Scoring is goal-independent.
+            chunks: List of (chunk_hash, content) tuples.
+            keyword_scores: Unused (interface compat).
+
+        Returns:
+            Dict of chunk_hash -> score in [0.5, 2.0].
+        """
+        if not chunks:
+            return {}
+
+        # Step 1: Extract entities for each chunk
+        chunk_entities: list[set[str]] = []
+        for _, content in chunks:
+            chunk_entities.append(self._extractor.extract_entities(content))
+
+        # Step 2: Build global frequency map
+        freq: dict[str, int] = {}
+        for ents in chunk_entities:
+            for e in ents:
+                freq[e] = freq.get(e, 0) + 1
+
+        # Step 3: Count corpus-unique entities per chunk (freq == 1)
+        unique_counts: list[int] = []
+        for ents in chunk_entities:
+            unique_count = sum(1 for e in ents if freq[e] == 1)
+            unique_counts.append(unique_count)
+
+        # Step 4: Normalize to [0.5, 2.0]
+        max_unique = max(unique_counts) if unique_counts else 1
+        if max_unique == 0:
+            return {h: 0.5 for h, _ in chunks}
+
+        result: dict[str, float] = {}
+        for i, (chunk_hash, _) in enumerate(chunks):
+            # Linear scale: 0 unique -> 0.5, max unique -> 2.0
+            ratio = unique_counts[i] / max_unique
+            score = 0.5 + ratio * 1.5
+            result[chunk_hash] = score
+
+        return result
+
+
 @dataclass(frozen=True)
 class DecisionRecord:
     timestamp: float
@@ -537,7 +604,7 @@ class ChunkLog:
         self.hard_threshold = hard_threshold
         self.auto_priority = auto_priority
         self.goal_guided = goal_guided
-        self.scoring_mode = scoring_mode  # 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
+        self.scoring_mode = scoring_mode  # 'tfidf', 'semantic', 'hybrid', 'entity_aware', 'unique_entity', or None
         self._turn = 0
         self._compaction_count = 0
         self._decisions: list[DecisionRecord] = []
@@ -545,9 +612,14 @@ class ChunkLog:
         self._accumulated_keywords: set[str] = set()
         # Initialize scorers based on mode
         self._entity_scorer: EntityAwareScorer | None = None
-        if scoring_mode == "entity_aware":
+        self._unique_entity_scorer: UniqueEntityScorer | None = None
+        if scoring_mode == "unique_entity":
             self._goal_scorer: GoalGuidedScorer | None = None
             self._semantic_scorer: SemanticScorer | None = None
+            self._unique_entity_scorer = UniqueEntityScorer()
+        elif scoring_mode == "entity_aware":
+            self._goal_scorer = None
+            self._semantic_scorer = None
             self._entity_scorer = EntityAwareScorer()
         elif scoring_mode == "semantic":
             self._goal_scorer = None
@@ -728,6 +800,27 @@ class ChunkLog:
             )
         self._conn.commit()
 
+    def _rescore_chunks_unique_entity(self) -> None:
+        """Re-score all chunks by corpus-unique entity count."""
+        if not self._unique_entity_scorer:
+            return
+        rows = self._conn.execute(
+            "SELECT chunk_hash, content FROM chunks"
+        ).fetchall()
+        if not rows:
+            return
+
+        scores = self._unique_entity_scorer.score_chunks(
+            "", rows, keyword_scores=None
+        )
+
+        for chunk_hash, new_priority in scores.items():
+            self._conn.execute(
+                "UPDATE chunks SET priority = ? WHERE chunk_hash = ?",
+                (new_priority, chunk_hash),
+            )
+        self._conn.commit()
+
     def _rescore_chunks_hybrid(self) -> None:
         """Re-score using 30% TF-IDF + 70% semantic blend."""
         if not self._last_user_message:
@@ -769,7 +862,9 @@ class ChunkLog:
 
         if current > hard_limit or current > soft_limit:
             # Re-score chunks before compaction
-            if self.scoring_mode == "entity_aware":
+            if self.scoring_mode == "unique_entity":
+                self._rescore_chunks_unique_entity()
+            elif self.scoring_mode == "entity_aware":
                 self._rescore_chunks_entity_aware()
             elif self.scoring_mode == "semantic":
                 self._rescore_chunks_semantic()
@@ -794,7 +889,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware", "unique_entity")
         for chunk_hash, tokens, priority, turn in rows:
             if current_tokens - removed <= target:
                 break
@@ -828,7 +923,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware", "unique_entity")
         # First pass: try to evict only low-priority chunks (scoring protection)
         if use_scoring:
             for chunk_hash, tokens, priority, turn in rows:
