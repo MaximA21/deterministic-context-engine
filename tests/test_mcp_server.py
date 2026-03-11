@@ -9,6 +9,8 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+pytest.importorskip("fastmcp")
+
 from engine import ChunkLog
 from mcp_server import (
     do_compact_now,
