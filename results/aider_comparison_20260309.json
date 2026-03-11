@@ -1,0 +1,170 @@
+{
+  "timestamp": "20260309",
+  "benchmark": "aider_comparison",
+  "tasks": 10,
+  "recall_checks": 8,
+  "results": [
+    {
+      "label": "BM25",
+      "max_tokens": 2000,
+      "messages_remaining": 16,
+      "tokens_remaining": 1350,
+      "recall_score": 7,
+      "total_checks": 8,
+      "recalls": {
+        "Client constructor params (task 1)": true,
+        "No built-in retry (task 2)": true,
+        "Connection pool config (task 3)": true,
+        "TimingTransport middleware (task 4)": true,
+        "ConnectTimeout URL fix (task 5)": true,
+        "HTTP/2 multiplexing (task 6)": true,
+        "Event hooks (task 7)": false,
+        "DigestAuth flow (task 8)": true
+      }
+    },
+    {
+      "label": "TF-IDF",
+      "max_tokens": 2000,
+      "messages_remaining": 12,
+      "tokens_remaining": 1371,
+      "recall_score": 6,
+      "total_checks": 8,
+      "recalls": {
+        "Client constructor params (task 1)": true,
+        "No built-in retry (task 2)": false,
+        "Connection pool config (task 3)": true,
+        "TimingTransport middleware (task 4)": true,
+        "ConnectTimeout URL fix (task 5)": true,
+        "HTTP/2 multiplexing (task 6)": true,
+        "Event hooks (task 7)": false,
+        "DigestAuth flow (task 8)": true
+      }
+    },
+    {
+      "label": "No compaction",
+      "max_tokens": 2000,
+      "messages_remaining": 20,
+      "tokens_remaining": 2110,
+      "recall_score": 8,
+      "total_checks": 8,
+      "recalls": {
+        "Client constructor params (task 1)": true,
+        "No built-in retry (task 2)": true,
+        "Connection pool config (task 3)": true,
+        "TimingTransport middleware (task 4)": true,
+        "ConnectTimeout URL fix (task 5)": true,
+        "HTTP/2 multiplexing (task 6)": true,
+        "Event hooks (task 7)": true,
+        "DigestAuth flow (task 8)": true
+      }
+    },
+    {
+      "label": "BM25",
+      "max_tokens": 3000,
+      "messages_remaining": 20,
+      "tokens_remaining": 2110,
+      "recall_score": 8,
+      "total_checks": 8,
+      "recalls": {
+        "Client constructor params (task 1)": true,
+        "No built-in retry (task 2)": true,
+        "Connection pool config (task 3)": true,
+        "TimingTransport middleware (task 4)": true,
+        "ConnectTimeout URL fix (task 5)": true,
+        "HTTP/2 multiplexing (task 6)": true,
+        "Event hooks (task 7)": true,
+        "DigestAuth flow (task 8)": true
+      }
+    },
+    {
+      "label": "TF-IDF",
+      "max_tokens": 3000,
+      "messages_remaining": 20,
+      "tokens_remaining": 2110,
+      "recall_score": 8,
+      "total_checks": 8,
+      "recalls": {
+        "Client constructor params (task 1)": true,
+        "No built-in retry (task 2)": true,
+        "Connection pool config (task 3)": true,
+        "TimingTransport middleware (task 4)": true,
+        "ConnectTimeout URL fix (task 5)": true,
+        "HTTP/2 multiplexing (task 6)": true,
+        "Event hooks (task 7)": true,
+        "DigestAuth flow (task 8)": true
+      }
+    },
+    {
+      "label": "No compaction",
+      "max_tokens": 3000,
+      "messages_remaining": 20,
+      "tokens_remaining": 2110,
+      "recall_score": 8,
+      "total_checks": 8,
+      "recalls": {
+        "Client constructor params (task 1)": true,
+        "No built-in retry (task 2)": true,
+        "Connection pool config (task 3)": true,
+        "TimingTransport middleware (task 4)": true,
+        "ConnectTimeout URL fix (task 5)": true,
+        "HTTP/2 multiplexing (task 6)": true,
+        "Event hooks (task 7)": true,
+        "DigestAuth flow (task 8)": true
+      }
+    },
+    {
+      "label": "BM25",
+      "max_tokens": 5000,
+      "messages_remaining": 20,
+      "tokens_remaining": 2110,
+      "recall_score": 8,
+      "total_checks": 8,
+      "recalls": {
+        "Client constructor params (task 1)": true,
+        "No built-in retry (task 2)": true,
+        "Connection pool config (task 3)": true,
+        "TimingTransport middleware (task 4)": true,
+        "ConnectTimeout URL fix (task 5)": true,
+        "HTTP/2 multiplexing (task 6)": true,
+        "Event hooks (task 7)": true,
+        "DigestAuth flow (task 8)": true
+      }
+    },
+    {
+      "label": "TF-IDF",
+      "max_tokens": 5000,
+      "messages_remaining": 20,
+      "tokens_remaining": 2110,
+      "recall_score": 8,
+      "total_checks": 8,
+      "recalls": {
+        "Client constructor params (task 1)": true,
+        "No built-in retry (task 2)": true,
+        "Connection pool config (task 3)": true,
+        "TimingTransport middleware (task 4)": true,
+        "ConnectTimeout URL fix (task 5)": true,
+        "HTTP/2 multiplexing (task 6)": true,
+        "Event hooks (task 7)": true,
+        "DigestAuth flow (task 8)": true
+      }
+    },
+    {
+      "label": "No compaction",
+      "max_tokens": 5000,
+      "messages_remaining": 20,
+      "tokens_remaining": 2110,
+      "recall_score": 8,
+      "total_checks": 8,
+      "recalls": {
+        "Client constructor params (task 1)": true,
+        "No built-in retry (task 2)": true,
+        "Connection pool config (task 3)": true,
+        "TimingTransport middleware (task 4)": true,
+        "ConnectTimeout URL fix (task 5)": true,
+        "HTTP/2 multiplexing (task 6)": true,
+        "Event hooks (task 7)": true,
+        "DigestAuth flow (task 8)": true
+      }
+    }
+  ]
+}
