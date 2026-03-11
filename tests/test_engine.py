@@ -36,7 +36,7 @@ def test_sha256_deterministic():
 
 def test_estimate_tokens():
     assert _estimate_tokens("") == 1  # min 1
-    assert _estimate_tokens("a" * 100) == 25  # 100 / 4
+    assert _estimate_tokens("a" * 100) == 31  # 100 / 3.2
 
 
 # --- extract_keywords tests ---
@@ -109,8 +109,8 @@ def test_chunklog_content_addressing():
 
 def test_chunklog_token_tracking():
     log = ChunkLog(db_path=":memory:", max_tokens=10000)
-    log.append("user", "a" * 100)  # ~25 tokens
-    assert log.current_tokens() == 25
+    log.append("user", "a" * 100)  # ~31 tokens (100 / 3.2)
+    assert log.current_tokens() == 31
 
 
 def test_chunklog_compaction_fires():
