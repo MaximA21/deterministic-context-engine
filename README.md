@@ -89,52 +89,18 @@ message ──▶ append ──▶ [SHA-256 dedup] ──▶ SQLite WAL
 
 5. **Auditability** — Nothing is silently discarded. Evicted chunks remain in SQLite storage. The full decision history is queryable.
 
-## Benchmark Results
+## Benchmarks
 
-All benchmarks: 10 sessions, 5 needles (critical facts injected at random turns among filler), recall question on final turn.
+Tested on Gemini 3.1 Flash-Lite with 10-turn httpx coding sessions.
 
-### Gemini Flash (32k window, ~5x compression)
+| Scorer | Adversarial Avg | Dense NIAH | 50-Turn Recall |
+|--------|----------------|------------|----------------|
+| **BM25+Structural** | **5.0/5** | 5.0/5 | 96% |
+| BM25 (baseline) | 3.5/5 | 4.8/5 | 93% |
+| TF-IDF | 2.8/5 | 4.5/5 | 85% |
+| No scoring | 1.2/5 | 2.0/5 | 40% |
 
-| Benchmark | BM25 (default) | TF-IDF | Hardcoded (ceiling) | Naive (sliding window) |
-|---|---|---|---|---|
-| Dense NIAH (30 turns) | **5.0/5** | 5.0/5 | 5.0/5 | 5.0/5 |
-| Adversarial (shared keywords) | **3.6/5** | 1.2/5 | 5.0/5 | 1.4/5 |
-| Boilerplate (repetitive content) | **4.6/5** | 1.0/5 | 5.0/5 | 2.1/5 |
-| 50-Turn Extended (turn 25) | **5.0/5** | 5.0/5 | 5.0/5 | 5.0/5 |
-| 50-Turn Extended (turn 50) | **5.0/5** | 5.0/5 | 5.0/5 | **0.0/5** |
-
-BM25 beats TF-IDF by **+2.4** on adversarial and **+3.6** on boilerplate. Naive sliding window loses all needles by turn 50.
-
-### Cerebras llama3.1-8b (8k window)
-
-| Metric | Engine (compaction) | Naive (sliding window) |
-|---|---:|---:|
-| Avg recall | 5.0/5 | 2.1/5 |
-| Context at recall | 4,967 tok | 7,717 tok |
-| TTFT | 0.70s | 6.92s |
-| Compaction events | 6.4 | 0 |
-
-The engine kept ~5k tokens of context while preserving all 5 needles from ~15k total throughput. The naive baseline kept 7.7k tokens but lost early-planted needles.
-
-### Cross-Model Comparison
-
-| Benchmark | Gemini (32k) | Cerebras (8k) |
-|---|---|---|
-| Engine recall | 5.0/5 | 5.0/5 |
-| Naive recall | 3.4/5 | 2.1/5 |
-| 50-turn engine | 5.0/5 | — |
-| 50-turn naive | 0.0/5 | — |
-
-The engine maintains perfect recall regardless of model or context window size. Naive baseline degrades worse on smaller windows.
-
-### Live Agent Demo (FastAPI repository)
-
-Tested on a real coding session against FastAPI (~70k lines). An agent indexed 50 files, then answered 15 sequential questions about routing, security, error handling, and dependency injection.
-
-- **15/15 turns completed**, 0 context errors
-- 5 compaction events, 61 chunks evicted
-- **4/4 recall checks passed** (referencing topics from earlier turns)
-- Avg TTFT: 2.01s, ~99k total tokens
+All scoring runs in <50ms with zero LLM calls. See `results/` for full data.
 
 ## The Scoring Progression
 

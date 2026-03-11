@@ -785,6 +785,80 @@ class EntityAwareScorer:
         return result
 
 
+class BM25Scorer:
+    """BM25-based scorer using rank_bm25 library.
+
+    40% goal relevance + 60% corpus uniqueness (1 - avg peer similarity).
+    """
+
+    STOP_WORDS = frozenset({
+        "the", "a", "an", "is", "are", "was", "were", "be", "been", "being",
+        "have", "has", "had", "do", "does", "did", "will", "would", "shall",
+        "should", "may", "might", "must", "can", "could", "am", "it", "its",
+        "to", "of", "in", "for", "on", "with", "at", "by", "from", "as",
+        "into", "through", "during", "before", "after", "above", "below",
+        "between", "and", "but", "or", "nor", "not", "so", "yet", "both",
+        "either", "neither", "each", "every", "all", "any", "few", "more",
+        "most", "other", "some", "such", "no", "only", "own", "same", "than",
+        "too", "very", "just", "because", "if", "when", "where", "how",
+        "what", "which", "who", "whom", "this", "that", "these", "those",
+        "i", "me", "my", "myself", "we", "our", "ours", "ourselves",
+        "you", "your", "yours", "yourself", "yourselves",
+        "he", "him", "his", "himself", "she", "her", "hers", "herself",
+        "they", "them", "their", "theirs", "themselves",
+        "about", "up", "out", "off", "over", "under", "again", "further",
+        "then", "once", "here", "there", "also",
+    })
+
+    def __init__(self, k1: float = 1.5, b: float = 0.75):
+        self.k1 = k1
+        self.b = b
+
+    def _tokenize(self, text: str) -> list[str]:
+        tokens = re.findall(r'[a-z0-9_]+', text.lower())
+        return [t for t in tokens if len(t) > 1 and t not in self.STOP_WORDS]
+
+    def score_chunks(
+        self, goal: str, chunks: list[tuple[str, str]], keyword_scores: dict | None = None
+    ) -> dict[str, float]:
+        if not chunks:
+            return {}
+        from rank_bm25 import BM25Okapi
+
+        goal_tokens = self._tokenize(goal)
+        if not goal_tokens:
+            return {h: 0.5 for h, _ in chunks}
+
+        corpus = [self._tokenize(text) for _, text in chunks]
+        if not any(corpus):
+            return {h: 0.5 for h, _ in chunks}
+
+        bm25 = BM25Okapi(corpus, k1=self.k1, b=self.b)
+        raw = bm25.get_scores(goal_tokens)
+
+        max_raw = max(raw) if max(raw) > 0 else 1.0
+        scores = {}
+        for i, (chunk_hash, _) in enumerate(chunks):
+            goal_score = raw[i] / max_raw  # 0..1
+            # Uniqueness: 1 - avg similarity to other chunks
+            if len(chunks) > 1:
+                other_scores = []
+                doc_tokens = corpus[i]
+                if doc_tokens:
+                    for j, other_tokens in enumerate(corpus):
+                        if i != j and other_tokens:
+                            intersection = set(doc_tokens) & set(other_tokens)
+                            union = set(doc_tokens) | set(other_tokens)
+                            other_scores.append(len(intersection) / len(union) if union else 0)
+                uniqueness = 1.0 - (sum(other_scores) / len(other_scores) if other_scores else 0)
+            else:
+                uniqueness = 1.0
+            blended = 0.4 * goal_score + 0.6 * uniqueness
+            # Map to [0.5, 2.0]
+            scores[chunk_hash] = 0.5 + blended * 1.5
+        return scores
+
+
 @dataclass(frozen=True)
 class DecisionRecord:
     timestamp: float
@@ -825,7 +899,7 @@ class ChunkLog:
         hard_threshold: float = 0.9,
         auto_priority: bool = False,
         goal_guided: bool = False,
-        scoring_mode: str | None = None,
+        scoring_mode: str | None = "structural",
     ):
         self.db_path = db_path
         self.max_tokens = max_tokens
@@ -833,7 +907,7 @@ class ChunkLog:
         self.hard_threshold = hard_threshold
         self.auto_priority = auto_priority
         self.goal_guided = goal_guided
-        self.scoring_mode = scoring_mode  # 'tfidf', 'semantic', 'hybrid', 'entity_aware', 'structural', or None
+        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
         self._turn = 0
         self._compaction_count = 0
         self._decisions: list[DecisionRecord] = []
@@ -842,7 +916,13 @@ class ChunkLog:
         # Initialize scorers based on mode
         self._entity_scorer: EntityAwareScorer | None = None
         self._structural_scorer: StructuralScorer | None = None
-        if scoring_mode == "structural":
+        self._bm25_scorer = None
+        if scoring_mode == "bm25":
+            self._bm25_scorer = BM25Scorer()
+            self._goal_scorer = None
+            self._semantic_scorer = None
+            self._structural_scorer = None
+        elif scoring_mode == "structural":
             self._goal_scorer: GoalGuidedScorer | None = None
             self._semantic_scorer: SemanticScorer | None = None
             self._structural_scorer = StructuralScorer()
@@ -1029,6 +1109,25 @@ class ChunkLog:
             )
         self._conn.commit()
 
+    def _rescore_chunks_bm25(self) -> None:
+        """Re-score all chunks using BM25."""
+        if not self._last_user_message or not self._bm25_scorer:
+            return
+        rows = self._conn.execute(
+            "SELECT chunk_hash, content FROM chunks"
+        ).fetchall()
+        if not rows:
+            return
+        scores = self._bm25_scorer.score_chunks(
+            self._last_user_message, rows, keyword_scores=None
+        )
+        for chunk_hash, new_priority in scores.items():
+            self._conn.execute(
+                "UPDATE chunks SET priority = ? WHERE chunk_hash = ?",
+                (new_priority, chunk_hash),
+            )
+        self._conn.commit()
+
     def _rescore_chunks_entity_aware(self) -> None:
         """Re-score all chunks using TF-IDF + entity matching."""
         if not self._last_user_message or not self._entity_scorer:
@@ -1091,7 +1190,9 @@ class ChunkLog:
 
         if current > hard_limit or current > soft_limit:
             # Re-score chunks before compaction
-            if self.scoring_mode == "structural":
+            if self.scoring_mode == "bm25":
+                self._rescore_chunks_bm25()
+            elif self.scoring_mode == "structural":
                 self._rescore_chunks_structural()
             elif self.scoring_mode == "entity_aware":
                 self._rescore_chunks_entity_aware()
@@ -1118,7 +1219,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware", "structural")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
         for chunk_hash, tokens, priority, turn in rows:
             if current_tokens - removed <= target:
                 break
@@ -1152,7 +1253,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware", "structural")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
         # First pass: try to evict only low-priority chunks (scoring protection)
         if use_scoring:
             for chunk_hash, tokens, priority, turn in rows:
