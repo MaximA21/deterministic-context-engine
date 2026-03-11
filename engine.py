@@ -242,6 +242,302 @@ class EntityExtractor:
         return entities
 
 
+# --- Structural Fingerprinter ---
+
+class StructuralFingerprinter:
+    """Extracts structural tokens from text, capturing SHAPE separately from content.
+
+    Generates a set of synthetic tokens describing text structure:
+    - Action/urgency markers (CRITICAL, URGENT, FIX, etc.)
+    - Specific value patterns (line numbers, IPs, version numbers, times)
+    - Change instructions ("change X from Y to Z")
+    - JSON/code nesting depth
+    - SQL keyword patterns
+    - Text organization (sentence length, paragraph structure, lists)
+    - Code patterns (definitions, indentation, comparisons)
+
+    Two chunks with the same structure but different values produce different
+    fingerprints because the structural token SET differs at granular level.
+    """
+
+    _RE_LINE_REF = re.compile(r'\bline\s+\d+', re.IGNORECASE)
+    _RE_ACTION_MARKERS = re.compile(
+        r'\b(CRITICAL|URGENT|ALERT|BUG|FIX|ACTION\s+REQUIRED|SECURITY|INCIDENT|IMPORTANT|UPDATE)\b',
+        re.IGNORECASE,
+    )
+    _RE_CHANGE_PATTERN = re.compile(
+        r'\b(?:change|replace|update|modify|switch)\s+.*?\b(?:from|to)\b', re.IGNORECASE
+    )
+    _RE_MUST_PATTERN = re.compile(
+        r'\b(?:must|needs?\s+to|required?\s+to|has\s+to)\b', re.IGNORECASE
+    )
+    _RE_JSON_BRACE = re.compile(r'[{}]')
+    _RE_SQL_KEYWORDS = re.compile(
+        r'\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|FROM|WHERE|JOIN|INDEX)\b',
+        re.IGNORECASE,
+    )
+    _RE_CODE_DEF = re.compile(r'\b(?:def|class|function|fn|func|var|let|const)\b')
+    _RE_INDENT = re.compile(r'^(?:  {2,}|\t+)', re.MULTILINE)
+    _RE_BULLET = re.compile(r'^\s*[-*•]\s', re.MULTILINE)
+    _RE_NUMBERED = re.compile(r'^\s*\d+[.)]\s', re.MULTILINE)
+    _RE_SPECIFIC_NUM = re.compile(r'\b\d{2,}\b')
+    _RE_IP_ADDR = re.compile(r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b')
+    _RE_VERSION = re.compile(r'\b[vV]?\d+\.\d+(?:\.\d+)?\b')
+    _RE_TIME_PATTERN = re.compile(r'\b\d{1,2}(?:am|pm|:\d{2})\b', re.IGNORECASE)
+    _RE_COMPARISON = re.compile(r'[<>=!]=|<=|>=')
+    _RE_CODE_BLOCK = re.compile(r'```')
+    _RE_EMPLOYEE_ID = re.compile(r'\b[A-Z]{1,3}-\d{3,}\b')
+    _RE_MEMORY_SIZE = re.compile(r'\b\d+(?:MB|GB|KB|TB)(?:/\w+)?\b', re.IGNORECASE)
+
+    def extract_structural_tokens(self, text: str) -> frozenset[str]:
+        """Extract structural token set describing text shape.
+
+        Returns frozenset of tokens like:
+        {"STRUCT_HAS_LINE_REF", "STRUCT_ACTION_CRITICAL", "STRUCT_NUM_DENSE", ...}
+        """
+        tokens: list[str] = []
+
+        # Line references ("line 42", "line 187")
+        line_refs = len(self._RE_LINE_REF.findall(text))
+        if line_refs >= 2:
+            tokens.append("STRUCT_MULTI_LINE_REF")
+        elif line_refs == 1:
+            tokens.append("STRUCT_HAS_LINE_REF")
+
+        # Action/urgency markers
+        action_matches = self._RE_ACTION_MARKERS.findall(text)
+        unique_actions = {m.upper().replace(' ', '_') for m in action_matches}
+        for marker in unique_actions:
+            tokens.append(f"STRUCT_ACTION_{marker}")
+        if len(unique_actions) >= 2:
+            tokens.append("STRUCT_MULTI_ACTION")
+
+        # Change instructions ("change X from Y to Z")
+        if self._RE_CHANGE_PATTERN.search(text):
+            tokens.append("STRUCT_HAS_CHANGE_INSTRUCTION")
+
+        # Imperative/obligation patterns ("must", "needs to")
+        must_count = len(self._RE_MUST_PATTERN.findall(text))
+        if must_count >= 2:
+            tokens.append("STRUCT_STRONG_OBLIGATION")
+        elif must_count == 1:
+            tokens.append("STRUCT_HAS_OBLIGATION")
+
+        # JSON nesting depth
+        braces = self._RE_JSON_BRACE.findall(text)
+        depth = 0
+        max_depth = 0
+        for b in braces:
+            depth += 1 if b == '{' else -1
+            max_depth = max(max_depth, depth)
+        if max_depth >= 3:
+            tokens.append("STRUCT_JSON_DEEP")
+        elif max_depth >= 1:
+            tokens.append("STRUCT_JSON_SHALLOW")
+
+        # SQL keyword pattern
+        sql_kws = {m.upper() for m in self._RE_SQL_KEYWORDS.findall(text)}
+        if len(sql_kws) >= 3:
+            tokens.append("STRUCT_SQL_COMPLEX")
+        elif sql_kws:
+            tokens.append("STRUCT_SQL_PRESENT")
+
+        # Code definitions
+        if self._RE_CODE_DEF.search(text):
+            tokens.append("STRUCT_HAS_CODE_DEF")
+
+        # Indentation depth (code-like structure)
+        indent_count = len(self._RE_INDENT.findall(text))
+        if indent_count > 5:
+            tokens.append("STRUCT_DEEP_INDENT")
+        elif indent_count > 0:
+            tokens.append("STRUCT_HAS_INDENT")
+
+        # List structure
+        list_items = len(self._RE_BULLET.findall(text)) + len(self._RE_NUMBERED.findall(text))
+        if list_items > 3:
+            tokens.append("STRUCT_LIST_HEAVY")
+        elif list_items > 0:
+            tokens.append("STRUCT_HAS_LIST")
+
+        # Specific number density
+        specific_nums = self._RE_SPECIFIC_NUM.findall(text)
+        word_count = max(len(text.split()), 1)
+        num_density = len(specific_nums) / word_count
+        if num_density > 0.04:
+            tokens.append("STRUCT_NUM_DENSE")
+        elif len(specific_nums) > 2:
+            tokens.append("STRUCT_HAS_NUMS")
+
+        # IP addresses
+        if self._RE_IP_ADDR.search(text):
+            tokens.append("STRUCT_HAS_IP")
+
+        # Version numbers
+        if self._RE_VERSION.search(text):
+            tokens.append("STRUCT_HAS_VERSION")
+
+        # Time references
+        if self._RE_TIME_PATTERN.search(text):
+            tokens.append("STRUCT_HAS_TIME")
+
+        # Code blocks (```)
+        if self._RE_CODE_BLOCK.search(text):
+            tokens.append("STRUCT_HAS_CODE_BLOCK")
+
+        # Comparison operators in text (<=, >=, !=)
+        if self._RE_COMPARISON.search(text):
+            tokens.append("STRUCT_HAS_COMPARISON")
+
+        # Employee/ticket IDs
+        if self._RE_EMPLOYEE_ID.search(text):
+            tokens.append("STRUCT_HAS_IDENTIFIER")
+
+        # Memory sizes (50MB/hour, 10GB)
+        if self._RE_MEMORY_SIZE.search(text):
+            tokens.append("STRUCT_HAS_MEMORY_SIZE")
+
+        # Text density: average sentence length (words per sentence)
+        sentences = [s.strip() for s in text.split('.') if s.strip()]
+        avg_sent_len = sum(len(s.split()) for s in sentences) / max(len(sentences), 1)
+        if avg_sent_len > 18:
+            tokens.append("STRUCT_LONG_SENTENCES")
+        elif avg_sent_len < 10:
+            tokens.append("STRUCT_SHORT_SENTENCES")
+
+        # Paragraph structure
+        paragraphs = [p.strip() for p in text.split('\n\n') if p.strip()]
+        if len(paragraphs) >= 4:
+            tokens.append("STRUCT_MANY_PARAGRAPHS")
+        elif len(paragraphs) <= 1:
+            tokens.append("STRUCT_SINGLE_BLOCK")
+
+        # Overall text length bucket
+        if word_count > 150:
+            tokens.append("STRUCT_LONG_TEXT")
+        elif word_count < 60:
+            tokens.append("STRUCT_SHORT_TEXT")
+
+        return frozenset(tokens)
+
+
+# --- Structural Scorer (TF-IDF + structural uniqueness) ---
+
+class StructuralScorer:
+    """Scores chunks by TF-IDF content signals + structural fingerprint uniqueness.
+
+    Two independent signals:
+    1. Content: standard TF-IDF goal alignment + content uniqueness
+       (identical to GoalGuidedScorer)
+    2. Structure: Jaccard-based uniqueness of structural fingerprint tokens.
+       Chunks with rare structural patterns (action items with line refs,
+       IPs, change instructions) score high. Chunks with common structural
+       patterns (narrative prose paragraphs) score low.
+
+    Blend: 20% goal alignment + 15% content uniqueness + 25% structural uniqueness
+    + 40% structural density (token count / word count, corpus-normalized).
+    Structural density dominates because it captures information-dense text
+    (needles with line refs, IPs, action markers) vs verbose prose (fillers).
+    """
+
+    def __init__(self):
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        self._vectorizer = TfidfVectorizer(
+            max_features=5000,
+            stop_words="english",
+            ngram_range=(1, 2),
+            sublinear_tf=True,
+        )
+        self._fingerprinter = StructuralFingerprinter()
+
+    @staticmethod
+    def _jaccard_similarity(a: frozenset[str], b: frozenset[str]) -> float:
+        """Jaccard similarity between two token sets."""
+        if not a and not b:
+            return 1.0
+        if not a or not b:
+            return 0.0
+        return len(a & b) / len(a | b)
+
+    def score_chunks(
+        self, goal: str, chunks: list[tuple[str, str]], keyword_scores: dict[str, float] | None = None
+    ) -> dict[str, float]:
+        """Score chunks by content TF-IDF + structural uniqueness.
+
+        Args:
+            goal: The goal/query message.
+            chunks: List of (chunk_hash, content) tuples.
+            keyword_scores: Unused, kept for interface compatibility.
+
+        Returns:
+            Dict of chunk_hash -> score in [0.5, 2.0].
+        """
+        from sklearn.metrics.pairwise import cosine_similarity
+        import numpy as np
+
+        if not chunks:
+            return {}
+
+        n = len(chunks)
+
+        # --- Signal 1 & 2: Content TF-IDF (goal alignment + uniqueness) ---
+        texts = [goal] + [content for _, content in chunks]
+        try:
+            tfidf_matrix = self._vectorizer.fit_transform(texts)
+        except ValueError:
+            return {h: 0.5 for h, _ in chunks}
+
+        goal_vec = tfidf_matrix[0:1]
+        chunk_vecs = tfidf_matrix[1:]
+
+        goal_sims = cosine_similarity(goal_vec, chunk_vecs)[0]
+
+        if n > 1:
+            pairwise = cosine_similarity(chunk_vecs)
+            np.fill_diagonal(pairwise, 0.0)
+            avg_peer_sim = pairwise.sum(axis=1) / (n - 1)
+            content_uniqueness = 1.0 - avg_peer_sim
+        else:
+            content_uniqueness = np.array([1.0])
+
+        # --- Signal 3 & 4: Structural fingerprinting ---
+        fingerprints = [self._fingerprinter.extract_structural_tokens(content) for _, content in chunks]
+
+        # Signal 3: Structural uniqueness (Jaccard distance to peers)
+        structural_uniqueness = np.zeros(n)
+        for i in range(n):
+            if n > 1:
+                peer_sims = []
+                for j in range(n):
+                    if i != j:
+                        peer_sims.append(self._jaccard_similarity(fingerprints[i], fingerprints[j]))
+                structural_uniqueness[i] = 1.0 - (sum(peer_sims) / len(peer_sims))
+            else:
+                structural_uniqueness[i] = 1.0
+
+        # Signal 4: Structural density (structural tokens per word, corpus-normalized)
+        # Needles are information-dense (many structural features per word).
+        # Fillers are verbose prose (few structural features per word).
+        word_counts = [max(len(content.split()), 1) for _, content in chunks]
+        raw_densities = [len(fingerprints[i]) / word_counts[i] for i in range(n)]
+        max_density = max(raw_densities) if raw_densities else 1.0
+        structural_density = np.array([d / max(max_density, 1e-9) for d in raw_densities])
+
+        # --- Blend: 20% goal + 15% content uniqueness + 25% structural uniqueness + 40% density ---
+        result: dict[str, float] = {}
+        for i, (chunk_hash, _) in enumerate(chunks):
+            blended = (
+                0.20 * goal_sims[i]
+                + 0.15 * content_uniqueness[i]
+                + 0.25 * structural_uniqueness[i]
+                + 0.40 * structural_density[i]
+            )
+            score = 0.5 + blended * 1.5
+            result[chunk_hash] = max(0.5, min(2.0, score))
+
+        return result
+
+
 # --- Goal-Guided TF-IDF Scorer ---
 
 class GoalGuidedScorer:
@@ -489,73 +785,6 @@ class EntityAwareScorer:
         return result
 
 
-# --- Unique Entity Scorer (pure set-difference, no ML) ---
-
-class UniqueEntityScorer:
-    """Scores chunks by how many of their entities appear NOWHERE else in context.
-
-    Pure set-difference approach:
-    1. Extract entities from every chunk
-    2. Build global entity frequency map across all chunks
-    3. For each chunk, count entities with frequency == 1 (corpus-unique)
-    4. More unique entities = higher priority
-
-    No TF-IDF, no cosine similarity, no ML. Just entity extraction + counting.
-    Needles contain specific entities (line numbers, IPs, employee IDs, error codes)
-    that filler never mentions. Filler shares generic entities (filenames, function names).
-    """
-
-    def __init__(self):
-        self._extractor = EntityExtractor()
-
-    def score_chunks(
-        self, goal: str, chunks: list[tuple[str, str]], keyword_scores: dict[str, float] | None = None
-    ) -> dict[str, float]:
-        """Score chunks by unique entity count.
-
-        Args:
-            goal: Unused (interface compat). Scoring is goal-independent.
-            chunks: List of (chunk_hash, content) tuples.
-            keyword_scores: Unused (interface compat).
-
-        Returns:
-            Dict of chunk_hash -> score in [0.5, 2.0].
-        """
-        if not chunks:
-            return {}
-
-        # Step 1: Extract entities for each chunk
-        chunk_entities: list[set[str]] = []
-        for _, content in chunks:
-            chunk_entities.append(self._extractor.extract_entities(content))
-
-        # Step 2: Build global frequency map
-        freq: dict[str, int] = {}
-        for ents in chunk_entities:
-            for e in ents:
-                freq[e] = freq.get(e, 0) + 1
-
-        # Step 3: Count corpus-unique entities per chunk (freq == 1)
-        unique_counts: list[int] = []
-        for ents in chunk_entities:
-            unique_count = sum(1 for e in ents if freq[e] == 1)
-            unique_counts.append(unique_count)
-
-        # Step 4: Normalize to [0.5, 2.0]
-        max_unique = max(unique_counts) if unique_counts else 1
-        if max_unique == 0:
-            return {h: 0.5 for h, _ in chunks}
-
-        result: dict[str, float] = {}
-        for i, (chunk_hash, _) in enumerate(chunks):
-            # Linear scale: 0 unique -> 0.5, max unique -> 2.0
-            ratio = unique_counts[i] / max_unique
-            score = 0.5 + ratio * 1.5
-            result[chunk_hash] = score
-
-        return result
-
-
 @dataclass(frozen=True)
 class DecisionRecord:
     timestamp: float
@@ -604,7 +833,7 @@ class ChunkLog:
         self.hard_threshold = hard_threshold
         self.auto_priority = auto_priority
         self.goal_guided = goal_guided
-        self.scoring_mode = scoring_mode  # 'tfidf', 'semantic', 'hybrid', 'entity_aware', 'unique_entity', or None
+        self.scoring_mode = scoring_mode  # 'tfidf', 'semantic', 'hybrid', 'entity_aware', 'structural', or None
         self._turn = 0
         self._compaction_count = 0
         self._decisions: list[DecisionRecord] = []
@@ -612,11 +841,11 @@ class ChunkLog:
         self._accumulated_keywords: set[str] = set()
         # Initialize scorers based on mode
         self._entity_scorer: EntityAwareScorer | None = None
-        self._unique_entity_scorer: UniqueEntityScorer | None = None
-        if scoring_mode == "unique_entity":
+        self._structural_scorer: StructuralScorer | None = None
+        if scoring_mode == "structural":
             self._goal_scorer: GoalGuidedScorer | None = None
             self._semantic_scorer: SemanticScorer | None = None
-            self._unique_entity_scorer = UniqueEntityScorer()
+            self._structural_scorer = StructuralScorer()
         elif scoring_mode == "entity_aware":
             self._goal_scorer = None
             self._semantic_scorer = None
@@ -779,6 +1008,27 @@ class ChunkLog:
             )
         self._conn.commit()
 
+    def _rescore_chunks_structural(self) -> None:
+        """Re-score all chunks using TF-IDF + structural fingerprinting."""
+        if not self._last_user_message or not self._structural_scorer:
+            return
+        rows = self._conn.execute(
+            "SELECT chunk_hash, content FROM chunks"
+        ).fetchall()
+        if not rows:
+            return
+
+        scores = self._structural_scorer.score_chunks(
+            self._last_user_message, rows, keyword_scores=None
+        )
+
+        for chunk_hash, new_priority in scores.items():
+            self._conn.execute(
+                "UPDATE chunks SET priority = ? WHERE chunk_hash = ?",
+                (new_priority, chunk_hash),
+            )
+        self._conn.commit()
+
     def _rescore_chunks_entity_aware(self) -> None:
         """Re-score all chunks using TF-IDF + entity matching."""
         if not self._last_user_message or not self._entity_scorer:
@@ -791,27 +1041,6 @@ class ChunkLog:
 
         scores = self._entity_scorer.score_chunks(
             self._last_user_message, rows, keyword_scores=None
-        )
-
-        for chunk_hash, new_priority in scores.items():
-            self._conn.execute(
-                "UPDATE chunks SET priority = ? WHERE chunk_hash = ?",
-                (new_priority, chunk_hash),
-            )
-        self._conn.commit()
-
-    def _rescore_chunks_unique_entity(self) -> None:
-        """Re-score all chunks by corpus-unique entity count."""
-        if not self._unique_entity_scorer:
-            return
-        rows = self._conn.execute(
-            "SELECT chunk_hash, content FROM chunks"
-        ).fetchall()
-        if not rows:
-            return
-
-        scores = self._unique_entity_scorer.score_chunks(
-            "", rows, keyword_scores=None
         )
 
         for chunk_hash, new_priority in scores.items():
@@ -862,8 +1091,8 @@ class ChunkLog:
 
         if current > hard_limit or current > soft_limit:
             # Re-score chunks before compaction
-            if self.scoring_mode == "unique_entity":
-                self._rescore_chunks_unique_entity()
+            if self.scoring_mode == "structural":
+                self._rescore_chunks_structural()
             elif self.scoring_mode == "entity_aware":
                 self._rescore_chunks_entity_aware()
             elif self.scoring_mode == "semantic":
@@ -889,7 +1118,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware", "unique_entity")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware", "structural")
         for chunk_hash, tokens, priority, turn in rows:
             if current_tokens - removed <= target:
                 break
@@ -923,7 +1152,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware", "unique_entity")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("tfidf", "semantic", "hybrid", "entity_aware", "structural")
         # First pass: try to evict only low-priority chunks (scoring protection)
         if use_scoring:
             for chunk_hash, tokens, priority, turn in rows:
