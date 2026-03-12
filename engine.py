@@ -955,6 +955,120 @@ class SWEPrunerScorer:
         return result
 
 
+class MemFlyScorer:
+    """MemFly Information-Bottleneck scorer (arxiv 2602.07885).
+
+    Three-layer scoring that mirrors MemFly's stratified memory:
+
+    Layer 3 (Topics/navigation): Semantic relevance — cosine(chunk, goal)
+        using sentence-transformers as proxy for Jensen-Shannon divergence.
+        Maps to I(M;Y) in the IB objective.
+
+    Layer 1 (Notes/fidelity): Structural density — information-dense content
+        (line numbers, IPs, specific values, action items) per word.
+        Preserves I(N;X) ≈ H(X) from the paper's fidelity layer.
+
+    Redundancy (compression): Semantic distinctiveness — 1 - avg_cosine(peers).
+        Minimizes I(X;M) in the IB objective.
+
+    Gated decision thresholds (from paper Eq. 6):
+      - merge_threshold (tau_m = 0.7): near-duplicates get penalized
+      - link_threshold (tau_l = 0.5): complementary chunks get protected
+
+    Blend: 35% semantic relevance + 25% distinctiveness + 40% structural density.
+    Scores mapped to [0.5, 2.0] for ChunkLog compaction compatibility.
+    """
+
+    def __init__(
+        self,
+        merge_threshold: float = 0.7,
+        link_threshold: float = 0.5,
+        beta: float = 0.5,
+    ):
+        from sentence_transformers import SentenceTransformer
+        self._model = SentenceTransformer("all-MiniLM-L6-v2")
+        self._fingerprinter = StructuralFingerprinter()
+        self.merge_threshold = merge_threshold
+        self.link_threshold = link_threshold
+        self.beta = beta
+
+    def score_chunks(
+        self, goal: str, chunks: list[tuple[str, str]], keyword_scores: dict[str, float] | None = None
+    ) -> dict[str, float]:
+        """Score chunks using MemFly IB-inspired redundancy + complementarity.
+
+        Args:
+            goal: The goal/query message.
+            chunks: List of (chunk_hash, content) tuples.
+            keyword_scores: Unused, kept for interface compatibility.
+
+        Returns:
+            Dict of chunk_hash -> score in [0.5, 2.0].
+        """
+        import numpy as np
+
+        if not chunks:
+            return {}
+
+        n = len(chunks)
+        texts = [goal] + [content for _, content in chunks]
+        embeddings = self._model.encode(texts, normalize_embeddings=True)
+
+        goal_emb = embeddings[0]       # shape (d,)
+        chunk_embs = embeddings[1:]    # shape (n, d)
+
+        # --- Signal 1: Semantic relevance (Layer 3 — topic navigation) ---
+        # Cosine similarity to goal as proxy for Jensen-Shannon divergence
+        relevance = chunk_embs @ goal_emb  # shape (n,)
+
+        # --- Signal 2: Semantic distinctiveness (IB compression term) ---
+        # avg cosine to peers: high for redundant fillers, low for unique needles
+        if n > 1:
+            pairwise = chunk_embs @ chunk_embs.T  # shape (n, n)
+            np.fill_diagonal(pairwise, 0.0)
+            avg_peer_sim = pairwise.sum(axis=1) / (n - 1)
+            max_peer_sim = pairwise.max(axis=1)
+            distinctiveness = 1.0 - avg_peer_sim
+        else:
+            max_peer_sim = np.zeros(n)
+            distinctiveness = np.ones(n)
+
+        # --- Signal 3: Structural density (Layer 1 — fidelity) ---
+        # MemFly's Note layer preserves high-fidelity content via keywords K_i.
+        # Structural density (structural tokens / words) captures information
+        # density: needles have line refs, IPs, specific values; fillers don't.
+        fingerprints = [self._fingerprinter.extract_structural_tokens(c) for _, c in chunks]
+        word_counts = [max(len(c.split()), 1) for _, c in chunks]
+        raw_densities = [len(fingerprints[i]) / word_counts[i] for i in range(n)]
+        max_density = max(raw_densities) if raw_densities else 1.0
+        structural_density = np.array([d / max(max_density, 1e-9) for d in raw_densities])
+
+        # --- Blend: 35% relevance + 25% distinctiveness + 40% density ---
+        result: dict[str, float] = {}
+        for i, (chunk_hash, _) in enumerate(chunks):
+            s_comp = float(relevance[i])
+            s_red_max = float(max_peer_sim[i])
+
+            blended = (
+                0.35 * s_comp
+                + 0.25 * float(distinctiveness[i])
+                + 0.40 * float(structural_density[i])
+            )
+
+            # Gated adjustments (paper Eq. 6):
+            if s_red_max > self.merge_threshold:
+                # Near-duplicate: penalty (would be merged in MemFly)
+                blended -= 0.3 * (s_red_max - self.merge_threshold)
+            elif s_comp > self.link_threshold:
+                # Complementary to goal: protect (would be linked in MemFly)
+                blended += 0.15 * (s_comp - self.link_threshold)
+
+            score = 0.5 + max(0.0, min(1.0, blended)) * 1.5
+            result[chunk_hash] = max(0.5, min(2.0, score))
+
+        return result
+
+
 @dataclass(frozen=True)
 class DecisionRecord:
     timestamp: float
@@ -1003,7 +1117,7 @@ class ChunkLog:
         self.hard_threshold = hard_threshold
         self.auto_priority = auto_priority
         self.goal_guided = goal_guided
-        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'swe_pruner', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
+        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'swe_pruner', 'memfly', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
         self._turn = 0
         self._compaction_count = 0
         self._decisions: list[DecisionRecord] = []
@@ -1014,12 +1128,18 @@ class ChunkLog:
         self._structural_scorer: StructuralScorer | None = None
         self._bm25_scorer = None
         self._swe_pruner_scorer: SWEPrunerScorer | None = None
+        self._memfly_scorer: MemFlyScorer | None = None
         if scoring_mode == "swe_pruner":
             self._swe_pruner_scorer = SWEPrunerScorer()
             self._goal_scorer = None
             self._semantic_scorer = None
         elif scoring_mode == "bm25":
             self._bm25_scorer = BM25Scorer()
+            self._goal_scorer = None
+            self._semantic_scorer = None
+            self._structural_scorer = None
+        elif scoring_mode == "memfly":
+            self._memfly_scorer = MemFlyScorer()
             self._goal_scorer = None
             self._semantic_scorer = None
             self._structural_scorer = None
@@ -1248,6 +1368,25 @@ class ChunkLog:
             )
         self._conn.commit()
 
+    def _rescore_chunks_memfly(self) -> None:
+        """Re-score all chunks using MemFly IB-inspired redundancy + complementarity."""
+        if not self._last_user_message or not self._memfly_scorer:
+            return
+        rows = self._conn.execute(
+            "SELECT chunk_hash, content FROM chunks"
+        ).fetchall()
+        if not rows:
+            return
+        scores = self._memfly_scorer.score_chunks(
+            self._last_user_message, rows, keyword_scores=None
+        )
+        for chunk_hash, new_priority in scores.items():
+            self._conn.execute(
+                "UPDATE chunks SET priority = ? WHERE chunk_hash = ?",
+                (new_priority, chunk_hash),
+            )
+        self._conn.commit()
+
     def _rescore_chunks_entity_aware(self) -> None:
         """Re-score all chunks using TF-IDF + entity matching."""
         if not self._last_user_message or not self._entity_scorer:
@@ -1314,6 +1453,8 @@ class ChunkLog:
                 self._rescore_chunks_swe_pruner()
             elif self.scoring_mode == "bm25":
                 self._rescore_chunks_bm25()
+            elif self.scoring_mode == "memfly":
+                self._rescore_chunks_memfly()
             elif self.scoring_mode == "structural":
                 self._rescore_chunks_structural()
             elif self.scoring_mode == "entity_aware":
@@ -1341,7 +1482,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural", "swe_pruner")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "swe_pruner", "memfly", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
         for chunk_hash, tokens, priority, turn in rows:
             if current_tokens - removed <= target:
                 break
@@ -1375,7 +1516,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural", "swe_pruner")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "swe_pruner", "memfly", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
         # First pass: try to evict only low-priority chunks (scoring protection)
         if use_scoring:
             for chunk_hash, tokens, priority, turn in rows:

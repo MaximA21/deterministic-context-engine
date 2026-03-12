@@ -300,3 +300,125 @@ class TestEntityAwareScorer:
         chunks = [("h1", "the a an")]
         scores = self.scorer.score_chunks("the", chunks)
         assert scores["h1"] == 0.5
+
+
+# ── MemFlyScorer ────────────────────────────────────────────────────────
+
+
+@requires_sentence_transformers
+class TestMemFlyScorer:
+    def setup_method(self):
+        from engine import MemFlyScorer
+
+        self.scorer = MemFlyScorer()
+
+    def test_basic_scoring(self):
+        chunks = [
+            ("h1", "Fix the authentication bug in login.py line 42"),
+            ("h2", "The weather today is nice and sunny outside"),
+            ("h3", "Consider refactoring the database schema design"),
+        ]
+        scores = self.scorer.score_chunks("authentication login bug", chunks)
+        assert len(scores) == 3
+        for s in scores.values():
+            assert 0.5 <= s <= 2.0
+
+    def test_empty_chunks(self):
+        scores = self.scorer.score_chunks("anything", [])
+        assert scores == {}
+
+    def test_single_chunk(self):
+        scores = self.scorer.score_chunks("test query", [("h1", "test content here")])
+        assert len(scores) == 1
+        assert 0.5 <= scores["h1"] <= 2.0
+
+    def test_relevant_chunk_scores_higher(self):
+        chunks = [
+            ("relevant", "authentication login error bug in production server"),
+            ("irrelevant", "the weather forecast shows sunny skies tomorrow afternoon"),
+        ]
+        scores = self.scorer.score_chunks("authentication login bug", chunks)
+        assert scores["relevant"] > scores["irrelevant"]
+
+    def test_redundant_chunks_penalized(self):
+        """Near-duplicate chunks should score lower than unique ones."""
+        chunks = [
+            ("unique", "CRITICAL: server 10.42.88.7 has a memory leak in worker pool"),
+            ("dup1", "The annual company picnic is scheduled for next Saturday at the park"),
+            ("dup2", "The annual company picnic is scheduled for next Saturday at the garden"),
+        ]
+        scores = self.scorer.score_chunks("server memory leak", chunks)
+        # The unique relevant chunk should score higher than the near-duplicate fillers
+        assert scores["unique"] > scores["dup1"]
+        assert scores["unique"] > scores["dup2"]
+
+    def test_complementarity_gate(self):
+        """Chunks complementary to the goal should be protected."""
+        chunks = [
+            ("comp", "deploy pipeline needs admin access for new hire Elena"),
+            ("unrelated", "the cat sat on the mat near the sunny window"),
+        ]
+        scores = self.scorer.score_chunks("new hire onboarding access", chunks)
+        assert scores["comp"] > scores["unrelated"]
+
+    def test_keyword_scores_parameter_accepted(self):
+        chunks = [("h1", "some test content")]
+        scores = self.scorer.score_chunks("test", chunks, keyword_scores={"h1": 1.5})
+        assert len(scores) == 1
+
+    def test_merge_threshold_default(self):
+        assert self.scorer.merge_threshold == 0.7
+
+    def test_link_threshold_default(self):
+        assert self.scorer.link_threshold == 0.5
+
+    def test_beta_default(self):
+        assert self.scorer.beta == 0.5
+
+    def test_custom_thresholds(self):
+        from engine import MemFlyScorer
+
+        scorer = MemFlyScorer(merge_threshold=0.8, link_threshold=0.6, beta=0.7)
+        assert scorer.merge_threshold == 0.8
+        assert scorer.link_threshold == 0.6
+        assert scorer.beta == 0.7
+
+    def test_semantic_understanding(self):
+        """MemFly uses sentence-transformers so should understand paraphrases."""
+        chunks = [
+            ("related", "user authentication failed during sign-in process"),
+            ("unrelated", "the cat sat on the mat near the window sill"),
+        ]
+        scores = self.scorer.score_chunks("login error in auth module", chunks)
+        assert scores["related"] > scores["unrelated"]
+
+
+@requires_sentence_transformers
+class TestMemFlyChunkLogIntegration:
+    def test_memfly_mode_initializes(self):
+        from engine import ChunkLog
+
+        log = ChunkLog(db_path=":memory:", max_tokens=10000, scoring_mode="memfly")
+        assert log.scoring_mode == "memfly"
+        assert log._memfly_scorer is not None
+        log.close()
+
+    def test_memfly_append_and_compact(self):
+        """MemFly mode should work end-to-end with compaction."""
+        from engine import ChunkLog
+
+        log = ChunkLog(
+            db_path=":memory:", max_tokens=200,
+            soft_threshold=0.7, hard_threshold=0.9,
+            scoring_mode="memfly",
+        )
+        # Add enough content to trigger compaction
+        for i in range(20):
+            log.append("user", f"Turn {i}: some filler content about general topics number {i}")
+            log.next_turn()
+
+        # Should have compacted
+        assert log.compaction_count > 0
+        ctx = log.get_context()
+        assert len(ctx) < 20
+        log.close()
