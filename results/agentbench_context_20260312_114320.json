@@ -1,0 +1,2614 @@
+{
+  "benchmark": "agentbench_context_quality",
+  "n_instances": 138,
+  "max_tokens": 8000,
+  "scoring_modes": [
+    "bm25"
+  ],
+  "summary": {
+    "bm25": {
+      "n_instances": 138,
+      "avg_key_file_recall": 0.96824019290938,
+      "avg_key_file_precision": 0.1872110091830326,
+      "avg_token_compression": 4.584634263242932,
+      "avg_priority_gap": -0.9642969787868485,
+      "avg_scoring_time_ms": 70.76123549992532,
+      "avg_compaction_events": 12.31159420289855,
+      "perfect_recall_count": 130,
+      "zero_recall_count": 0
+    }
+  },
+  "per_instance": {
+    "bm25": [
+      {
+        "instance_id": "ansible_ansible-83217",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.125,
+        "token_compression": 4.813896336014299,
+        "priority_gap": 0.12607054747557056,
+        "scoring_time_ms": 311.33649999992485,
+        "compaction_events": 12,
+        "key_files": [
+          "changelogs/fragments/debconf_empty_password.yml",
+          "lib/ansible/modules/debconf.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/debconf_empty_password.yml",
+          "lib/ansible/modules/debconf.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-84999",
+        "repo": "ansible_ansible",
+        "key_file_recall": 0.5,
+        "key_file_precision": 0.5,
+        "token_compression": 5.271819919303462,
+        "priority_gap": 1.4557990273672117,
+        "scoring_time_ms": 77.14716600003158,
+        "compaction_events": 13,
+        "key_files": [
+          "changelogs/fragments/lineinfile-new-module-option-encoding.yml",
+          "lib/ansible/modules/lineinfile.py"
+        ],
+        "retained_key_files": [
+          "lib/ansible/modules/lineinfile.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-85187",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 3.9954963069717166,
+        "priority_gap": 0.2613969025999219,
+        "scoring_time_ms": 74.8350419999042,
+        "compaction_events": 12,
+        "key_files": [
+          "changelogs/fragments/fetch_file.yml",
+          "lib/ansible/module_utils/urls.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/fetch_file.yml",
+          "lib/ansible/module_utils/urls.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-85487",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.25,
+        "token_compression": 4.2287195994277536,
+        "priority_gap": 0.25291148992051515,
+        "scoring_time_ms": 73.58449999992445,
+        "compaction_events": 12,
+        "key_files": [
+          "changelogs/fragments/85487-add-dependency-installation-to-deb822_repository.yml",
+          "lib/ansible/modules/deb822_repository.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/85487-add-dependency-installation-to-deb822_repository.yml",
+          "lib/ansible/modules/deb822_repository.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-85488",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.23529411764705882,
+        "token_compression": 4.6140703517587935,
+        "priority_gap": 0.1099526100440491,
+        "scoring_time_ms": 78.58941700033029,
+        "compaction_events": 13,
+        "key_files": [
+          "changelogs/fragments/plugins_fix_origin.yml",
+          "lib/ansible/config/manager.py",
+          "lib/ansible/plugins/__init__.py",
+          "lib/ansible/plugins/callback/__init__.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/plugins_fix_origin.yml",
+          "lib/ansible/config/manager.py",
+          "lib/ansible/plugins/__init__.py",
+          "lib/ansible/plugins/callback/__init__.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-85516",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1,
+        "token_compression": 4.5802441731409544,
+        "priority_gap": 0.18017365974197563,
+        "scoring_time_ms": 72.32441699943593,
+        "compaction_events": 12,
+        "key_files": [
+          "changelogs/fragments/failed-when-exception.yml",
+          "lib/ansible/executor/task_executor.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/failed-when-exception.yml",
+          "lib/ansible/executor/task_executor.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-85695",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1111111111111111,
+        "token_compression": 4.889020350212967,
+        "priority_gap": 0.224012627610376,
+        "scoring_time_ms": 73.0272499995408,
+        "compaction_events": 12,
+        "key_files": [
+          "changelogs/fragments/elide_broken_conditional_result.yml",
+          "lib/ansible/_internal/_templating/_engine.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/elide_broken_conditional_result.yml",
+          "lib/ansible/_internal/_templating/_engine.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-85709",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1111111111111111,
+        "token_compression": 4.337126600284495,
+        "priority_gap": 0.2550727071653258,
+        "scoring_time_ms": 73.19149999966612,
+        "compaction_events": 12,
+        "key_files": [
+          "changelogs/fragments/user_module.yml",
+          "lib/ansible/modules/user.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/user_module.yml",
+          "lib/ansible/modules/user.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-85728",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15789473684210525,
+        "token_compression": 4.111404335532517,
+        "priority_gap": 0.1676869724899832,
+        "scoring_time_ms": 74.34870799988857,
+        "compaction_events": 12,
+        "key_files": [
+          "changelogs/fragments/getent-empty-split-fail-json.yml",
+          "lib/ansible/modules/getent.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/getent-empty-split-fail-json.yml",
+          "lib/ansible/modules/getent.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-85930",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.13043478260869565,
+        "token_compression": 3.915863112119493,
+        "priority_gap": 0.2543929735462376,
+        "scoring_time_ms": 64.12470799932635,
+        "compaction_events": 11,
+        "key_files": [
+          "changelogs/fragments/85361-collection-name-from-path-none.yml",
+          "lib/ansible/cli/doc.py",
+          "lib/ansible/collections/list.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/85361-collection-name-from-path-none.yml",
+          "lib/ansible/cli/doc.py",
+          "lib/ansible/collections/list.py"
+        ]
+      },
+      {
+        "instance_id": "ansible_ansible-86047",
+        "repo": "ansible_ansible",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 4.561996077576814,
+        "priority_gap": 0.2423835280432498,
+        "scoring_time_ms": 69.82241700006853,
+        "compaction_events": 12,
+        "key_files": [
+          "changelogs/fragments/package_facts.yml",
+          "lib/ansible/modules/package_facts.py"
+        ],
+        "retained_key_files": [
+          "changelogs/fragments/package_facts.yml",
+          "lib/ansible/modules/package_facts.py"
+        ]
+      },
+      {
+        "instance_id": "getzep_graphiti-761",
+        "repo": "getzep_graphiti",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.5,
+        "token_compression": 4.3451037495449585,
+        "priority_gap": 0.2770310700471348,
+        "scoring_time_ms": 76.94216599975334,
+        "compaction_events": 13,
+        "key_files": [
+          "graphiti_core/driver/driver.py",
+          "graphiti_core/driver/falkordb_driver.py",
+          "graphiti_core/driver/neo4j_driver.py",
+          "graphiti_core/graphiti.py"
+        ],
+        "retained_key_files": [
+          "graphiti_core/driver/driver.py",
+          "graphiti_core/driver/falkordb_driver.py",
+          "graphiti_core/driver/neo4j_driver.py",
+          "graphiti_core/graphiti.py"
+        ]
+      },
+      {
+        "instance_id": "getzep_graphiti-829",
+        "repo": "getzep_graphiti",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.13333333333333333,
+        "token_compression": 4.103045777858837,
+        "priority_gap": 0.3548395711445236,
+        "scoring_time_ms": 72.83362500038493,
+        "compaction_events": 12,
+        "key_files": [
+          "graphiti_core/search/search.py"
+        ],
+        "retained_key_files": [
+          "graphiti_core/search/search.py"
+        ]
+      },
+      {
+        "instance_id": "getzep_graphiti-843",
+        "repo": "getzep_graphiti",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.3,
+        "token_compression": 4.088224437061647,
+        "priority_gap": 0.27494604992776206,
+        "scoring_time_ms": 69.21595899984823,
+        "compaction_events": 12,
+        "key_files": [
+          "graphiti_core/cross_encoder/openai_reranker_client.py",
+          "graphiti_core/models/nodes/node_db_queries.py",
+          "graphiti_core/prompts/dedupe_nodes.py",
+          "pyproject.toml"
+        ],
+        "retained_key_files": [
+          "graphiti_core/cross_encoder/openai_reranker_client.py",
+          "graphiti_core/models/nodes/node_db_queries.py",
+          "graphiti_core/prompts/dedupe_nodes.py",
+          "pyproject.toml"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1648",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2,
+        "token_compression": 4.51050505050505,
+        "priority_gap": 0.349321188480769,
+        "scoring_time_ms": 74.28875000005064,
+        "compaction_events": 13,
+        "key_files": [
+          "docs/source/en/guided_tour.md",
+          "src/smolagents/agents.py"
+        ],
+        "retained_key_files": [
+          "docs/source/en/guided_tour.md",
+          "src/smolagents/agents.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1707",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05,
+        "token_compression": 4.276495813763528,
+        "priority_gap": 0.5749331205745578,
+        "scoring_time_ms": 68.49991699982638,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/agents.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/agents.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1763",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.10526315789473684,
+        "token_compression": 4.60772989782319,
+        "priority_gap": 0.19406866204165207,
+        "scoring_time_ms": 68.02775000051042,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/monitoring.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/monitoring.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1766",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.0625,
+        "token_compression": 4.6588996763754045,
+        "priority_gap": 0.2945317918191317,
+        "scoring_time_ms": 84.9362499993731,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/models.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/models.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1797",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15789473684210525,
+        "token_compression": 4.230969030969031,
+        "priority_gap": 0.31127605226227284,
+        "scoring_time_ms": 72.93191600001592,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/local_python_executor.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/local_python_executor.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1800",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05555555555555555,
+        "token_compression": 4.693153759820427,
+        "priority_gap": 0.255513781776034,
+        "scoring_time_ms": 75.63350000054925,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/agents.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/agents.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1801",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 0.42857142857142855,
+        "key_file_precision": 0.5714285714285714,
+        "token_compression": 5.4208485892741765,
+        "priority_gap": 0.11227295335863019,
+        "scoring_time_ms": 86.58250000007683,
+        "compaction_events": 15,
+        "key_files": [
+          "README.md",
+          "examples/multiple_tools.py",
+          "examples/rag.py",
+          "examples/rag_using_chromadb.py",
+          "pyproject.toml",
+          "src/smolagents/models.py",
+          "src/smolagents/utils.py"
+        ],
+        "retained_key_files": [
+          "README.md",
+          "pyproject.toml",
+          "src/smolagents/models.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1805",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.13333333333333333,
+        "token_compression": 4.122955239978429,
+        "priority_gap": 0.2497942877338537,
+        "scoring_time_ms": 68.42874999983906,
+        "compaction_events": 12,
+        "key_files": [
+          "pyproject.toml",
+          "src/smolagents/models.py"
+        ],
+        "retained_key_files": [
+          "pyproject.toml",
+          "src/smolagents/models.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1826",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.11764705882352941,
+        "token_compression": 4.743030575539568,
+        "priority_gap": 0.16469169228541092,
+        "scoring_time_ms": 94.62945899940678,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/models.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/models.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1833",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.045454545454545456,
+        "token_compression": 4.046015273154494,
+        "priority_gap": -0.29636934288688355,
+        "scoring_time_ms": 71.25658400036627,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/models.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/models.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1859",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1111111111111111,
+        "token_compression": 4.86851938346567,
+        "priority_gap": 0.3163116906252239,
+        "scoring_time_ms": 66.27424999987852,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/cli.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/cli.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1864",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05263157894736842,
+        "token_compression": 4.527705061082025,
+        "priority_gap": 0.29213626296105866,
+        "scoring_time_ms": 66.64779099992302,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/local_python_executor.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/local_python_executor.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1881",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05263157894736842,
+        "token_compression": 4.05231165960582,
+        "priority_gap": 0.3127830570889938,
+        "scoring_time_ms": 66.6342500007886,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/agents.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/agents.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1900",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.045454545454545456,
+        "token_compression": 3.9466793168880456,
+        "priority_gap": -0.2790156454048752,
+        "scoring_time_ms": 60.60633400011284,
+        "compaction_events": 11,
+        "key_files": [
+          "src/smolagents/models.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/models.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1902",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.07692307692307693,
+        "token_compression": 4.760008428150021,
+        "priority_gap": 0.29564862978914475,
+        "scoring_time_ms": 70.29445799980749,
+        "compaction_events": 13,
+        "key_files": [
+          "src/smolagents/models.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/models.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_smolagents-1914",
+        "repo": "huggingface_smolagents",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 4.890071742652164,
+        "priority_gap": 0.15890765852464495,
+        "scoring_time_ms": 64.81645799976832,
+        "compaction_events": 12,
+        "key_files": [
+          "src/smolagents/local_python_executor.py",
+          "src/smolagents/remote_executors.py"
+        ],
+        "retained_key_files": [
+          "src/smolagents/local_python_executor.py",
+          "src/smolagents/remote_executors.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_transformers-41359",
+        "repo": "huggingface_transformers",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05263157894736842,
+        "token_compression": 4.3275332650972365,
+        "priority_gap": 0.23441363590233433,
+        "scoring_time_ms": 67.10329199995613,
+        "compaction_events": 12,
+        "key_files": [
+          "src/transformers/trainer.py"
+        ],
+        "retained_key_files": [
+          "src/transformers/trainer.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_transformers-41412",
+        "repo": "huggingface_transformers",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15,
+        "token_compression": 4.385732061385317,
+        "priority_gap": 0.2103654679650968,
+        "scoring_time_ms": 66.92437499987136,
+        "compaction_events": 12,
+        "key_files": [
+          "src/transformers/models/auto/tokenization_auto.py",
+          "src/transformers/utils/auto_docstring.py"
+        ],
+        "retained_key_files": [
+          "src/transformers/models/auto/tokenization_auto.py",
+          "src/transformers/utils/auto_docstring.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_transformers-41612",
+        "repo": "huggingface_transformers",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.25,
+        "token_compression": 4.845198675496689,
+        "priority_gap": 0.21376007423694388,
+        "scoring_time_ms": 71.647750000011,
+        "compaction_events": 13,
+        "key_files": [
+          "src/transformers/cache_utils.py",
+          "src/transformers/models/rag/modeling_rag.py",
+          "src/transformers/models/whisper/generation_whisper.py"
+        ],
+        "retained_key_files": [
+          "src/transformers/cache_utils.py",
+          "src/transformers/models/rag/modeling_rag.py",
+          "src/transformers/models/whisper/generation_whisper.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_transformers-41661",
+        "repo": "huggingface_transformers",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.058823529411764705,
+        "token_compression": 4.913983440662373,
+        "priority_gap": 0.2965261097799048,
+        "scoring_time_ms": 64.18166699950234,
+        "compaction_events": 12,
+        "key_files": [
+          "src/transformers/utils/import_utils.py"
+        ],
+        "retained_key_files": [
+          "src/transformers/utils/import_utils.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_transformers-41750",
+        "repo": "huggingface_transformers",
+        "key_file_recall": 0.2,
+        "key_file_precision": 0.25,
+        "token_compression": 7.055263710863627,
+        "priority_gap": -162.06127694171715,
+        "scoring_time_ms": 86.43287499944563,
+        "compaction_events": 16,
+        "key_files": [
+          "src/transformers/models/clip/modeling_clip.py",
+          "src/transformers/models/metaclip_2/modeling_metaclip_2.py",
+          "src/transformers/models/metaclip_2/modular_metaclip_2.py",
+          "src/transformers/models/mlcd/modeling_mlcd.py",
+          "src/transformers/models/mlcd/modular_mlcd.py"
+        ],
+        "retained_key_files": [
+          "src/transformers/models/mlcd/modeling_mlcd.py"
+        ]
+      },
+      {
+        "instance_id": "huggingface_transformers-41757",
+        "repo": "huggingface_transformers",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.21428571428571427,
+        "token_compression": 5.013324595893403,
+        "priority_gap": 0.1445751338636887,
+        "scoring_time_ms": 73.01233300040622,
+        "compaction_events": 13,
+        "key_files": [
+          "examples/modular-transformers/modeling_new_task_model.py",
+          "src/transformers/models/gemma3/modeling_gemma3.py",
+          "src/transformers/models/paligemma/modeling_paligemma.py"
+        ],
+        "retained_key_files": [
+          "examples/modular-transformers/modeling_new_task_model.py",
+          "src/transformers/models/gemma3/modeling_gemma3.py",
+          "src/transformers/models/paligemma/modeling_paligemma.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2674",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.07142857142857142,
+        "token_compression": 4.9429874572405925,
+        "priority_gap": 0.1990627887467573,
+        "scoring_time_ms": 70.8142499997848,
+        "compaction_events": 13,
+        "key_files": [
+          "src/fastmcp/server/middleware/error_handling.py"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/server/middleware/error_handling.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2676",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 0.2608695652173913,
+        "key_file_precision": 0.5,
+        "token_compression": 5.282228017883756,
+        "priority_gap": 0.6629151006570708,
+        "scoring_time_ms": 89.7333749999234,
+        "compaction_events": 15,
+        "key_files": [
+          ".pre-commit-config.yaml",
+          "pyproject.toml",
+          "src/fastmcp/client/client.py",
+          "src/fastmcp/client/elicitation.py",
+          "src/fastmcp/client/tasks.py",
+          "src/fastmcp/prompts/prompt.py",
+          "src/fastmcp/resources/resource.py",
+          "src/fastmcp/resources/template.py",
+          "src/fastmcp/server/auth/oauth_proxy.py",
+          "src/fastmcp/server/auth/providers/aws.py",
+          "src/fastmcp/server/auth/providers/azure.py",
+          "src/fastmcp/server/auth/providers/discord.py",
+          "src/fastmcp/server/auth/providers/github.py",
+          "src/fastmcp/server/auth/providers/google.py",
+          "src/fastmcp/server/auth/providers/workos.py",
+          "src/fastmcp/server/context.py",
+          "src/fastmcp/server/dependencies.py",
+          "src/fastmcp/server/middleware/caching.py",
+          "src/fastmcp/server/server.py",
+          "src/fastmcp/server/tasks/handlers.py",
+          "src/fastmcp/server/tasks/requests.py",
+          "src/fastmcp/tools/tool.py",
+          "uv.lock"
+        ],
+        "retained_key_files": [
+          ".pre-commit-config.yaml",
+          "pyproject.toml",
+          "src/fastmcp/server/auth/oauth_proxy.py",
+          "src/fastmcp/server/middleware/caching.py",
+          "src/fastmcp/server/server.py",
+          "uv.lock"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2720",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.14285714285714285,
+        "token_compression": 4.768340611353712,
+        "priority_gap": 0.13810687471370642,
+        "scoring_time_ms": 67.1148749997883,
+        "compaction_events": 12,
+        "key_files": [
+          "src/fastmcp/tools/tool.py",
+          "src/fastmcp/utilities/json_schema.py"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/tools/tool.py",
+          "src/fastmcp/utilities/json_schema.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2727",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 3.923530462747901,
+        "priority_gap": 0.2867880738575159,
+        "scoring_time_ms": 68.30987499961338,
+        "compaction_events": 12,
+        "key_files": [
+          "src/fastmcp/tools/tool.py",
+          "src/fastmcp/utilities/json_schema.py"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/tools/tool.py",
+          "src/fastmcp/utilities/json_schema.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2749",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 0.14285714285714285,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 5.221714966256451,
+        "priority_gap": 0.3443426817846613,
+        "scoring_time_ms": 76.38449999922159,
+        "compaction_events": 15,
+        "key_files": [
+          "src/fastmcp/server/providers/fastmcp_provider.py",
+          "src/fastmcp/server/server.py",
+          "src/fastmcp/server/tasks/__init__.py",
+          "src/fastmcp/server/tasks/config.py",
+          "src/fastmcp/server/tasks/handlers.py",
+          "src/fastmcp/server/tasks/routing.py",
+          "src/fastmcp/tools/tool.py"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/server/server.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2763",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 0.6666666666666666,
+        "key_file_precision": 0.42857142857142855,
+        "token_compression": 5.990982439487423,
+        "priority_gap": 0.05933517346025252,
+        "scoring_time_ms": 72.83575000019482,
+        "compaction_events": 14,
+        "key_files": [
+          "src/fastmcp/server/auth/auth.py",
+          "src/fastmcp/server/auth/oauth_proxy.py",
+          "uv.lock"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/server/auth/auth.py",
+          "src/fastmcp/server/auth/oauth_proxy.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2764",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2222222222222222,
+        "token_compression": 5.083387906570618,
+        "priority_gap": 0.10259742961734108,
+        "scoring_time_ms": 71.1172080000324,
+        "compaction_events": 13,
+        "key_files": [
+          "src/fastmcp/server/auth/auth.py",
+          "src/fastmcp/server/auth/oauth_proxy.py"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/server/auth/auth.py",
+          "src/fastmcp/server/auth/oauth_proxy.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2768",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.21428571428571427,
+        "token_compression": 4.792532037118868,
+        "priority_gap": 0.16541806022705652,
+        "scoring_time_ms": 67.87629199970979,
+        "compaction_events": 12,
+        "key_files": [
+          "src/fastmcp/utilities/openapi/schemas.py"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/utilities/openapi/schemas.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2771",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.26666666666666666,
+        "token_compression": 5.070644718792867,
+        "priority_gap": 0.15035093885197437,
+        "scoring_time_ms": 71.08620800045173,
+        "compaction_events": 13,
+        "key_files": [
+          "docs/development/upgrade-guide.mdx",
+          "src/fastmcp/cli/cli.py",
+          "src/fastmcp/server/server.py",
+          "src/fastmcp/settings.py"
+        ],
+        "retained_key_files": [
+          "docs/development/upgrade-guide.mdx",
+          "src/fastmcp/cli/cli.py",
+          "src/fastmcp/server/server.py",
+          "src/fastmcp/settings.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2776",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.058823529411764705,
+        "token_compression": 3.9584601611459265,
+        "priority_gap": 0.47311155262336557,
+        "scoring_time_ms": 62.588540999968245,
+        "compaction_events": 12,
+        "key_files": [
+          "src/fastmcp/server/providers/openapi/components.py"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/server/providers/openapi/components.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2785",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.26666666666666666,
+        "token_compression": 4.647594278283485,
+        "priority_gap": 0.21814764484059923,
+        "scoring_time_ms": 68.37454099968454,
+        "compaction_events": 12,
+        "key_files": [
+          "src/fastmcp/server/auth/oauth_proxy.py"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/server/auth/oauth_proxy.py"
+        ]
+      },
+      {
+        "instance_id": "jlowin_fastmcp-2800",
+        "repo": "jlowin_fastmcp",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2,
+        "token_compression": 4.728955486998678,
+        "priority_gap": 0.3067711039332892,
+        "scoring_time_ms": 67.0117499994376,
+        "compaction_events": 12,
+        "key_files": [
+          "src/fastmcp/server/auth/auth.py"
+        ],
+        "retained_key_files": [
+          "src/fastmcp/server/auth/auth.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1745",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 5.139384478144514,
+        "priority_gap": 0.16192656592934163,
+        "scoring_time_ms": 73.78787499965256,
+        "compaction_events": 14,
+        "key_files": [
+          "src/agents/result.py"
+        ],
+        "retained_key_files": [
+          "src/agents/result.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1752",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.0625,
+        "token_compression": 4.783002207505519,
+        "priority_gap": 0.1477225724670279,
+        "scoring_time_ms": 71.4425839996693,
+        "compaction_events": 13,
+        "key_files": [
+          "src/agents/run.py"
+        ],
+        "retained_key_files": [
+          "src/agents/run.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1753",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 4.621639202081527,
+        "priority_gap": 0.22689747932366355,
+        "scoring_time_ms": 67.33362500017392,
+        "compaction_events": 12,
+        "key_files": [
+          "examples/basic/tools.py",
+          "src/agents/function_schema.py"
+        ],
+        "retained_key_files": [
+          "examples/basic/tools.py",
+          "src/agents/function_schema.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1757",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.07142857142857142,
+        "token_compression": 4.881828073993471,
+        "priority_gap": 0.23045339323744574,
+        "scoring_time_ms": 69.05254099910962,
+        "compaction_events": 13,
+        "key_files": [
+          "src/agents/extensions/handoff_filters.py"
+        ],
+        "retained_key_files": [
+          "src/agents/extensions/handoff_filters.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1759",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.21428571428571427,
+        "token_compression": 4.948389942655492,
+        "priority_gap": 0.18647150094775067,
+        "scoring_time_ms": 68.83333299992955,
+        "compaction_events": 13,
+        "key_files": [
+          "src/agents/tracing/spans.py",
+          "src/agents/voice/models/openai_stt.py"
+        ],
+        "retained_key_files": [
+          "src/agents/tracing/spans.py",
+          "src/agents/voice/models/openai_stt.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1765",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.3333333333333333,
+        "token_compression": 4.5988846843258315,
+        "priority_gap": 0.2661712713524613,
+        "scoring_time_ms": 70.76941600007558,
+        "compaction_events": 13,
+        "key_files": [
+          "examples/basic/lifecycle_example.py",
+          "src/agents/realtime/session.py",
+          "src/agents/tool_context.py"
+        ],
+        "retained_key_files": [
+          "examples/basic/lifecycle_example.py",
+          "src/agents/realtime/session.py",
+          "src/agents/tool_context.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1779",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1,
+        "token_compression": 5.3348571428571425,
+        "priority_gap": 0.14186714104946874,
+        "scoring_time_ms": 73.77287500003149,
+        "compaction_events": 14,
+        "key_files": [
+          "src/agents/models/chatcmpl_converter.py"
+        ],
+        "retained_key_files": [
+          "src/agents/models/chatcmpl_converter.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1798",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 4.642549863120845,
+        "priority_gap": 0.3444909637710609,
+        "scoring_time_ms": 64.73020799967344,
+        "compaction_events": 13,
+        "key_files": [
+          "src/agents/extensions/models/litellm_model.py",
+          "src/agents/models/chatcmpl_converter.py"
+        ],
+        "retained_key_files": [
+          "src/agents/extensions/models/litellm_model.py",
+          "src/agents/models/chatcmpl_converter.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1833",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.21739130434782608,
+        "token_compression": 4.194907141489566,
+        "priority_gap": 0.2412233605824119,
+        "scoring_time_ms": 63.53512499936187,
+        "compaction_events": 12,
+        "key_files": [
+          "examples/mcp/streamablehttp_custom_client_example/README.md",
+          "examples/mcp/streamablehttp_custom_client_example/main.py",
+          "examples/mcp/streamablehttp_custom_client_example/server.py",
+          "src/agents/mcp/server.py",
+          "src/agents/mcp/util.py"
+        ],
+        "retained_key_files": [
+          "examples/mcp/streamablehttp_custom_client_example/README.md",
+          "examples/mcp/streamablehttp_custom_client_example/main.py",
+          "examples/mcp/streamablehttp_custom_client_example/server.py",
+          "src/agents/mcp/server.py",
+          "src/agents/mcp/util.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1843",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05,
+        "token_compression": 3.9976397966594046,
+        "priority_gap": 0.6087879944540933,
+        "scoring_time_ms": 66.02304100033507,
+        "compaction_events": 12,
+        "key_files": [
+          "src/agents/run.py"
+        ],
+        "retained_key_files": [
+          "src/agents/run.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1852",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.11764705882352941,
+        "token_compression": 4.597014925373134,
+        "priority_gap": 0.2703262052152555,
+        "scoring_time_ms": 67.2187499994834,
+        "compaction_events": 12,
+        "key_files": [
+          "src/agents/models/openai_provider.py",
+          "src/agents/models/openai_responses.py"
+        ],
+        "retained_key_files": [
+          "src/agents/models/openai_provider.py",
+          "src/agents/models/openai_responses.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1869",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.125,
+        "token_compression": 5.621128451380552,
+        "priority_gap": 0.3205558330685119,
+        "scoring_time_ms": 67.53045799996471,
+        "compaction_events": 12,
+        "key_files": [
+          "src/agents/run.py"
+        ],
+        "retained_key_files": [
+          "src/agents/run.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1884",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.11764705882352941,
+        "token_compression": 4.6879049676025915,
+        "priority_gap": 0.19277589377783744,
+        "scoring_time_ms": 65.4445410000335,
+        "compaction_events": 13,
+        "key_files": [
+          "src/agents/strict_schema.py"
+        ],
+        "retained_key_files": [
+          "src/agents/strict_schema.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-1934",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.10526315789473684,
+        "token_compression": 4.029525032092426,
+        "priority_gap": 0.2192178586430027,
+        "scoring_time_ms": 66.39820799955487,
+        "compaction_events": 12,
+        "key_files": [
+          "src/agents/voice/models/openai_stt.py"
+        ],
+        "retained_key_files": [
+          "src/agents/voice/models/openai_stt.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-2014",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.4,
+        "token_compression": 5.272970561998216,
+        "priority_gap": 0.13818387692245326,
+        "scoring_time_ms": 73.10004200007825,
+        "compaction_events": 14,
+        "key_files": [
+          "src/agents/items.py",
+          "src/agents/result.py",
+          "src/agents/run.py"
+        ],
+        "retained_key_files": [
+          "src/agents/items.py",
+          "src/agents/result.py",
+          "src/agents/run.py"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-2082",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.25,
+        "token_compression": 5.183488372093024,
+        "priority_gap": 0.15203066715861047,
+        "scoring_time_ms": 72.22070800071378,
+        "compaction_events": 13,
+        "key_files": [
+          "pyproject.toml",
+          "src/agents/extensions/memory/redis_session.py",
+          "uv.lock"
+        ],
+        "retained_key_files": [
+          "pyproject.toml",
+          "src/agents/extensions/memory/redis_session.py",
+          "uv.lock"
+        ]
+      },
+      {
+        "instance_id": "openai_openai-agents-python-2105",
+        "repo": "openai_openai-agents-python",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15,
+        "token_compression": 4.040103973264018,
+        "priority_gap": 0.4921153595625627,
+        "scoring_time_ms": 66.67541600018012,
+        "compaction_events": 12,
+        "key_files": [
+          "examples/realtime/twilio_sip/README.md",
+          "src/agents/realtime/openai_realtime.py"
+        ],
+        "retained_key_files": [
+          "examples/realtime/twilio_sip/README.md",
+          "src/agents/realtime/openai_realtime.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-28",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.13636363636363635,
+        "token_compression": 3.903525765207284,
+        "priority_gap": -0.5227858318856334,
+        "scoring_time_ms": 61.84454199956235,
+        "compaction_events": 11,
+        "key_files": [
+          "eopsin/__init__.py",
+          "eopsin/optimize/__init__.py"
+        ],
+        "retained_key_files": [
+          "eopsin/__init__.py",
+          "eopsin/optimize/__init__.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-97",
+        "repo": "opshin_opshin",
+        "key_file_recall": 0.8181818181818182,
+        "key_file_precision": 0.6923076923076923,
+        "token_compression": 11.818660119256402,
+        "priority_gap": 0.039965447047456304,
+        "scoring_time_ms": 98.51158299989038,
+        "compaction_events": 13,
+        "key_files": [
+          "ARCHITECTURE.md",
+          "docs/index.js",
+          "docs/opshin/compiler.html",
+          "docs/opshin/index.html",
+          "docs/opshin/rewrite/index.html",
+          "docs/opshin/rewrite/rewrite_zero_ary.html",
+          "docs/opshin/type_inference.html",
+          "docs/opshin/util.html",
+          "opshin/compiler.py",
+          "opshin/rewrite/rewrite_zero_ary.py",
+          "opshin/type_inference.py"
+        ],
+        "retained_key_files": [
+          "docs/opshin/compiler.html",
+          "docs/opshin/index.html",
+          "docs/opshin/rewrite/index.html",
+          "docs/opshin/rewrite/rewrite_zero_ary.html",
+          "docs/opshin/type_inference.html",
+          "docs/opshin/util.html",
+          "opshin/compiler.py",
+          "opshin/rewrite/rewrite_zero_ary.py",
+          "opshin/type_inference.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-118",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.5652173913043478,
+        "token_compression": 4.359149582384206,
+        "priority_gap": 0.1840762767469024,
+        "scoring_time_ms": 71.6162919998169,
+        "compaction_events": 12,
+        "key_files": [
+          "examples/broken.py",
+          "examples/complex_datum.py",
+          "examples/datum_cast.py",
+          "examples/dict_datum.py",
+          "examples/list_datum.py",
+          "examples/showcase.py",
+          "examples/smart_contracts/gift.py",
+          "examples/smart_contracts/marketplace.py",
+          "examples/smart_contracts/wrapped_token.py",
+          "opshin/ledger/api_v2.py",
+          "opshin/prelude.py",
+          "opshin/rewrite/rewrite_import_dataclasses.py",
+          "opshin/std/fractions.py"
+        ],
+        "retained_key_files": [
+          "examples/broken.py",
+          "examples/complex_datum.py",
+          "examples/datum_cast.py",
+          "examples/dict_datum.py",
+          "examples/list_datum.py",
+          "examples/showcase.py",
+          "examples/smart_contracts/gift.py",
+          "examples/smart_contracts/marketplace.py",
+          "examples/smart_contracts/wrapped_token.py",
+          "opshin/ledger/api_v2.py",
+          "opshin/prelude.py",
+          "opshin/rewrite/rewrite_import_dataclasses.py",
+          "opshin/std/fractions.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-171",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2,
+        "token_compression": 4.363286511448913,
+        "priority_gap": 0.48038548825594307,
+        "scoring_time_ms": 72.02858299933723,
+        "compaction_events": 13,
+        "key_files": [
+          ".travis.yml",
+          "opshin/__main__.py",
+          "opshin/compiler.py"
+        ],
+        "retained_key_files": [
+          ".travis.yml",
+          "opshin/__main__.py",
+          "opshin/compiler.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-176",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.11764705882352941,
+        "token_compression": 4.465081081081081,
+        "priority_gap": 0.2178105561870063,
+        "scoring_time_ms": 65.59275000017806,
+        "compaction_events": 12,
+        "key_files": [
+          "opshin/__main__.py"
+        ],
+        "retained_key_files": [
+          "opshin/__main__.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-178",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1111111111111111,
+        "token_compression": 4.440740740740741,
+        "priority_gap": 0.20516058065624487,
+        "scoring_time_ms": 66.39991599968198,
+        "compaction_events": 12,
+        "key_files": [
+          "opshin/__main__.py"
+        ],
+        "retained_key_files": [
+          "opshin/__main__.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-238",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15,
+        "token_compression": 3.9864786555920415,
+        "priority_gap": -0.5703858354701977,
+        "scoring_time_ms": 60.59299999924406,
+        "compaction_events": 11,
+        "key_files": [
+          "opshin/compiler.py",
+          "opshin/rewrite/rewrite_comparison_chaining.py"
+        ],
+        "retained_key_files": [
+          "opshin/compiler.py",
+          "opshin/rewrite/rewrite_comparison_chaining.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-340",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.5714285714285714,
+        "token_compression": 5.507398568019093,
+        "priority_gap": -0.13141157120272284,
+        "scoring_time_ms": 72.14479100002791,
+        "compaction_events": 14,
+        "key_files": [
+          ".travis.yml",
+          "opshin/__main__.py",
+          "opshin/compiler.py",
+          "opshin/optimize/optimize_const_folding.py",
+          "opshin/type_inference.py",
+          "opshin/typed_ast.py",
+          "opshin/types.py",
+          "opshin/util.py"
+        ],
+        "retained_key_files": [
+          ".travis.yml",
+          "opshin/__main__.py",
+          "opshin/compiler.py",
+          "opshin/optimize/optimize_const_folding.py",
+          "opshin/type_inference.py",
+          "opshin/typed_ast.py",
+          "opshin/types.py",
+          "opshin/util.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-387",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.043478260869565216,
+        "token_compression": 3.7147222721553117,
+        "priority_gap": -0.24570082850585628,
+        "scoring_time_ms": 62.428459000329894,
+        "compaction_events": 11,
+        "key_files": [
+          "opshin/type_inference.py"
+        ],
+        "retained_key_files": [
+          "opshin/type_inference.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-389",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2,
+        "token_compression": 4.139848812095033,
+        "priority_gap": 0.276199880281075,
+        "scoring_time_ms": 68.29162499980157,
+        "compaction_events": 13,
+        "key_files": [
+          "opshin/rewrite/rewrite_import_typing.py",
+          "opshin/rewrite/rewrite_scoping.py",
+          "opshin/type_inference.py"
+        ],
+        "retained_key_files": [
+          "opshin/rewrite/rewrite_import_typing.py",
+          "opshin/rewrite/rewrite_scoping.py",
+          "opshin/type_inference.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-436",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15789473684210525,
+        "token_compression": 4.6171770972037285,
+        "priority_gap": 0.16056500035157173,
+        "scoring_time_ms": 66.02424999982759,
+        "compaction_events": 12,
+        "key_files": [
+          "opshin/compiler.py",
+          "opshin/rewrite/rewrite_assert_none.py",
+          "poetry.lock"
+        ],
+        "retained_key_files": [
+          "opshin/compiler.py",
+          "opshin/rewrite/rewrite_assert_none.py",
+          "poetry.lock"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-439",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.11764705882352941,
+        "token_compression": 4.389719067543336,
+        "priority_gap": 0.20172990790097423,
+        "scoring_time_ms": 69.33599999956641,
+        "compaction_events": 13,
+        "key_files": [
+          "opshin/compiler.py",
+          "opshin/type_inference.py"
+        ],
+        "retained_key_files": [
+          "opshin/compiler.py",
+          "opshin/type_inference.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-454",
+        "repo": "opshin_opshin",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.23529411764705882,
+        "token_compression": 4.8281215347083615,
+        "priority_gap": 0.1260147929394555,
+        "scoring_time_ms": 68.453750000117,
+        "compaction_events": 12,
+        "key_files": [
+          "opshin/compiler.py",
+          "opshin/compiler_config.py",
+          "opshin/optimize/optimize_union_expansion.py",
+          "opshin/type_inference.py"
+        ],
+        "retained_key_files": [
+          "opshin/compiler.py",
+          "opshin/compiler_config.py",
+          "opshin/optimize/optimize_union_expansion.py",
+          "opshin/type_inference.py"
+        ]
+      },
+      {
+        "instance_id": "opshin_opshin-545",
+        "repo": "opshin_opshin",
+        "key_file_recall": 0.6,
+        "key_file_precision": 0.6666666666666666,
+        "token_compression": 4.785019805545553,
+        "priority_gap": 0.324945878631858,
+        "scoring_time_ms": 73.9028750003854,
+        "compaction_events": 14,
+        "key_files": [
+          "docs/binary_size_tracker.md",
+          "docs/binary_size_trends.template.html",
+          "scripts/binary_size_config.yaml",
+          "scripts/binary_size_tracker.py",
+          "scripts/fetch_binary_data.py"
+        ],
+        "retained_key_files": [
+          "docs/binary_size_tracker.md",
+          "scripts/binary_size_config.yaml",
+          "scripts/binary_size_tracker.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-1313",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.36363636363636365,
+        "token_compression": 5.111283185840708,
+        "priority_gap": 0.09322156798286607,
+        "scoring_time_ms": 74.30466699952376,
+        "compaction_events": 13,
+        "key_files": [
+          "news/1313.bugfix.md",
+          "src/pdm/cli/commands/venv/utils.py"
+        ],
+        "retained_key_files": [
+          "news/1313.bugfix.md",
+          "src/pdm/cli/commands/venv/utils.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-2019",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.125,
+        "token_compression": 4.709832134292566,
+        "priority_gap": 0.11397832272442421,
+        "scoring_time_ms": 67.93029199980083,
+        "compaction_events": 12,
+        "key_files": [
+          "news/2019.bugfix.md",
+          "src/pdm/models/caches.py"
+        ],
+        "retained_key_files": [
+          "news/2019.bugfix.md",
+          "src/pdm/models/caches.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-3111",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.25,
+        "token_compression": 4.936121845874062,
+        "priority_gap": 0.1148203835344257,
+        "scoring_time_ms": 67.65033299961942,
+        "compaction_events": 12,
+        "key_files": [
+          "news/3107.bugfix.md",
+          "src/pdm/models/candidates.py",
+          "src/pdm/models/repositories/base.py"
+        ],
+        "retained_key_files": [
+          "news/3107.bugfix.md",
+          "src/pdm/models/candidates.py",
+          "src/pdm/models/repositories/base.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-3281",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2,
+        "token_compression": 4.5355666739177725,
+        "priority_gap": 0.21648356801107682,
+        "scoring_time_ms": 65.39608399998542,
+        "compaction_events": 12,
+        "key_files": [
+          "news/3280.feat.md",
+          "src/pdm/resolver/graph.py"
+        ],
+        "retained_key_files": [
+          "news/3280.feat.md",
+          "src/pdm/resolver/graph.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-3338",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.125,
+        "token_compression": 4.794551138901295,
+        "priority_gap": 0.13050876466950911,
+        "scoring_time_ms": 70.09887500043988,
+        "compaction_events": 12,
+        "key_files": [
+          "news/3332.bugfix.md",
+          "src/pdm/resolver/uv.py"
+        ],
+        "retained_key_files": [
+          "news/3332.bugfix.md",
+          "src/pdm/resolver/uv.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-3374",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.4117647058823529,
+        "token_compression": 4.246842295200289,
+        "priority_gap": 0.1279122250522271,
+        "scoring_time_ms": 72.88258299922745,
+        "compaction_events": 13,
+        "key_files": [
+          "news/3368.bugfix.md",
+          "src/pdm/_types.py",
+          "src/pdm/cli/commands/publish/__init__.py",
+          "src/pdm/models/auth.py",
+          "src/pdm/project/config.py",
+          "src/pdm/project/core.py"
+        ],
+        "retained_key_files": [
+          "news/3368.bugfix.md",
+          "src/pdm/_types.py",
+          "src/pdm/cli/commands/publish/__init__.py",
+          "src/pdm/models/auth.py",
+          "src/pdm/project/config.py",
+          "src/pdm/project/core.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-3470",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1111111111111111,
+        "token_compression": 4.041828613733111,
+        "priority_gap": 0.24706164427721,
+        "scoring_time_ms": 67.03470799948263,
+        "compaction_events": 12,
+        "key_files": [
+          "src/pdm/cli/commands/init.py",
+          "src/pdm/cli/commands/new.py"
+        ],
+        "retained_key_files": [
+          "src/pdm/cli/commands/init.py",
+          "src/pdm/cli/commands/new.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-3644",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.11764705882352941,
+        "token_compression": 4.009174311926605,
+        "priority_gap": 0.2513631521144062,
+        "scoring_time_ms": 70.15112499993847,
+        "compaction_events": 12,
+        "key_files": [
+          "news/3633.feature.md",
+          "src/pdm/termui.py"
+        ],
+        "retained_key_files": [
+          "news/3633.feature.md",
+          "src/pdm/termui.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-3695",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.17647058823529413,
+        "token_compression": 4.826047769265434,
+        "priority_gap": 0.1487869747297368,
+        "scoring_time_ms": 69.2820419999407,
+        "compaction_events": 12,
+        "key_files": [
+          "news/3694.bugfix.md",
+          "src/pdm/formats/pylock.py"
+        ],
+        "retained_key_files": [
+          "news/3694.bugfix.md",
+          "src/pdm/formats/pylock.py"
+        ]
+      },
+      {
+        "instance_id": "pdm-project_pdm-3699",
+        "repo": "pdm-project_pdm",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15384615384615385,
+        "token_compression": 5.04157201272149,
+        "priority_gap": 0.17527656223467147,
+        "scoring_time_ms": 73.5669580008107,
+        "compaction_events": 13,
+        "key_files": [
+          "news/3698.bugfix.md",
+          "src/pdm/resolver/uv.py"
+        ],
+        "retained_key_files": [
+          "news/3698.bugfix.md",
+          "src/pdm/resolver/uv.py"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-1359",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.13333333333333333,
+        "token_compression": 4.785825027685493,
+        "priority_gap": 0.17204554721696685,
+        "scoring_time_ms": 69.37979099984659,
+        "compaction_events": 12,
+        "key_files": [
+          "pr_agent/servers/bitbucket_app.py"
+        ],
+        "retained_key_files": [
+          "pr_agent/servers/bitbucket_app.py"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-1406",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.3076923076923077,
+        "token_compression": 4.999770852428965,
+        "priority_gap": 0.21509276385038434,
+        "scoring_time_ms": 70.21475000055943,
+        "compaction_events": 13,
+        "key_files": [
+          "pr_agent/git_providers/bitbucket_server_provider.py"
+        ],
+        "retained_key_files": [
+          "pr_agent/git_providers/bitbucket_server_provider.py"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-1407",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1111111111111111,
+        "token_compression": 4.0099925980755,
+        "priority_gap": 0.3742181476107995,
+        "scoring_time_ms": 66.75562500004162,
+        "compaction_events": 12,
+        "key_files": [
+          "pr_agent/tools/pr_code_suggestions.py"
+        ],
+        "retained_key_files": [
+          "pr_agent/tools/pr_code_suggestions.py"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-1412",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 4.070727643029069,
+        "priority_gap": 0.28215461749377524,
+        "scoring_time_ms": 66.14237499979936,
+        "compaction_events": 12,
+        "key_files": [
+          "pr_agent/algo/types.py",
+          "pr_agent/algo/utils.py"
+        ],
+        "retained_key_files": [
+          "pr_agent/algo/types.py",
+          "pr_agent/algo/utils.py"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-1439",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15,
+        "token_compression": 3.8409824309788454,
+        "priority_gap": 0.35196800190044786,
+        "scoring_time_ms": 63.81191699983901,
+        "compaction_events": 11,
+        "key_files": [
+          "pr_agent/algo/utils.py"
+        ],
+        "retained_key_files": [
+          "pr_agent/algo/utils.py"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-1594",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.125,
+        "token_compression": 4.613070763903917,
+        "priority_gap": 0.22734498373730538,
+        "scoring_time_ms": 70.34037499943224,
+        "compaction_events": 12,
+        "key_files": [
+          "pr_agent/algo/__init__.py"
+        ],
+        "retained_key_files": [
+          "pr_agent/algo/__init__.py"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-1839",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.4782608695652174,
+        "token_compression": 4.01737106017192,
+        "priority_gap": 0.17027946265366345,
+        "scoring_time_ms": 67.83212499976798,
+        "compaction_events": 12,
+        "key_files": [
+          "docs/docs/installation/github.md",
+          "docs/docs/usage-guide/additional_configurations.md",
+          "docs/mkdocs.yml",
+          "pr_agent/config_loader.py",
+          "pr_agent/secret_providers/__init__.py",
+          "pr_agent/secret_providers/aws_secrets_manager_provider.py",
+          "pr_agent/servers/serverless.py",
+          "pr_agent/settings/.secrets_template.toml",
+          "pr_agent/settings/configuration.toml"
+        ],
+        "retained_key_files": [
+          "docs/docs/installation/github.md",
+          "docs/docs/usage-guide/additional_configurations.md",
+          "docs/mkdocs.yml",
+          "pr_agent/config_loader.py",
+          "pr_agent/secret_providers/__init__.py",
+          "pr_agent/secret_providers/aws_secrets_manager_provider.py",
+          "pr_agent/servers/serverless.py",
+          "pr_agent/settings/.secrets_template.toml",
+          "pr_agent/settings/configuration.toml"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-1851",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2,
+        "token_compression": 4.756923076923077,
+        "priority_gap": 0.13995711509553033,
+        "scoring_time_ms": 67.63200000023062,
+        "compaction_events": 12,
+        "key_files": [
+          "pr_agent/algo/__init__.py"
+        ],
+        "retained_key_files": [
+          "pr_agent/algo/__init__.py"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-1954",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.4375,
+        "token_compression": 4.816162056196907,
+        "priority_gap": 0.13540398360803452,
+        "scoring_time_ms": 72.30587499998364,
+        "compaction_events": 13,
+        "key_files": [
+          "docs/docs/usage-guide/changing_a_model.md",
+          "pr_agent/algo/ai_handlers/litellm_ai_handler.py",
+          "pr_agent/settings/.secrets_template.toml",
+          "pr_agent/settings/configuration.toml"
+        ],
+        "retained_key_files": [
+          "docs/docs/usage-guide/changing_a_model.md",
+          "pr_agent/algo/ai_handlers/litellm_ai_handler.py",
+          "pr_agent/settings/.secrets_template.toml",
+          "pr_agent/settings/configuration.toml"
+        ]
+      },
+      {
+        "instance_id": "qodo-ai_pr-agent-2018",
+        "repo": "qodo-ai_pr-agent",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15384615384615385,
+        "token_compression": 4.927020371614058,
+        "priority_gap": 0.15242165311869726,
+        "scoring_time_ms": 69.21620899993286,
+        "compaction_events": 13,
+        "key_files": [
+          "pr_agent/git_providers/azuredevops_provider.py"
+        ],
+        "retained_key_files": [
+          "pr_agent/git_providers/azuredevops_provider.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-3096",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.08333333333333333,
+        "token_compression": 3.7455242966751916,
+        "priority_gap": -0.2402695641183067,
+        "scoring_time_ms": 61.392249999698834,
+        "compaction_events": 11,
+        "key_files": [
+          "tinygrad/lazy.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/lazy.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-5040",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.08695652173913043,
+        "token_compression": 3.7248677248677247,
+        "priority_gap": -0.2890866800960731,
+        "scoring_time_ms": 60.17479199999798,
+        "compaction_events": 11,
+        "key_files": [
+          "extra/models/resnet.py"
+        ],
+        "retained_key_files": [
+          "extra/models/resnet.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-11351",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.09090909090909091,
+        "token_compression": 3.800628233555063,
+        "priority_gap": -0.3456685591176827,
+        "scoring_time_ms": 62.28041699978348,
+        "compaction_events": 11,
+        "key_files": [
+          "tinygrad/device.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/device.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-11840",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 3.771235873131608,
+        "priority_gap": -0.43744123757848585,
+        "scoring_time_ms": 61.20395800007827,
+        "compaction_events": 11,
+        "key_files": [
+          "tinygrad/dtype.py",
+          "tinygrad/tensor.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/dtype.py",
+          "tinygrad/tensor.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-11916",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1,
+        "token_compression": 4.47790472084501,
+        "priority_gap": 0.16316089610809348,
+        "scoring_time_ms": 65.49654199989163,
+        "compaction_events": 12,
+        "key_files": [
+          "tinygrad/tensor.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/tensor.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-13541",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2222222222222222,
+        "token_compression": 4.71438202247191,
+        "priority_gap": 0.18318622164778198,
+        "scoring_time_ms": 66.11712500034628,
+        "compaction_events": 12,
+        "key_files": [
+          "pyproject.toml",
+          "tinygrad/nn/onnx.py"
+        ],
+        "retained_key_files": [
+          "pyproject.toml",
+          "tinygrad/nn/onnx.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-13558",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.10526315789473684,
+        "token_compression": 4.428786251342642,
+        "priority_gap": 0.3651956164975847,
+        "scoring_time_ms": 66.167167000458,
+        "compaction_events": 12,
+        "key_files": [
+          "tinygrad/runtime/support/c.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/runtime/support/c.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-13565",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1111111111111111,
+        "token_compression": 4.0213274498988785,
+        "priority_gap": 0.49219927315235856,
+        "scoring_time_ms": 67.77283300016279,
+        "compaction_events": 12,
+        "key_files": [
+          "extra/qcom_gpu_driver/qcom_opencl_interop.py",
+          "tinygrad/runtime/ops_qcom.py"
+        ],
+        "retained_key_files": [
+          "extra/qcom_gpu_driver/qcom_opencl_interop.py",
+          "tinygrad/runtime/ops_qcom.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-13598",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.047619047619047616,
+        "token_compression": 4.01212237829517,
+        "priority_gap": 0.6103584285787398,
+        "scoring_time_ms": 61.94275000052585,
+        "compaction_events": 11,
+        "key_files": [
+          "tinygrad/schedule/multi.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/schedule/multi.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-13610",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1,
+        "token_compression": 4.0373459715639815,
+        "priority_gap": 0.617255708180448,
+        "scoring_time_ms": 61.41766699965956,
+        "compaction_events": 12,
+        "key_files": [
+          "tinygrad/runtime/support/c.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/runtime/support/c.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-13760",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.08333333333333333,
+        "token_compression": 3.797654504839911,
+        "priority_gap": -0.23760514700147084,
+        "scoring_time_ms": 60.526833000039915,
+        "compaction_events": 11,
+        "key_files": [
+          "tinygrad/gradient.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/gradient.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-13855",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.047619047619047616,
+        "token_compression": 3.9098842724340734,
+        "priority_gap": -0.3427192807785002,
+        "scoring_time_ms": 61.08783399940876,
+        "compaction_events": 11,
+        "key_files": [
+          "tinygrad/schedule/multi.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/schedule/multi.py"
+        ]
+      },
+      {
+        "instance_id": "tinygrad_tinygrad-14075",
+        "repo": "tinygrad_tinygrad",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2,
+        "token_compression": 4.262239165329053,
+        "priority_gap": 0.4588991114617458,
+        "scoring_time_ms": 66.39779200031626,
+        "compaction_events": 12,
+        "key_files": [
+          "tinygrad/nn/optim.py",
+          "tinygrad/tensor.py",
+          "tinygrad/uop/ops.py"
+        ],
+        "retained_key_files": [
+          "tinygrad/nn/optim.py",
+          "tinygrad/tensor.py",
+          "tinygrad/uop/ops.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2362",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 3.9752412160932096,
+        "priority_gap": 0.2780373914881029,
+        "scoring_time_ms": 65.10554200031038,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/async_utils.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/async_utils.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2414",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1111111111111111,
+        "token_compression": 4.706440677966102,
+        "priority_gap": 0.3040005017925227,
+        "scoring_time_ms": 64.85595899994223,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/metrics/collections/_answer_correctness.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/metrics/collections/_answer_correctness.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2424",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05555555555555555,
+        "token_compression": 4.206957201485245,
+        "priority_gap": 0.656666805357202,
+        "scoring_time_ms": 65.91116700019484,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/llms/base.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/llms/base.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2451",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.11764705882352941,
+        "token_compression": 4.357432158768733,
+        "priority_gap": 0.5114531702880276,
+        "scoring_time_ms": 64.73949999963224,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/dataset_schema.py",
+          "src/ragas/prompt/pydantic_prompt.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/dataset_schema.py",
+          "src/ragas/prompt/pydantic_prompt.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2452",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.25,
+        "token_compression": 4.214504780804618,
+        "priority_gap": 0.2599474011909788,
+        "scoring_time_ms": 67.06195800052228,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/integrations/langchain.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/integrations/langchain.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2453",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.08695652173913043,
+        "token_compression": 3.9851035016444185,
+        "priority_gap": -0.45659206272153174,
+        "scoring_time_ms": 64.35679200058075,
+        "compaction_events": 12,
+        "key_files": [
+          "pyproject.toml",
+          "src/ragas/experiment.py"
+        ],
+        "retained_key_files": [
+          "pyproject.toml",
+          "src/ragas/experiment.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2454",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.4,
+        "token_compression": 5.005645889792231,
+        "priority_gap": 0.23191318022744922,
+        "scoring_time_ms": 69.07137500002136,
+        "compaction_events": 13,
+        "key_files": [
+          "docs/concepts/metrics/available_metrics/answer_correctness.md",
+          "docs/howtos/integrations/gemini.md",
+          "src/ragas/embeddings/base.py",
+          "src/ragas/evaluation.py"
+        ],
+        "retained_key_files": [
+          "docs/concepts/metrics/available_metrics/answer_correctness.md",
+          "docs/howtos/integrations/gemini.md",
+          "src/ragas/embeddings/base.py",
+          "src/ragas/evaluation.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2458",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.15789473684210525,
+        "token_compression": 4.590400344382265,
+        "priority_gap": 0.2952705489893872,
+        "scoring_time_ms": 66.98412500008999,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/llms/base.py",
+          "src/ragas/llms/litellm_llm.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/llms/base.py",
+          "src/ragas/llms/litellm_llm.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2466",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.17647058823529413,
+        "token_compression": 4.192857142857143,
+        "priority_gap": 0.28542540628117274,
+        "scoring_time_ms": 65.14012500065292,
+        "compaction_events": 12,
+        "key_files": [
+          "docs/howtos/integrations/gemini.md",
+          "src/ragas/embeddings/google_provider.py"
+        ],
+        "retained_key_files": [
+          "docs/howtos/integrations/gemini.md",
+          "src/ragas/embeddings/google_provider.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2503",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.11764705882352941,
+        "token_compression": 4.623240938166311,
+        "priority_gap": 0.27483833974306116,
+        "scoring_time_ms": 67.68041600025754,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/metrics/_topic_adherence.py",
+          "src/ragas/metrics/collections/topic_adherence/metric.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/metrics/_topic_adherence.py",
+          "src/ragas/metrics/collections/topic_adherence/metric.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2505",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.058823529411764705,
+        "token_compression": 4.774454688554082,
+        "priority_gap": 0.31316261146358837,
+        "scoring_time_ms": 65.24037499912083,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/llms/base.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/llms/base.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2513",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.1111111111111111,
+        "token_compression": 4.620538646814101,
+        "priority_gap": 0.2854471564720662,
+        "scoring_time_ms": 65.35479200010741,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/metrics/decorator.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/metrics/decorator.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2514",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05263157894736842,
+        "token_compression": 3.9274760959769077,
+        "priority_gap": 0.6139002344798774,
+        "scoring_time_ms": 62.44125000011991,
+        "compaction_events": 12,
+        "key_files": [
+          "src/ragas/llms/base.py"
+        ],
+        "retained_key_files": [
+          "src/ragas/llms/base.py"
+        ]
+      },
+      {
+        "instance_id": "vibrantlabsai_ragas-2543",
+        "repo": "vibrantlabsai_ragas",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.4444444444444444,
+        "token_compression": 5.232751091703057,
+        "priority_gap": 0.40636678913109203,
+        "scoring_time_ms": 66.73879199934163,
+        "compaction_events": 13,
+        "key_files": [
+          "docs/howtos/customizations/customize_models.md",
+          "docs/howtos/llm-adapters.md",
+          "src/ragas/llms/base.py",
+          "src/ragas/llms/litellm_llm.py"
+        ],
+        "retained_key_files": [
+          "docs/howtos/customizations/customize_models.md",
+          "docs/howtos/llm-adapters.md",
+          "src/ragas/llms/base.py",
+          "src/ragas/llms/litellm_llm.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-10412",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.23809523809523808,
+        "token_compression": 4.028607187555873,
+        "priority_gap": 0.28789479730048595,
+        "scoring_time_ms": 63.11587500022142,
+        "compaction_events": 12,
+        "key_files": [
+          "CHANGELOG.txt",
+          "CONTRIBUTORS.md",
+          "docs/releases/7.2.md",
+          "wagtail/documents/models.py",
+          "wagtail/images/models.py"
+        ],
+        "retained_key_files": [
+          "CHANGELOG.txt",
+          "CONTRIBUTORS.md",
+          "docs/releases/7.2.md",
+          "wagtail/documents/models.py",
+          "wagtail/images/models.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-12965",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.2631578947368421,
+        "token_compression": 4.397932816537468,
+        "priority_gap": 0.1827407814493438,
+        "scoring_time_ms": 66.89162499969825,
+        "compaction_events": 12,
+        "key_files": [
+          "wagtail/search/backends/base.py",
+          "wagtail/search/backends/database/fallback.py",
+          "wagtail/search/backends/database/mysql/mysql.py",
+          "wagtail/search/backends/database/postgres/postgres.py",
+          "wagtail/search/backends/database/sqlite/sqlite.py"
+        ],
+        "retained_key_files": [
+          "wagtail/search/backends/base.py",
+          "wagtail/search/backends/database/fallback.py",
+          "wagtail/search/backends/database/mysql/mysql.py",
+          "wagtail/search/backends/database/postgres/postgres.py",
+          "wagtail/search/backends/database/sqlite/sqlite.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13173",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 4.5571519121064865,
+        "priority_gap": 0.25571167976667586,
+        "scoring_time_ms": 65.22916699941561,
+        "compaction_events": 12,
+        "key_files": [
+          "CHANGELOG.txt",
+          "docs/releases/7.1.md",
+          "wagtail/images/models.py"
+        ],
+        "retained_key_files": [
+          "CHANGELOG.txt",
+          "docs/releases/7.1.md",
+          "wagtail/images/models.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13196",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.21052631578947367,
+        "token_compression": 4.312352941176471,
+        "priority_gap": 0.24906921418577488,
+        "scoring_time_ms": 66.99824999941484,
+        "compaction_events": 13,
+        "key_files": [
+          "CHANGELOG.txt",
+          "docs/releases/7.1.md",
+          "docs/topics/streamfield.md",
+          "wagtail/blocks/base.py"
+        ],
+        "retained_key_files": [
+          "CHANGELOG.txt",
+          "docs/releases/7.1.md",
+          "docs/topics/streamfield.md",
+          "wagtail/blocks/base.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13237",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.38095238095238093,
+        "token_compression": 4.211969612747823,
+        "priority_gap": 0.36663013906751574,
+        "scoring_time_ms": 71.37020900063362,
+        "compaction_events": 13,
+        "key_files": [
+          "CHANGELOG.txt",
+          "docs/reference/streamfield/blocks.md",
+          "docs/releases/7.1.md",
+          "docs/topics/streamfield.md",
+          "wagtail/blocks/base.py",
+          "wagtail/blocks/field_block.py",
+          "wagtail/blocks/struct_block.py",
+          "wagtail/embeds/blocks.py"
+        ],
+        "retained_key_files": [
+          "CHANGELOG.txt",
+          "docs/reference/streamfield/blocks.md",
+          "docs/releases/7.1.md",
+          "docs/topics/streamfield.md",
+          "wagtail/blocks/base.py",
+          "wagtail/blocks/field_block.py",
+          "wagtail/blocks/struct_block.py",
+          "wagtail/embeds/blocks.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13280",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05263157894736842,
+        "token_compression": 4.538613426941641,
+        "priority_gap": 0.10973235465358266,
+        "scoring_time_ms": 63.35066599967831,
+        "compaction_events": 12,
+        "key_files": [
+          "wagtail/admin/panels/inline_panel.py"
+        ],
+        "retained_key_files": [
+          "wagtail/admin/panels/inline_panel.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13326",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.21052631578947367,
+        "token_compression": 4.402868852459016,
+        "priority_gap": 0.24963701312743014,
+        "scoring_time_ms": 65.0681250008347,
+        "compaction_events": 12,
+        "key_files": [
+          "CHANGELOG.txt",
+          "CONTRIBUTORS.md",
+          "docs/releases/7.2.md",
+          "wagtail/models/pages.py"
+        ],
+        "retained_key_files": [
+          "CHANGELOG.txt",
+          "CONTRIBUTORS.md",
+          "docs/releases/7.2.md",
+          "wagtail/models/pages.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13377",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.16666666666666666,
+        "token_compression": 4.829579067121729,
+        "priority_gap": 0.19223146144051673,
+        "scoring_time_ms": 66.10575000013341,
+        "compaction_events": 12,
+        "key_files": [
+          "CHANGELOG.txt",
+          "docs/releases/7.2.md",
+          "wagtail/query.py"
+        ],
+        "retained_key_files": [
+          "CHANGELOG.txt",
+          "docs/releases/7.2.md",
+          "wagtail/query.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13451",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.21052631578947367,
+        "token_compression": 4.5849956634865565,
+        "priority_gap": 0.11803079329151189,
+        "scoring_time_ms": 67.21029199979967,
+        "compaction_events": 12,
+        "key_files": [
+          "CHANGELOG.txt",
+          "docs/releases/7.2.md",
+          "wagtail/images/templatetags/wagtailimages_tags.py"
+        ],
+        "retained_key_files": [
+          "CHANGELOG.txt",
+          "docs/releases/7.2.md",
+          "wagtail/images/templatetags/wagtailimages_tags.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13529",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.05,
+        "token_compression": 4.302813943721126,
+        "priority_gap": 0.4133866742561667,
+        "scoring_time_ms": 62.08287499975995,
+        "compaction_events": 11,
+        "key_files": [
+          "wagtail/admin/forms/account.py"
+        ],
+        "retained_key_files": [
+          "wagtail/admin/forms/account.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13560",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.13333333333333333,
+        "token_compression": 4.654132231404959,
+        "priority_gap": 0.20496581299010375,
+        "scoring_time_ms": 65.8861669999169,
+        "compaction_events": 13,
+        "key_files": [
+          "wagtail/documents/views/documents.py",
+          "wagtail/images/views/images.py"
+        ],
+        "retained_key_files": [
+          "wagtail/documents/views/documents.py",
+          "wagtail/images/views/images.py"
+        ]
+      },
+      {
+        "instance_id": "wagtail_wagtail-13635",
+        "repo": "wagtail_wagtail",
+        "key_file_recall": 1.0,
+        "key_file_precision": 0.25,
+        "token_compression": 4.592425220572412,
+        "priority_gap": 0.22281034225552254,
+        "scoring_time_ms": 67.75374999961059,
+        "compaction_events": 12,
+        "key_files": [
+          "CHANGELOG.txt",
+          "docs/reference/settings.md",
+          "docs/releases/7.3.md",
+          "docs/topics/images.md",
+          "wagtail/images/models.py"
+        ],
+        "retained_key_files": [
+          "CHANGELOG.txt",
+          "docs/reference/settings.md",
+          "docs/releases/7.3.md",
+          "docs/topics/images.md",
+          "wagtail/images/models.py"
+        ]
+      }
+    ]
+  }
+}
