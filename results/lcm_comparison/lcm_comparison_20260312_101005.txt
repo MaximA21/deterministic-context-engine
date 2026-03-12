@@ -1,0 +1,51 @@
+================================================================================
+LCM vs Deterministic Context Engine — Adversarial NIAH Benchmark
+================================================================================
+
+Setup: 10 sessions, 30 turns, 32768 token window
+       14 adversarial fillers/turn, 5 needles/session
+       Compression ratio: ~5x
+
+--------------------------------------------------------------------------------
+Metric                                 LCM DAG     Struct       BM25      Naive
+--------------------------------------------------------------------------------
+Active Retention Rate                   100.0%     100.0%      12.0%      28.0%
+Exact Retention Rate                    100.0%     100.0%      12.0%      28.0%
+Retrieval Rate (grep/store)             100.0%     100.0%      12.0%      28.0%
+Avg Compression Ratio                      5.4        4.9        5.4        3.1
+Avg Compaction Events                      9.1       10.0       10.3        0.0
+
+--------------------------------------------------------------------------------
+Per-Needle Active Retention:
+--------------------------------------------------------------------------------
+Needle                                 LCM DAG     Struct       BM25      Naive
+  needle_1                                100%       100%         0%         0%
+  needle_2                                100%       100%         0%         0%
+  needle_3                                100%       100%         0%        10%
+  needle_4                                100%       100%         0%        50%
+  needle_5                                100%       100%        60%        80%
+
+--------------------------------------------------------------------------------
+Analysis:
+--------------------------------------------------------------------------------
+
+  APPROACH COMPARISON:
+    LCM DAG (summarization):  100% active retention
+    Structural (scoring):     100% active retention
+    BM25 vanilla (scoring):   12% active retention
+
+  LCM and Structural achieve comparable retention.
+  Both approaches protect high-value content, but via different mechanisms:
+    - LCM: summarizes blocks, preserving unique sentences
+    - Structural: scores chunks by structural density, evicts low-value
+
+  KEY ARCHITECTURAL DIFFERENCES:
+    LCM:        Summarize + store originals. Costs LLM calls.
+    Structural: Score + evict. Zero LLM calls, <50ms decisions.
+
+  LCM RETRIEVABILITY (via lcm_grep): 100%
+  LCM's immutable store retains ALL originals regardless of compaction.
+  This is LCM's core advantage per the paper — eviction-based systems
+  permanently lose data, while LCM can always drill down to originals.
+
+================================================================================
