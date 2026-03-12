@@ -1,0 +1,1517 @@
+{
+  "timestamp": "20260312_2210",
+  "model": "gemini-3.1-flash-lite-preview",
+  "benchmark": "acc_dense",
+  "max_context_tokens": 32768,
+  "acc_interval": 10,
+  "acc_keep_recent": 3,
+  "results": [
+    {
+      "session_id": 0,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the answers to your questions:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3:00 AM UTC.\n3. **API rate limit:** It was increased from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez; she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.0278,
+      "input_tokens": 4947,
+      "output_tokens": 112,
+      "context_tokens": 5652,
+      "total_tokens_added": 28837,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 9265,
+          "tokens_after": 4301,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 14722,
+          "tokens_after": 5096,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.5158610343933105,
+          2.884634256362915,
+          2.5593161582946777
+        ],
+        "avg_consolidation_latency": 2.9866038163503013,
+        "total_consolidation_latency": 8.959811449050903,
+        "llm_input_tokens": 22477,
+        "llm_output_tokens": 2082,
+        "knowledge_block_tokens": 2228
+      }
+    },
+    {
+      "session_id": 0,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf\n2. **Database migration schedule:** March 15th at 3am UTC\n3. **API rate limit:** Changed to 250 requests per minute\n4. **New hire:** Elena Vasquez, who starts on Monday\n5. **Production server IP address:** 10.42.88.7",
+      "ttft": 0.9319,
+      "input_tokens": 15146,
+      "output_tokens": 95,
+      "context_tokens": 17747,
+      "total_tokens_added": 29318,
+      "compaction_events": 2,
+      "compaction_log": [
+        {
+          "turn": 24,
+          "tokens_before": 23446,
+          "tokens_after": 17573,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23445,
+          "tokens_after": 17616,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 0,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez, and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.0843,
+      "input_tokens": 24812,
+      "output_tokens": 107,
+      "context_tokens": 29141,
+      "total_tokens_added": 29010,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 1,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3:00 AM UTC.\n3. **API rate limit:** It was increased from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez; she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.0136,
+      "input_tokens": 5241,
+      "output_tokens": 111,
+      "context_tokens": 5869,
+      "total_tokens_added": 28658,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 9577,
+          "tokens_after": 4356,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 15660,
+          "tokens_after": 6116,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.355926990509033,
+          3.052962064743042,
+          3.2396092414855957
+        ],
+        "avg_consolidation_latency": 3.216166098912557,
+        "total_consolidation_latency": 9.648498296737671,
+        "llm_input_tokens": 22361,
+        "llm_output_tokens": 2236,
+        "knowledge_block_tokens": 2320
+      }
+    },
+    {
+      "session_id": 1,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit change:** It was changed from 100 to 250 requests per minute.\n4. **New hire:** Her name is Elena Vasquez and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.186,
+      "input_tokens": 18830,
+      "output_tokens": 111,
+      "context_tokens": 22211,
+      "total_tokens_added": 28723,
+      "compaction_events": 1,
+      "compaction_log": [
+        {
+          "turn": 25,
+          "tokens_before": 24031,
+          "tokens_after": 17388,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 1,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez, who starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.359,
+      "input_tokens": 24652,
+      "output_tokens": 107,
+      "context_tokens": 28999,
+      "total_tokens_added": 28868,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 2,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1.  **Secret project codename:** Operation Maple Leaf.\n2.  **Database migration schedule:** March 15th, 3am UTC.\n3.  **API rate limit:** It was increased from 100 to 250 requests per minute.\n4.  **New hire:** Elena Vasquez, who starts this coming Monday.\n5.  **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.063,
+      "input_tokens": 4192,
+      "output_tokens": 114,
+      "context_tokens": 4723,
+      "total_tokens_added": 29324,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 11353,
+          "tokens_after": 5249,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 15237,
+          "tokens_after": 4185,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          2.9801411628723145,
+          2.8295650482177734,
+          3.464576005935669
+        ],
+        "avg_consolidation_latency": 3.0914274056752524,
+        "total_consolidation_latency": 9.274282217025757,
+        "llm_input_tokens": 24024,
+        "llm_output_tokens": 2222,
+        "knowledge_block_tokens": 2333
+      }
+    },
+    {
+      "session_id": 2,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3"
+      ],
+      "recall_score": 2,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1. **What is the secret project codename?**\n   There was no mention of a secret project codename in our conversation.\n\n2. **When is the database migration scheduled?**\n   The database migration does not have a specific date; it is instructed to be run during a maintenance window only.\n\n3. **What was the API rate limit changed to?**\n   The provided code for the `AuthManager` shows the `RateLimiter` initialized with `max_requests=100`. There is no mention of this value being changed.\n\n4. **What is the new hire's name and when does she start?**\n   The new hire's name is Elena Vasquez, and she starts on Monday.\n\n5. **What is the production server IP address?**\n   The production server IP address is 10.42.88.7.",
+      "ttft": 4.8387,
+      "input_tokens": 15074,
+      "output_tokens": 203,
+      "context_tokens": 17784,
+      "total_tokens_added": 28850,
+      "compaction_events": 2,
+      "compaction_log": [
+        {
+          "turn": 22,
+          "tokens_before": 23141,
+          "tokens_after": 17387,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23096,
+          "tokens_after": 17653,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 2,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed to 250 requests per minute.\n4. **New hire:** Her name is Elena Vasquez and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.0772,
+      "input_tokens": 25130,
+      "output_tokens": 104,
+      "context_tokens": 29267,
+      "total_tokens_added": 29136,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 3,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the answers to your questions:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th, 3am UTC.\n3. **API rate limit change:** It was increased from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez; she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.032,
+      "input_tokens": 5153,
+      "output_tokens": 110,
+      "context_tokens": 5823,
+      "total_tokens_added": 29237,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 8244,
+          "tokens_after": 5176,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 15637,
+          "tokens_after": 6081,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          2.9512901306152344,
+          3.1888298988342285,
+          3.339148759841919
+        ],
+        "avg_consolidation_latency": 3.1597562630971274,
+        "total_consolidation_latency": 9.479268789291382,
+        "llm_input_tokens": 22713,
+        "llm_output_tokens": 2095,
+        "knowledge_block_tokens": 2271
+      }
+    },
+    {
+      "session_id": 3,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** Changed from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez, who starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.261,
+      "input_tokens": 15094,
+      "output_tokens": 105,
+      "context_tokens": 17625,
+      "total_tokens_added": 29018,
+      "compaction_events": 2,
+      "compaction_log": [
+        {
+          "turn": 24,
+          "tokens_before": 23406,
+          "tokens_after": 17943,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23555,
+          "tokens_after": 17494,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 3,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf\n2. **Database migration schedule:** March 15th at 3am UTC\n3. **API rate limit:** Changed from 100 to 250 requests per minute\n4. **New hire:** Elena Vasquez, who starts on Monday\n5. **Production server IP address:** 10.42.88.7",
+      "ttft": 1.2951,
+      "input_tokens": 24634,
+      "output_tokens": 100,
+      "context_tokens": 29243,
+      "total_tokens_added": 29112,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 4,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th, 3am UTC.\n3. **API rate limit:** It was updated to 250 requests per minute (previously 100).\n4. **New hire:** Elena Vasquez; she starts this coming Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.2517,
+      "input_tokens": 5288,
+      "output_tokens": 110,
+      "context_tokens": 5912,
+      "total_tokens_added": 28784,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 10591,
+          "tokens_after": 4294,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 12329,
+          "tokens_after": 3814,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          6.899183988571167,
+          2.8421778678894043,
+          3.049687147140503
+        ],
+        "avg_consolidation_latency": 4.263683001200358,
+        "total_consolidation_latency": 12.791049003601074,
+        "llm_input_tokens": 22065,
+        "llm_output_tokens": 2119,
+        "knowledge_block_tokens": 2310
+      }
+    },
+    {
+      "session_id": 4,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf\n2. **Database migration schedule:** March 15th at 3am UTC\n3. **API rate limit:** Changed from 100 to 250 requests per minute\n4. **New hire:** Elena Vasquez, who starts on Monday\n5. **Production server IP address:** 10.42.88.7",
+      "ttft": 1.3038,
+      "input_tokens": 15501,
+      "output_tokens": 99,
+      "context_tokens": 17854,
+      "total_tokens_added": 29757,
+      "compaction_events": 2,
+      "compaction_log": [
+        {
+          "turn": 24,
+          "tokens_before": 23843,
+          "tokens_after": 17533,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23447,
+          "tokens_after": 17723,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 4,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit change:** It was changed from 100 to 250 requests per minute.\n4. **New hire details:** Her name is Elena Vasquez and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.2045,
+      "input_tokens": 25194,
+      "output_tokens": 113,
+      "context_tokens": 29439,
+      "total_tokens_added": 29308,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 5,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1.  **Secret project codename:** Operation Maple Leaf.\n2.  **Database migration schedule:** March 15th at 3:00 AM UTC.\n3.  **API rate limit change:** It was increased from 100 to 250 requests per minute.\n4.  **New hire:** Elena Vasquez; she starts this coming Monday.\n5.  **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.3525,
+      "input_tokens": 5361,
+      "output_tokens": 118,
+      "context_tokens": 6032,
+      "total_tokens_added": 28691,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 11417,
+          "tokens_after": 5345,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 13395,
+          "tokens_after": 3931,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          2.9910149574279785,
+          2.985517740249634,
+          3.082401752471924
+        ],
+        "avg_consolidation_latency": 3.019644816716512,
+        "total_consolidation_latency": 9.058934450149536,
+        "llm_input_tokens": 21727,
+        "llm_output_tokens": 2144,
+        "knowledge_block_tokens": 2285
+      }
+    },
+    {
+      "session_id": 5,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed from 100 to 250 requests per minute.\n4. **New hire:** Her name is Elena Vasquez and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.1631,
+      "input_tokens": 16455,
+      "output_tokens": 110,
+      "context_tokens": 18983,
+      "total_tokens_added": 30605,
+      "compaction_events": 2,
+      "compaction_log": [
+        {
+          "turn": 23,
+          "tokens_before": 23571,
+          "tokens_after": 17709,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23406,
+          "tokens_after": 17515,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 5,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed from 100 to 250 requests per minute.\n4. **New hire:** Her name is Elena Vasquez and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.2254,
+      "input_tokens": 24884,
+      "output_tokens": 111,
+      "context_tokens": 29118,
+      "total_tokens_added": 28987,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 6,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th, 3am UTC.\n3. **API rate limit:** It was updated to 250 requests/minute (previously 100).\n4. **New hire:** Elena Vasquez; she starts this coming Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.0236,
+      "input_tokens": 5507,
+      "output_tokens": 110,
+      "context_tokens": 6124,
+      "total_tokens_added": 29214,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 10430,
+          "tokens_after": 3065,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 12311,
+          "tokens_after": 5027,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.1843101978302,
+          3.5245070457458496,
+          3.0626258850097656
+        ],
+        "avg_consolidation_latency": 3.257147709528605,
+        "total_consolidation_latency": 9.771443128585815,
+        "llm_input_tokens": 22425,
+        "llm_output_tokens": 2115,
+        "knowledge_block_tokens": 2176
+      }
+    },
+    {
+      "session_id": 6,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed from 100 to 250 requests per minute.\n4. **New hire:** Her name is Elena Vasquez and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.1066,
+      "input_tokens": 15508,
+      "output_tokens": 110,
+      "context_tokens": 17996,
+      "total_tokens_added": 29867,
+      "compaction_events": 2,
+      "compaction_log": [
+        {
+          "turn": 23,
+          "tokens_before": 23953,
+          "tokens_after": 17593,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23507,
+          "tokens_after": 17865,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 6,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez, and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.0976,
+      "input_tokens": 24863,
+      "output_tokens": 107,
+      "context_tokens": 29018,
+      "total_tokens_added": 28887,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 7,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1.  **Secret project codename:** Operation Maple Leaf.\n2.  **Database migration schedule:** March 15th at 3:00 AM UTC.\n3.  **API rate limit:** It was changed to 250 requests/minute (previously 100).\n4.  **New hire:** Her name is Elena Vasquez, and she starts on Monday.\n5.  **Production server IP address:** 10.42.88.7.",
+      "ttft": 0.9559,
+      "input_tokens": 4292,
+      "output_tokens": 121,
+      "context_tokens": 4819,
+      "total_tokens_added": 29767,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 10606,
+          "tokens_after": 5543,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 17632,
+          "tokens_after": 6495,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.2568249702453613,
+          2.9750421047210693,
+          3.397976875305176
+        ],
+        "avg_consolidation_latency": 3.2099479834238687,
+        "total_consolidation_latency": 9.629843950271606,
+        "llm_input_tokens": 24049,
+        "llm_output_tokens": 2142,
+        "knowledge_block_tokens": 2314
+      }
+    },
+    {
+      "session_id": 7,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed to 250 requests per minute.\n4. **New hire:** Her name is Elena Vasquez and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.2359,
+      "input_tokens": 18534,
+      "output_tokens": 105,
+      "context_tokens": 22084,
+      "total_tokens_added": 28557,
+      "compaction_events": 1,
+      "compaction_log": [
+        {
+          "turn": 22,
+          "tokens_before": 24033,
+          "tokens_after": 17429,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 7,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** Changed from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez, who starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.0358,
+      "input_tokens": 25788,
+      "output_tokens": 105,
+      "context_tokens": 29589,
+      "total_tokens_added": 29458,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 8,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the answers to your questions:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3:00 AM UTC.\n3. **API rate limit change:** It was increased from 100 to 250 requests per minute.\n4. **New hire:** Her name is Elena Vasquez, and she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.1164,
+      "input_tokens": 5431,
+      "output_tokens": 116,
+      "context_tokens": 6101,
+      "total_tokens_added": 29217,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 9286,
+          "tokens_after": 3064,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 13498,
+          "tokens_after": 6064,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.10475492477417,
+          2.7559900283813477,
+          3.071760892868042
+        ],
+        "avg_consolidation_latency": 2.97750194867452,
+        "total_consolidation_latency": 8.93250584602356,
+        "llm_input_tokens": 22319,
+        "llm_output_tokens": 2186,
+        "knowledge_block_tokens": 2352
+      }
+    },
+    {
+      "session_id": 8,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf\n2. **Database migration schedule:** March 15th at 3am UTC\n3. **API rate limit:** Changed from 100 to 250 requests per minute\n4. **New hire:** Elena Vasquez, who starts on Monday\n5. **Production server IP address:** 10.42.88.7",
+      "ttft": 1.0505,
+      "input_tokens": 15598,
+      "output_tokens": 100,
+      "context_tokens": 18098,
+      "total_tokens_added": 29786,
+      "compaction_events": 2,
+      "compaction_log": [
+        {
+          "turn": 24,
+          "tokens_before": 24051,
+          "tokens_after": 17760,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23495,
+          "tokens_after": 17967,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 8,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez, who starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.2131,
+      "input_tokens": 25690,
+      "output_tokens": 107,
+      "context_tokens": 29647,
+      "total_tokens_added": 29516,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 9,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the answers to your questions:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was updated to 250 requests per minute (previously 100).\n4. **New hire:** Elena Vasquez; she starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 0.884,
+      "input_tokens": 5041,
+      "output_tokens": 110,
+      "context_tokens": 5776,
+      "total_tokens_added": 29263,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 8566,
+          "tokens_after": 4389,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 15874,
+          "tokens_after": 6083,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.0905752182006836,
+          3.4350929260253906,
+          3.103670120239258
+        ],
+        "avg_consolidation_latency": 3.209779421488444,
+        "total_consolidation_latency": 9.629338264465332,
+        "llm_input_tokens": 23139,
+        "llm_output_tokens": 2239,
+        "knowledge_block_tokens": 2330
+      }
+    },
+    {
+      "session_id": 9,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf\n2. **Database migration schedule:** March 15th at 3am UTC\n3. **API rate limit:** Changed from 100 to 250 requests per minute\n4. **New hire:** Elena Vasquez, who starts on Monday\n5. **Production server IP address:** 10.42.88.7",
+      "ttft": 1.2629,
+      "input_tokens": 15108,
+      "output_tokens": 99,
+      "context_tokens": 17675,
+      "total_tokens_added": 29155,
+      "compaction_events": 2,
+      "compaction_log": [
+        {
+          "turn": 23,
+          "tokens_before": 23286,
+          "tokens_after": 17359,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23228,
+          "tokens_after": 17544,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 9,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "recall_score": 5,
+      "total_needles": 5,
+      "answer": "Based on our conversation history, here are the details you requested:\n\n1. **Secret project codename:** Operation Maple Leaf.\n2. **Database migration schedule:** March 15th at 3am UTC.\n3. **API rate limit:** It was changed from 100 to 250 requests per minute.\n4. **New hire:** Elena Vasquez, who starts on Monday.\n5. **Production server IP address:** 10.42.88.7.",
+      "ttft": 1.142,
+      "input_tokens": 24793,
+      "output_tokens": 107,
+      "context_tokens": 29284,
+      "total_tokens_added": 29153,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    }
+  ]
+}

@@ -1,0 +1,1942 @@
+{
+  "timestamp": "20260312_2217",
+  "model": "gemini-3.1-flash-lite-preview",
+  "benchmark": "acc_boilerplate",
+  "max_context_tokens": 32768,
+  "acc_interval": 10,
+  "acc_keep_recent": 3,
+  "fillers_per_turn": 27,
+  "results": [
+    {
+      "session_id": 0,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_4"
+      ],
+      "recall_score": 4,
+      "total_needles": 5,
+      "answer": "Based on the provided knowledge blocks, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema\nThe provided documentation does not contain a schema definition for `/api/v2/orders`. However, the **API Contracts** section (Knowledge Block 1) specifies:\n*   **Requirement:** The endpoint requires an `idempotency_key` (client-generated UUID v4).\n\n### 2. Billing Service Deploy Command\nThe documentation does not provide a specific `kubectl` command for a \"billing-service\". It does, however, specify the following for **Billing Deployments** (Knowledge Block 1):\n*   **Requirement:** Must use `--server-side --force-conflicts`.\n*   **Field Manager:** Must be `ci-deployer`.\n\n### 3. SQL CREATE TABLE for Billing Events\nThe provided documentation does not contain a `CREATE TABLE` statement for `billing_events`. It lists `billing_events` as a database table in the **System Configuration & Migration Log** (Knowledge Block 2), but no schema or unique constraint details are provided in the text.\n\n### 4. Stripe Integration Env Vars\nThe documentation does not provide a full list of Stripe integration environment variables. It specifies the following (Knowledge Block 3):\n*   **Tolerance:** `STRIPE_WEBHOOK_TOLERANCE_SECONDS` must be set to `300`.\n*   **Secret:** The provided text does not contain an exact `STRIPE_WEBHOOK_SECRET` value (it lists other secrets like `TWILIO_WEBHOOK_SECRET=whsec_940731`).\n\n### 5. Payment Retry Error Template\nThe documentation specifies the following for payment retry exhaustion (Knowledge Block 3):\n*   **Error Code:** `PAY-4012-RETRY-EXHAUSTED`\n*   **Requirement:** This is the mandatory code for PagerDuty escalation on payment retries.",
+      "ttft": 2.3143,
+      "input_tokens": 14549,
+      "output_tokens": 419,
+      "context_tokens": 15018,
+      "total_tokens_added": 97934,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 31707,
+          "tokens_after": 13033,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 48006,
+          "tokens_after": 13809,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          4.440526962280273,
+          5.023149251937866,
+          3.7198641300201416
+        ],
+        "avg_consolidation_latency": 4.394513448079427,
+        "total_consolidation_latency": 13.183540344238281,
+        "llm_input_tokens": 85297,
+        "llm_output_tokens": 2941,
+        "knowledge_block_tokens": 3092
+      }
+    },
+    {
+      "session_id": 0,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "recall_score": 1,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\nThe provided conversation history **does not contain** a schema definition for `/api/v2/orders`. It contains schemas for `/api/v2/products`, `/api/v2/reviews`, `/api/v2/webhooks`, `/api/v2/inventory`, `/api/v2/disputes`, `/api/v2/refunds`, `/api/v2/subscriptions`, `/api/v2/users`, `/api/v2/returns`, `/api/v2/payments`, `/api/v2/coupons`, and `/api/v2/invoices`.\n\n**2. kubectl deploy command for the billing service**\nThe provided conversation history **does not contain** a deploy command for a \"billing service.\" It contains deploy commands for `email-service`, `analytics-service`, `gateway-service`, `reporting-service`, `auth-service`, and `logging-service`.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe provided conversation history **does not contain** a `CREATE TABLE` statement for \"billing events.\" It contains `CREATE TABLE` statements for `rate_limit_counters`, `notification_logs`, `webhook_deliveries_partitioned`, `feature_flags`, `user_sessions`, `search_indexes`, and `migration_history_partitioned`.\n\n**4. Stripe integration env vars**\nThe provided conversation history **does not contain** environment variables for \"Stripe integration\" or a `STRIPE_WEBHOOK_SECRET`. It contains environment variables for `SendGrid`, `Segment`, `Amplitude`, `Datadog`, and `LaunchDarkly`.\n\n**5. Payment retry error template**\nThe exact template provided in the conversation (Turn 22) is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact `ERROR_CODE` is **PAY-4012-RETRY-EXHAUSTED**.",
+      "ttft": 2.463,
+      "input_tokens": 19384,
+      "output_tokens": 561,
+      "context_tokens": 19845,
+      "total_tokens_added": 97933,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 7,
+          "tokens_before": 23683,
+          "tokens_after": 16026,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 24050,
+          "tokens_after": 16234,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23874,
+          "tokens_after": 16219,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 24005,
+          "tokens_after": 16310,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 24134,
+          "tokens_after": 16277,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23994,
+          "tokens_after": 16186,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 24093,
+          "tokens_after": 15510,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23506,
+          "tokens_after": 15799,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23462,
+          "tokens_after": 15646,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23380,
+          "tokens_after": 15666,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 0,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\nThe provided conversation history **does not contain** an `/api/v2/orders` response schema. It contains schemas for `/api/v2/products`, `/api/v2/reviews`, `/api/v2/webhooks`, `/api/v2/inventory`, `/api/v2/disputes`, `/api/v2/payments`, `/api/v2/notifications`, `/api/v2/subscriptions`, `/api/v2/invoices`, `/api/v2/returns`, `/api/v2/analytics`, and `/api/v2/coupons`.\n\n**2. kubectl deploy command for the billing service**\nThe provided conversation history **does not contain** a deploy command for a \"billing service.\" It contains deploy commands for `email-service`, `inventory-service`, `search-service`, `gateway-service`, `analytics-service`, `reporting-service`, and `auth-service`.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe provided conversation history **does not contain** a table named `billing_events`. It contains `CREATE TABLE` statements for `rate_limit_counters`, `notification_logs`, `webhook_deliveries_partitioned`, `cache_entries_partitioned`, `webhook_deliveries`, `access_tokens`, `inventory_snapshots_partitioned`, `feature_flags`, `api_request_logs_partitioned`, `migration_history_partitioned`, `email_templates`, `user_sessions`, and `search_indexes`.\n\n**4. Stripe integration env vars**\nThe Stripe integration environment variables are:\n```\nSTRIPE_API_KEY=sk_live_51N8xYZABCdef_payments_v2_prod\nSTRIPE_WEBHOOK_SECRET=whsec_8kLmN3pQrStUvWxYz\nSTRIPE_CONNECT_CLIENT_ID=ca_HjKlMnOpQrStUv\nSTRIPE_PAYMENT_METHODS=card,us_bank_account,sepa_debit\nSTRIPE_WEBHOOK_TOLERANCE_SECONDS=300\nSTRIPE_IDEMPOTENCY_TTL_HOURS=48\nSTRIPE_MAX_RETRY_ATTEMPTS=5\nSTRIPE_RETRY_BACKOFF_BASE_MS=1000\n```\nThe exact `STRIPE_WEBHOOK_SECRET` value is `whsec_8kLmN3pQrStUvWxYz`.\n\n**5. Payment retry error template**\nThe exact template and error code are:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact `ERROR_CODE` is `PAY-4012-RETRY-EXHAUSTED`.",
+      "ttft": 3.0326,
+      "input_tokens": 30974,
+      "output_tokens": 744,
+      "context_tokens": 31685,
+      "total_tokens_added": 97931,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 1,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_3",
+        "needle_4"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the provided knowledge blocks, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema & Requirements\n*   **Requirement:** The `/api/v2/orders` endpoint **MUST** include an `idempotency_key` (client-generated UUID v4). This is a **CRITICAL** requirement to ensure request deduplication.\n*   **Schema:** (Note: The provided knowledge blocks contain schemas for `/api/v2/inventory`, `/api/v2/subscriptions`, `/api/v2/payments`, `/api/v2/disputes`, `/api/v2/reviews`, `/api/v2/invoices`, and `/api/v2/users`, but do not explicitly list a full JSON schema block for `/api/v2/orders` beyond the mandatory `idempotency_key` requirement).\n\n### 2. Billing Service Deploy Command\n*   **Command:** `kubectl apply -f deploy/billing-v2.yaml --server-side --force-conflicts`\n*   **Field Manager:** `field-manager=ci-deployer` (This is mandatory to avoid HPA ownership conflicts).\n\n### 3. SQL CREATE TABLE for Billing Events\n*   **Statement:** The provided logs do not contain a `CREATE TABLE` statement specifically named \"billing events.\" However, the `report_schedules` table (often associated with billing/reporting) is defined as:\n    ```sql\n    CREATE TABLE report_schedules (\n        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n        tenant_id UUID NOT NULL REFERENCES users(id),\n        event_type VARCHAR(48) NOT NULL,\n        payload JSONB NOT NULL DEFAULT '{}',\n        amount_cents INTEGER,\n        currency VARCHAR(3) DEFAULT 'USD',\n        status VARCHAR(20) NOT NULL DEFAULT 'pending',\n        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),\n        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()\n    );\n    ```\n\n### 4. Stripe Integration Env Vars\n*   **Tolerance:** `STRIPE_WEBHOOK_TOLERANCE_SECONDS=300` (5 minutes).\n*   **Secret:** The provided knowledge blocks do not contain a specific hardcoded value for `STRIPE_WEBHOOK_SECRET` (it is typically managed via AWS Secrets Manager).\n\n### 5. Payment Retry Error Template\n*   **Error Code:** `PAY-4012-RETRY-EXHAUSTED`\n*   **Template:**\n    ```\n    ERROR_CODE: PAY-4012-RETRY-EXHAUSTED\n    SEVERITY: critical\n    MESSAGE: Payment retry exhausted for {resource_type} {resource_id} after {retry_count} attempts. Last error: {last_error}. Trace ID: {trace_id}. Customer impact: outage.\n    ACTION: Escalate to PagerDuty. Do NOT manually retry \u2014 check idempotency/deduplication status first.\n    ```\n    *(Note: While the specific template text for `PAY-4012` is referenced as the mandatory format for payment retries in the knowledge block, the exact message body is derived from the standard retry exhaustion patterns provided in the logs).*",
+      "ttft": 3.3605,
+      "input_tokens": 14328,
+      "output_tokens": 709,
+      "context_tokens": 14813,
+      "total_tokens_added": 97875,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 31706,
+          "tokens_after": 13019,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 51676,
+          "tokens_after": 17457,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          4.2216880321502686,
+          4.773319244384766,
+          4.494521141052246
+        ],
+        "avg_consolidation_latency": 4.496509472529094,
+        "total_consolidation_latency": 13.48952841758728,
+        "llm_input_tokens": 85213,
+        "llm_output_tokens": 2731,
+        "knowledge_block_tokens": 2907
+      }
+    },
+    {
+      "session_id": 1,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [],
+      "needles_recalled": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact details requested:\n\n1. **Regarding the `/api/v2/orders` response schema:**\n   There is no `/api/v2/orders` schema defined in the provided conversation history. The history contains schemas for `/api/v2/webhooks`, `/api/v2/coupons`, `/api/v2/subscriptions`, `/api/v2/refunds`, `/api/v2/returns`, `/api/v2/invoices`, `/api/v2/inventory`, `/api/v2/notifications`, `/api/v2/products`, `/api/v2/reviews`, and `/api/v2/payments`.\n\n2. **Regarding the `kubectl` deploy command for the billing service:**\n   There is no `kubectl` deploy command for a \"billing service\" in the provided conversation history. The history contains deploy commands for `inventory-service`, `auth-service`, `cache-service`, `search-service`, and `notification-service`.\n\n3. **Regarding the SQL `CREATE TABLE` statement for billing events:**\n   There is no `CREATE TABLE` statement for \"billing events\" in the provided conversation history. The history contains `CREATE TABLE` statements for `migration_history`, `search_indexes`, `notification_logs_partitioned`, `report_schedules`, `cache_entries`, and `job_schedules_partitioned`.\n\n4. **Regarding the Stripe integration env vars:**\n   There are no Stripe integration environment variables or a `STRIPE_WEBHOOK_SECRET` defined in the provided conversation history. The history contains environment variables for `Elasticsearch`, `Mixpanel`, and `CloudWatch` integrations.\n\n5. **Regarding the payment retry error template:**\n   There is no \"payment retry\" error template defined in the provided conversation history. The history contains retry exhaustion templates for `email-service` (`TOUT-6606-RETRY-EXHAUSTED`), `cache-service` (`CONF-1797-RETRY-EXHAUSTED`), `logging-service` (`CONN-1662-RETRY-EXHAUSTED` and `QUEUE-1078-RETRY-EXHAUSTED`), and `auth-service` (`SEARCH-9510-RETRY-EXHAUSTED`).",
+      "ttft": 2.2831,
+      "input_tokens": 19136,
+      "output_tokens": 503,
+      "context_tokens": 19558,
+      "total_tokens_added": 97876,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 8,
+          "tokens_before": 24011,
+          "tokens_after": 16333,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 24028,
+          "tokens_after": 16259,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23886,
+          "tokens_after": 16116,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23901,
+          "tokens_after": 16280,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 24081,
+          "tokens_after": 16307,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 24059,
+          "tokens_after": 16228,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23920,
+          "tokens_after": 16290,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 24465,
+          "tokens_after": 15560,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23225,
+          "tokens_after": 15450,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23182,
+          "tokens_after": 15397,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 1,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\nThe provided conversation history **does not contain** a schema definition for `/api/v2/orders`. It contains schemas for `/api/v2/subscriptions`, `/api/v2/inventory`, `/api/v2/coupons`, `/api/v2/disputes`, `/api/v2/webhooks`, `/api/v2/reviews`, `/api/v2/notifications`, `/api/v2/refunds`, `/api/v2/returns`, `/api/v2/invoices`, and `/api/v2/products`.\n\n**2. kubectl deploy command for the billing service**\nThe provided conversation history **does not contain** a deploy command specifically for a \"billing service.\"\n\n**3. SQL CREATE TABLE statement for billing events**\nThe provided conversation history **does not contain** a table named `billing_events`. It contains `CREATE TABLE` statements for `user_sessions`, `audit_events`, `migration_history`, `search_indexes`, `cache_entries`, and `report_schedules`.\n\n**4. Stripe integration env vars**\nThe Stripe integration environment variables are defined in Turn 21:\n```\nSTRIPE_API_KEY=sk_live_51N8xYZABCdef_payments_v2_prod\nSTRIPE_WEBHOOK_SECRET=whsec_8kLmN3pQrStUvWxYz\nSTRIPE_CONNECT_CLIENT_ID=ca_HjKlMnOpQrStUv\nSTRIPE_PAYMENT_METHODS=card,us_bank_account,sepa_debit\nSTRIPE_WEBHOOK_TOLERANCE_SECONDS=300\nSTRIPE_IDEMPOTENCY_TTL_HOURS=48\nSTRIPE_MAX_RETRY_ATTEMPTS=5\nSTRIPE_RETRY_BACKOFF_BASE_MS=1000\n```\n*Note: The `STRIPE_WEBHOOK_TOLERANCE_SECONDS=300` is critical to prevent verification failures during peak load.*\n\n**5. Payment retry error template**\nThe exact template defined in Turn 24 is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact `ERROR_CODE` is **`PAY-4012-RETRY-EXHAUSTED`**.",
+      "ttft": 2.4936,
+      "input_tokens": 30931,
+      "output_tokens": 655,
+      "context_tokens": 31618,
+      "total_tokens_added": 97877,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 2,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "recall_score": 2,
+      "total_needles": 5,
+      "answer": "Based on the provided knowledge blocks, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema & Requirement\n*   **Requirement:** The `/api/v2/orders` endpoint **requires** an `idempotency_key` (client-generated UUID v4). This was agreed upon on February 12th to ensure safe retries and prevent duplicate processing.\n*   **Schema:** (Note: The provided knowledge blocks define schemas for `products`, `shipments`, `disputes`, `users`, `notifications`, `webhooks`, and `inventory`, but do not explicitly list the JSON structure for `/api/v2/orders` beyond the mandatory `idempotency_key` requirement).\n\n### 2. Kubectl Deploy Command for Billing Service\nThe provided logs do not contain a specific `deploy/billing-v2.yaml` command with a unique field manager. However, based on the pattern for service updates, the command structure is:\n`kubectl apply -f deploy/billing-v2.yaml --namespace=production-east --server-side --force-conflicts --field-manager=helm-operator --prune --selector=app.kubernetes.io/part-of=scheduler-service --dry-run=client --validate=warn`\n*(Note: Ensure `KUBECONFIG` points to the correct cluster).*\n\n### 3. SQL CREATE TABLE for Billing Events\nThe knowledge block defines the `access_tokens` table (often used for billing/event tracking). The SQL is:\n```sql\nCREATE TABLE access_tokens (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    account_id UUID NOT NULL REFERENCES accounts(id),\n    event_type VARCHAR(44) NOT NULL,\n    payload JSONB NOT NULL DEFAULT '{}',\n    amount_cents INTEGER,\n    currency VARCHAR(3) DEFAULT 'USD',\n    status VARCHAR(20) NOT NULL DEFAULT 'pending',\n    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),\n    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n```\n*   **Unique Constraint:** The `id` field is the `PRIMARY KEY`.\n\n### 4. Stripe Integration Env Vars\n*   **Tolerance:** `STRIPE_WEBHOOK_TOLERANCE_SECONDS=300` (Mandatory).\n*   **Secret:** The provided logs do not contain the literal string value for `STRIPE_WEBHOOK_SECRET` (it is managed via AWS Secrets Manager/SSM).\n*   **Key:** `STRIPE_API_KEY` (Stored in AWS Secrets Manager, regions: `us-east-1`, `eu-west-1`, `ap-southeast-1`).\n\n### 5. Payment Retry Error Template\nThe exact template required for payment retries is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\n*   **Exact ERROR_CODE:** `PAY-4012-RETRY-EXHAUSTED`",
+      "ttft": 3.3835,
+      "input_tokens": 10902,
+      "output_tokens": 773,
+      "context_tokens": 11329,
+      "total_tokens_added": 97855,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 38818,
+          "tokens_after": 16331,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 47873,
+          "tokens_after": 10251,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          4.543992757797241,
+          5.186189889907837,
+          3.9342949390411377
+        ],
+        "avg_consolidation_latency": 4.554825862248738,
+        "total_consolidation_latency": 13.664477586746216,
+        "llm_input_tokens": 88785,
+        "llm_output_tokens": 2899,
+        "knowledge_block_tokens": 3041
+      }
+    },
+    {
+      "session_id": 2,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_4"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\nThe schema must follow this exact format:\n```json\n{\n  \"order_id\": \"string (UUID v4)\",\n  \"status\": \"pending | confirmed | shipped | delivered | cancelled\",\n  \"customer_id\": \"string (UUID v4)\",\n  \"line_items\": [{\"sku\": \"string\", \"quantity\": \"integer\", \"unit_price_cents\": \"integer\"}],\n  \"subtotal_cents\": \"integer\",\n  \"tax_cents\": \"integer\",\n  \"shipping_cents\": \"integer\",\n  \"total_cents\": \"integer\",\n  \"currency\": \"ISO 4217 (e.g. USD)\",\n  \"idempotency_key\": \"string (client-generated UUID v4)\",\n  \"created_at\": \"ISO 8601\",\n  \"updated_at\": \"ISO 8601\"\n}\n```\nThe `idempotency_key` field is **REQUIRED** and must be a client-generated UUID v4, as agreed upon in the API contract review on February 12th.\n\n**2. kubectl deploy command for the billing service**\nThe conversation history does not contain a \"billing service\" deploy command. It contains deploy commands for `auth-service`, `user-service`, `inventory-service`, `logging-service`, and `scheduler-service`.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe conversation history does not contain a table named `billing_events`. It contains `CREATE TABLE` statements for `feature_flags_partitioned`, `report_schedules`, `access_tokens`, `search_indexes`, `inventory_snapshots`, `email_templates_partitioned`, and `user_sessions_partitioned`.\n\n**4. Stripe integration env vars**\nThe conversation history does not contain any environment variables for \"Stripe\" or a `STRIPE_WEBHOOK_SECRET`.\n\n**5. Payment retry error template**\nThe exact format and error code are as follows:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact `ERROR_CODE` is `PAY-4012-RETRY-EXHAUSTED`.",
+      "ttft": 2.4647,
+      "input_tokens": 19555,
+      "output_tokens": 626,
+      "context_tokens": 19979,
+      "total_tokens_added": 97855,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23507,
+          "tokens_after": 15716,
+          "events": 1
+        },
+        {
+          "turn": 8,
+          "tokens_before": 23401,
+          "tokens_after": 15685,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23312,
+          "tokens_after": 15695,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23470,
+          "tokens_after": 15740,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23557,
+          "tokens_after": 15835,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23558,
+          "tokens_after": 15741,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23967,
+          "tokens_after": 16339,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 24088,
+          "tokens_after": 16365,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 24212,
+          "tokens_after": 15600,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "tokens_before": 23327,
+          "tokens_after": 15587,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 2,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\n*Note: The provided history does not contain a schema for `/api/v2/orders`. It contains schemas for `/api/v2/subscriptions`, `/api/v2/invoices`, `/api/v2/coupons`, `/api/v2/shipments`, `/api/v2/notifications`, `/api/v2/payments`, `/api/v2/refunds`, `/api/v2/users`, `/api/v2/products`, `/api/v2/inventory`, `/api/v2/webhooks`, and `/api/v2/reviews`.*\n\n**2. kubectl deploy command for the billing service**\n*Note: The provided history does not contain a deploy command specifically for a \"billing service.\" It contains deploy commands for `notification-service`, `user-service`, `auth-service`, `inventory-service`, `gateway-service`, `logging-service`, and `analytics-service`.*\n\n**3. SQL CREATE TABLE statement for billing events**\n*Note: The provided history does not contain a table named `billing_events`. It contains `CREATE TABLE` statements for `user_sessions`, `access_tokens`, `notification_logs`, `report_schedules`, `cache_entries`, and `inventory_snapshots`.*\n\n**4. Stripe integration env vars**\nThe Stripe integration environment variables must be set exactly as follows:\n```\nSTRIPE_API_KEY=sk_live_51N8xYZABCdef_payments_v2_prod\nSTRIPE_WEBHOOK_SECRET=whsec_8kLmN3pQrStUvWxYz\nSTRIPE_CONNECT_CLIENT_ID=ca_HjKlMnOpQrStUv\nSTRIPE_PAYMENT_METHODS=card,us_bank_account,sepa_debit\nSTRIPE_WEBHOOK_TOLERANCE_SECONDS=300\nSTRIPE_IDEMPOTENCY_TTL_HOURS=48\nSTRIPE_MAX_RETRY_ATTEMPTS=5\nSTRIPE_RETRY_BACKOFF_BASE_MS=1000\n```\n*Critical Note:* `STRIPE_WEBHOOK_TOLERANCE_SECONDS=300` is required because the default of 30s causes webhook signature verification failures during peak load when event delivery is delayed.\n\n**5. Payment retry error template**\nThe exact template is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\n*Critical Note:* The exact `ERROR_CODE` is `PAY-4012-RETRY-EXHAUSTED`. This code triggers the automatic PagerDuty escalation policy.",
+      "ttft": 3.5903,
+      "input_tokens": 30941,
+      "output_tokens": 726,
+      "context_tokens": 31612,
+      "total_tokens_added": 97856,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 3,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the provided knowledge blocks, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\n*Note: The provided knowledge blocks do not contain a schema definition for `/api/v2/orders`. They contain schemas for `/api/v2/shipments`, `/api/v2/refunds`, `/api/v2/disputes`, `/api/v2/analytics`, `/api/v2/coupons`, `/api/v2/invoices`, `/api/v2/webhooks`, `/api/v2/payments`, and `/api/v2/users`.*\n\n**2. kubectl deploy command for the billing service**\n*Note: The provided knowledge blocks do not contain a specific `kubectl apply` command for `billing-v2.yaml`. They contain commands for `logging-service.yaml`, `auth-service.yaml`, and `email-service.yaml`.*\n\n**3. SQL CREATE TABLE statement for billing events**\n*Note: The provided knowledge blocks do not contain a `CREATE TABLE` statement for `billing_events`. They contain statements for `audit_events`, `webhook_deliveries`, `notification_logs`, and `email_templates_partitioned`.*\n\n**4. Stripe integration env vars**\n*   `STRIPE_API_KEY=sk_live_51N8xYZABCdef_payments_v2_prod`\n*   `STRIPE_WEBHOOK_SECRET=whsec_8kLmN3pQrStUvWxYz`\n*   `STRIPE_CONNECT_CLIENT_ID=ca_HjKlMnOpQrStUv`\n*   `STRIPE_PAYMENT_METHODS=card,us_bank_account,sepa_debit`\n*   `STRIPE_WEBHOOK_TOLERANCE_SECONDS=300`\n*   `STRIPE_IDEMPOTENCY_TTL_HOURS=48`\n*   `STRIPE_MAX_RETRY_ATTEMPTS=5`\n*   `STRIPE_RETRY_BACKOFF_BASE_MS=1000`\n\n**5. Payment retry error template**\n*   **ERROR_CODE:** `PAY-4012-RETRY-EXHAUSTED`\n*   **Template:**\n    ```\n    ERROR_CODE: PAY-4012-RETRY-EXHAUSTED\n    SEVERITY: high\n    MESSAGE: Data sync retry exhausted for {resource_type} {resource_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. External service ID: {external_id}. Customer notification sent: {notified}.\n    ACTION: Escalate to data-oncall via PagerDuty incident. Do NOT manually retry \u2014 check dedup status first.\n    DASHBOARD: https://grafana.internal/d/retries?resource={resource_id}\n    ```\n    *(Note: This template triggers automatic escalation after 4 occurrences.)*",
+      "ttft": 2.741,
+      "input_tokens": 14507,
+      "output_tokens": 665,
+      "context_tokens": 14777,
+      "total_tokens_added": 97819,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 28101,
+          "tokens_after": 16496,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 51485,
+          "tokens_after": 17526,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.555691957473755,
+          4.061192035675049,
+          4.368600130081177
+        ],
+        "avg_consolidation_latency": 3.9951613744099936,
+        "total_consolidation_latency": 11.98548412322998,
+        "llm_input_tokens": 85233,
+        "llm_output_tokens": 2943,
+        "knowledge_block_tokens": 2921
+      }
+    },
+    {
+      "session_id": 3,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_4"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema\nThe schema must follow this format:\n```json\n{\n  \"order_id\": \"string (UUID v4)\",\n  \"status\": \"pending | confirmed | shipped | delivered | cancelled\",\n  \"customer_id\": \"string (UUID v4)\",\n  \"line_items\": [{\"sku\": \"string\", \"quantity\": \"integer\", \"unit_price_cents\": \"integer\"}],\n  \"subtotal_cents\": \"integer\",\n  \"tax_cents\": \"integer\",\n  \"shipping_cents\": \"integer\",\n  \"total_cents\": \"integer\",\n  \"currency\": \"ISO 4217 (e.g. USD)\",\n  \"idempotency_key\": \"string (client-generated UUID v4)\",\n  \"created_at\": \"ISO 8601\",\n  \"updated_at\": \"ISO 8601\"\n}\n```\n**Required Field:** `idempotency_key`. It is required and must be a client-generated UUID v4 to ensure correct transaction handling, as agreed upon in the API contract review on February 12th.\n\n### 2. kubectl Deploy Command for Billing Service\nThe conversation does not contain a specific \"billing service\" deployment command. It contains deployment commands for `reporting-service`, `search-service`, `email-service`, `notification-service`, and `auth-service`. Please verify the service name.\n\n### 3. SQL CREATE TABLE for billing_events\n```sql\nCREATE TABLE billing_events (\n    event_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    subscription_id UUID NOT NULL REFERENCES subscriptions(id),\n    event_type VARCHAR(50) NOT NULL CHECK (event_type IN (\n        'charge_succeeded', 'charge_failed', 'refund_issued',\n        'dispute_opened', 'dispute_resolved', 'proration_applied'\n    )),\n    amount_cents INTEGER NOT NULL,\n    currency VARCHAR(3) NOT NULL DEFAULT 'USD',\n    stripe_event_id VARCHAR(255) UNIQUE,\n    idempotency_hash VARCHAR(64) NOT NULL,\n    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),\n    CONSTRAINT unique_idempotency UNIQUE (subscription_id, idempotency_hash)\n);\n```\n**Table Name:** `billing_events`\n**Unique Constraint:** `unique_idempotency` (on `subscription_id`, `idempotency_hash`).\n\n### 4. Stripe Integration Env Vars\nThe provided history does not contain a `STRIPE_WEBHOOK_SECRET`. It contains `PAGERDUTY_WEBHOOK_SECRET=sig_880727`, `SENDGRID_WEBHOOK_SECRET=sig_627131`, `TWILIO_WEBHOOK_SECRET=sig_722393`, and `LAUNCHDARKLY_WEBHOOK_SECRET=ws_426079`.\n\n### 5. Payment Retry Error Template\nThe template must use this exact format:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\n**Exact ERROR_CODE:** `PAY-4012-RETRY-EXHAUSTED`",
+      "ttft": 3.0534,
+      "input_tokens": 19804,
+      "output_tokens": 856,
+      "context_tokens": 20259,
+      "total_tokens_added": 97819,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 9,
+          "tokens_before": 24216,
+          "tokens_after": 16056,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23767,
+          "tokens_after": 16025,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23895,
+          "tokens_after": 16059,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23836,
+          "tokens_after": 16143,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23931,
+          "tokens_after": 16149,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23877,
+          "tokens_after": 16072,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 23784,
+          "tokens_after": 16153,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23927,
+          "tokens_after": 16100,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23721,
+          "tokens_after": 16081,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23782,
+          "tokens_after": 16118,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 3,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [],
+      "needles_recalled": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the requested details:\n\n1. **Regarding the `/api/v2/orders` response schema:**\n   There is no `/api/v2/orders` schema defined in the provided conversation history. The schemas provided cover `/api/v2/refunds`, `/api/v2/shipments`, `/api/v2/products`, `/api/v2/subscriptions`, `/api/v2/inventory`, `/api/v2/coupons`, `/api/v2/returns`, `/api/v2/disputes`, `/api/v2/notifications`, `/api/v2/analytics`, `/api/v2/webhooks`, `/api/v2/invoices`, `/api/v2/users`, and `/api/v2/payments`.\n\n2. **Regarding the `kubectl` deploy command for the billing service:**\n   There is no `kubectl` deploy command specified for a \"billing service\" in the provided conversation history. The deploy commands provided are for `inventory-service`, `user-service`, `email-service`, and `reporting-service`.\n\n3. **Regarding the SQL `CREATE TABLE` statement for billing events:**\n   There is no `CREATE TABLE` statement for \"billing events\" in the provided conversation history. The tables created include `webhook_deliveries`, `job_schedules`, `report_schedules`, `search_indexes`, `rate_limit_counters`, `notification_logs`, and `audit_events`.\n\n4. **Regarding the Stripe integration env vars:**\n   There are no Stripe integration environment variables or a `STRIPE_WEBHOOK_SECRET` value provided in the conversation history. The environment variables provided cover integrations for Elasticsearch, SendGrid, LaunchDarkly, Datadog, Redis, and Mixpanel.\n\n5. **Regarding the payment retry error template:**\n   There is no \"payment retry\" error template provided in the conversation history. The retry exhaustion templates provided are for `cache-service` (`RATE-2755-RETRY-EXHAUSTED`), `gateway-service` (`PARSE-4314-RETRY-EXHAUSTED`), `notification-service` (`NOTIF-5283-RETRY-EXHAUSTED`), `logging-service` (`QUEUE-2959-RETRY-EXHAUSTED` and `CONN-8545-RETRY-EXHAUSTED`), and `user-service` (`AUTH-2140-RETRY-EXHAUSTED`).",
+      "ttft": 2.6727,
+      "input_tokens": 30485,
+      "output_tokens": 545,
+      "context_tokens": 31141,
+      "total_tokens_added": 97817,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 4,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [
+        "needle_2",
+        "needle_3"
+      ],
+      "needles_recalled": [
+        "needle_2",
+        "needle_3"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_4",
+        "needle_5"
+      ],
+      "recall_score": 2,
+      "total_needles": 5,
+      "answer": "Based on the provided conversation history, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema\nThe conversation history does not contain a specific schema definition for `/api/v2/orders`. However, it notes that **idempotency is required** for this endpoint, specifically using a **client-generated UUID v4**.\n\n### 2. Kubectl Deploy Command for Billing Service\nThe exact command is:\n`kubectl apply -f deploy/billing-v2.yaml --namespace=payments-prod --server-side --force-conflicts --field-manager=ci-deployer --prune --selector=app.kubernetes.io/part-of=billing-v2 --dry-run=none --validate=strict`\n\n*   **Required `--field-manager` value:** `ci-deployer`\n\n### 3. SQL CREATE TABLE for Billing Events\nThe conversation notes the creation of the `billing_events` table with an `idempotency_hash` constraint. The specific SQL statement provided in the history is:\n```sql\nCREATE TABLE billing_events (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    idempotency_hash VARCHAR(255) UNIQUE NOT NULL,\n    payload JSONB NOT NULL,\n    created_at TIMESTAMPTZ DEFAULT NOW()\n);\n```\n*(Note: While the specific SQL block for `billing_events` was referenced as a decision in the knowledge block, the exact syntax above reflects the standard implementation described for the idempotency requirement.)*\n\n### 4. Stripe Integration Env Vars\nThe provided conversation history **does not contain** Stripe-specific environment variables or a `STRIPE_WEBHOOK_SECRET` value. It does contain other secrets such as `TWILIO_WEBHOOK_SECRET` (`sig_942962`) and `DATADOG_WEBHOOK_SECRET` (`ws_583837`), but Stripe is not listed.\n\n### 5. Payment Retry Error Template\nThe conversation does not contain a template specifically titled \"payment retry error.\" It contains templates for:\n*   **Inventory Service:** `PERM-4613-RETRY-EXHAUSTED`\n*   **Reporting Service:** `CONF-6208-RETRY-EXHAUSTED`\n*   **Scheduler Service:** `SYNC-7600-RETRY-EXHAUSTED`\n*   **Notification Service:** `INV-9681-RETRY-EXHAUSTED`\n\nIf you are referring to the general retry exhaustion pattern for billing/payments, please verify if one of the above codes matches your specific service requirement.",
+      "ttft": 2.3315,
+      "input_tokens": 14378,
+      "output_tokens": 574,
+      "context_tokens": 14818,
+      "total_tokens_added": 97984,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 35251,
+          "tokens_after": 12687,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 40666,
+          "tokens_after": 10246,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.6263201236724854,
+          4.665786981582642,
+          3.472977876663208
+        ],
+        "avg_consolidation_latency": 3.9216949939727783,
+        "total_consolidation_latency": 11.765084981918335,
+        "llm_input_tokens": 85319,
+        "llm_output_tokens": 2787,
+        "knowledge_block_tokens": 2910
+      }
+    },
+    {
+      "session_id": 4,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [],
+      "needles_recalled": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the answers to your questions:\n\n1. **Regarding the `/api/v2/orders` response schema:**\n   There is no `/api/v2/orders` response schema defined in the provided conversation history. The schemas provided cover `/api/v2/shipments`, `/api/v2/refunds`, `/api/v2/products`, `/api/v2/coupons`, `/api/v2/disputes`, `/api/v2/subscriptions`, `/api/v2/webhooks`, `/api/v2/analytics`, and `/api/v2/users`.\n\n2. **Regarding the `kubectl` deploy command for the billing service:**\n   There is no `kubectl` deploy command provided for a \"billing service\" in the conversation history. The available deploy commands are for `reporting-service`, `analytics-service`, `gateway-service`, and `auth-service`.\n\n3. **Regarding the SQL `CREATE TABLE` statement for billing events:**\n   There is no `CREATE TABLE` statement for \"billing events\" in the conversation history. The provided SQL migrations cover `rate_limit_counters`, `job_schedules`, `report_schedules`, `search_indexes`, and `notification_logs_partitioned`.\n\n4. **Regarding the Stripe integration env vars:**\n   There are no Stripe integration environment variables or a `STRIPE_WEBHOOK_SECRET` defined in the conversation history. The environment variables provided cover integrations for Sentry, Mixpanel, CloudWatch, Segment, Twilio, LaunchDarkly, and Datadog.\n\n5. **Regarding the payment retry error template:**\n   There is no \"payment retry\" error template defined in the conversation history. The retry exhaustion templates provided are for `analytics-service` (`PARSE-1413-RETRY-EXHAUSTED`), `inventory-service` (`AUTH-1867-RETRY-EXHAUSTED`), `gateway-service` (`AUTH-6882-RETRY-EXHAUSTED`), `notification-service` (`INV-9681-RETRY-EXHAUSTED`), `reporting-service` (`CONF-6208-RETRY-EXHAUSTED`), and `scheduler-service` (`SYNC-7600-RETRY-EXHAUSTED`).",
+      "ttft": 2.123,
+      "input_tokens": 19187,
+      "output_tokens": 504,
+      "context_tokens": 19606,
+      "total_tokens_added": 97986,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23497,
+          "tokens_after": 15690,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23613,
+          "tokens_after": 15750,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23413,
+          "tokens_after": 15748,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23559,
+          "tokens_after": 15851,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23666,
+          "tokens_after": 15847,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 24369,
+          "tokens_after": 15429,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 23136,
+          "tokens_after": 15361,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23102,
+          "tokens_after": 15383,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23015,
+          "tokens_after": 15359,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23086,
+          "tokens_after": 15438,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 4,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [],
+      "needles_recalled": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, I have reviewed the records from turns 23 through 30.\n\nI cannot provide the requested information because **the specific details you are asking for (the `/api/v2/orders` schema, the billing service deploy command, the billing events SQL, the Stripe integration variables, and the payment retry error template) do not exist in the provided conversation history.**\n\nThe conversation history contains schemas, deploy commands, SQL migrations, environment variables, and error templates for services such as `search-service`, `email-service`, `inventory-service`, `reporting-service`, `gateway-service`, `auth-service`, `cache-service`, `scheduler-service`, `logging-service`, `user-service`, and `analytics-service`, but it does not contain any references to a \"billing service,\" \"Stripe integration,\" or an `/api/v2/orders` endpoint.",
+      "ttft": 1.5747,
+      "input_tokens": 30518,
+      "output_tokens": 191,
+      "context_tokens": 31163,
+      "total_tokens_added": 97985,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 5,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_4"
+      ],
+      "recall_score": 4,
+      "total_needles": 5,
+      "answer": "Based on the provided conversation history, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema & Requirements\nThe schema for `/api/v2/orders` requires the following fields:\n*   `order_id` (UUID v4)\n*   `status` (enum)\n*   `customer_id` (UUID v4)\n*   `line_items` (sku, quantity, unit_price_cents)\n*   `subtotal_cents`, `tax_cents`, `shipping_cents`, `total_cents`, `currency`\n*   `idempotency_key` (Required, client-generated UUID v4)\n*   `created_at`, `updated_at`\n\n**Requirement:** The `idempotency_key` is mandatory to ensure safe request processing and prevent duplicate orders (Agreed Feb 12th).\n\n### 2. Kubectl Deploy Command for Billing Service\nThe exact command is:\n`kubectl apply -f deploy/billing-v2.yaml --namespace=payments-prod --server-side --force-conflicts --field-manager=ci-deployer --prune --selector=app.kubernetes.io/part-of=billing-v2 --dry-run=none --validate=strict`\n\n**Field Manager:** `ci-deployer` (Required to avoid 403 Forbidden errors).\n\n### 3. SQL CREATE TABLE for Billing Events\nThe conversation contains a `CREATE TABLE` statement for `api_request_logs` (often associated with billing/tenant events):\n```sql\nCREATE TABLE api_request_logs (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    account_id UUID NOT NULL REFERENCES tenants(id),\n    event_type VARCHAR(34) NOT NULL,\n    payload JSONB NOT NULL DEFAULT '{}',\n    amount_cents INTEGER,\n    currency VARCHAR(3) DEFAULT 'USD',\n    status VARCHAR(20) NOT NULL DEFAULT 'pending',\n    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),\n    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n```\n*Note: The conversation does not define a specific \"billing_events\" table with a unique constraint; this is the primary event-logging table schema provided.*\n\n### 4. Stripe Integration Env Vars\n*   `STRIPE_WEBHOOK_TOLERANCE_SECONDS=300` (5 minutes)\n*   The conversation does **not** provide a specific static value for `STRIPE_WEBHOOK_SECRET`. It notes that API keys and secrets are stored in **AWS Secrets Manager** and rotated periodically (35\u201387 days).\n\n### 5. Payment Retry Error Template\nThe error template for payment retry exhaustion is:\n*   **ERROR_CODE:** `PAY-4012-RETRY-EXHAUSTED`\n*   **Template:**\n    ```\n    ERROR_CODE: PAY-4012-RETRY-EXHAUSTED\n    SEVERITY: critical\n    MESSAGE: Event processing retry exhausted for {resource_type} {resource_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Downstream service ID: {external_id}. Customer notification sent: {notified}.\n    ACTION: Escalate to service-oncall via PagerDuty incident. Do NOT manually retry \u2014 check state status first.\n    DASHBOARD: https://grafana.internal/d/failures?resource={resource_id}\n    ```\n*Note: This pattern triggers manual escalation after 2 occurrences.*",
+      "ttft": 3.1445,
+      "input_tokens": 14410,
+      "output_tokens": 790,
+      "context_tokens": 14838,
+      "total_tokens_added": 97885,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 38796,
+          "tokens_after": 16354,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 44236,
+          "tokens_after": 10148,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          4.530364751815796,
+          4.135211944580078,
+          3.90751576423645
+        ],
+        "avg_consolidation_latency": 4.191030820210774,
+        "total_consolidation_latency": 12.573092460632324,
+        "llm_input_tokens": 85228,
+        "llm_output_tokens": 2838,
+        "knowledge_block_tokens": 2933
+      }
+    },
+    {
+      "session_id": 5,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "recall_score": 2,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\nThe schema must follow this exact format:\n```json\n{\n  \"order_id\": \"string (UUID v4)\",\n  \"status\": \"pending | confirmed | shipped | delivered | cancelled\",\n  \"customer_id\": \"string (UUID v4)\",\n  \"line_items\": [{\"sku\": \"string\", \"quantity\": \"integer\", \"unit_price_cents\": \"integer\"}],\n  \"subtotal_cents\": \"integer\",\n  \"tax_cents\": \"integer\",\n  \"shipping_cents\": \"integer\",\n  \"total_cents\": \"integer\",\n  \"currency\": \"ISO 4217 (e.g. USD)\",\n  \"idempotency_key\": \"string (client-generated UUID v4)\",\n  \"created_at\": \"ISO 8601\",\n  \"updated_at\": \"ISO 8601\"\n}\n```\nThe **`idempotency_key`** field is **REQUIRED** and must be a client-generated UUID v4. This was agreed upon in the API contract review on February 12th.\n\n**2. kubectl deploy command for the billing service**\nThe provided history does not contain a `kubectl` deploy command specifically for a \"billing service.\" It contains deploy commands for `search-service`, `auth-service`, and `email-service`.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe provided history does not contain a `CREATE TABLE` statement for \"billing events.\" It contains statements for `user_sessions`, `inventory_snapshots`, `api_request_logs`, `migration_history`, and `audit_events`.\n\n**4. Stripe integration env vars**\nThe provided history does not contain Stripe integration environment variables or a `STRIPE_WEBHOOK_SECRET`. It contains secrets for Sentry, Amplitude, LaunchDarkly, Twilio, and Datadog.\n\n**5. Payment retry error template**\nThe exact template is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact **ERROR_CODE** is **`PAY-4012-RETRY-EXHAUSTED`**.",
+      "ttft": 2.2245,
+      "input_tokens": 19518,
+      "output_tokens": 619,
+      "context_tokens": 19971,
+      "total_tokens_added": 97883,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 5,
+          "tokens_before": 23238,
+          "tokens_after": 15549,
+          "events": 1
+        },
+        {
+          "turn": 8,
+          "tokens_before": 23466,
+          "tokens_after": 15613,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23254,
+          "tokens_after": 15556,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23358,
+          "tokens_after": 15661,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23641,
+          "tokens_after": 15886,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23957,
+          "tokens_after": 16143,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 24070,
+          "tokens_after": 15574,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23545,
+          "tokens_after": 15830,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23494,
+          "tokens_after": 15737,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23459,
+          "tokens_after": 15801,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 5,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\nThe provided conversation history **does not contain** an `/api/v2/orders` response schema. It contains schemas for `/api/v2/subscriptions`, `/api/v2/inventory`, `/api/v2/invoices`, `/api/v2/analytics`, `/api/v2/payments`, `/api/v2/notifications`, `/api/v2/refunds`, `/api/v2/returns`, `/api/v2/users`, `/api/v2/webhooks`, `/api/v2/shipments`, `/api/v2/products`, and `/api/v2/coupons`.\n\n**2. kubectl deploy command for the billing service**\nThe provided conversation history **does not contain** a deploy command for a \"billing service.\" It contains deploy commands for `logging-service`, `notification-service`, `search-service`, `analytics-service`, `auth-service`, `email-service`, `inventory-service`, and `gateway-service`.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe provided conversation history **does not contain** a table named `billing_events`. It contains `CREATE TABLE` statements for `notification_logs`, `inventory_snapshots`, `search_indexes_partitioned`, `cache_entries_partitioned`, `report_schedules`, `cache_entries`, `webhook_deliveries_partitioned`, `api_request_logs`, `audit_events`, and `migration_history`.\n\n**4. Stripe integration env vars**\nThe Stripe integration environment variables are:\n```\nSTRIPE_API_KEY=sk_live_51N8xYZABCdef_payments_v2_prod\nSTRIPE_WEBHOOK_SECRET=whsec_8kLmN3pQrStUvWxYz\nSTRIPE_CONNECT_CLIENT_ID=ca_HjKlMnOpQrStUv\nSTRIPE_PAYMENT_METHODS=card,us_bank_account,sepa_debit\nSTRIPE_WEBHOOK_TOLERANCE_SECONDS=300\nSTRIPE_IDEMPOTENCY_TTL_HOURS=48\nSTRIPE_MAX_RETRY_ATTEMPTS=5\nSTRIPE_RETRY_BACKOFF_BASE_MS=1000\n```\nThe exact `STRIPE_WEBHOOK_SECRET` value is `whsec_8kLmN3pQrStUvWxYz`.\n\n**5. Payment retry error template**\nThe exact template is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact `ERROR_CODE` is `PAY-4012-RETRY-EXHAUSTED`.",
+      "ttft": 2.9646,
+      "input_tokens": 30912,
+      "output_tokens": 732,
+      "context_tokens": 31639,
+      "total_tokens_added": 97885,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 6,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_4"
+      ],
+      "recall_score": 4,
+      "total_needles": 5,
+      "answer": "Based on the provided conversation history, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema & Idempotency\n*   **Schema:** The conversation does not provide a specific JSON schema block for `/api/v2/orders`.\n*   **Requirement:** The `idempotency_key` is **mandatory** for `/api/v2/orders` (agreed upon Feb 12th) to ensure safe request processing and deduplication.\n\n### 2. kubectl Deploy Command for Billing Service\n*   **Command:** The conversation does not provide a specific `kubectl apply` command for a \"billing-service\". It provides commands for `cache-service`, `notification-service`, and `inventory-service`.\n*   **Field Manager:** For the billing service, the field manager must be `ci-deployer` to avoid a `403 Forbidden` error.\n\n### 3. SQL CREATE TABLE for Billing Events\n*   **Statement:** The conversation does not provide the `CREATE TABLE` statement for `billing_events`.\n*   **Constraint:** The `billing_events` table requires an `idempotency_hash` constraint.\n\n### 4. Stripe Integration Env Vars\n*   **Tolerance:** `STRIPE_WEBHOOK_TOLERANCE_SECONDS` must be set to `300`.\n*   **Secret:** The conversation does not provide the specific value for `STRIPE_WEBHOOK_SECRET` (it only lists `SENDGRID_WEBHOOK_SECRET=whsec_427726`).\n\n### 5. Payment Retry Error Template\n*   **Error Code:** `PAY-4012-RETRY-EXHAUSTED`\n*   **Template:**\n    ```\n    ERROR_CODE: PAY-4012-RETRY-EXHAUSTED\n    SEVERITY: critical\n    MESSAGE: Webhook delivery retry exhausted for {resource_type} {resource_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Downstream service ID: {external_id}. Customer notification sent: {notified}.\n    ACTION: Escalate to data-oncall via PagerDuty incident. Do NOT manually retry \u2014 check idempotency/deduplication status first.\n    DASHBOARD: https://grafana.internal/d/exhaustion?resource={resource_id}\n    ```",
+      "ttft": 2.6268,
+      "input_tokens": 14196,
+      "output_tokens": 524,
+      "context_tokens": 14744,
+      "total_tokens_added": 97928,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 35209,
+          "tokens_after": 9076,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 40587,
+          "tokens_after": 13678,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          4.849714994430542,
+          3.5916779041290283,
+          3.662515163421631
+        ],
+        "avg_consolidation_latency": 4.0346360206604,
+        "total_consolidation_latency": 12.103908061981201,
+        "llm_input_tokens": 85259,
+        "llm_output_tokens": 2587,
+        "knowledge_block_tokens": 2844
+      }
+    },
+    {
+      "session_id": 6,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_4"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\nThe schema must follow this exact format:\n```json\n{\n  \"order_id\": \"string (UUID v4)\",\n  \"status\": \"pending | confirmed | shipped | delivered | cancelled\",\n  \"customer_id\": \"string (UUID v4)\",\n  \"line_items\": [{\"sku\": \"string\", \"quantity\": \"integer\", \"unit_price_cents\": \"integer\"}],\n  \"subtotal_cents\": \"integer\",\n  \"tax_cents\": \"integer\",\n  \"shipping_cents\": \"integer\",\n  \"total_cents\": \"integer\",\n  \"currency\": \"ISO 4217 (e.g. USD)\",\n  \"idempotency_key\": \"string (client-generated UUID v4)\",\n  \"created_at\": \"ISO 8601\",\n  \"updated_at\": \"ISO 8601\"\n}\n```\nThe `idempotency_key` field is **REQUIRED** and must be a client-generated UUID v4, as agreed upon in the API contract review on February 12th.\n\n**2. kubectl deploy command for the billing service**\nThe provided conversation history does not contain a \"billing-service\" deployment command. It contains deploy commands for `inventory-service`, `user-service`, `notification-service`, `email-service`, `logging-service`, `auth-service`, and `analytics-service`.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe provided conversation history does not contain a table named \"billing_events\". It contains `CREATE TABLE` statements for `job_schedules`, `access_tokens_partitioned`, `rate_limit_counters_y2026m12`, `email_templates`, `inventory_snapshots_partitioned`, `audit_events_y2024m09`, `cache_entries`, `feature_flags_partitioned`, `api_request_logs_y2025m09`, `user_sessions`, `migration_history`, `job_schedules_partitioned`, and `api_request_logs_partitioned`.\n\n**4. Stripe integration env vars**\nThe provided conversation history does not contain \"Stripe\" integration environment variables. It contains environment variables for `Elasticsearch`, `Datadog`, `SendGrid`, `CloudWatch`, and `Amplitude`.\n\n**5. Payment retry error template**\nThe exact template is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact `ERROR_CODE` is `PAY-4012-RETRY-EXHAUSTED`.",
+      "ttft": 2.5159,
+      "input_tokens": 19577,
+      "output_tokens": 720,
+      "context_tokens": 19989,
+      "total_tokens_added": 97928,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 5,
+          "tokens_before": 23225,
+          "tokens_after": 15603,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23756,
+          "tokens_after": 15972,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23633,
+          "tokens_after": 15892,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23698,
+          "tokens_after": 15887,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 24022,
+          "tokens_after": 16176,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 24123,
+          "tokens_after": 15625,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23311,
+          "tokens_after": 15615,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23394,
+          "tokens_after": 15669,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23538,
+          "tokens_after": 15790,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23522,
+          "tokens_after": 15834,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 6,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "recall_score": 1,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\nThe provided conversation history **does not contain** an `/api/v2/orders` response schema. The schemas provided cover `/api/v2/analytics`, `/api/v2/disputes`, `/api/v2/invoices`, `/api/v2/reviews`, `/api/v2/coupons`, `/api/v2/notifications`, `/api/v2/shipments`, `/api/v2/users`, `/api/v2/returns`, `/api/v2/subscriptions`, and `/api/v2/webhooks`.\n\n**2. kubectl deploy command for the billing service**\nThe provided conversation history **does not contain** a deploy command for a \"billing service.\" The deploy commands provided are for `notification-service`, `gateway-service`, `auth-service`, `email-service`, `reporting-service`, `inventory-service`, and `scheduler-service`.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe provided conversation history **does not contain** a `CREATE TABLE` statement for \"billing events.\" The tables defined include `inventory_snapshots`, `audit_events`, `search_indexes_partitioned`, `report_schedules_partitioned`, `rate_limit_counters`, `api_request_logs`, `notification_logs`, `email_templates`, `cache_entries`, `user_sessions`, and `migration_history`.\n\n**4. Stripe integration env vars**\nThe provided conversation history **does not contain** \"Stripe integration\" environment variables or a `STRIPE_WEBHOOK_SECRET`. The environment variables provided relate to `TWILIO`, `SENDGRID`, `AMPLITUDE`, `DATADOG`, `SENTRY`, `LAUNCHDARKLY`, `SEGMENT`, `ELASTICSEARCH`, `PAGERDUTY`, and `CLOUDWATCH`.\n\n**5. Payment retry error template**\nThe exact template provided in the conversation (Turn 26) is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact `ERROR_CODE` is **PAY-4012-RETRY-EXHAUSTED**.",
+      "ttft": 2.4891,
+      "input_tokens": 30760,
+      "output_tokens": 605,
+      "context_tokens": 31428,
+      "total_tokens_added": 97929,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 7,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_2",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_2",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_4"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the provided knowledge blocks, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema\nThe conversation history does not provide a specific schema for `/api/v2/orders`. However, it specifies that **idempotency keys (UUID v4)** are required for this endpoint to ensure transaction safety.\n\n### 2. Billing Service Deploy Command\nThe deployment command for the billing service (referenced in the context of `deploy/billing-v2.yaml`) is:\n`kubectl apply -f deploy/billing-v2.yaml --server-side --force-conflicts --field-manager=ci-deployer`\n*   **Required Field Manager:** `ci-deployer` (to avoid `403 Forbidden` errors).\n\n### 3. SQL for Billing Events\nThe `billing_events` table is defined as follows:\n```sql\nCREATE TABLE billing_events (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    idempotency_hash UUID UNIQUE NOT NULL,\n    -- Additional fields as per standard schema requirements\n);\n```\n*   **Table Name:** `billing_events`\n*   **Unique Constraint:** `idempotency_hash`\n\n### 4. Stripe Integration Environment Variables\nThe following Stripe integration settings are required:\n*   `STRIPE_WEBHOOK_TOLERANCE_SECONDS=300`\n*   `STRIPE_IDEMPOTENCY_TTL_HOURS=48`\n*   `STRIPE_MAX_RETRY_ATTEMPTS=5`\n*   `STRIPE_RETRY_BACKOFF_BASE_MS=1000`\n*   **Note:** The conversation history **does not contain an exact value** for `STRIPE_WEBHOOK_SECRET`. It only lists the variable name as a requirement for the integration.\n\n### 5. Payment Retry Error Template\nThe exact template and error code are:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\n*   **Exact ERROR_CODE:** `PAY-4012-RETRY-EXHAUSTED`",
+      "ttft": 2.661,
+      "input_tokens": 10638,
+      "output_tokens": 582,
+      "context_tokens": 11095,
+      "total_tokens_added": 97881,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 35226,
+          "tokens_after": 16388,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 55145,
+          "tokens_after": 17328,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.370626211166382,
+          4.111912965774536,
+          4.65359902381897
+        ],
+        "avg_consolidation_latency": 4.045379400253296,
+        "total_consolidation_latency": 12.136138200759888,
+        "llm_input_tokens": 88795,
+        "llm_output_tokens": 2624,
+        "knowledge_block_tokens": 2819
+      }
+    },
+    {
+      "session_id": 7,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [],
+      "needles_recalled": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "recall_score": 0,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the answers to your questions:\n\n1. **Regarding the `/api/v2/orders` response schema:**\n   There is no mention of an `/api/v2/orders` response schema in the provided conversation history.\n\n2. **Regarding the `kubectl` deploy command for the billing service:**\n   There is no mention of a \"billing service\" deployment command in the provided conversation history.\n\n3. **Regarding the SQL `CREATE TABLE` statement for billing events:**\n   There is no mention of a \"billing events\" table in the provided conversation history.\n\n4. **Regarding the Stripe integration environment variables:**\n   There is no mention of \"Stripe\" integration or its environment variables in the provided conversation history.\n\n5. **Regarding the payment retry error template:**\n   There is no mention of a \"payment retry\" error template in the provided conversation history.",
+      "ttft": 1.4723,
+      "input_tokens": 19172,
+      "output_tokens": 191,
+      "context_tokens": 19603,
+      "total_tokens_added": 97880,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 7,
+          "tokens_before": 23703,
+          "tokens_after": 15965,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23664,
+          "tokens_after": 15983,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23613,
+          "tokens_after": 15897,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23691,
+          "tokens_after": 15929,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23729,
+          "tokens_after": 15957,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23689,
+          "tokens_after": 15877,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23582,
+          "tokens_after": 15964,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23741,
+          "tokens_after": 15905,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23547,
+          "tokens_after": 15787,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 24248,
+          "tokens_after": 15446,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 7,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n### 1. /api/v2/orders response schema\nThe conversation history **does not contain** a schema definition for `/api/v2/orders`. It contains schemas for `/api/v2/disputes`, `/api/v2/inventory`, `/api/v2/analytics`, `/api/v2/webhooks`, `/api/v2/returns`, `/api/v2/subscriptions`, `/api/v2/notifications`, `/api/v2/products`, `/api/v2/users`, `/api/v2/reviews`, `/api/v2/coupons`, `/api/v2/invoices`, and `/api/v2/shipments`.\n\n### 2. kubectl deploy command for the billing service\nThe conversation history **does not contain** a deploy command for a \"billing service.\" It contains deploy commands for `notification-service`, `scheduler-service`, `cache-service`, `auth-service`, and `email-service`.\n\n### 3. SQL CREATE TABLE statement for billing events\n```sql\nCREATE TABLE billing_events (\n    event_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    subscription_id UUID NOT NULL REFERENCES subscriptions(id),\n    event_type VARCHAR(50) NOT NULL CHECK (event_type IN (\n        'charge_succeeded', 'charge_failed', 'refund_issued',\n        'dispute_opened', 'dispute_resolved', 'proration_applied'\n    )),\n    amount_cents INTEGER NOT NULL,\n    currency VARCHAR(3) NOT NULL DEFAULT 'USD',\n    stripe_event_id VARCHAR(255) UNIQUE,\n    idempotency_hash VARCHAR(64) NOT NULL,\n    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),\n    CONSTRAINT unique_idempotency UNIQUE (subscription_id, idempotency_hash)\n);\n```\n*   **Table Name:** `billing_events`\n*   **Unique Constraint:** `CONSTRAINT unique_idempotency UNIQUE (subscription_id, idempotency_hash)`\n\n### 4. Stripe integration env vars\n```\nSTRIPE_API_KEY=sk_live_51N8xYZABCdef_payments_v2_prod\nSTRIPE_WEBHOOK_SECRET=whsec_8kLmN3pQrStUvWxYz\nSTRIPE_CONNECT_CLIENT_ID=ca_HjKlMnOpQrStUv\nSTRIPE_PAYMENT_METHODS=card,us_bank_account,sepa_debit\nSTRIPE_WEBHOOK_TOLERANCE_SECONDS=300\nSTRIPE_IDEMPOTENCY_TTL_HOURS=48\nSTRIPE_MAX_RETRY_ATTEMPTS=5\nSTRIPE_RETRY_BACKOFF_BASE_MS=1000\n```\n*   **Exact STRIPE_WEBHOOK_SECRET:** `whsec_8kLmN3pQrStUvWxYz`\n\n### 5. Payment retry error template\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\n*   **Exact ERROR_CODE:** `PAY-4012-RETRY-EXHAUSTED`",
+      "ttft": 2.7426,
+      "input_tokens": 31225,
+      "output_tokens": 835,
+      "context_tokens": 31939,
+      "total_tokens_added": 97881,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 8,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_4"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the provided knowledge blocks, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema and Requirements\n*   **Schema:** The conversation history does not provide a specific JSON schema for `/api/v2/orders`.\n*   **Required Field:** The `idempotency_key` (client-generated UUID v4) is **mandatory** for all `/api/v2/orders` implementations. This was agreed upon on February 12th.\n\n### 2. Kubectl Deploy Command for Billing Service\n*   **Command:** The provided logs do not contain a specific `kubectl apply` command for a service named \"billing service.\" However, the `deploy/billing-v2.yaml` file is listed as a touched file in the second knowledge block.\n\n### 3. SQL CREATE TABLE for Billing Events\n*   **Statement:** The provided logs do not contain the specific `CREATE TABLE` statement for `billing_events`.\n*   **Constraint:** The logs note that the `billing_events` table was added with an `idempotency_hash` constraint.\n\n### 4. Stripe Integration Environment Variables\n*   **Variables:** The logs specify `STRIPE_WEBHOOK_TOLERANCE_SECONDS` must be set to `300`.\n*   **Secret:** The logs do not provide a specific value for `STRIPE_WEBHOOK_SECRET`. (Note: `LAUNCHDARKLY_API_KEY` and other keys are provided, but the Stripe secret is not listed).\n\n### 5. Payment Retry Error Template\n*   **Template:**\n    ```\n    ERROR_CODE: PAY-4012-RETRY-EXHAUSTED\n    SEVERITY: critical\n    MESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\n    ACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\n    DASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n    ```\n*   **Exact ERROR_CODE:** `PAY-4012-RETRY-EXHAUSTED`",
+      "ttft": 2.3415,
+      "input_tokens": 14372,
+      "output_tokens": 512,
+      "context_tokens": 14758,
+      "total_tokens_added": 97824,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 31655,
+          "tokens_after": 9157,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 44135,
+          "tokens_after": 17350,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.642522096633911,
+          3.395359992980957,
+          4.5680320262908936
+        ],
+        "avg_consolidation_latency": 3.868638038635254,
+        "total_consolidation_latency": 11.605914115905762,
+        "llm_input_tokens": 85238,
+        "llm_output_tokens": 2806,
+        "knowledge_block_tokens": 2854
+      }
+    },
+    {
+      "session_id": 8,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_4"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the requested specifications:\n\n**1. /api/v2/orders response schema**\nThe schema must follow this exact format:\n```json\n{\n  \"order_id\": \"string (UUID v4)\",\n  \"status\": \"pending | confirmed | shipped | delivered | cancelled\",\n  \"customer_id\": \"string (UUID v4)\",\n  \"line_items\": [{\"sku\": \"string\", \"quantity\": \"integer\", \"unit_price_cents\": \"integer\"}],\n  \"subtotal_cents\": \"integer\",\n  \"tax_cents\": \"integer\",\n  \"shipping_cents\": \"integer\",\n  \"total_cents\": \"integer\",\n  \"currency\": \"ISO 4217 (e.g. USD)\",\n  \"idempotency_key\": \"string (client-generated UUID v4)\",\n  \"created_at\": \"ISO 8601\",\n  \"updated_at\": \"ISO 8601\"\n}\n```\nThe **`idempotency_key`** field is **REQUIRED** and must be a client-generated UUID v4. This was agreed upon in the API contract review on February 12th.\n\n**2. kubectl deploy command for the billing service**\nThe conversation history does not contain a \"billing service\" deployment command. It contains specific commands for `search-service`, `logging-service`, `scheduler-service`, and `auth-service`. Please verify the service name.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe conversation history does not contain a table named `billing_events`. It contains `report_schedules`, `audit_events`, `email_templates_partitioned`, `feature_flags`, `rate_limit_counters`, and `search_indexes`.\n\n**4. Stripe integration env vars**\nThe conversation history does not contain any `STRIPE_` environment variables or a `STRIPE_WEBHOOK_SECRET`. It contains secrets for `SENDGRID`, `REDIS`, `SEGMENT`, `CLOUDWATCH`, `LAUNCHDARKLY`, `PAGERDUTY`, `ELASTICSEARCH`, and `TWILIO`.\n\n**5. Payment retry error template**\nThe exact template is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact error code is **`PAY-4012-RETRY-EXHAUSTED`**.",
+      "ttft": 2.5966,
+      "input_tokens": 19584,
+      "output_tokens": 651,
+      "context_tokens": 20084,
+      "total_tokens_added": 97826,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23427,
+          "tokens_after": 15782,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23693,
+          "tokens_after": 15851,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23795,
+          "tokens_after": 16167,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 24149,
+          "tokens_after": 15627,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23459,
+          "tokens_after": 15742,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23476,
+          "tokens_after": 15708,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23404,
+          "tokens_after": 15679,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23658,
+          "tokens_after": 15962,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23611,
+          "tokens_after": 15930,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23647,
+          "tokens_after": 15909,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 8,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_4"
+      ],
+      "recall_score": 2,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact details requested:\n\n**1. /api/v2/orders response schema**\nThe provided conversation history **does not contain** an `/api/v2/orders` response schema. It contains schemas for `/api/v2/reviews`, `/api/v2/coupons`, `/api/v2/subscriptions`, `/api/v2/users`, `/api/v2/inventory`, `/api/v2/notifications`, `/api/v2/disputes`, `/api/v2/products`, `/api/v2/analytics`, `/api/v2/shipments`, and `/api/v2/returns`.\n\n**2. kubectl deploy command for the billing service**\nThe provided conversation history **does not contain** a deploy command for a \"billing service.\" It contains deploy commands for `auth-service`, `search-service`, `inventory-service`, `logging-service`, `scheduler-service`, and `user-service`.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe provided conversation history **does not contain** a table named `billing_events`. It contains `CREATE TABLE` statements for `rate_limit_counters`, `email_templates_partitioned`, `notification_logs`, `report_schedules`, `job_schedules`, `audit_events`, `migration_history`, and `search_indexes`.\n\n**4. Stripe integration env vars**\nThe provided conversation history **does not contain** Stripe integration environment variables. It contains variables for `TWILIO`, `SENDGRID`, `LAUNCHDARKLY`, `MIXPANEL`, `PAGERDUTY`, `SENTRY`, `DATADOG`, `SEGMENT`, `ELASTICSEARCH`, `AMPLITUDE`, and `CLOUDWATCH`.\n\n**5. Payment retry error template**\nThe exact payment retry error template specified in the conversation (Turn 23) is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact `ERROR_CODE` is **`PAY-4012-RETRY-EXHAUSTED`**.",
+      "ttft": 2.5603,
+      "input_tokens": 30679,
+      "output_tokens": 575,
+      "context_tokens": 31414,
+      "total_tokens_added": 97826,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 9,
+      "mode": "acc",
+      "error": null,
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_4"
+      ],
+      "recall_score": 4,
+      "total_needles": 5,
+      "answer": "Based on the provided knowledge blocks, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema & Requirements\n*   **Requirement:** The request must include an `idempotency_key` (client-generated UUID v4). This was agreed upon on February 12th.\n*   **Schema:** (Note: The provided knowledge blocks contain schemas for `/api/v2/analytics`, `/api/v2/payments`, `/api/v2/products`, `/api/v2/subscriptions`, `/api/v2/invoices`, `/api/v2/disputes`, and `/api/v2/reviews`. A specific schema for `/api/v2/orders` was not provided in the text, but the **idempotency requirement** is explicitly documented.)\n\n### 2. Billing Service Deploy Command\n*   **Command:** `kubectl apply ... --server-side --force-conflicts --field-manager=ci-deployer`\n*   **Requirement:** Failure to use `--force-conflicts` causes HPA ownership conflicts. The `ci-deployer` field manager is required to avoid 403 Forbidden errors.\n\n### 3. SQL for `billing_events`\n*   **Statement:** The knowledge block notes that the `billing_events` table creation is required for Stripe webhook idempotency (March migration). While the specific `CREATE TABLE` syntax for `billing_events` was not provided in the snippets, the migration is explicitly scheduled for the March maintenance window.\n\n### 4. Stripe Integration Env Vars\n*   **Tolerance:** `STRIPE_WEBHOOK_TOLERANCE_SECONDS=300` (Mandatory to prevent signature verification failures).\n*   **Secret:** The provided knowledge blocks do not contain the specific alphanumeric value for `STRIPE_WEBHOOK_SECRET`. (Note: Other secrets like `TWILIO_WEBHOOK_SECRET=sig_625375` and `AMPLITUDE_WEBHOOK_SECRET=sig_313854` are listed, but the Stripe secret value is not present in the provided text).\n\n### 5. Payment Retry Error Template\n*   **Error Code:** `PAY-4012-RETRY-EXHAUSTED`\n*   **Action:** Triggers PagerDuty.\n*   **Template Context:** \"Use `PAY-4012-RETRY-EXHAUSTED` for payment retries to trigger PagerDuty.\"",
+      "ttft": 3.3114,
+      "input_tokens": 14215,
+      "output_tokens": 534,
+      "context_tokens": 14562,
+      "total_tokens_added": 97868,
+      "compaction_events": 3,
+      "compaction_log": [
+        {
+          "turn": 10,
+          "tokens_before": 28112,
+          "tokens_after": 12784,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 51373,
+          "tokens_after": 17285,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {
+        "consolidation_count": 3,
+        "consolidation_latencies": [
+          3.7079050540924072,
+          4.38084602355957,
+          4.473227024078369
+        ],
+        "avg_consolidation_latency": 4.187326033910115,
+        "total_consolidation_latency": 12.561978101730347,
+        "llm_input_tokens": 85250,
+        "llm_output_tokens": 2621,
+        "knowledge_block_tokens": 2686
+      }
+    },
+    {
+      "session_id": 9,
+      "mode": "bm25",
+      "error": null,
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_1",
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_4"
+      ],
+      "recall_score": 3,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n### 1. /api/v2/orders Response Schema\nThe schema must follow this exact format:\n```json\n{\n  \"order_id\": \"string (UUID v4)\",\n  \"status\": \"pending | confirmed | shipped | delivered | cancelled\",\n  \"customer_id\": \"string (UUID v4)\",\n  \"line_items\": [{\"sku\": \"string\", \"quantity\": \"integer\", \"unit_price_cents\": \"integer\"}],\n  \"subtotal_cents\": \"integer\",\n  \"tax_cents\": \"integer\",\n  \"shipping_cents\": \"integer\",\n  \"total_cents\": \"integer\",\n  \"currency\": \"ISO 4217 (e.g. USD)\",\n  \"idempotency_key\": \"string (client-generated UUID v4)\",\n  \"created_at\": \"ISO 8601\",\n  \"updated_at\": \"ISO 8601\"\n}\n```\n**Required Field:** `idempotency_key` (client-generated UUID v4).\n**Reason:** It is required to prevent duplicate order processing, as agreed upon in the API contract review on February 12th.\n\n### 2. Kubectl Deploy Command for Billing Service\nThe conversation history does not contain a specific \"billing service\" deployment command. It contains deployment commands for the `reporting-service`, `email-service`, `auth-service`, and `inventory-service`. Please verify the service name.\n\n### 3. SQL CREATE TABLE for billing_events\n```sql\nCREATE TABLE billing_events (\n    event_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    subscription_id UUID NOT NULL REFERENCES subscriptions(id),\n    event_type VARCHAR(50) NOT NULL CHECK (event_type IN (\n        'charge_succeeded', 'charge_failed', 'refund_issued',\n        'dispute_opened', 'dispute_resolved', 'proration_applied'\n    )),\n    amount_cents INTEGER NOT NULL,\n    currency VARCHAR(3) NOT NULL DEFAULT 'USD',\n    stripe_event_id VARCHAR(255) UNIQUE,\n    idempotency_hash VARCHAR(64) NOT NULL,\n    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),\n    CONSTRAINT unique_idempotency UNIQUE (subscription_id, idempotency_hash)\n);\n```\n**Table Name:** `billing_events`\n**Unique Constraint:** `unique_idempotency` (on `subscription_id`, `idempotency_hash`).\n\n### 4. Stripe Integration Environment Variables\nThe provided conversation history **does not contain** Stripe integration environment variables or a `STRIPE_WEBHOOK_SECRET`. It contains secrets for PagerDuty, Mixpanel, LaunchDarkly, Twilio, Segment, Amplitude, SendGrid, Sentry, and Datadog.\n\n### 5. Payment Retry Error Template\nThe template must use this exact format:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\n**Exact ERROR_CODE:** `PAY-4012-RETRY-EXHAUSTED`",
+      "ttft": 3.1427,
+      "input_tokens": 19851,
+      "output_tokens": 820,
+      "context_tokens": 20284,
+      "total_tokens_added": 97868,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 8,
+          "tokens_before": 24014,
+          "tokens_after": 16360,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 24286,
+          "tokens_after": 15979,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23626,
+          "tokens_after": 15906,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23691,
+          "tokens_after": 16002,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23789,
+          "tokens_after": 16073,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23809,
+          "tokens_after": 15994,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23701,
+          "tokens_after": 16071,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23835,
+          "tokens_after": 16023,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23882,
+          "tokens_after": 16151,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23857,
+          "tokens_after": 16127,
+          "events": 1
+        }
+      ],
+      "acc_metrics": {}
+    },
+    {
+      "session_id": 9,
+      "mode": "naive",
+      "error": null,
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_recalled": [
+        "needle_3",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_4"
+      ],
+      "recall_score": 2,
+      "total_needles": 5,
+      "answer": "Based on the conversation history provided, here are the exact specifications requested:\n\n**1. /api/v2/orders response schema**\nThe provided conversation history **does not contain** an `/api/v2/orders` response schema. It contains schemas for `/api/v2/products`, `/api/v2/invoices`, `/api/v2/notifications`, `/api/v2/webhooks`, `/api/v2/payments`, `/api/v2/inventory`, `/api/v2/subscriptions`, `/api/v2/disputes`, `/api/v2/returns`, `/api/v2/users`, and `/api/v2/reviews`.\n\n**2. kubectl deploy command for the billing service**\nThe provided conversation history **does not contain** a deploy command specifically for a \"billing service.\" It contains deploy commands for `user-service`, `scheduler-service`, `inventory-service`, `logging-service`, `email-service`, `notification-service`, `search-service`, and `auth-service`.\n\n**3. SQL CREATE TABLE statement for billing events**\nThe provided conversation history **does not contain** a table named `billing_events`. It contains `CREATE TABLE` statements for `feature_flags`, `cache_entries`, `migration_history`, `report_schedules`, `user_sessions`, `webhook_deliveries`, `access_tokens`, and `notification_logs`.\n\n**4. Stripe integration env vars**\nThe provided conversation history **does not contain** Stripe integration environment variables or a `STRIPE_WEBHOOK_SECRET`. It contains environment variables for Datadog, PagerDuty, Redis, SendGrid, Amplitude, and Sentry.\n\n**5. Payment retry error template**\nThe exact payment retry error template specified in the instructions (Turn 25) is:\n```\nERROR_CODE: PAY-4012-RETRY-EXHAUSTED\nSEVERITY: critical\nMESSAGE: Payment retry exhausted for subscription {subscription_id} after {retry_count} attempts over {elapsed_hours}h. Last failure: {last_error}. Stripe charge ID: {stripe_charge_id}. Customer notification sent: {notified}.\nACTION: Escalate to payments-oncall via PagerDuty incident. Do NOT manually retry \u2014 the idempotency key may be stale.\nDASHBOARD: https://grafana.internal/d/pay-retries?sub={subscription_id}\n```\nThe exact **ERROR_CODE** is `PAY-4012-RETRY-EXHAUSTED`.",
+      "ttft": 2.3055,
+      "input_tokens": 30686,
+      "output_tokens": 554,
+      "context_tokens": 31387,
+      "total_tokens_added": 97867,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "acc_metrics": {}
+    }
+  ]
+}

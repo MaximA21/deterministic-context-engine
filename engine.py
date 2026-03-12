@@ -889,6 +889,9 @@ class ChunkLog:
         soft_threshold: Ratio of max_tokens that triggers soft compaction (summarize old).
         hard_threshold: Ratio of max_tokens that triggers hard compaction (drop low-priority).
             Set both to 2.0 to effectively disable compaction.
+        acc_interval: For scoring_mode="acc", consolidation fires every N turns.
+        acc_keep_recent: For scoring_mode="acc", keep the last K turns raw (uncompressed).
+        acc_api_key: Google API key for Gemini calls (ACC mode). Falls back to GOOGLE_API_KEY env var.
     """
 
     def __init__(
@@ -900,6 +903,9 @@ class ChunkLog:
         auto_priority: bool = False,
         goal_guided: bool = False,
         scoring_mode: str | None = "structural",
+        acc_interval: int = 10,
+        acc_keep_recent: int = 3,
+        acc_api_key: str | None = None,
     ):
         self.db_path = db_path
         self.max_tokens = max_tokens
@@ -907,17 +913,32 @@ class ChunkLog:
         self.hard_threshold = hard_threshold
         self.auto_priority = auto_priority
         self.goal_guided = goal_guided
-        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
+        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'tfidf', 'semantic', 'hybrid', 'entity_aware', 'acc', or None
         self._turn = 0
         self._compaction_count = 0
         self._decisions: list[DecisionRecord] = []
         self._last_user_message: str = ""
         self._accumulated_keywords: set[str] = set()
+        # ACC (Active Context Compression) state
+        self._acc_interval = acc_interval
+        self._acc_keep_recent = acc_keep_recent
+        self._acc_api_key = acc_api_key or os.environ.get("GOOGLE_API_KEY", "")
+        self._acc_knowledge_block: str = ""  # accumulated structured summaries
+        self._acc_last_consolidation_turn: int = 0
+        self._acc_consolidation_latencies: list[float] = []
+        self._acc_total_llm_input_tokens: int = 0
+        self._acc_total_llm_output_tokens: int = 0
         # Initialize scorers based on mode
         self._entity_scorer: EntityAwareScorer | None = None
         self._structural_scorer: StructuralScorer | None = None
         self._bm25_scorer = None
-        if scoring_mode == "bm25":
+        if scoring_mode == "acc":
+            # ACC uses LLM summarization, no scorer needed
+            self._bm25_scorer = None
+            self._goal_scorer = None
+            self._semantic_scorer = None
+            self._structural_scorer = None
+        elif scoring_mode == "bm25":
             self._bm25_scorer = BM25Scorer()
             self._goal_scorer = None
             self._semantic_scorer = None
@@ -1180,7 +1201,149 @@ class ChunkLog:
             )
         self._conn.commit()
 
+    def _acc_summarize(self, chunks_to_summarize: list[tuple[str, str, str]]) -> str:
+        """Call Gemini Flash Lite to generate a structured summary.
+
+        Args:
+            chunks_to_summarize: List of (chunk_hash, role, content) tuples.
+
+        Returns:
+            Structured summary string.
+        """
+        from google import genai
+        from google.genai import types
+
+        combined = "\n\n".join(
+            f"[{role}]: {content}" for _, role, content in chunks_to_summarize
+        )
+
+        prompt = (
+            "You are a context compression assistant. Summarize the following conversation span "
+            "into a structured knowledge block. Extract and preserve:\n"
+            "1. **Files touched**: Any file paths, modules, or code references mentioned\n"
+            "2. **Facts learned**: Specific values, names, dates, IPs, versions, config details\n"
+            "3. **Decisions made**: Any choices, approvals, or conclusions reached\n"
+            "4. **Bugs/issues found**: Any problems, errors, or concerns identified\n"
+            "5. **Action items**: Any tasks assigned or next steps mentioned\n\n"
+            "Be EXHAUSTIVE about specific values (numbers, names, dates, IPs, codenames). "
+            "These are the most important things to preserve. "
+            "Keep the summary concise but do NOT omit any concrete facts.\n\n"
+            f"--- CONVERSATION SPAN ---\n{combined}\n--- END ---"
+        )
+
+        client = genai.Client(api_key=self._acc_api_key)
+        config = types.GenerateContentConfig(
+            temperature=0.0,
+            max_output_tokens=1024,
+        )
+
+        t0 = time.time()
+        response = client.models.generate_content(
+            model="gemini-3.1-flash-lite-preview",
+            contents=[types.Content(role="user", parts=[types.Part(text=prompt)])],
+            config=config,
+        )
+        latency = time.time() - t0
+        self._acc_consolidation_latencies.append(latency)
+
+        if response.usage_metadata:
+            self._acc_total_llm_input_tokens += response.usage_metadata.prompt_token_count or 0
+            self._acc_total_llm_output_tokens += response.usage_metadata.candidates_token_count or 0
+
+        return response.text or ""
+
+    def _maybe_compact_acc(self) -> None:
+        """ACC sawtooth compaction: every acc_interval turns, summarize old chunks.
+
+        Keeps the last acc_keep_recent turns raw, summarizes everything before that.
+        The summary replaces the raw chunks as a single high-priority knowledge chunk.
+        """
+        turns_since = self._turn - self._acc_last_consolidation_turn
+        if turns_since < self._acc_interval:
+            return
+
+        # Find chunks older than the recent window
+        cutoff_turn = self._turn - self._acc_keep_recent
+        old_rows = self._conn.execute(
+            "SELECT chunk_hash, role, content FROM chunks WHERE turn < ? ORDER BY turn ASC, timestamp ASC",
+            (cutoff_turn,),
+        ).fetchall()
+
+        if not old_rows:
+            return
+
+        # Filter out existing knowledge block chunks (don't re-summarize summaries)
+        chunks_to_summarize = [
+            (h, role, content) for h, role, content in old_rows
+            if not content.startswith("[KNOWLEDGE BLOCK")
+        ]
+
+        if not chunks_to_summarize:
+            return
+
+        size_before = self.current_tokens()
+
+        # Generate structured summary via Gemini
+        summary = self._acc_summarize(chunks_to_summarize)
+
+        if not summary:
+            return
+
+        # Prepend existing knowledge block if any
+        if self._acc_knowledge_block:
+            full_knowledge = self._acc_knowledge_block + "\n\n---\n\n" + summary
+        else:
+            full_knowledge = summary
+        self._acc_knowledge_block = full_knowledge
+
+        # Delete old raw chunks (including previous knowledge block chunks)
+        old_hashes = [h for h, _, _ in old_rows]
+        for h in old_hashes:
+            self._conn.execute("DELETE FROM chunks WHERE chunk_hash = ?", (h,))
+
+        # Insert the knowledge block as a single high-priority chunk at turn 0
+        kb_content = f"[KNOWLEDGE BLOCK — consolidated context]\n\n{full_knowledge}"
+        kb_hash = _sha256(f"knowledge_block:{self._turn}:{kb_content}")
+        kb_tokens = _estimate_tokens(kb_content)
+        now = time.time()
+
+        self._conn.execute(
+            "INSERT OR REPLACE INTO chunks (chunk_hash, role, content, tokens, turn, priority, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (kb_hash, "system", kb_content, kb_tokens, 0, 2.0, now),
+        )
+        self._conn.commit()
+
+        size_after = self.current_tokens()
+        self._compaction_count += 1
+        self._acc_last_consolidation_turn = self._turn
+
+        self._record_decision(
+            "acc_consolidate", kb_hash,
+            f"summarized {len(chunks_to_summarize)} chunks from turns <{cutoff_turn}",
+            size_before, size_after,
+        )
+
+    @property
+    def acc_metrics(self) -> dict[str, Any]:
+        """Return ACC-specific metrics (latencies, LLM token usage)."""
+        return {
+            "consolidation_count": len(self._acc_consolidation_latencies),
+            "consolidation_latencies": list(self._acc_consolidation_latencies),
+            "avg_consolidation_latency": (
+                sum(self._acc_consolidation_latencies) / len(self._acc_consolidation_latencies)
+                if self._acc_consolidation_latencies else 0.0
+            ),
+            "total_consolidation_latency": sum(self._acc_consolidation_latencies),
+            "llm_input_tokens": self._acc_total_llm_input_tokens,
+            "llm_output_tokens": self._acc_total_llm_output_tokens,
+            "knowledge_block_tokens": _estimate_tokens(self._acc_knowledge_block) if self._acc_knowledge_block else 0,
+        }
+
     def _maybe_compact(self) -> None:
+        # ACC mode uses turn-based consolidation, not threshold-based
+        if self.scoring_mode == "acc":
+            self._maybe_compact_acc()
+            return
         # Thresholds > 1.0 mean "never compact"
         if self.soft_threshold > 1.0 and self.hard_threshold > 1.0:
             return
