@@ -1,0 +1,13 @@
+OpenHands vs DCE — Offline Adversarial NIAH
+Context: 32k tokens
+Fillers/turn: 14
+Sessions: 10, Turns: 30
+
+Mode                                            Survival    Perfect   Compress
+---------------------------------------------------------------------------
+BM25+STRUCTURAL (content-aware)                  5.00/5     10/10      4.94x
+BM25 (content-aware)                             0.90/5      1/10      5.44x
+OPENHANDS (positional, amortized forgetting)     0.90/5      0/10      4.94x
+NAIVE (sliding window)                           1.40/5      0/10      3.10x
+
+BM25+Structural vs OpenHands delta: +4.10 needles/session

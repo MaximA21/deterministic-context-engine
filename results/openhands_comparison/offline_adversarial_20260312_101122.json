@@ -1,0 +1,3009 @@
+{
+  "timestamp": "20260312_101122",
+  "benchmark": "openhands_comparison_adversarial_offline",
+  "max_context_tokens": 32768,
+  "fillers_per_turn": 14,
+  "num_sessions": 10,
+  "num_turns": 30,
+  "description": "Offline comparison of OpenHands amortized forgetting vs DCE content-aware scoring. Measures needle survival in context (deterministic) without LLM API calls.",
+  "modes": {
+    "openhands": "Positional amortized forgetting \u2014 keep first chunk + most recent, drop middle. No content analysis.",
+    "structural": "BM25 goal relevance + structural action density boost + frequency demotion.",
+    "bm25": "BM25 goal relevance (40%) + corpus uniqueness via Jaccard (60%).",
+    "naive": "Simple sliding window \u2014 keep most recent messages that fit."
+  },
+  "results": [
+    {
+      "session_id": 0,
+      "mode": "structural",
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 20325,
+      "total_tokens_added": 97864,
+      "compression_ratio": 4.8149569495694955,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 7,
+          "tokens_before": 23650,
+          "tokens_after": 15994,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23671,
+          "tokens_after": 15875,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23643,
+          "tokens_after": 16019,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23854,
+          "tokens_after": 15978,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23666,
+          "tokens_after": 15876,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23807,
+          "tokens_after": 16023,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23829,
+          "tokens_after": 15914,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 24063,
+          "tokens_after": 16420,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 24013,
+          "tokens_after": 15923,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23693,
+          "tokens_after": 16100,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 371.4
+    },
+    {
+      "session_id": 0,
+      "mode": "bm25",
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 19923,
+      "total_tokens_added": 98178,
+      "compression_ratio": 4.9278723083872915,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 7,
+          "tokens_before": 23536,
+          "tokens_after": 15697,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23824,
+          "tokens_after": 15850,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23879,
+          "tokens_after": 15837,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23718,
+          "tokens_after": 15871,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23754,
+          "tokens_after": 15923,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23496,
+          "tokens_after": 15788,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23602,
+          "tokens_after": 15627,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23484,
+          "tokens_after": 15892,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23795,
+          "tokens_after": 15771,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23422,
+          "tokens_after": 15771,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 6,
+      "elapsed_ms": 258.2
+    },
+    {
+      "session_id": 0,
+      "mode": "openhands",
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 19690,
+      "total_tokens_added": 97345,
+      "compression_ratio": 4.943880142204165,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 7,
+          "tokens_before": 23234,
+          "tokens_after": 15637,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23585,
+          "tokens_after": 15921,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23525,
+          "tokens_after": 15627,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23625,
+          "tokens_after": 15677,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23546,
+          "tokens_after": 15942,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23682,
+          "tokens_after": 15684,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23618,
+          "tokens_after": 15749,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23380,
+          "tokens_after": 15640,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23368,
+          "tokens_after": 15434,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23132,
+          "tokens_after": 15501,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 7,
+      "elapsed_ms": 69.9
+    },
+    {
+      "session_id": 0,
+      "mode": "naive",
+      "needle_turns": [
+        0,
+        3,
+        8,
+        20,
+        23
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3"
+      ],
+      "survival_score": 2,
+      "total_needles": 5,
+      "context_tokens": 31641,
+      "total_tokens_added": 98171,
+      "compression_ratio": 3.102651622894346,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 11,
+      "elapsed_ms": 0.2
+    },
+    {
+      "session_id": 1,
+      "mode": "structural",
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 20036,
+      "total_tokens_added": 97403,
+      "compression_ratio": 4.861399480934319,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 8,
+          "tokens_before": 23566,
+          "tokens_after": 15862,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23627,
+          "tokens_after": 15580,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23283,
+          "tokens_after": 15689,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23635,
+          "tokens_after": 15947,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23739,
+          "tokens_after": 15975,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23791,
+          "tokens_after": 16017,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23667,
+          "tokens_after": 16009,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23776,
+          "tokens_after": 15954,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23704,
+          "tokens_after": 15887,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23570,
+          "tokens_after": 15843,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 345.8
+    },
+    {
+      "session_id": 1,
+      "mode": "bm25",
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 15616,
+      "total_tokens_added": 98038,
+      "compression_ratio": 6.278048155737705,
+      "compaction_events": 11,
+      "compaction_log": [
+        {
+          "turn": 8,
+          "tokens_before": 23505,
+          "tokens_after": 15709,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23607,
+          "tokens_after": 15992,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23775,
+          "tokens_after": 15714,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23557,
+          "tokens_after": 15905,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23946,
+          "tokens_after": 16027,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23617,
+          "tokens_after": 15673,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23644,
+          "tokens_after": 15732,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23699,
+          "tokens_after": 19426,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 23369,
+          "tokens_after": 15459,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "tokens_before": 23234,
+          "tokens_after": 15536,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23258,
+          "tokens_after": 15388,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 5,
+      "elapsed_ms": 258.5
+    },
+    {
+      "session_id": 1,
+      "mode": "openhands",
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 19720,
+      "total_tokens_added": 97867,
+      "compression_ratio": 4.962829614604463,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 8,
+          "tokens_before": 23889,
+          "tokens_after": 16057,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23859,
+          "tokens_after": 15873,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23761,
+          "tokens_after": 15943,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23535,
+          "tokens_after": 15695,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23329,
+          "tokens_after": 15473,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23456,
+          "tokens_after": 15890,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23828,
+          "tokens_after": 15981,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23925,
+          "tokens_after": 15982,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23736,
+          "tokens_after": 15716,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23352,
+          "tokens_after": 15685,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 6,
+      "elapsed_ms": 65.0
+    },
+    {
+      "session_id": 1,
+      "mode": "naive",
+      "needle_turns": [
+        3,
+        4,
+        7,
+        21,
+        23
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3"
+      ],
+      "survival_score": 2,
+      "total_needles": 5,
+      "context_tokens": 31430,
+      "total_tokens_added": 97511,
+      "compression_ratio": 3.1024817053770284,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 11,
+      "elapsed_ms": 0.2
+    },
+    {
+      "session_id": 2,
+      "mode": "structural",
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 20099,
+      "total_tokens_added": 97141,
+      "compression_ratio": 4.833126026170456,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23334,
+          "tokens_after": 15704,
+          "events": 1
+        },
+        {
+          "turn": 8,
+          "tokens_before": 23486,
+          "tokens_after": 15791,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23513,
+          "tokens_after": 15659,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23454,
+          "tokens_after": 15662,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23609,
+          "tokens_after": 15852,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23437,
+          "tokens_after": 15490,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23337,
+          "tokens_after": 15579,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 23241,
+          "tokens_after": 15667,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 23566,
+          "tokens_after": 15956,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "tokens_before": 23513,
+          "tokens_after": 15860,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 308.1
+    },
+    {
+      "session_id": 2,
+      "mode": "bm25",
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 19894,
+      "total_tokens_added": 97893,
+      "compression_ratio": 4.920729868302001,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23765,
+          "tokens_after": 15996,
+          "events": 1
+        },
+        {
+          "turn": 8,
+          "tokens_before": 24024,
+          "tokens_after": 15996,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23746,
+          "tokens_after": 15876,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23813,
+          "tokens_after": 15638,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23384,
+          "tokens_after": 15638,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23370,
+          "tokens_after": 15638,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23349,
+          "tokens_after": 15472,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 23383,
+          "tokens_after": 15824,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 23491,
+          "tokens_after": 15580,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "tokens_before": 23215,
+          "tokens_after": 15655,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 217.1
+    },
+    {
+      "session_id": 2,
+      "mode": "openhands",
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 19649,
+      "total_tokens_added": 97009,
+      "compression_ratio": 4.93709603542165,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23428,
+          "tokens_after": 15519,
+          "events": 1
+        },
+        {
+          "turn": 8,
+          "tokens_before": 23112,
+          "tokens_after": 15419,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23196,
+          "tokens_after": 15401,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23124,
+          "tokens_after": 15390,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23122,
+          "tokens_after": 15496,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23227,
+          "tokens_after": 15366,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23177,
+          "tokens_after": 15523,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 23245,
+          "tokens_after": 15384,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 23138,
+          "tokens_after": 15368,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "tokens_before": 23157,
+          "tokens_after": 15472,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 7,
+      "elapsed_ms": 61.6
+    },
+    {
+      "session_id": 2,
+      "mode": "naive",
+      "needle_turns": [
+        2,
+        17,
+        18,
+        23,
+        28
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3"
+      ],
+      "survival_score": 2,
+      "total_needles": 5,
+      "context_tokens": 31503,
+      "total_tokens_added": 97478,
+      "compression_ratio": 3.0942449925403928,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 11,
+      "elapsed_ms": 0.2
+    },
+    {
+      "session_id": 3,
+      "mode": "structural",
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 20002,
+      "total_tokens_added": 98268,
+      "compression_ratio": 4.912908709129087,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 9,
+          "tokens_before": 23720,
+          "tokens_after": 15826,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23562,
+          "tokens_after": 15823,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23840,
+          "tokens_after": 16158,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23999,
+          "tokens_after": 16036,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23980,
+          "tokens_after": 16213,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 24187,
+          "tokens_after": 16243,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 24070,
+          "tokens_after": 16428,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 24202,
+          "tokens_after": 16043,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23744,
+          "tokens_after": 15970,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23787,
+          "tokens_after": 15857,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 313.0
+    },
+    {
+      "session_id": 3,
+      "mode": "bm25",
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 20038,
+      "total_tokens_added": 98241,
+      "compression_ratio": 4.902734803872642,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 9,
+          "tokens_before": 23573,
+          "tokens_after": 15714,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23577,
+          "tokens_after": 15636,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23808,
+          "tokens_after": 15684,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23420,
+          "tokens_after": 15796,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23557,
+          "tokens_after": 15710,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23491,
+          "tokens_after": 15710,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 23436,
+          "tokens_after": 15827,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23737,
+          "tokens_after": 15827,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23596,
+          "tokens_after": 15827,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23794,
+          "tokens_after": 15827,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 6,
+      "elapsed_ms": 207.9
+    },
+    {
+      "session_id": 3,
+      "mode": "openhands",
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [
+        "needle_1"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 19530,
+      "total_tokens_added": 97272,
+      "compression_ratio": 4.980645161290322,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 9,
+          "tokens_before": 23419,
+          "tokens_after": 15472,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23220,
+          "tokens_after": 15511,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23429,
+          "tokens_after": 15741,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23551,
+          "tokens_after": 15803,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23417,
+          "tokens_after": 15499,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23337,
+          "tokens_after": 15527,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 23329,
+          "tokens_after": 15715,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23611,
+          "tokens_after": 15773,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23418,
+          "tokens_after": 15616,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23298,
+          "tokens_after": 15402,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 7,
+      "elapsed_ms": 61.9
+    },
+    {
+      "session_id": 3,
+      "mode": "naive",
+      "needle_turns": [
+        0,
+        1,
+        2,
+        6,
+        13
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 31718,
+      "total_tokens_added": 98165,
+      "compression_ratio": 3.094930323475629,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 9,
+      "elapsed_ms": 0.2
+    },
+    {
+      "session_id": 4,
+      "mode": "structural",
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 19932,
+      "total_tokens_added": 97347,
+      "compression_ratio": 4.8839554485249845,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23591,
+          "tokens_after": 15796,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23621,
+          "tokens_after": 15790,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23465,
+          "tokens_after": 15550,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23497,
+          "tokens_after": 15771,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23377,
+          "tokens_after": 15584,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23615,
+          "tokens_after": 16002,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 23883,
+          "tokens_after": 16089,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23787,
+          "tokens_after": 15959,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23514,
+          "tokens_after": 15882,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23619,
+          "tokens_after": 15903,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 313.0
+    },
+    {
+      "session_id": 4,
+      "mode": "bm25",
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 15768,
+      "total_tokens_added": 98151,
+      "compression_ratio": 6.2246955859969555,
+      "compaction_events": 11,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23587,
+          "tokens_after": 15794,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23748,
+          "tokens_after": 15844,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23536,
+          "tokens_after": 15844,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23679,
+          "tokens_after": 15771,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23496,
+          "tokens_after": 15654,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23908,
+          "tokens_after": 19703,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23659,
+          "tokens_after": 15718,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23512,
+          "tokens_after": 15765,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 23378,
+          "tokens_after": 15479,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "tokens_before": 23317,
+          "tokens_after": 15540,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23443,
+          "tokens_after": 15540,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 5,
+      "elapsed_ms": 261.3
+    },
+    {
+      "session_id": 4,
+      "mode": "openhands",
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [
+        "needle_1"
+      ],
+      "needles_lost": [
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 19681,
+      "total_tokens_added": 97226,
+      "compression_ratio": 4.940094507392917,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23606,
+          "tokens_after": 15680,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23637,
+          "tokens_after": 15890,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23593,
+          "tokens_after": 15735,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23335,
+          "tokens_after": 15378,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23115,
+          "tokens_after": 15412,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23204,
+          "tokens_after": 15604,
+          "events": 1
+        },
+        {
+          "turn": 22,
+          "tokens_before": 23206,
+          "tokens_after": 15469,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23320,
+          "tokens_after": 15528,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23406,
+          "tokens_after": 15804,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23526,
+          "tokens_after": 15675,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 7,
+      "elapsed_ms": 61.4
+    },
+    {
+      "session_id": 4,
+      "mode": "naive",
+      "needle_turns": [
+        0,
+        7,
+        16,
+        17,
+        19
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 31416,
+      "total_tokens_added": 97386,
+      "compression_ratio": 3.0998854087089383,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 9,
+      "elapsed_ms": 0.2
+    },
+    {
+      "session_id": 5,
+      "mode": "structural",
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 20206,
+      "total_tokens_added": 97624,
+      "compression_ratio": 4.831436207067208,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 5,
+          "tokens_before": 23428,
+          "tokens_after": 15561,
+          "events": 1
+        },
+        {
+          "turn": 8,
+          "tokens_before": 23435,
+          "tokens_after": 15736,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23432,
+          "tokens_after": 15887,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23474,
+          "tokens_after": 15851,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23615,
+          "tokens_after": 15862,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23929,
+          "tokens_after": 16239,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 24205,
+          "tokens_after": 16216,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 24262,
+          "tokens_after": 16529,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 24132,
+          "tokens_after": 16264,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23966,
+          "tokens_after": 16087,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 309.9
+    },
+    {
+      "session_id": 5,
+      "mode": "bm25",
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 19597,
+      "total_tokens_added": 97263,
+      "compression_ratio": 4.963157626167271,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 5,
+          "tokens_before": 23288,
+          "tokens_after": 15587,
+          "events": 1
+        },
+        {
+          "turn": 8,
+          "tokens_before": 23446,
+          "tokens_after": 15657,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23425,
+          "tokens_after": 15526,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23156,
+          "tokens_after": 15421,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23338,
+          "tokens_after": 15603,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23302,
+          "tokens_after": 15631,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23398,
+          "tokens_after": 15424,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23315,
+          "tokens_after": 15505,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23344,
+          "tokens_after": 15555,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23346,
+          "tokens_after": 15555,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 7,
+      "elapsed_ms": 232.6
+    },
+    {
+      "session_id": 5,
+      "mode": "openhands",
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 19659,
+      "total_tokens_added": 97641,
+      "compression_ratio": 4.966732794140088,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 5,
+          "tokens_before": 23374,
+          "tokens_after": 15567,
+          "events": 1
+        },
+        {
+          "turn": 8,
+          "tokens_before": 23389,
+          "tokens_after": 15629,
+          "events": 1
+        },
+        {
+          "turn": 10,
+          "tokens_before": 23347,
+          "tokens_after": 15487,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23226,
+          "tokens_after": 15501,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23436,
+          "tokens_after": 15715,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23458,
+          "tokens_after": 15679,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23537,
+          "tokens_after": 15618,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23550,
+          "tokens_after": 15859,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23630,
+          "tokens_after": 15654,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23576,
+          "tokens_after": 15604,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 6,
+      "elapsed_ms": 62.3
+    },
+    {
+      "session_id": 5,
+      "mode": "naive",
+      "needle_turns": [
+        6,
+        13,
+        17,
+        20,
+        22
+      ],
+      "needles_in_context": [
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3"
+      ],
+      "survival_score": 2,
+      "total_needles": 5,
+      "context_tokens": 31317,
+      "total_tokens_added": 97241,
+      "compression_ratio": 3.1050547625890093,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 11,
+      "elapsed_ms": 0.2
+    },
+    {
+      "session_id": 6,
+      "mode": "structural",
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 20570,
+      "total_tokens_added": 97343,
+      "compression_ratio": 4.732280019445795,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 5,
+          "tokens_before": 23061,
+          "tokens_after": 15302,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23433,
+          "tokens_after": 15808,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23529,
+          "tokens_after": 15852,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23653,
+          "tokens_after": 16009,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23717,
+          "tokens_after": 15998,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23729,
+          "tokens_after": 16105,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23979,
+          "tokens_after": 16239,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23984,
+          "tokens_after": 16110,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23785,
+          "tokens_after": 16155,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 24174,
+          "tokens_after": 16465,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 309.6
+    },
+    {
+      "session_id": 6,
+      "mode": "bm25",
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 19805,
+      "total_tokens_added": 97283,
+      "compression_ratio": 4.912042413531936,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 5,
+          "tokens_before": 23042,
+          "tokens_after": 15335,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23191,
+          "tokens_after": 15530,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23073,
+          "tokens_after": 15581,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23388,
+          "tokens_after": 15567,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23460,
+          "tokens_after": 15802,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23832,
+          "tokens_after": 15720,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23633,
+          "tokens_after": 15720,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23487,
+          "tokens_after": 15793,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23673,
+          "tokens_after": 15862,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23544,
+          "tokens_after": 15707,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 7,
+      "elapsed_ms": 211.4
+    },
+    {
+      "session_id": 6,
+      "mode": "openhands",
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 19812,
+      "total_tokens_added": 97814,
+      "compression_ratio": 4.937108822935595,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 5,
+          "tokens_before": 23202,
+          "tokens_after": 15468,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23375,
+          "tokens_after": 15764,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23569,
+          "tokens_after": 15763,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23621,
+          "tokens_after": 15739,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23646,
+          "tokens_after": 15753,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23604,
+          "tokens_after": 15765,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23559,
+          "tokens_after": 15735,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23648,
+          "tokens_after": 15735,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23654,
+          "tokens_after": 15844,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23560,
+          "tokens_after": 15642,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 7,
+      "elapsed_ms": 61.7
+    },
+    {
+      "session_id": 6,
+      "mode": "naive",
+      "needle_turns": [
+        7,
+        8,
+        14,
+        18,
+        25
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 31909,
+      "total_tokens_added": 98335,
+      "compression_ratio": 3.08173242658811,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 10,
+      "elapsed_ms": 0.2
+    },
+    {
+      "session_id": 7,
+      "mode": "structural",
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 20245,
+      "total_tokens_added": 97370,
+      "compression_ratio": 4.809582612990862,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 7,
+          "tokens_before": 23470,
+          "tokens_after": 15711,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23321,
+          "tokens_after": 15516,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 22979,
+          "tokens_after": 15338,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23178,
+          "tokens_after": 15703,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23472,
+          "tokens_after": 15784,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23644,
+          "tokens_after": 15875,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23707,
+          "tokens_after": 15847,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23530,
+          "tokens_after": 15790,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23631,
+          "tokens_after": 15913,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23915,
+          "tokens_after": 16017,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 310.6
+    },
+    {
+      "session_id": 7,
+      "mode": "bm25",
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 16027,
+      "total_tokens_added": 97711,
+      "compression_ratio": 6.09664940413053,
+      "compaction_events": 11,
+      "compaction_log": [
+        {
+          "turn": 7,
+          "tokens_before": 23796,
+          "tokens_after": 15668,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23469,
+          "tokens_after": 15758,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23435,
+          "tokens_after": 15717,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23692,
+          "tokens_after": 15760,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23379,
+          "tokens_after": 15760,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23445,
+          "tokens_after": 15767,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23632,
+          "tokens_after": 15891,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23663,
+          "tokens_after": 15943,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23644,
+          "tokens_after": 15763,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23818,
+          "tokens_after": 23438,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 27203,
+          "tokens_after": 15799,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 5,
+      "elapsed_ms": 231.4
+    },
+    {
+      "session_id": 7,
+      "mode": "openhands",
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_2"
+      ],
+      "survival_score": 4,
+      "total_needles": 5,
+      "context_tokens": 20122,
+      "total_tokens_added": 97566,
+      "compression_ratio": 4.848722790975052,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 7,
+          "tokens_before": 23373,
+          "tokens_after": 15666,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23378,
+          "tokens_after": 15720,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23465,
+          "tokens_after": 15532,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23473,
+          "tokens_after": 15761,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23402,
+          "tokens_after": 15657,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23249,
+          "tokens_after": 15308,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23087,
+          "tokens_after": 15446,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23410,
+          "tokens_after": 15818,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23639,
+          "tokens_after": 15860,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23988,
+          "tokens_after": 16024,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 10,
+      "elapsed_ms": 61.4
+    },
+    {
+      "session_id": 7,
+      "mode": "naive",
+      "needle_turns": [
+        0,
+        5,
+        24,
+        25,
+        27
+      ],
+      "needles_in_context": [
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2"
+      ],
+      "survival_score": 3,
+      "total_needles": 5,
+      "context_tokens": 31477,
+      "total_tokens_added": 97766,
+      "compression_ratio": 3.1059503764653558,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 12,
+      "elapsed_ms": 0.2
+    },
+    {
+      "session_id": 8,
+      "mode": "structural",
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 16418,
+      "total_tokens_added": 97206,
+      "compression_ratio": 5.920696796199294,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 7,
+          "tokens_before": 26705,
+          "tokens_after": 15308,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23177,
+          "tokens_after": 15649,
+          "events": 1
+        },
+        {
+          "turn": 14,
+          "tokens_before": 23528,
+          "tokens_after": 15823,
+          "events": 1
+        },
+        {
+          "turn": 16,
+          "tokens_before": 23655,
+          "tokens_after": 15938,
+          "events": 1
+        },
+        {
+          "turn": 18,
+          "tokens_before": 23685,
+          "tokens_after": 15822,
+          "events": 1
+        },
+        {
+          "turn": 20,
+          "tokens_before": 23736,
+          "tokens_after": 16026,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23924,
+          "tokens_after": 15963,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 23749,
+          "tokens_after": 15979,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "tokens_before": 23581,
+          "tokens_after": 15925,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23899,
+          "tokens_after": 16190,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 10,
+      "elapsed_ms": 312.2
+    },
+    {
+      "session_id": 8,
+      "mode": "bm25",
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 15736,
+      "total_tokens_added": 97698,
+      "compression_ratio": 6.208566344687341,
+      "compaction_events": 11,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23728,
+          "tokens_after": 15782,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23478,
+          "tokens_after": 15836,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23787,
+          "tokens_after": 15862,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23673,
+          "tokens_after": 15778,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23539,
+          "tokens_after": 15893,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23801,
+          "tokens_after": 15743,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23365,
+          "tokens_after": 19246,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23145,
+          "tokens_after": 15436,
+          "events": 1
+        },
+        {
+          "turn": 25,
+          "tokens_before": 23267,
+          "tokens_after": 15611,
+          "events": 1
+        },
+        {
+          "turn": 27,
+          "tokens_before": 23346,
+          "tokens_after": 15611,
+          "events": 1
+        },
+        {
+          "turn": 29,
+          "tokens_before": 23367,
+          "tokens_after": 15508,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 6,
+      "elapsed_ms": 233.2
+    },
+    {
+      "session_id": 8,
+      "mode": "openhands",
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 19609,
+      "total_tokens_added": 97451,
+      "compression_ratio": 4.969707787240552,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 6,
+          "tokens_before": 23859,
+          "tokens_after": 15815,
+          "events": 1
+        },
+        {
+          "turn": 9,
+          "tokens_before": 23549,
+          "tokens_after": 15499,
+          "events": 1
+        },
+        {
+          "turn": 12,
+          "tokens_before": 23211,
+          "tokens_after": 15594,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23506,
+          "tokens_after": 15591,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23331,
+          "tokens_after": 15639,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23601,
+          "tokens_after": 15799,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23388,
+          "tokens_after": 15620,
+          "events": 1
+        },
+        {
+          "turn": 24,
+          "tokens_before": 23299,
+          "tokens_after": 15405,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23097,
+          "tokens_after": 15507,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23232,
+          "tokens_after": 15534,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 6,
+      "elapsed_ms": 62.3
+    },
+    {
+      "session_id": 8,
+      "mode": "naive",
+      "needle_turns": [
+        4,
+        8,
+        10,
+        13,
+        22
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 31214,
+      "total_tokens_added": 97796,
+      "compression_ratio": 3.1330813096687384,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 10,
+      "elapsed_ms": 0.2
+    },
+    {
+      "session_id": 9,
+      "mode": "structural",
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "needles_lost": [],
+      "survival_score": 5,
+      "total_needles": 5,
+      "context_tokens": 20142,
+      "total_tokens_added": 97192,
+      "compression_ratio": 4.825340085393704,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 8,
+          "tokens_before": 23487,
+          "tokens_after": 15869,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23799,
+          "tokens_after": 16009,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23930,
+          "tokens_after": 15985,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23620,
+          "tokens_after": 15891,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23526,
+          "tokens_after": 15762,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23387,
+          "tokens_after": 15822,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23614,
+          "tokens_after": 15862,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23577,
+          "tokens_after": 15878,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23664,
+          "tokens_after": 15953,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23618,
+          "tokens_after": 15913,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 11,
+      "elapsed_ms": 312.9
+    },
+    {
+      "session_id": 9,
+      "mode": "bm25",
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 19897,
+      "total_tokens_added": 97963,
+      "compression_ratio": 4.9235060561893755,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 8,
+          "tokens_before": 23820,
+          "tokens_after": 16070,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23783,
+          "tokens_after": 15959,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23635,
+          "tokens_after": 15616,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23628,
+          "tokens_after": 16113,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23857,
+          "tokens_after": 15995,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23635,
+          "tokens_after": 15796,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23651,
+          "tokens_after": 16016,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23872,
+          "tokens_after": 15622,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23658,
+          "tokens_after": 15729,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23506,
+          "tokens_after": 15835,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 7,
+      "elapsed_ms": 222.4
+    },
+    {
+      "session_id": 9,
+      "mode": "openhands",
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4",
+        "needle_5"
+      ],
+      "survival_score": 0,
+      "total_needles": 5,
+      "context_tokens": 19924,
+      "total_tokens_added": 97868,
+      "compression_ratio": 4.912065850230877,
+      "compaction_events": 10,
+      "compaction_log": [
+        {
+          "turn": 8,
+          "tokens_before": 23607,
+          "tokens_after": 15493,
+          "events": 1
+        },
+        {
+          "turn": 11,
+          "tokens_before": 23356,
+          "tokens_after": 15614,
+          "events": 1
+        },
+        {
+          "turn": 13,
+          "tokens_before": 23188,
+          "tokens_after": 15430,
+          "events": 1
+        },
+        {
+          "turn": 15,
+          "tokens_before": 23165,
+          "tokens_after": 15443,
+          "events": 1
+        },
+        {
+          "turn": 17,
+          "tokens_before": 23306,
+          "tokens_after": 15658,
+          "events": 1
+        },
+        {
+          "turn": 19,
+          "tokens_before": 23467,
+          "tokens_after": 15666,
+          "events": 1
+        },
+        {
+          "turn": 21,
+          "tokens_before": 23547,
+          "tokens_after": 15661,
+          "events": 1
+        },
+        {
+          "turn": 23,
+          "tokens_before": 23470,
+          "tokens_after": 15736,
+          "events": 1
+        },
+        {
+          "turn": 26,
+          "tokens_before": 23736,
+          "tokens_after": 15905,
+          "events": 1
+        },
+        {
+          "turn": 28,
+          "tokens_before": 23632,
+          "tokens_after": 15696,
+          "events": 1
+        }
+      ],
+      "messages_in_context": 6,
+      "elapsed_ms": 61.2
+    },
+    {
+      "session_id": 9,
+      "mode": "naive",
+      "needle_turns": [
+        2,
+        3,
+        6,
+        10,
+        24
+      ],
+      "needles_in_context": [
+        "needle_5"
+      ],
+      "needles_lost": [
+        "needle_1",
+        "needle_2",
+        "needle_3",
+        "needle_4"
+      ],
+      "survival_score": 1,
+      "total_needles": 5,
+      "context_tokens": 31492,
+      "total_tokens_added": 98265,
+      "compression_ratio": 3.120316270798933,
+      "compaction_events": 0,
+      "compaction_log": [],
+      "messages_in_context": 10,
+      "elapsed_ms": 0.2
+    }
+  ]
+}
