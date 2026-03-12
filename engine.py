@@ -1123,7 +1123,7 @@ class ChunkLog:
         self.hard_threshold = hard_threshold
         self.auto_priority = auto_priority
         self.goal_guided = goal_guided
-        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'swe_pruner', 'memfly', 'acc', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
+        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'swe_pruner', 'memfly', 'acc', 'openhands', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
         self._turn = 0
         self._compaction_count = 0
         self._decisions: list[DecisionRecord] = []
@@ -1154,6 +1154,11 @@ class ChunkLog:
             self._goal_scorer = None
             self._semantic_scorer = None
             self._structural_scorer = None
+        elif scoring_mode == "openhands":
+            # OpenHands-style: no content scorer, purely positional (U-shaped by turn)
+            self._goal_scorer = None
+            self._semantic_scorer = None
+            self._openhands_keep_first = 1  # preserve first K chunks
         elif scoring_mode == "bm25":
             self._bm25_scorer = BM25Scorer()
             self._goal_scorer = None
@@ -1367,6 +1372,51 @@ class ChunkLog:
             self._conn.execute(
                 "UPDATE chunks SET priority = ? WHERE chunk_hash = ?",
                 (new_priority, chunk_hash),
+            )
+        self._conn.commit()
+
+    def _rescore_chunks_openhands(self) -> None:
+        """Re-score chunks using OpenHands-style positional (U-shaped) priorities.
+
+        Implements amortized forgetting: first K chunks and most recent chunks
+        get high scores (2.0), middle chunks get low scores (0.5).
+        This causes the compaction logic to evict the middle, preserving
+        head (initial context) and tail (recent context).
+        """
+        keep_first = getattr(self, '_openhands_keep_first', 1)
+        rows = self._conn.execute(
+            "SELECT chunk_hash, turn, tokens FROM chunks ORDER BY turn ASC, rowid ASC"
+        ).fetchall()
+        if not rows:
+            return
+
+        n = len(rows)
+        # Calculate how many tail chunks to protect based on token budget
+        # Target: keep enough tail chunks to fill ~50% of max_tokens (halving strategy)
+        target_tokens = int(self.max_tokens * self.soft_threshold * 0.5)
+        head_tokens = sum(t for _, _, t in rows[:keep_first])
+        tail_budget = target_tokens - head_tokens
+
+        # Count tail chunks from end
+        tail_tokens = 0
+        tail_start = n
+        for i in range(n - 1, keep_first - 1, -1):
+            if tail_tokens + rows[i][2] <= tail_budget:
+                tail_tokens += rows[i][2]
+                tail_start = i
+            else:
+                break
+
+        for i, (chunk_hash, turn, tokens) in enumerate(rows):
+            if i < keep_first:
+                priority = 2.0  # Head: always preserve
+            elif i >= tail_start:
+                priority = 2.0  # Tail: always preserve
+            else:
+                priority = 0.5  # Middle: expendable
+            self._conn.execute(
+                "UPDATE chunks SET priority = ? WHERE chunk_hash = ?",
+                (priority, chunk_hash),
             )
         self._conn.commit()
 
@@ -1614,6 +1664,8 @@ class ChunkLog:
             # Re-score chunks before compaction
             if self.scoring_mode == "swe_pruner":
                 self._rescore_chunks_swe_pruner()
+            elif self.scoring_mode == "openhands":
+                self._rescore_chunks_openhands()
             elif self.scoring_mode == "bm25":
                 self._rescore_chunks_bm25()
             elif self.scoring_mode == "memfly":
@@ -1645,7 +1697,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "swe_pruner", "memfly", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "swe_pruner", "memfly", "openhands", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
         for chunk_hash, tokens, priority, turn in rows:
             if current_tokens - removed <= target:
                 break
@@ -1679,7 +1731,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "swe_pruner", "memfly", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "swe_pruner", "memfly", "openhands", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
         # First pass: try to evict only low-priority chunks (scoring protection)
         if use_scoring:
             for chunk_hash, tokens, priority, turn in rows:

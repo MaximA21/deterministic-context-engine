@@ -1,0 +1,30 @@
+OpenHands vs Deterministic Context Engine — Adversarial NIAH
+Model: gemini-3.1-flash-lite-preview
+Context: 32k tokens
+Fillers/turn: 14
+
+BM25+STRUCTURAL (content-aware):
+  Avg recall: 5.0/5 (100%)
+  Scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+  Avg in context: 5.0/5
+  Compression: 4.84x
+
+BM25 (content-aware):
+  Avg recall: 0.6/5 (12%)
+  Scores: [1, 0, 2, 0, 0, 1, 1, 0, 1, 0]
+  Avg in context: 0.6/5
+  Compression: 5.51x
+
+OPENHANDS (positional, amortized forgetting):
+  Avg recall: 0.9/5 (18%)
+  Scores: [1, 0, 1, 1, 1, 0, 1, 4, 0, 0]
+  Avg in context: 0.9/5
+  Compression: 4.93x
+
+NAIVE (sliding window):
+  Avg recall: 1.4/5 (28%)
+  Scores: [2, 2, 2, 0, 0, 2, 1, 3, 1, 1]
+  Avg in context: 1.4/5
+  Compression: 3.11x
+
+Delta (BM25+Structural - OpenHands): +4.1 needles
