@@ -1,0 +1,225 @@
+#!/usr/bin/env python3
+"""MemFly 50-Turn Extended — MemFly vs BM25+Structural vs BM25 vs Naive.
+
+Extended session: 50 turns, all 5 needles placed before turn 20.
+Tests long-term needle retention under sustained compaction pressure.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import random
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from engine import ChunkLog, _estimate_tokens
+from benchmarks.niah_dense import (
+    NEEDLES, FILLER_TEMPLATES, SYSTEM_PROMPT, SYSTEM_PROMPT_TOKENS,
+    sliding_window_truncate,
+)
+from benchmarks.gemini_utils import call_gemini, GEMINI_MODEL
+
+RESULTS_DIR = PROJECT_ROOT / "results" / "memfly_comparison"
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
+MAX_CONTEXT_TOKENS = 32768
+NUM_TURNS = 50
+
+RECALL_QUESTION = """Please recall ALL important updates and facts mentioned during our conversation.
+Specifically, I need you to tell me:
+1. What is the secret project codename?
+2. When is the database migration scheduled?
+3. What was the API rate limit changed to?
+4. What is the new hire's name and when does she start?
+5. What is the production server IP address?
+
+Answer each question based ONLY on what was mentioned in our conversation."""
+
+
+def generate_early_placements(num_sessions: int) -> list[list[int]]:
+    placements = []
+    rng = random.Random(42)
+    for _ in range(num_sessions):
+        turns = sorted(rng.sample(range(20), 5))
+        placements.append(turns)
+    return placements
+
+
+def _make_log(mode: str) -> ChunkLog | None:
+    if mode in ("memfly", "structural", "bm25"):
+        return ChunkLog(
+            db_path=":memory:", max_tokens=MAX_CONTEXT_TOKENS,
+            soft_threshold=0.7, hard_threshold=0.9,
+            auto_priority=False, scoring_mode=mode,
+        )
+    return None
+
+
+def run_session(
+    session_id: int,
+    needle_turns: list[int],
+    mode: str,
+    api_key: str,
+    num_turns: int = NUM_TURNS,
+) -> dict[str, Any]:
+    rng = random.Random(session_id * 1000 + hash(mode))
+    compaction_log: list[dict] = []
+    total_tokens_added = 0
+
+    chunk_log = _make_log(mode)
+    raw_messages: list[dict[str, str]] = [] if chunk_log is None else []
+
+    fillers_per_turn = 3
+
+    for turn in range(num_turns):
+        if turn in needle_turns:
+            needle_idx = needle_turns.index(turn)
+            content = NEEDLES[needle_idx]["fact"]
+        else:
+            fillers = [rng.choice(FILLER_TEMPLATES) for _ in range(fillers_per_turn)]
+            unique_salt = f"\n[Ref: turn_{turn}_session_{session_id}_id_{rng.randint(0, 999999)}]"
+            content = f"[Turn {turn+1}] " + "\n\n".join(fillers) + unique_salt
+
+        total_tokens_added += _estimate_tokens(content)
+
+        if chunk_log is not None:
+            tokens_before = chunk_log.current_tokens()
+            compactions_before = chunk_log.compaction_count
+            chunk_log.append("user", content, priority=0.5)
+            chunk_log.next_turn()
+            tokens_after = chunk_log.current_tokens()
+            compactions_after = chunk_log.compaction_count
+            if compactions_after > compactions_before:
+                compaction_log.append({
+                    "turn": turn,
+                    "tokens_before": tokens_before + _estimate_tokens(content),
+                    "tokens_after": tokens_after,
+                    "events": compactions_after - compactions_before,
+                })
+        else:
+            raw_messages.append({"role": "user", "content": content})
+
+    if chunk_log is not None:
+        chunk_log.append("user", RECALL_QUESTION, priority=2.0)
+        messages = chunk_log.get_context()
+        context_tokens = chunk_log.get_context_tokens()
+        compaction_events = chunk_log.compaction_count
+    else:
+        raw_messages.append({"role": "user", "content": RECALL_QUESTION})
+        messages = sliding_window_truncate(raw_messages, MAX_CONTEXT_TOKENS)
+        context_tokens = sum(_estimate_tokens(m["content"]) for m in messages)
+        compaction_events = 0
+
+    needles_in_context = []
+    context_text = " ".join(m["content"] for m in messages)
+    for needle in NEEDLES:
+        if needle["keyword"].lower() in context_text.lower():
+            needles_in_context.append(needle["id"])
+
+    result = call_gemini(messages, SYSTEM_PROMPT, api_key, max_output_tokens=512)
+
+    if chunk_log:
+        chunk_log.close()
+
+    answer_lower = (result["answer"] or "").lower()
+    needles_recalled = []
+    needles_lost = []
+    for needle in NEEDLES:
+        if needle["keyword"].lower() in answer_lower:
+            needles_recalled.append(needle["id"])
+        else:
+            needles_lost.append(needle["id"])
+
+    return {
+        "session_id": session_id, "mode": mode, "error": result["error"],
+        "needle_turns": needle_turns,
+        "needles_in_context": needles_in_context,
+        "needles_recalled": needles_recalled, "needles_lost": needles_lost,
+        "recall_score": len(needles_recalled), "total_needles": len(NEEDLES),
+        "answer": result["answer"], "ttft": result["ttft"],
+        "input_tokens": result["input_tokens"], "output_tokens": result["output_tokens"],
+        "context_tokens": context_tokens, "total_tokens_added": total_tokens_added,
+        "compaction_events": compaction_events, "compaction_log": compaction_log,
+    }
+
+
+def main():
+    api_key = os.environ.get("GOOGLE_API_KEY")
+    if not api_key:
+        print("ERROR: GOOGLE_API_KEY not set")
+        sys.exit(1)
+
+    num_sessions = 10
+    placements = generate_early_placements(num_sessions)
+    modes = ["memfly", "structural", "bm25", "naive"]
+
+    print("=" * 60)
+    print(f"MemFly 50-Turn Extended — Gemini ({MAX_CONTEXT_TOKENS // 1024}k context)")
+    print("=" * 60)
+    print(f"Model: {GEMINI_MODEL}")
+    print(f"Turns: {NUM_TURNS} (needles in first 20)")
+    print(f"Modes: {modes}")
+    print()
+
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d")
+    results: list[dict] = []
+    total_tests = num_sessions * len(modes)
+    test_num = 0
+
+    for session_id, needle_turns in enumerate(placements):
+        for mode in modes:
+            test_num += 1
+            print(f"[{test_num}/{total_tests}] S{session_id+1} {mode.upper()}...", end=" ", flush=True)
+            result = run_session(session_id, needle_turns, mode, api_key, num_turns=NUM_TURNS)
+            results.append(result)
+            if result["error"]:
+                print(f"ERR: {result['error'][:80]}")
+            else:
+                ratio = result["total_tokens_added"] / max(1, result["context_tokens"])
+                in_ctx = len(result["needles_in_context"])
+                print(f"Recalled {result['recall_score']}/5 in_ctx={in_ctx}/5 ctx={result['context_tokens']} ratio={ratio:.2f}x compact={result['compaction_events']}")
+            time.sleep(2)
+
+    output = {
+        "timestamp": timestamp, "model": GEMINI_MODEL,
+        "benchmark": "gemini_memfly_50turn",
+        "max_context_tokens": MAX_CONTEXT_TOKENS,
+        "num_turns": NUM_TURNS,
+        "results": results,
+    }
+    json_path = RESULTS_DIR / f"memfly_50turn_{timestamp}.json"
+    with open(json_path, "w") as f:
+        json.dump(output, f, indent=2, default=str)
+    print(f"\nResults saved to {json_path}")
+
+    print(f"\n{'=' * 60}")
+    print("SUMMARY")
+    print(f"{'=' * 60}")
+    for label, mode_key in [
+        ("MEMFLY (IB scorer)", "memfly"),
+        ("STRUCTURAL (BM25+Structural)", "structural"),
+        ("BM25 (baseline)", "bm25"),
+        ("NAIVE (sliding window)", "naive"),
+    ]:
+        mr = [r for r in results if r["mode"] == mode_key and not r["error"]]
+        scores = [r["recall_score"] for r in mr]
+        avg = sum(scores) / len(scores) if scores else 0
+        avg_in_ctx = sum(len(r["needles_in_context"]) for r in mr) / len(mr) if mr else 0
+        avg_compact = sum(r["compaction_events"] for r in mr) / len(mr) if mr else 0
+        print(f"\n{label}:")
+        print(f"  Avg recall: {avg:.1f}/5 ({100*avg/5:.0f}%)")
+        print(f"  Scores: {scores}")
+        print(f"  Avg needles in context: {avg_in_ctx:.1f}/5")
+        print(f"  Avg compactions: {avg_compact:.1f}")
+    print(f"\n{'=' * 60}")
+
+
+if __name__ == "__main__":
+    main()
