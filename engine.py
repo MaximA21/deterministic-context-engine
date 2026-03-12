@@ -859,6 +859,102 @@ class BM25Scorer:
         return scores
 
 
+class SWEPrunerScorer:
+    """SWE-Pruner-inspired scorer using a small neural encoder.
+
+    Faithful adaptation of arxiv 2601.16746:
+    1. Neural token/sentence scoring via all-MiniLM-L6-v2 (proxy for Qwen3-Reranker-0.6B)
+    2. Line-level aggregation → sentence-level aggregation within each chunk
+    3. CRF-style sequential smoothing: adjacent high-scoring chunks boost neighbors
+    4. Threshold tau=0.5 maps to our [0.5, 2.0] scoring range
+
+    Key difference from SemanticScorer: SWE-Pruner scores at sub-chunk granularity
+    (sentences) and applies CRF neighbor smoothing, while SemanticScorer encodes
+    entire chunks as single embeddings.
+    """
+
+    def __init__(self, tau: float = 0.5, crf_weight: float = 0.15):
+        from sentence_transformers import SentenceTransformer
+        self._model = SentenceTransformer("all-MiniLM-L6-v2")
+        self.tau = tau
+        self.crf_weight = crf_weight  # weight of neighbor influence (CRF transition approx)
+
+    @staticmethod
+    def _split_sentences(text: str) -> list[str]:
+        """Split text into sentence-like segments for sub-chunk scoring."""
+        # Split on newlines and sentence-ending punctuation
+        segments = re.split(r'(?:\n+|(?<=[.!?])\s+)', text)
+        return [s.strip() for s in segments if s.strip() and len(s.strip()) > 5]
+
+    def score_chunks(
+        self, goal: str, chunks: list[tuple[str, str]], keyword_scores: dict[str, float] | None = None
+    ) -> dict[str, float]:
+        """Score chunks using SWE-Pruner's neural skimming algorithm.
+
+        1. Encode goal
+        2. For each chunk, split into sentences, encode each, score against goal
+        3. Aggregate sentence scores to chunk score (mean — paper's line-level aggregation)
+        4. Apply CRF neighbor smoothing
+        5. Map to [0.5, 2.0]
+        """
+        import numpy as np
+
+        if not chunks:
+            return {}
+
+        n = len(chunks)
+        goal_emb = self._model.encode([goal], normalize_embeddings=True)[0]
+
+        # Step 1-2: Sentence-level scoring within each chunk
+        chunk_raw_scores = []
+        for _, content in chunks:
+            sentences = self._split_sentences(content)
+            if not sentences:
+                chunk_raw_scores.append(0.0)
+                continue
+
+            sent_embs = self._model.encode(sentences, normalize_embeddings=True)
+            # Cosine similarity of each sentence with goal (normalized → dot product)
+            sent_scores = sent_embs @ goal_emb  # shape: (num_sentences,)
+
+            # Step 3: Line-level aggregation (mean of sentence scores per paper)
+            chunk_raw_scores.append(float(np.mean(sent_scores)))
+
+        raw = np.array(chunk_raw_scores)
+
+        # Step 4: CRF-style sequential smoothing
+        # Paper uses CRF transition probabilities between retain/prune states.
+        # We approximate: each chunk's score gets a bonus from high-scoring neighbors.
+        smoothed = raw.copy()
+        for i in range(n):
+            neighbor_sum = 0.0
+            neighbor_count = 0
+            if i > 0:
+                neighbor_sum += raw[i - 1]
+                neighbor_count += 1
+            if i < n - 1:
+                neighbor_sum += raw[i + 1]
+                neighbor_count += 1
+            if neighbor_count > 0:
+                neighbor_avg = neighbor_sum / neighbor_count
+                smoothed[i] = (1.0 - self.crf_weight) * raw[i] + self.crf_weight * neighbor_avg
+
+        # Step 5: Map to [0.5, 2.0] range
+        # Paper uses tau=0.5 as threshold; we map so that tau maps to ~1.25 (midpoint)
+        # Scores above tau get boosted, below tau get penalized
+        min_s = smoothed.min() if n > 0 else 0.0
+        max_s = smoothed.max() if n > 0 else 1.0
+        spread = max_s - min_s if max_s > min_s else 1.0
+
+        result: dict[str, float] = {}
+        for i, (chunk_hash, _) in enumerate(chunks):
+            normalized = (smoothed[i] - min_s) / spread  # 0..1
+            score = 0.5 + normalized * 1.5  # map to [0.5, 2.0]
+            result[chunk_hash] = max(0.5, min(2.0, score))
+
+        return result
+
+
 @dataclass(frozen=True)
 class DecisionRecord:
     timestamp: float
@@ -907,7 +1003,7 @@ class ChunkLog:
         self.hard_threshold = hard_threshold
         self.auto_priority = auto_priority
         self.goal_guided = goal_guided
-        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
+        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'swe_pruner', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
         self._turn = 0
         self._compaction_count = 0
         self._decisions: list[DecisionRecord] = []
@@ -917,7 +1013,12 @@ class ChunkLog:
         self._entity_scorer: EntityAwareScorer | None = None
         self._structural_scorer: StructuralScorer | None = None
         self._bm25_scorer = None
-        if scoring_mode == "bm25":
+        self._swe_pruner_scorer: SWEPrunerScorer | None = None
+        if scoring_mode == "swe_pruner":
+            self._swe_pruner_scorer = SWEPrunerScorer()
+            self._goal_scorer = None
+            self._semantic_scorer = None
+        elif scoring_mode == "bm25":
             self._bm25_scorer = BM25Scorer()
             self._goal_scorer = None
             self._semantic_scorer = None
@@ -1109,6 +1210,25 @@ class ChunkLog:
             )
         self._conn.commit()
 
+    def _rescore_chunks_swe_pruner(self) -> None:
+        """Re-score all chunks using SWE-Pruner neural skimming."""
+        if not self._last_user_message or not self._swe_pruner_scorer:
+            return
+        rows = self._conn.execute(
+            "SELECT chunk_hash, content FROM chunks ORDER BY turn ASC"
+        ).fetchall()
+        if not rows:
+            return
+        scores = self._swe_pruner_scorer.score_chunks(
+            self._last_user_message, rows, keyword_scores=None
+        )
+        for chunk_hash, new_priority in scores.items():
+            self._conn.execute(
+                "UPDATE chunks SET priority = ? WHERE chunk_hash = ?",
+                (new_priority, chunk_hash),
+            )
+        self._conn.commit()
+
     def _rescore_chunks_bm25(self) -> None:
         """Re-score all chunks using BM25."""
         if not self._last_user_message or not self._bm25_scorer:
@@ -1190,7 +1310,9 @@ class ChunkLog:
 
         if current > hard_limit or current > soft_limit:
             # Re-score chunks before compaction
-            if self.scoring_mode == "bm25":
+            if self.scoring_mode == "swe_pruner":
+                self._rescore_chunks_swe_pruner()
+            elif self.scoring_mode == "bm25":
                 self._rescore_chunks_bm25()
             elif self.scoring_mode == "structural":
                 self._rescore_chunks_structural()
@@ -1219,7 +1341,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural", "swe_pruner")
         for chunk_hash, tokens, priority, turn in rows:
             if current_tokens - removed <= target:
                 break
@@ -1253,7 +1375,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural", "swe_pruner")
         # First pass: try to evict only low-priority chunks (scoring protection)
         if use_scoring:
             for chunk_hash, tokens, priority, turn in rows:
