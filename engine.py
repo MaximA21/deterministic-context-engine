@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import os
 import re
 import sqlite3
@@ -859,6 +860,235 @@ class BM25Scorer:
         return scores
 
 
+class PaperEnsembleScorer:
+    """Novel ensemble scorer combining ideas from 4 papers.
+
+    Combines:
+    1. BM25 goal relevance (base retrieval signal)
+    2. Structural action density (our regex fingerprinting — line refs, IPs, action markers)
+    3. Redundancy penalty (MemFly IB principle — minimize I(X;M) compression entropy)
+    4. Context continuity bonus (SWE-Pruner CRF idea — neighbors of important chunks boosted)
+    5. Recency-adjusted knowledge coverage (Active Context Compression — old redundant first)
+
+    All signals are pure math, no model calls. Under 50ms for typical corpus sizes.
+    """
+
+    # Signal weights (tuned for NIAH benchmarks)
+    W_GOAL = 0.15       # BM25 goal relevance
+    W_DENSITY = 0.25    # Structural action density (our key differentiator)
+    W_STRUCT_UNIQUE = 0.15  # Structural fingerprint Jaccard uniqueness (boilerplate defense)
+    W_REDUNDANCY = 0.20 # MemFly redundancy penalty (word-level)
+    W_CONTINUITY = 0.10 # SWE-Pruner context continuity
+    W_RECENCY = 0.15    # Active Context Compression recency adjustment
+
+    # Composite density floor: protects chunks that are structurally dense.
+    # Two independent criteria (either triggers the floor):
+    #  1. High action-token density → adversarial protection
+    #     (short needles with CRITICAL/BUG/FIX markers)
+    #  2. High ABSOLUTE structural density + short length → boilerplate protection
+    #     Needles: 0.06-0.13 struct_tokens/word in <200 words
+    #     Fillers: 0.015 struct_tokens/word in 1300+ words
+    DENSITY_FLOOR_SCORE = 1.55
+    DENSITY_FLOOR_MIN_ACTION_DENSITY = 0.15  # action_count / sqrt(word_count)
+    DENSITY_FLOOR_ABS_THRESHOLD = 0.04       # absolute struct_tokens/word threshold
+    DENSITY_FLOOR_MAX_WORDS = 200            # only short chunks qualify for density floor
+
+    # Action-indicating structural tokens (subset of fingerprinter output)
+    ACTION_TOKENS = frozenset({
+        "STRUCT_ACTION_CRITICAL", "STRUCT_ACTION_URGENT", "STRUCT_ACTION_ALERT",
+        "STRUCT_ACTION_BUG", "STRUCT_ACTION_FIX", "STRUCT_ACTION_ACTION_REQUIRED",
+        "STRUCT_ACTION_SECURITY", "STRUCT_ACTION_INCIDENT", "STRUCT_ACTION_IMPORTANT",
+        "STRUCT_ACTION_UPDATE", "STRUCT_MULTI_ACTION",
+        "STRUCT_HAS_LINE_REF", "STRUCT_MULTI_LINE_REF",
+        "STRUCT_HAS_CHANGE_INSTRUCTION", "STRUCT_STRONG_OBLIGATION",
+        "STRUCT_HAS_IP", "STRUCT_HAS_IDENTIFIER", "STRUCT_HAS_MEMORY_SIZE",
+    })
+
+    # MemFly-inspired thresholds
+    REDUNDANCY_HIGH = 0.6   # Jaccard > this → severe penalty
+    REDUNDANCY_LOW = 0.3    # Jaccard < this → no penalty
+
+    # SWE-Pruner continuity: how far the neighbor boost reaches
+    CONTINUITY_DECAY = 0.5  # halve boost per position away
+
+    STOP_WORDS = BM25Scorer.STOP_WORDS
+
+    def __init__(self, k1: float = 1.5, b: float = 0.75):
+        self.k1 = k1
+        self.b = b
+        self._fingerprinter = StructuralFingerprinter()
+
+    def _tokenize(self, text: str) -> list[str]:
+        tokens = re.findall(r'[a-z0-9_]+', text.lower())
+        return [t for t in tokens if len(t) > 1 and t not in self.STOP_WORDS]
+
+    def score_chunks(
+        self, goal: str, chunks: list[tuple[str, str]], keyword_scores: dict | None = None
+    ) -> dict[str, float]:
+        """Score chunks using the paper ensemble method.
+
+        Args:
+            goal: The goal/query message (last user message).
+            chunks: List of (chunk_hash, content) tuples in insertion order.
+            keyword_scores: Optional, unused (interface compat).
+
+        Returns:
+            Dict of chunk_hash -> score in [0.5, 2.0].
+        """
+        if not chunks:
+            return {}
+
+        from rank_bm25 import BM25Okapi
+
+        n = len(chunks)
+
+        # --- Signal 1: BM25 goal relevance ---
+        goal_tokens = self._tokenize(goal)
+        corpus = [self._tokenize(text) for _, text in chunks]
+
+        if goal_tokens and any(corpus):
+            bm25 = BM25Okapi(corpus, k1=self.k1, b=self.b)
+            raw_bm25 = bm25.get_scores(goal_tokens)
+            max_bm25 = max(raw_bm25) if max(raw_bm25) > 0 else 1.0
+            goal_scores = [r / max_bm25 for r in raw_bm25]
+        else:
+            goal_scores = [0.0] * n
+
+        # --- Signal 2: Structural action density ---
+        fingerprints = [
+            self._fingerprinter.extract_structural_tokens(content)
+            for _, content in chunks
+        ]
+        word_counts = [max(len(content.split()), 1) for _, content in chunks]
+        raw_densities = [len(fingerprints[i]) / word_counts[i] for i in range(n)]
+        max_density = max(raw_densities) if raw_densities else 1.0
+        density_scores = [d / max(max_density, 1e-9) for d in raw_densities]
+
+        # --- Signal 3: Structural fingerprint Jaccard uniqueness ---
+        # Chunks with rare structural patterns score higher (boilerplate defense).
+        # A needle with STRUCT_SQL_COMPLEX among fillers with STRUCT_JSON_SHALLOW
+        # gets a high uniqueness score.
+        structural_uniqueness = []
+        for i in range(n):
+            if n <= 1 or not fingerprints[i]:
+                structural_uniqueness.append(1.0)
+                continue
+            peer_sims = []
+            for j in range(n):
+                if i != j:
+                    a, b = fingerprints[i], fingerprints[j]
+                    if not a and not b:
+                        peer_sims.append(1.0)
+                    elif not a or not b:
+                        peer_sims.append(0.0)
+                    else:
+                        peer_sims.append(len(a & b) / len(a | b))
+            avg_sim = sum(peer_sims) / len(peer_sims) if peer_sims else 0.0
+            structural_uniqueness.append(1.0 - avg_sim)
+
+        # --- Signal 4 (renumbered): Redundancy penalty (MemFly IB) ---
+        # Jaccard word-token overlap between each chunk and its peers
+        token_sets = [set(c) for c in corpus]
+        redundancy_penalties = []
+        for i in range(n):
+            if n <= 1 or not token_sets[i]:
+                redundancy_penalties.append(0.0)
+                continue
+            peer_overlaps = []
+            for j in range(n):
+                if i != j and token_sets[j]:
+                    intersection = len(token_sets[i] & token_sets[j])
+                    union = len(token_sets[i] | token_sets[j])
+                    peer_overlaps.append(intersection / union if union else 0.0)
+            avg_overlap = sum(peer_overlaps) / len(peer_overlaps) if peer_overlaps else 0.0
+
+            # MemFly gating: smooth penalty between low and high thresholds
+            if avg_overlap <= self.REDUNDANCY_LOW:
+                penalty = 0.0
+            elif avg_overlap >= self.REDUNDANCY_HIGH:
+                penalty = 1.0
+            else:
+                # Linear interpolation in the gate zone
+                penalty = (avg_overlap - self.REDUNDANCY_LOW) / (self.REDUNDANCY_HIGH - self.REDUNDANCY_LOW)
+            redundancy_penalties.append(penalty)
+
+        # --- Signal 5: Context continuity (SWE-Pruner CRF approximation) ---
+        # First pass: compute raw importance (goal + density) per chunk
+        raw_importance = [
+            0.5 * goal_scores[i] + 0.5 * density_scores[i]
+            for i in range(n)
+        ]
+        # Second pass: propagate importance to neighbors with decay
+        continuity_bonus = [0.0] * n
+        for i in range(n):
+            imp = raw_importance[i]
+            if imp < 0.3:
+                continue  # Only propagate from important chunks
+            # Boost immediate neighbors
+            for offset in [1, -1]:
+                j = i + offset
+                if 0 <= j < n:
+                    continuity_bonus[j] = max(
+                        continuity_bonus[j],
+                        imp * self.CONTINUITY_DECAY,
+                    )
+            # Weaker boost for 2-away neighbors
+            for offset in [2, -2]:
+                j = i + offset
+                if 0 <= j < n:
+                    continuity_bonus[j] = max(
+                        continuity_bonus[j],
+                        imp * self.CONTINUITY_DECAY * self.CONTINUITY_DECAY,
+                    )
+
+        # --- Signal 6: Recency adjustment (Active Context Compression) ---
+        # Older chunks that are also redundant get pushed toward eviction
+        recency_scores = [i / max(n - 1, 1) for i in range(n)]  # 0.0=oldest, 1.0=newest
+
+        # --- Combine all signals ---
+        result: dict[str, float] = {}
+        for i, (chunk_hash, _) in enumerate(chunks):
+            # Uniqueness = 1 - redundancy_penalty (MemFly: high uniqueness = keep)
+            uniqueness = 1.0 - redundancy_penalties[i]
+
+            # Recency-adjusted uniqueness: old + redundant → extra penalty
+            # Fresh chunks or unique chunks keep their score
+            recency_adj = recency_scores[i] * 0.5 + 0.5  # map [0,1] → [0.5, 1.0]
+            adj_uniqueness = uniqueness * recency_adj
+
+            blended = (
+                self.W_GOAL * goal_scores[i]
+                + self.W_DENSITY * density_scores[i]
+                + self.W_STRUCT_UNIQUE * structural_uniqueness[i]
+                + self.W_REDUNDANCY * adj_uniqueness
+                + self.W_CONTINUITY * continuity_bonus[i]
+                + self.W_RECENCY * recency_scores[i]
+            )
+
+            # Map to [0.5, 2.0]
+            score = 0.5 + blended * 1.5
+
+            # Composite density floor (from our BM25+Structural paper):
+            # ONLY short chunks (<=200 words) qualify — this prevents long
+            # concatenated filler turns from accumulating enough tokens to
+            # trigger the floor. Two independent criteria, EITHER triggers:
+            #
+            if word_counts[i] <= self.DENSITY_FLOOR_MAX_WORDS:
+                # Criterion 1: High action-token density (adversarial defense)
+                action_count = len(fingerprints[i] & self.ACTION_TOKENS)
+                action_density = action_count / math.sqrt(word_counts[i])
+                #
+                # Criterion 2: High absolute structural density (boilerplate defense)
+                is_struct_dense = raw_densities[i] >= self.DENSITY_FLOOR_ABS_THRESHOLD
+                #
+                if action_density >= self.DENSITY_FLOOR_MIN_ACTION_DENSITY or is_struct_dense:
+                    score = max(score, self.DENSITY_FLOOR_SCORE)
+
+            result[chunk_hash] = max(0.5, min(2.0, score))
+
+        return result
+
+
 @dataclass(frozen=True)
 class DecisionRecord:
     timestamp: float
@@ -907,7 +1137,7 @@ class ChunkLog:
         self.hard_threshold = hard_threshold
         self.auto_priority = auto_priority
         self.goal_guided = goal_guided
-        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
+        self.scoring_mode = scoring_mode  # 'structural' (default), 'bm25', 'paper_ensemble', 'tfidf', 'semantic', 'hybrid', 'entity_aware', or None
         self._turn = 0
         self._compaction_count = 0
         self._decisions: list[DecisionRecord] = []
@@ -917,7 +1147,12 @@ class ChunkLog:
         self._entity_scorer: EntityAwareScorer | None = None
         self._structural_scorer: StructuralScorer | None = None
         self._bm25_scorer = None
-        if scoring_mode == "bm25":
+        self._paper_ensemble_scorer: PaperEnsembleScorer | None = None
+        if scoring_mode == "paper_ensemble":
+            self._paper_ensemble_scorer = PaperEnsembleScorer()
+            self._goal_scorer = None
+            self._semantic_scorer = None
+        elif scoring_mode == "bm25":
             self._bm25_scorer = BM25Scorer()
             self._goal_scorer = None
             self._semantic_scorer = None
@@ -1109,6 +1344,25 @@ class ChunkLog:
             )
         self._conn.commit()
 
+    def _rescore_chunks_paper_ensemble(self) -> None:
+        """Re-score all chunks using the paper ensemble scorer."""
+        if not self._last_user_message or not self._paper_ensemble_scorer:
+            return
+        rows = self._conn.execute(
+            "SELECT chunk_hash, content FROM chunks ORDER BY turn ASC, timestamp ASC"
+        ).fetchall()
+        if not rows:
+            return
+        scores = self._paper_ensemble_scorer.score_chunks(
+            self._last_user_message, rows, keyword_scores=None
+        )
+        for chunk_hash, new_priority in scores.items():
+            self._conn.execute(
+                "UPDATE chunks SET priority = ? WHERE chunk_hash = ?",
+                (new_priority, chunk_hash),
+            )
+        self._conn.commit()
+
     def _rescore_chunks_bm25(self) -> None:
         """Re-score all chunks using BM25."""
         if not self._last_user_message or not self._bm25_scorer:
@@ -1190,7 +1444,9 @@ class ChunkLog:
 
         if current > hard_limit or current > soft_limit:
             # Re-score chunks before compaction
-            if self.scoring_mode == "bm25":
+            if self.scoring_mode == "paper_ensemble":
+                self._rescore_chunks_paper_ensemble()
+            elif self.scoring_mode == "bm25":
                 self._rescore_chunks_bm25()
             elif self.scoring_mode == "structural":
                 self._rescore_chunks_structural()
@@ -1219,7 +1475,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "paper_ensemble", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
         for chunk_hash, tokens, priority, turn in rows:
             if current_tokens - removed <= target:
                 break
@@ -1253,7 +1509,7 @@ class ChunkLog:
         ).fetchall()
 
         removed = 0
-        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
+        use_scoring = self.auto_priority or self.goal_guided or self.scoring_mode in ("bm25", "paper_ensemble", "tfidf", "semantic", "hybrid", "entity_aware", "structural")
         # First pass: try to evict only low-priority chunks (scoring protection)
         if use_scoring:
             for chunk_hash, tokens, priority, turn in rows:

@@ -1,0 +1,213 @@
+{
+  "timestamp": "20260312_114128",
+  "benchmark": "paper_ensemble_offline",
+  "max_context_tokens": 32768,
+  "num_sessions": 10,
+  "modes": [
+    "paper_ensemble",
+    "bm25",
+    "structural"
+  ],
+  "results": {
+    "dense": {
+      "paper_ensemble": {
+        "avg_retention": 5.0,
+        "scores": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "perfect_sessions": 10
+      },
+      "bm25": {
+        "avg_retention": 4.9,
+        "scores": [
+          5,
+          5,
+          5,
+          5,
+          4,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "perfect_sessions": 9
+      },
+      "structural": {
+        "avg_retention": 5.0,
+        "scores": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "perfect_sessions": 10
+      }
+    },
+    "adversarial": {
+      "paper_ensemble": {
+        "avg_retention": 5.0,
+        "scores": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "perfect_sessions": 10
+      },
+      "bm25": {
+        "avg_retention": 0.8,
+        "scores": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          3
+        ],
+        "perfect_sessions": 0
+      },
+      "structural": {
+        "avg_retention": 5.0,
+        "scores": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "perfect_sessions": 10
+      }
+    },
+    "boilerplate": {
+      "paper_ensemble": {
+        "avg_retention": 5.0,
+        "scores": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "perfect_sessions": 10
+      },
+      "bm25": {
+        "avg_retention": 1.8,
+        "scores": [
+          2,
+          2,
+          2,
+          0,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "perfect_sessions": 0
+      },
+      "structural": {
+        "avg_retention": 5.0,
+        "scores": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "perfect_sessions": 10
+      }
+    },
+    "50turn": {
+      "paper_ensemble": {
+        "avg_retention": 5.0,
+        "scores": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "perfect_sessions": 10
+      },
+      "bm25": {
+        "avg_retention": 4.2,
+        "scores": [
+          5,
+          5,
+          1,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          1
+        ],
+        "perfect_sessions": 8
+      },
+      "structural": {
+        "avg_retention": 5.0,
+        "scores": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "perfect_sessions": 10
+      }
+    }
+  }
+}

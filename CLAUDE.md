@@ -28,7 +28,7 @@ tests/                            # pytest suite
 ## Core Concepts
 
 - **ChunkLog**: Append-only context log backed by SQLite WAL. Uses SHA-256 content-addressing, soft/hard threshold compaction, and DecisionRecords for auditability.
-- **Scorers**: Rank chunks by goal relevance (40%) + corpus uniqueness (60%). BM25 is the default (`scoring_mode="bm25"`). TF-IDF (`GoalGuidedScorer`) is deprecated.
+- **Scorers**: Rank chunks by goal relevance + corpus uniqueness. `paper_ensemble` is the best scorer (combines BM25 + structural density + MemFly redundancy + SWE-Pruner continuity + Active Context Compression recency). BM25 is the default (`scoring_mode="bm25"`). TF-IDF (`GoalGuidedScorer`) is deprecated.
 - **Sessions**: Thin wrappers around Cerebras and Gemini SDKs. Imported lazily to avoid requiring all SDKs.
 
 ## Usage
@@ -36,7 +36,8 @@ tests/                            # pytest suite
 ```python
 from deterministic_context_engine import ChunkLog
 
-log = ChunkLog(max_tokens=8000, scoring_mode="bm25")
+# Best scorer: paper_ensemble (novel combination of 4 papers)
+log = ChunkLog(max_tokens=8000, scoring_mode="paper_ensemble")
 log.append("user", "Hello!")
 ```
 

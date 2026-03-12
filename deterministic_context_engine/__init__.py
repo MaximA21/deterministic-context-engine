@@ -1,6 +1,6 @@
 """Deterministic Context Engine — priority-aware context management for LLMs."""
 
-from engine import ChunkLog, CerebrasSession, GoalGuidedScorer, SemanticScorer, EntityAwareScorer
+from engine import ChunkLog, CerebrasSession, GoalGuidedScorer, SemanticScorer, EntityAwareScorer, PaperEnsembleScorer
 
 __all__ = [
     "ChunkLog",
@@ -8,4 +8,5 @@ __all__ = [
     "GoalGuidedScorer",
     "SemanticScorer",
     "EntityAwareScorer",
+    "PaperEnsembleScorer",
 ]
