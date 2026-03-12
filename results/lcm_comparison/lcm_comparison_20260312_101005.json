@@ -1,0 +1,3625 @@
+{
+  "metadata": {
+    "timestamp": "20260312_101005",
+    "max_context_tokens": 32768,
+    "fillers_per_turn": 14,
+    "num_sessions": 10,
+    "num_turns": 30,
+    "paper": "Ehrlich & Blackman, LCM: Lossless Context Management, Voltropy PBC, 2026"
+  },
+  "aggregated": {
+    "lcm_dag": {
+      "mode": "lcm_dag",
+      "sessions": 10,
+      "total_needles": 50,
+      "retained_active": 50,
+      "retained_exact": 50,
+      "retrievable": 50,
+      "active_retention_rate": 1.0,
+      "exact_retention_rate": 1.0,
+      "retrieval_rate": 1.0,
+      "avg_compression_ratio": 5.415089623372635,
+      "avg_compactions": 9.1,
+      "per_needle": {
+        "needle_1": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        },
+        "needle_2": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        },
+        "needle_3": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        },
+        "needle_4": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        },
+        "needle_5": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        }
+      }
+    },
+    "structural": {
+      "mode": "structural",
+      "sessions": 10,
+      "total_needles": 50,
+      "retained_active": 50,
+      "retained_exact": 50,
+      "retrievable": 50,
+      "active_retention_rate": 1.0,
+      "exact_retention_rate": 1.0,
+      "retrieval_rate": 1.0,
+      "avg_compression_ratio": 4.928342896821311,
+      "avg_compactions": 10.0,
+      "per_needle": {
+        "needle_1": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        },
+        "needle_2": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        },
+        "needle_3": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        },
+        "needle_4": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        },
+        "needle_5": {
+          "active_retention": 1.0,
+          "exact_retention": 1.0
+        }
+      }
+    },
+    "bm25": {
+      "mode": "bm25",
+      "sessions": 10,
+      "total_needles": 50,
+      "retained_active": 6,
+      "retained_exact": 6,
+      "retrievable": 6,
+      "active_retention_rate": 0.12,
+      "exact_retention_rate": 0.12,
+      "retrieval_rate": 0.12,
+      "avg_compression_ratio": 5.381179549378149,
+      "avg_compactions": 10.3,
+      "per_needle": {
+        "needle_1": {
+          "active_retention": 0.0,
+          "exact_retention": 0.0
+        },
+        "needle_2": {
+          "active_retention": 0.0,
+          "exact_retention": 0.0
+        },
+        "needle_3": {
+          "active_retention": 0.0,
+          "exact_retention": 0.0
+        },
+        "needle_4": {
+          "active_retention": 0.0,
+          "exact_retention": 0.0
+        },
+        "needle_5": {
+          "active_retention": 0.6,
+          "exact_retention": 0.6
+        }
+      }
+    },
+    "naive": {
+      "mode": "naive",
+      "sessions": 10,
+      "total_needles": 50,
+      "retained_active": 14,
+      "retained_exact": 14,
+      "retrievable": 14,
+      "active_retention_rate": 0.28,
+      "exact_retention_rate": 0.28,
+      "retrieval_rate": 0.28,
+      "avg_compression_ratio": 3.134939495484942,
+      "avg_compactions": 0.0,
+      "per_needle": {
+        "needle_1": {
+          "active_retention": 0.0,
+          "exact_retention": 0.0
+        },
+        "needle_2": {
+          "active_retention": 0.0,
+          "exact_retention": 0.0
+        },
+        "needle_3": {
+          "active_retention": 0.1,
+          "exact_retention": 0.1
+        },
+        "needle_4": {
+          "active_retention": 0.5,
+          "exact_retention": 0.5
+        },
+        "needle_5": {
+          "active_retention": 0.8,
+          "exact_retention": 0.8
+        }
+      }
+    }
+  },
+  "sessions": {
+    "lcm_dag": [
+      {
+        "mode": "lcm_dag",
+        "session_id": 0,
+        "total_tokens_added": 97215,
+        "final_active_tokens": 18470,
+        "compression_ratio": 5.263400108283704,
+        "compaction_count": 9,
+        "compaction_events": [
+          {
+            "turn": 7,
+            "compactions": 1,
+            "active_tokens": 19485
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "active_tokens": 15697
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "active_tokens": 15776
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "active_tokens": 14040
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "active_tokens": 15116
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "active_tokens": 15619
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "active_tokens": 13944
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "active_tokens": 16872
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "active_tokens": 14681
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 3,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 8,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 20,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "lcm_dag",
+        "session_id": 1,
+        "total_tokens_added": 98450,
+        "final_active_tokens": 21529,
+        "compression_ratio": 4.572901667518231,
+        "compaction_count": 9,
+        "compaction_events": [
+          {
+            "turn": 8,
+            "compactions": 1,
+            "active_tokens": 18396
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "active_tokens": 19389
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "active_tokens": 15872
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "active_tokens": 13977
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "active_tokens": 15109
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "active_tokens": 13846
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "active_tokens": 14912
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "active_tokens": 19295
+          },
+          {
+            "turn": 27,
+            "compactions": 1,
+            "active_tokens": 13807
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 3,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 4,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 7,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 21,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "lcm_dag",
+        "session_id": 2,
+        "total_tokens_added": 98101,
+        "final_active_tokens": 18100,
+        "compression_ratio": 5.419944751381215,
+        "compaction_count": 9,
+        "compaction_events": [
+          {
+            "turn": 6,
+            "compactions": 1,
+            "active_tokens": 17863
+          },
+          {
+            "turn": 8,
+            "compactions": 1,
+            "active_tokens": 17038
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "active_tokens": 14660
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "active_tokens": 15492
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "active_tokens": 13993
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "active_tokens": 17171
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "active_tokens": 16583
+          },
+          {
+            "turn": 25,
+            "compactions": 1,
+            "active_tokens": 16334
+          },
+          {
+            "turn": 27,
+            "compactions": 1,
+            "active_tokens": 14243
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 2,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 17,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 18,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 28,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "lcm_dag",
+        "session_id": 3,
+        "total_tokens_added": 97944,
+        "final_active_tokens": 13735,
+        "compression_ratio": 7.130979250091008,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 9,
+            "compactions": 1,
+            "active_tokens": 21831
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "active_tokens": 20791
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "active_tokens": 16502
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "active_tokens": 14572
+          },
+          {
+            "turn": 17,
+            "compactions": 1,
+            "active_tokens": 17217
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "active_tokens": 14621
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "active_tokens": 15315
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "active_tokens": 13729
+          },
+          {
+            "turn": 27,
+            "compactions": 1,
+            "active_tokens": 15123
+          },
+          {
+            "turn": 29,
+            "compactions": 1,
+            "active_tokens": 13735
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 1,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 2,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 6,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 13,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "lcm_dag",
+        "session_id": 4,
+        "total_tokens_added": 97177,
+        "final_active_tokens": 18929,
+        "compression_ratio": 5.1337630091394155,
+        "compaction_count": 9,
+        "compaction_events": [
+          {
+            "turn": 6,
+            "compactions": 1,
+            "active_tokens": 17502
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "active_tokens": 16898
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "active_tokens": 16477
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "active_tokens": 14430
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "active_tokens": 15412
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "active_tokens": 15591
+          },
+          {
+            "turn": 23,
+            "compactions": 1,
+            "active_tokens": 15735
+          },
+          {
+            "turn": 25,
+            "compactions": 1,
+            "active_tokens": 13922
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "active_tokens": 15075
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 7,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 16,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 17,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 19,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "lcm_dag",
+        "session_id": 5,
+        "total_tokens_added": 97952,
+        "final_active_tokens": 18179,
+        "compression_ratio": 5.388195170251389,
+        "compaction_count": 9,
+        "compaction_events": [
+          {
+            "turn": 5,
+            "compactions": 1,
+            "active_tokens": 15875
+          },
+          {
+            "turn": 8,
+            "compactions": 1,
+            "active_tokens": 15995
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "active_tokens": 14176
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "active_tokens": 15278
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "active_tokens": 13762
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "active_tokens": 17034
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "active_tokens": 16761
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "active_tokens": 16267
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "active_tokens": 14133
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 6,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 13,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 17,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 20,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 22,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "lcm_dag",
+        "session_id": 6,
+        "total_tokens_added": 97982,
+        "final_active_tokens": 17687,
+        "compression_ratio": 5.539774975971052,
+        "compaction_count": 9,
+        "compaction_events": [
+          {
+            "turn": 5,
+            "compactions": 1,
+            "active_tokens": 15803
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "active_tokens": 14183
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "active_tokens": 19059
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "active_tokens": 13721
+          },
+          {
+            "turn": 17,
+            "compactions": 1,
+            "active_tokens": 16961
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "active_tokens": 16543
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "active_tokens": 14445
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "active_tokens": 15441
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "active_tokens": 13787
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 7,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 8,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 14,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 18,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 25,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "lcm_dag",
+        "session_id": 7,
+        "total_tokens_added": 97407,
+        "final_active_tokens": 16179,
+        "compression_ratio": 6.020582236232153,
+        "compaction_count": 9,
+        "compaction_events": [
+          {
+            "turn": 7,
+            "compactions": 1,
+            "active_tokens": 17606
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "active_tokens": 18655
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "active_tokens": 17500
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "active_tokens": 14883
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "active_tokens": 15552
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "active_tokens": 13881
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "active_tokens": 14899
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "active_tokens": 15583
+          },
+          {
+            "turn": 29,
+            "compactions": 1,
+            "active_tokens": 16179
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 5,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 24,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 25,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 27,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "lcm_dag",
+        "session_id": 8,
+        "total_tokens_added": 97479,
+        "final_active_tokens": 18919,
+        "compression_ratio": 5.1524393466885146,
+        "compaction_count": 9,
+        "compaction_events": [
+          {
+            "turn": 6,
+            "compactions": 1,
+            "active_tokens": 15722
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "active_tokens": 16054
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "active_tokens": 16038
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "active_tokens": 16187
+          },
+          {
+            "turn": 17,
+            "compactions": 1,
+            "active_tokens": 16001
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "active_tokens": 14124
+          },
+          {
+            "turn": 23,
+            "compactions": 1,
+            "active_tokens": 15212
+          },
+          {
+            "turn": 25,
+            "compactions": 1,
+            "active_tokens": 13718
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "active_tokens": 14997
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 4,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 8,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 10,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 13,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 22,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "lcm_dag",
+        "session_id": 9,
+        "total_tokens_added": 98282,
+        "final_active_tokens": 21701,
+        "compression_ratio": 4.52891571816967,
+        "compaction_count": 9,
+        "compaction_events": [
+          {
+            "turn": 8,
+            "compactions": 1,
+            "active_tokens": 19813
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "active_tokens": 17935
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "active_tokens": 17139
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "active_tokens": 16631
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "active_tokens": 14354
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "active_tokens": 15255
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "active_tokens": 14055
+          },
+          {
+            "turn": 25,
+            "compactions": 1,
+            "active_tokens": 15074
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "active_tokens": 17616
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 2,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 3,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 6,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 10,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 24,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      }
+    ],
+    "structural": [
+      {
+        "mode": "structural",
+        "session_id": 0,
+        "total_tokens_added": 97787,
+        "final_active_tokens": 19861,
+        "compression_ratio": 4.923568803182116,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 7,
+            "compactions": 1,
+            "tokens_before": 23338,
+            "tokens_after": 15659
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "tokens_before": 23411,
+            "tokens_after": 15783
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23457,
+            "tokens_after": 15743
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "tokens_before": 23769,
+            "tokens_after": 16056
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 24044,
+            "tokens_after": 16202
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "tokens_before": 23983,
+            "tokens_after": 16101
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 24107,
+            "tokens_after": 16220
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 24226,
+            "tokens_after": 16376
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23937,
+            "tokens_after": 15965
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23684,
+            "tokens_after": 15925
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 3,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 8,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 20,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "structural",
+        "session_id": 1,
+        "total_tokens_added": 97326,
+        "final_active_tokens": 20078,
+        "compression_ratio": 4.847395158880366,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 8,
+            "compactions": 1,
+            "tokens_before": 23114,
+            "tokens_after": 15383
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "tokens_before": 23220,
+            "tokens_after": 15675
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23396,
+            "tokens_after": 15621
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "tokens_before": 23424,
+            "tokens_after": 15703
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 23470,
+            "tokens_after": 15664
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "tokens_before": 23491,
+            "tokens_after": 15736
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "tokens_before": 23257,
+            "tokens_after": 15477
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23555,
+            "tokens_after": 16034
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23888,
+            "tokens_after": 16159
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23993,
+            "tokens_after": 16108
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 3,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 4,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 7,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 21,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "structural",
+        "session_id": 2,
+        "total_tokens_added": 97325,
+        "final_active_tokens": 19609,
+        "compression_ratio": 4.963282166352185,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 6,
+            "compactions": 1,
+            "tokens_before": 23229,
+            "tokens_after": 15561
+          },
+          {
+            "turn": 8,
+            "compactions": 1,
+            "tokens_before": 23503,
+            "tokens_after": 15647
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "tokens_before": 23326,
+            "tokens_after": 15554
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23320,
+            "tokens_after": 15649
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "tokens_before": 23633,
+            "tokens_after": 15893
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 23523,
+            "tokens_after": 15620
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "tokens_before": 23375,
+            "tokens_after": 15771
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "tokens_before": 23730,
+            "tokens_after": 15982
+          },
+          {
+            "turn": 25,
+            "compactions": 1,
+            "tokens_before": 23763,
+            "tokens_after": 15720
+          },
+          {
+            "turn": 27,
+            "compactions": 1,
+            "tokens_before": 23454,
+            "tokens_after": 15743
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 2,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 17,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 18,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 28,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "structural",
+        "session_id": 3,
+        "total_tokens_added": 96916,
+        "final_active_tokens": 19650,
+        "compression_ratio": 4.932111959287532,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23644,
+            "tokens_after": 15990
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23635,
+            "tokens_after": 15884
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "tokens_before": 23805,
+            "tokens_after": 16142
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 23749,
+            "tokens_after": 16062
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "tokens_before": 23719,
+            "tokens_after": 15847
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "tokens_before": 23603,
+            "tokens_after": 15946
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "tokens_before": 23609,
+            "tokens_after": 15896
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23736,
+            "tokens_after": 16030
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23783,
+            "tokens_after": 15973
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23562,
+            "tokens_after": 15809
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 1,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 2,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 6,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 13,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "structural",
+        "session_id": 4,
+        "total_tokens_added": 97420,
+        "final_active_tokens": 19579,
+        "compression_ratio": 4.97573931252873,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 6,
+            "compactions": 1,
+            "tokens_before": 23485,
+            "tokens_after": 15830
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23452,
+            "tokens_after": 15350
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23050,
+            "tokens_after": 15277
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "tokens_before": 23171,
+            "tokens_after": 15696
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23596,
+            "tokens_after": 15836
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "tokens_before": 24080,
+            "tokens_after": 16306
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "tokens_before": 24114,
+            "tokens_after": 16302
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23909,
+            "tokens_after": 15854
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23676,
+            "tokens_after": 16069
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23572,
+            "tokens_after": 15744
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 7,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 16,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 17,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 19,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "structural",
+        "session_id": 5,
+        "total_tokens_added": 97313,
+        "final_active_tokens": 19559,
+        "compression_ratio": 4.97535661332379,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 5,
+            "compactions": 1,
+            "tokens_before": 23106,
+            "tokens_after": 15404
+          },
+          {
+            "turn": 8,
+            "compactions": 1,
+            "tokens_before": 23223,
+            "tokens_after": 15479
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "tokens_before": 23414,
+            "tokens_after": 15849
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23740,
+            "tokens_after": 15901
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23784,
+            "tokens_after": 15849
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "tokens_before": 23623,
+            "tokens_after": 15781
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 23732,
+            "tokens_after": 15988
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23791,
+            "tokens_after": 15859
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23661,
+            "tokens_after": 15988
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23502,
+            "tokens_after": 15724
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 6,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 13,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 17,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 20,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 22,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "structural",
+        "session_id": 6,
+        "total_tokens_added": 97854,
+        "final_active_tokens": 20018,
+        "compression_ratio": 4.888300529523429,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 5,
+            "compactions": 1,
+            "tokens_before": 23311,
+            "tokens_after": 15399
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23272,
+            "tokens_after": 15570
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23176,
+            "tokens_after": 15479
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "tokens_before": 23282,
+            "tokens_after": 15676
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 23476,
+            "tokens_after": 15664
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "tokens_before": 23861,
+            "tokens_after": 16091
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 23826,
+            "tokens_after": 16208
+          },
+          {
+            "turn": 23,
+            "compactions": 1,
+            "tokens_before": 24160,
+            "tokens_after": 16393
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 24265,
+            "tokens_after": 16438
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 24163,
+            "tokens_after": 16038
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 7,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 8,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 14,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 18,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 25,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "structural",
+        "session_id": 7,
+        "total_tokens_added": 97865,
+        "final_active_tokens": 19941,
+        "compression_ratio": 4.9077277970011535,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 7,
+            "compactions": 1,
+            "tokens_before": 23442,
+            "tokens_after": 15683
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23462,
+            "tokens_after": 15683
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23457,
+            "tokens_after": 15557
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "tokens_before": 23337,
+            "tokens_after": 15741
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23511,
+            "tokens_after": 15651
+          },
+          {
+            "turn": 17,
+            "compactions": 1,
+            "tokens_before": 23528,
+            "tokens_after": 15840
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "tokens_before": 23767,
+            "tokens_after": 15910
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 23676,
+            "tokens_after": 16037
+          },
+          {
+            "turn": 23,
+            "compactions": 1,
+            "tokens_before": 23922,
+            "tokens_after": 15889
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23850,
+            "tokens_after": 16037
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 5,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 24,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 25,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 27,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "structural",
+        "session_id": 8,
+        "total_tokens_added": 97976,
+        "final_active_tokens": 19975,
+        "compression_ratio": 4.904931163954943,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 6,
+            "compactions": 1,
+            "tokens_before": 23748,
+            "tokens_after": 15934
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23862,
+            "tokens_after": 15968
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23762,
+            "tokens_after": 15848
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23818,
+            "tokens_after": 16090
+          },
+          {
+            "turn": 17,
+            "compactions": 1,
+            "tokens_before": 23939,
+            "tokens_after": 16247
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "tokens_before": 24059,
+            "tokens_after": 16339
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 24146,
+            "tokens_after": 16101
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23949,
+            "tokens_after": 16033
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23781,
+            "tokens_after": 16161
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23877,
+            "tokens_after": 16219
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 4,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 8,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 10,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 13,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 22,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      },
+      {
+        "mode": "structural",
+        "session_id": 9,
+        "total_tokens_added": 97925,
+        "final_active_tokens": 19723,
+        "compression_ratio": 4.965015464178878,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 8,
+            "compactions": 1,
+            "tokens_before": 23789,
+            "tokens_after": 15993
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23941,
+            "tokens_after": 16036
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "tokens_before": 23701,
+            "tokens_after": 15928
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23768,
+            "tokens_after": 16043
+          },
+          {
+            "turn": 17,
+            "compactions": 1,
+            "tokens_before": 23635,
+            "tokens_after": 15980
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "tokens_before": 23789,
+            "tokens_after": 16105
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 24035,
+            "tokens_after": 16133
+          },
+          {
+            "turn": 23,
+            "compactions": 1,
+            "tokens_before": 23940,
+            "tokens_after": 15933
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23895,
+            "tokens_after": 16055
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23758,
+            "tokens_after": 15843
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 2,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_2": {
+            "turn_injected": 3,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_3": {
+            "turn_injected": 6,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 10,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 24,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 5,
+        "needles_retained_exact": 5,
+        "needles_retrievable": 5
+      }
+    ],
+    "bm25": [
+      {
+        "mode": "bm25",
+        "session_id": 0,
+        "total_tokens_added": 97581,
+        "final_active_tokens": 19712,
+        "compression_ratio": 4.950334821428571,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 7,
+            "compactions": 1,
+            "tokens_before": 23454,
+            "tokens_after": 15755
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "tokens_before": 23638,
+            "tokens_after": 15839
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23544,
+            "tokens_after": 15780
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "tokens_before": 23726,
+            "tokens_after": 16196
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 23992,
+            "tokens_after": 16088
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "tokens_before": 23922,
+            "tokens_after": 16027
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 23890,
+            "tokens_after": 15793
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23485,
+            "tokens_after": 15859
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23671,
+            "tokens_after": 15770
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23424,
+            "tokens_after": 15770
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 3,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 8,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 20,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 1,
+        "needles_retained_exact": 1,
+        "needles_retrievable": 1
+      },
+      {
+        "mode": "bm25",
+        "session_id": 1,
+        "total_tokens_added": 97377,
+        "final_active_tokens": 15545,
+        "compression_ratio": 6.26420070762303,
+        "compaction_count": 11,
+        "compaction_events": [
+          {
+            "turn": 8,
+            "compactions": 1,
+            "tokens_before": 23136,
+            "tokens_after": 15647
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "tokens_before": 23702,
+            "tokens_after": 16105
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23896,
+            "tokens_after": 15841
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "tokens_before": 23616,
+            "tokens_after": 15710
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 23535,
+            "tokens_after": 15956
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "tokens_before": 23601,
+            "tokens_after": 16016
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "tokens_before": 23705,
+            "tokens_after": 15854
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23861,
+            "tokens_after": 19455
+          },
+          {
+            "turn": 25,
+            "compactions": 1,
+            "tokens_before": 23365,
+            "tokens_after": 15543
+          },
+          {
+            "turn": 27,
+            "compactions": 1,
+            "tokens_before": 23388,
+            "tokens_after": 15569
+          },
+          {
+            "turn": 29,
+            "compactions": 1,
+            "tokens_before": 23268,
+            "tokens_after": 15545
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 3,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 4,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 7,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 21,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 23,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          }
+        },
+        "needles_retained_active": 0,
+        "needles_retained_exact": 0,
+        "needles_retrievable": 0
+      },
+      {
+        "mode": "bm25",
+        "session_id": 2,
+        "total_tokens_added": 97061,
+        "final_active_tokens": 15622,
+        "compression_ratio": 6.213096914607605,
+        "compaction_count": 11,
+        "compaction_events": [
+          {
+            "turn": 6,
+            "compactions": 1,
+            "tokens_before": 23199,
+            "tokens_after": 15530
+          },
+          {
+            "turn": 8,
+            "compactions": 1,
+            "tokens_before": 23246,
+            "tokens_after": 15410
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "tokens_before": 23072,
+            "tokens_after": 15419
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23123,
+            "tokens_after": 15529
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "tokens_before": 23354,
+            "tokens_after": 15529
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 23157,
+            "tokens_after": 15579
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "tokens_before": 23510,
+            "tokens_after": 15995
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "tokens_before": 23859,
+            "tokens_after": 16075
+          },
+          {
+            "turn": 25,
+            "compactions": 1,
+            "tokens_before": 23856,
+            "tokens_after": 23557
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 27431,
+            "tokens_after": 15683
+          },
+          {
+            "turn": 29,
+            "compactions": 1,
+            "tokens_before": 23560,
+            "tokens_after": 15622
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 2,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 17,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 18,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 23,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 28,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 1,
+        "needles_retained_exact": 1,
+        "needles_retrievable": 1
+      },
+      {
+        "mode": "bm25",
+        "session_id": 3,
+        "total_tokens_added": 97482,
+        "final_active_tokens": 19265,
+        "compression_ratio": 5.0600570983649105,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23387,
+            "tokens_after": 15492
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23040,
+            "tokens_after": 15206
+          },
+          {
+            "turn": 14,
+            "compactions": 1,
+            "tokens_before": 23045,
+            "tokens_after": 15409
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 23361,
+            "tokens_after": 15417
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "tokens_before": 23398,
+            "tokens_after": 15681
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "tokens_before": 23557,
+            "tokens_after": 15485
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "tokens_before": 23032,
+            "tokens_after": 15462
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23232,
+            "tokens_after": 15462
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23205,
+            "tokens_after": 15353
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23247,
+            "tokens_after": 15320
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 1,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 2,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 6,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 13,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 1,
+        "needles_retained_exact": 1,
+        "needles_retrievable": 1
+      },
+      {
+        "mode": "bm25",
+        "session_id": 4,
+        "total_tokens_added": 97251,
+        "final_active_tokens": 19226,
+        "compression_ratio": 5.058306460002081,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 6,
+            "compactions": 1,
+            "tokens_before": 23016,
+            "tokens_after": 15407
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23201,
+            "tokens_after": 15440
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23260,
+            "tokens_after": 15407
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "tokens_before": 23339,
+            "tokens_after": 15407
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23117,
+            "tokens_after": 15407
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "tokens_before": 23361,
+            "tokens_after": 15324
+          },
+          {
+            "turn": 22,
+            "compactions": 1,
+            "tokens_before": 23103,
+            "tokens_after": 15356
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23045,
+            "tokens_after": 15340
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23069,
+            "tokens_after": 15340
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23282,
+            "tokens_after": 15340
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 7,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 16,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 17,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 19,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          }
+        },
+        "needles_retained_active": 0,
+        "needles_retained_exact": 0,
+        "needles_retrievable": 0
+      },
+      {
+        "mode": "bm25",
+        "session_id": 5,
+        "total_tokens_added": 98342,
+        "final_active_tokens": 19610,
+        "compression_ratio": 5.014890362060173,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 5,
+            "compactions": 1,
+            "tokens_before": 23586,
+            "tokens_after": 15683
+          },
+          {
+            "turn": 8,
+            "compactions": 1,
+            "tokens_before": 23686,
+            "tokens_after": 15854
+          },
+          {
+            "turn": 10,
+            "compactions": 1,
+            "tokens_before": 23813,
+            "tokens_after": 15854
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23647,
+            "tokens_after": 15847
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23703,
+            "tokens_after": 15851
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "tokens_before": 23780,
+            "tokens_after": 15951
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 23843,
+            "tokens_after": 15967
+          },
+          {
+            "turn": 24,
+            "compactions": 1,
+            "tokens_before": 23917,
+            "tokens_after": 16097
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23908,
+            "tokens_after": 15973
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23678,
+            "tokens_after": 15752
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 6,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 13,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 17,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 20,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 22,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          }
+        },
+        "needles_retained_active": 0,
+        "needles_retained_exact": 0,
+        "needles_retrievable": 0
+      },
+      {
+        "mode": "bm25",
+        "session_id": 6,
+        "total_tokens_added": 97351,
+        "final_active_tokens": 19500,
+        "compression_ratio": 4.992358974358974,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 5,
+            "compactions": 1,
+            "tokens_before": 23463,
+            "tokens_after": 15615
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23622,
+            "tokens_after": 15764
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23618,
+            "tokens_after": 15764
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "tokens_before": 23323,
+            "tokens_after": 15712
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 23542,
+            "tokens_after": 15590
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "tokens_before": 23483,
+            "tokens_after": 15432
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 23011,
+            "tokens_after": 15432
+          },
+          {
+            "turn": 23,
+            "compactions": 1,
+            "tokens_before": 23095,
+            "tokens_after": 15400
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23192,
+            "tokens_after": 15641
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23489,
+            "tokens_after": 15637
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 7,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 8,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 14,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 18,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 25,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 1,
+        "needles_retained_exact": 1,
+        "needles_retrievable": 1
+      },
+      {
+        "mode": "bm25",
+        "session_id": 7,
+        "total_tokens_added": 98228,
+        "final_active_tokens": 19279,
+        "compression_ratio": 5.095077545515847,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 7,
+            "compactions": 1,
+            "tokens_before": 23349,
+            "tokens_after": 15559
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23460,
+            "tokens_after": 15664
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23530,
+            "tokens_after": 15452
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "tokens_before": 23488,
+            "tokens_after": 15687
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23440,
+            "tokens_after": 15760
+          },
+          {
+            "turn": 17,
+            "compactions": 1,
+            "tokens_before": 23643,
+            "tokens_after": 15760
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "tokens_before": 23529,
+            "tokens_after": 15737
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 23610,
+            "tokens_after": 15477
+          },
+          {
+            "turn": 23,
+            "compactions": 1,
+            "tokens_before": 23195,
+            "tokens_after": 15458
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23547,
+            "tokens_after": 15288
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 5,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 24,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 25,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 27,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          }
+        },
+        "needles_retained_active": 0,
+        "needles_retained_exact": 0,
+        "needles_retrievable": 0
+      },
+      {
+        "mode": "bm25",
+        "session_id": 8,
+        "total_tokens_added": 97478,
+        "final_active_tokens": 15826,
+        "compression_ratio": 6.159358018450651,
+        "compaction_count": 11,
+        "compaction_events": [
+          {
+            "turn": 6,
+            "compactions": 1,
+            "tokens_before": 23213,
+            "tokens_after": 15393
+          },
+          {
+            "turn": 9,
+            "compactions": 1,
+            "tokens_before": 23332,
+            "tokens_after": 15467
+          },
+          {
+            "turn": 12,
+            "compactions": 1,
+            "tokens_before": 23153,
+            "tokens_after": 15550
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23402,
+            "tokens_after": 23103
+          },
+          {
+            "turn": 16,
+            "compactions": 1,
+            "tokens_before": 26926,
+            "tokens_after": 15438
+          },
+          {
+            "turn": 18,
+            "compactions": 1,
+            "tokens_before": 23163,
+            "tokens_after": 15382
+          },
+          {
+            "turn": 20,
+            "compactions": 1,
+            "tokens_before": 23380,
+            "tokens_after": 15560
+          },
+          {
+            "turn": 23,
+            "compactions": 1,
+            "tokens_before": 23675,
+            "tokens_after": 15773
+          },
+          {
+            "turn": 25,
+            "compactions": 1,
+            "tokens_before": 23526,
+            "tokens_after": 15773
+          },
+          {
+            "turn": 27,
+            "compactions": 1,
+            "tokens_before": 23386,
+            "tokens_after": 15826
+          },
+          {
+            "turn": 29,
+            "compactions": 1,
+            "tokens_before": 23587,
+            "tokens_after": 15826
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 4,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 8,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 10,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 13,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 22,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 1,
+        "needles_retained_exact": 1,
+        "needles_retrievable": 1
+      },
+      {
+        "mode": "bm25",
+        "session_id": 9,
+        "total_tokens_added": 97295,
+        "final_active_tokens": 19443,
+        "compression_ratio": 5.004114591369644,
+        "compaction_count": 10,
+        "compaction_events": [
+          {
+            "turn": 8,
+            "compactions": 1,
+            "tokens_before": 23677,
+            "tokens_after": 15843
+          },
+          {
+            "turn": 11,
+            "compactions": 1,
+            "tokens_before": 23674,
+            "tokens_after": 15481
+          },
+          {
+            "turn": 13,
+            "compactions": 1,
+            "tokens_before": 23334,
+            "tokens_after": 15523
+          },
+          {
+            "turn": 15,
+            "compactions": 1,
+            "tokens_before": 23181,
+            "tokens_after": 15523
+          },
+          {
+            "turn": 17,
+            "compactions": 1,
+            "tokens_before": 23132,
+            "tokens_after": 15526
+          },
+          {
+            "turn": 19,
+            "compactions": 1,
+            "tokens_before": 23315,
+            "tokens_after": 15526
+          },
+          {
+            "turn": 21,
+            "compactions": 1,
+            "tokens_before": 23132,
+            "tokens_after": 15507
+          },
+          {
+            "turn": 23,
+            "compactions": 1,
+            "tokens_before": 23174,
+            "tokens_after": 15507
+          },
+          {
+            "turn": 26,
+            "compactions": 1,
+            "tokens_before": 23347,
+            "tokens_after": 15588
+          },
+          {
+            "turn": 28,
+            "compactions": 1,
+            "tokens_before": 23427,
+            "tokens_after": 15517
+          }
+        ],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 2,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 3,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 6,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 10,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 24,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 1,
+        "needles_retained_exact": 1,
+        "needles_retrievable": 1
+      }
+    ],
+    "naive": [
+      {
+        "mode": "naive",
+        "session_id": 0,
+        "total_tokens_added": 98633,
+        "final_active_tokens": 31650,
+        "compression_ratio": 3.1163665086887837,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 3,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 8,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 20,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 2,
+        "needles_retained_exact": 2,
+        "needles_retrievable": 2
+      },
+      {
+        "mode": "naive",
+        "session_id": 1,
+        "total_tokens_added": 97960,
+        "final_active_tokens": 31249,
+        "compression_ratio": 3.134820314250056,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 3,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 4,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 7,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 21,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 2,
+        "needles_retained_exact": 2,
+        "needles_retrievable": 2
+      },
+      {
+        "mode": "naive",
+        "session_id": 2,
+        "total_tokens_added": 97695,
+        "final_active_tokens": 31259,
+        "compression_ratio": 3.125339902108193,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 2,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 17,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 18,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 23,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 28,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 2,
+        "needles_retained_exact": 2,
+        "needles_retrievable": 2
+      },
+      {
+        "mode": "naive",
+        "session_id": 3,
+        "total_tokens_added": 97799,
+        "final_active_tokens": 30776,
+        "compression_ratio": 3.17776839095399,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 1,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 2,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 6,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 13,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          }
+        },
+        "needles_retained_active": 0,
+        "needles_retained_exact": 0,
+        "needles_retrievable": 0
+      },
+      {
+        "mode": "naive",
+        "session_id": 4,
+        "total_tokens_added": 97643,
+        "final_active_tokens": 30915,
+        "compression_ratio": 3.1584344169497007,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 7,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 16,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 17,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 19,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          }
+        },
+        "needles_retained_active": 0,
+        "needles_retained_exact": 0,
+        "needles_retrievable": 0
+      },
+      {
+        "mode": "naive",
+        "session_id": 5,
+        "total_tokens_added": 97412,
+        "final_active_tokens": 31191,
+        "compression_ratio": 3.123080375749415,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 6,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 13,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 17,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 20,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 22,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 2,
+        "needles_retained_exact": 2,
+        "needles_retrievable": 2
+      },
+      {
+        "mode": "naive",
+        "session_id": 6,
+        "total_tokens_added": 97881,
+        "final_active_tokens": 31511,
+        "compression_ratio": 3.1062486115959507,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 7,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 8,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 14,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 18,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 25,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 1,
+        "needles_retained_exact": 1,
+        "needles_retrievable": 1
+      },
+      {
+        "mode": "naive",
+        "session_id": 7,
+        "total_tokens_added": 98134,
+        "final_active_tokens": 31516,
+        "compression_ratio": 3.113783475060287,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 0,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 5,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 24,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_4": {
+            "turn_injected": 25,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          },
+          "needle_5": {
+            "turn_injected": 27,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 3,
+        "needles_retained_exact": 3,
+        "needles_retrievable": 3
+      },
+      {
+        "mode": "naive",
+        "session_id": 8,
+        "total_tokens_added": 97499,
+        "final_active_tokens": 30830,
+        "compression_ratio": 3.162471618553357,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 4,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 8,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 10,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 13,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 22,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 1,
+        "needles_retained_exact": 1,
+        "needles_retrievable": 1
+      },
+      {
+        "mode": "naive",
+        "session_id": 9,
+        "total_tokens_added": 97696,
+        "final_active_tokens": 31202,
+        "compression_ratio": 3.131081340939683,
+        "compaction_count": 0,
+        "compaction_events": [],
+        "retention": {
+          "needle_1": {
+            "turn_injected": 2,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_2": {
+            "turn_injected": 3,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_3": {
+            "turn_injected": 6,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_4": {
+            "turn_injected": 10,
+            "retained_in_active": false,
+            "retained_exact": false,
+            "retrievable_via_grep": false
+          },
+          "needle_5": {
+            "turn_injected": 24,
+            "retained_in_active": true,
+            "retained_exact": true,
+            "retrievable_via_grep": true
+          }
+        },
+        "needles_retained_active": 1,
+        "needles_retained_exact": 1,
+        "needles_retrievable": 1
+      }
+    ]
+  }
+}
